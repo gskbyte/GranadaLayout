@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C031848F19AE425900E18325 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031848E19AE425900E18325 /* Foundation.framework */; };
+		C031849119AE425900E18325 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031849019AE425900E18325 /* CoreGraphics.framework */; };
+		C031849319AE425900E18325 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031849219AE425900E18325 /* UIKit.framework */; };
+		C031849919AE425900E18325 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C031849719AE425900E18325 /* InfoPlist.strings */; };
+		C031849B19AE425900E18325 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C031849A19AE425900E18325 /* main.m */; };
+		C031849F19AE425900E18325 /* GRXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C031849E19AE425900E18325 /* GRXAppDelegate.m */; };
+		C03184A519AE425900E18325 /* GRXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03184A419AE425900E18325 /* GRXViewController.m */; };
+		C03184A719AE425900E18325 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C03184A619AE425900E18325 /* Images.xcassets */; };
+		C03184AE19AE425900E18325 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C03184AD19AE425900E18325 /* XCTest.framework */; };
+		C03184AF19AE425900E18325 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031848E19AE425900E18325 /* Foundation.framework */; };
+		C03184B019AE425900E18325 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031849219AE425900E18325 /* UIKit.framework */; };
+		C03184B819AE425900E18325 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C03184B619AE425900E18325 /* InfoPlist.strings */; };
+		C03184BA19AE425900E18325 /* GranadaLayoutTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C03184B919AE425900E18325 /* GranadaLayoutTests.m */; };
+		C0D9157D19AE899600FAF0D9 /* GRXLayoutParams.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9157A19AE899600FAF0D9 /* GRXLayoutParams.m */; };
+		C0D9157E19AE899600FAF0D9 /* GRXLinearLayoutParams.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9157C19AE899600FAF0D9 /* GRXLinearLayoutParams.m */; };
+		C0D9158719AE89D100FAF0D9 /* UIImageView+GRXLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9158419AE89D100FAF0D9 /* UIImageView+GRXLayout.m */; };
+		C0D9158819AE89D100FAF0D9 /* UIView+GRXLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9158619AE89D100FAF0D9 /* UIView+GRXLayout.m */; };
+		C0D9158E19AE89F000FAF0D9 /* GRXLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9158B19AE89F000FAF0D9 /* GRXLayout.m */; };
+		C0D9158F19AE89F000FAF0D9 /* GRXLinearLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D9158D19AE89F000FAF0D9 /* GRXLinearLayout.m */; };
+		C0D9159419AE8A3600FAF0D9 /* lab.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D9159319AE8A3600FAF0D9 /* lab.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C03184B119AE425900E18325 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C031848319AE425900E18325 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C031848A19AE425900E18325;
+			remoteInfo = GranadaLayout;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C031848B19AE425900E18325 /* GranadaLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GranadaLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C031848E19AE425900E18325 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		C031849019AE425900E18325 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C031849219AE425900E18325 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		C031849619AE425900E18325 /* GranadaLayout-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GranadaLayout-Info.plist"; sourceTree = "<group>"; };
+		C031849819AE425900E18325 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C031849A19AE425900E18325 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C031849C19AE425900E18325 /* GranadaLayout-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GranadaLayout-Prefix.pch"; sourceTree = "<group>"; };
+		C031849D19AE425900E18325 /* GRXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRXAppDelegate.h; sourceTree = "<group>"; };
+		C031849E19AE425900E18325 /* GRXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRXAppDelegate.m; sourceTree = "<group>"; };
+		C03184A319AE425900E18325 /* GRXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GRXViewController.h; sourceTree = "<group>"; };
+		C03184A419AE425900E18325 /* GRXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRXViewController.m; sourceTree = "<group>"; };
+		C03184A619AE425900E18325 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C03184AC19AE425900E18325 /* GranadaLayoutTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GranadaLayoutTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C03184AD19AE425900E18325 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		C03184B519AE425900E18325 /* GranadaLayoutTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GranadaLayoutTests-Info.plist"; sourceTree = "<group>"; };
+		C03184B719AE425900E18325 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		C03184B919AE425900E18325 /* GranadaLayoutTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GranadaLayoutTests.m; sourceTree = "<group>"; };
+		C0D9157819AE899600FAF0D9 /* GRXLayoutParams_Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXLayoutParams_Protected.h; path = ../../Classes/GRXLayoutParams_Protected.h; sourceTree = "<group>"; };
+		C0D9157919AE899600FAF0D9 /* GRXLayoutParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXLayoutParams.h; path = ../../Classes/GRXLayoutParams.h; sourceTree = "<group>"; };
+		C0D9157A19AE899600FAF0D9 /* GRXLayoutParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRXLayoutParams.m; path = ../../Classes/GRXLayoutParams.m; sourceTree = "<group>"; };
+		C0D9157B19AE899600FAF0D9 /* GRXLinearLayoutParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXLinearLayoutParams.h; path = ../../Classes/GRXLinearLayoutParams.h; sourceTree = "<group>"; };
+		C0D9157C19AE899600FAF0D9 /* GRXLinearLayoutParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRXLinearLayoutParams.m; path = ../../Classes/GRXLinearLayoutParams.m; sourceTree = "<group>"; };
+		C0D9158319AE89D100FAF0D9 /* UIImageView+GRXLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImageView+GRXLayout.h"; path = "../../Classes/UIKitCategories/UIImageView+GRXLayout.h"; sourceTree = "<group>"; };
+		C0D9158419AE89D100FAF0D9 /* UIImageView+GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+GRXLayout.m"; path = "../../Classes/UIKitCategories/UIImageView+GRXLayout.m"; sourceTree = "<group>"; };
+		C0D9158519AE89D100FAF0D9 /* UIView+GRXLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+GRXLayout.h"; path = "../../Classes/UIKitCategories/UIView+GRXLayout.h"; sourceTree = "<group>"; };
+		C0D9158619AE89D100FAF0D9 /* UIView+GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+GRXLayout.m"; path = "../../Classes/UIKitCategories/UIView+GRXLayout.m"; sourceTree = "<group>"; };
+		C0D9158A19AE89F000FAF0D9 /* GRXLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXLayout.h; path = ../../Classes/GRXLayout.h; sourceTree = "<group>"; };
+		C0D9158B19AE89F000FAF0D9 /* GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRXLayout.m; path = ../../Classes/GRXLayout.m; sourceTree = "<group>"; };
+		C0D9158C19AE89F000FAF0D9 /* GRXLinearLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXLinearLayout.h; path = ../../Classes/GRXLinearLayout.h; sourceTree = "<group>"; };
+		C0D9158D19AE89F000FAF0D9 /* GRXLinearLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRXLinearLayout.m; path = ../../Classes/GRXLinearLayout.m; sourceTree = "<group>"; };
+		C0D9159319AE8A3600FAF0D9 /* lab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab.png; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C031848819AE425900E18325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C031849119AE425900E18325 /* CoreGraphics.framework in Frameworks */,
+				C031849319AE425900E18325 /* UIKit.framework in Frameworks */,
+				C031848F19AE425900E18325 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C03184A919AE425900E18325 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C03184AE19AE425900E18325 /* XCTest.framework in Frameworks */,
+				C03184B019AE425900E18325 /* UIKit.framework in Frameworks */,
+				C03184AF19AE425900E18325 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C031848219AE425900E18325 = {
+			isa = PBXGroup;
+			children = (
+				C031849419AE425900E18325 /* GranadaLayout */,
+				C03184B319AE425900E18325 /* GranadaLayoutTests */,
+				C031848D19AE425900E18325 /* Frameworks */,
+				C031848C19AE425900E18325 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C031848C19AE425900E18325 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C031848B19AE425900E18325 /* GranadaLayout.app */,
+				C03184AC19AE425900E18325 /* GranadaLayoutTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C031848D19AE425900E18325 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C031848E19AE425900E18325 /* Foundation.framework */,
+				C031849019AE425900E18325 /* CoreGraphics.framework */,
+				C031849219AE425900E18325 /* UIKit.framework */,
+				C03184AD19AE425900E18325 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C031849419AE425900E18325 /* GranadaLayout */ = {
+			isa = PBXGroup;
+			children = (
+				C03184C319AE426300E18325 /* GranadaLayout */,
+				C031849D19AE425900E18325 /* GRXAppDelegate.h */,
+				C031849E19AE425900E18325 /* GRXAppDelegate.m */,
+				C03184A319AE425900E18325 /* GRXViewController.h */,
+				C03184A419AE425900E18325 /* GRXViewController.m */,
+				C03184A619AE425900E18325 /* Images.xcassets */,
+				C031849519AE425900E18325 /* Supporting Files */,
+			);
+			path = GranadaLayout;
+			sourceTree = "<group>";
+		};
+		C031849519AE425900E18325 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C031849619AE425900E18325 /* GranadaLayout-Info.plist */,
+				C031849719AE425900E18325 /* InfoPlist.strings */,
+				C031849A19AE425900E18325 /* main.m */,
+				C031849C19AE425900E18325 /* GranadaLayout-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C03184B319AE425900E18325 /* GranadaLayoutTests */ = {
+			isa = PBXGroup;
+			children = (
+				C03184B919AE425900E18325 /* GranadaLayoutTests.m */,
+				C03184B419AE425900E18325 /* Supporting Files */,
+			);
+			path = GranadaLayoutTests;
+			sourceTree = "<group>";
+		};
+		C03184B419AE425900E18325 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C03184B519AE425900E18325 /* GranadaLayoutTests-Info.plist */,
+				C03184B619AE425900E18325 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C03184C319AE426300E18325 /* GranadaLayout */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9159219AE8A3600FAF0D9 /* Assets */,
+				C0D9158919AE89DC00FAF0D9 /* Layouts */,
+				C03184DF19AE4B9100E18325 /* LayoutParams */,
+				C03184E519AE7FAA00E18325 /* UIKit Categories */,
+			);
+			name = GranadaLayout;
+			sourceTree = "<group>";
+		};
+		C03184DF19AE4B9100E18325 /* LayoutParams */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9157819AE899600FAF0D9 /* GRXLayoutParams_Protected.h */,
+				C0D9157919AE899600FAF0D9 /* GRXLayoutParams.h */,
+				C0D9157A19AE899600FAF0D9 /* GRXLayoutParams.m */,
+				C0D9157B19AE899600FAF0D9 /* GRXLinearLayoutParams.h */,
+				C0D9157C19AE899600FAF0D9 /* GRXLinearLayoutParams.m */,
+			);
+			name = LayoutParams;
+			sourceTree = "<group>";
+		};
+		C03184E519AE7FAA00E18325 /* UIKit Categories */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9158319AE89D100FAF0D9 /* UIImageView+GRXLayout.h */,
+				C0D9158419AE89D100FAF0D9 /* UIImageView+GRXLayout.m */,
+				C0D9158519AE89D100FAF0D9 /* UIView+GRXLayout.h */,
+				C0D9158619AE89D100FAF0D9 /* UIView+GRXLayout.m */,
+			);
+			name = "UIKit Categories";
+			sourceTree = "<group>";
+		};
+		C0D9158919AE89DC00FAF0D9 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9158A19AE89F000FAF0D9 /* GRXLayout.h */,
+				C0D9158B19AE89F000FAF0D9 /* GRXLayout.m */,
+				C0D9158C19AE89F000FAF0D9 /* GRXLinearLayout.h */,
+				C0D9158D19AE89F000FAF0D9 /* GRXLinearLayout.m */,
+			);
+			name = Layouts;
+			sourceTree = "<group>";
+		};
+		C0D9159219AE8A3600FAF0D9 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C0D9159319AE8A3600FAF0D9 /* lab.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C031848A19AE425900E18325 /* GranadaLayout */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C03184BD19AE425900E18325 /* Build configuration list for PBXNativeTarget "GranadaLayout" */;
+			buildPhases = (
+				C031848719AE425900E18325 /* Sources */,
+				C031848819AE425900E18325 /* Frameworks */,
+				C031848919AE425900E18325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GranadaLayout;
+			productName = GranadaLayout;
+			productReference = C031848B19AE425900E18325 /* GranadaLayout.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C03184AB19AE425900E18325 /* GranadaLayoutTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C03184C019AE425900E18325 /* Build configuration list for PBXNativeTarget "GranadaLayoutTests" */;
+			buildPhases = (
+				C03184A819AE425900E18325 /* Sources */,
+				C03184A919AE425900E18325 /* Frameworks */,
+				C03184AA19AE425900E18325 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C03184B219AE425900E18325 /* PBXTargetDependency */,
+			);
+			name = GranadaLayoutTests;
+			productName = GranadaLayoutTests;
+			productReference = C03184AC19AE425900E18325 /* GranadaLayoutTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C031848319AE425900E18325 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GRX;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = gskbyte;
+				TargetAttributes = {
+					C03184AB19AE425900E18325 = {
+						TestTargetID = C031848A19AE425900E18325;
+					};
+				};
+			};
+			buildConfigurationList = C031848619AE425900E18325 /* Build configuration list for PBXProject "GranadaLayout" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C031848219AE425900E18325;
+			productRefGroup = C031848C19AE425900E18325 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C031848A19AE425900E18325 /* GranadaLayout */,
+				C03184AB19AE425900E18325 /* GranadaLayoutTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C031848919AE425900E18325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0D9159419AE8A3600FAF0D9 /* lab.png in Resources */,
+				C03184A719AE425900E18325 /* Images.xcassets in Resources */,
+				C031849919AE425900E18325 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C03184AA19AE425900E18325 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C03184B819AE425900E18325 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C031848719AE425900E18325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C03184A519AE425900E18325 /* GRXViewController.m in Sources */,
+				C0D9158E19AE89F000FAF0D9 /* GRXLayout.m in Sources */,
+				C0D9157D19AE899600FAF0D9 /* GRXLayoutParams.m in Sources */,
+				C031849F19AE425900E18325 /* GRXAppDelegate.m in Sources */,
+				C0D9158819AE89D100FAF0D9 /* UIView+GRXLayout.m in Sources */,
+				C0D9158719AE89D100FAF0D9 /* UIImageView+GRXLayout.m in Sources */,
+				C0D9157E19AE899600FAF0D9 /* GRXLinearLayoutParams.m in Sources */,
+				C0D9158F19AE89F000FAF0D9 /* GRXLinearLayout.m in Sources */,
+				C031849B19AE425900E18325 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C03184A819AE425900E18325 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C03184BA19AE425900E18325 /* GranadaLayoutTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C03184B219AE425900E18325 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C031848A19AE425900E18325 /* GranadaLayout */;
+			targetProxy = C03184B119AE425900E18325 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C031849719AE425900E18325 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C031849819AE425900E18325 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		C03184B619AE425900E18325 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C03184B719AE425900E18325 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C03184BB19AE425900E18325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		C03184BC19AE425900E18325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C03184BE19AE425900E18325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GranadaLayout/GranadaLayout-Prefix.pch";
+				INFOPLIST_FILE = "GranadaLayout/GranadaLayout-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		C03184BF19AE425900E18325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GranadaLayout/GranadaLayout-Prefix.pch";
+				INFOPLIST_FILE = "GranadaLayout/GranadaLayout-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		C03184C119AE425900E18325 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GranadaLayout.app/GranadaLayout";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GranadaLayout/GranadaLayout-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "GranadaLayoutTests/GranadaLayoutTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		C03184C219AE425900E18325 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/GranadaLayout.app/GranadaLayout";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "GranadaLayout/GranadaLayout-Prefix.pch";
+				INFOPLIST_FILE = "GranadaLayoutTests/GranadaLayoutTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C031848619AE425900E18325 /* Build configuration list for PBXProject "GranadaLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C03184BB19AE425900E18325 /* Debug */,
+				C03184BC19AE425900E18325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C03184BD19AE425900E18325 /* Build configuration list for PBXNativeTarget "GranadaLayout" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C03184BE19AE425900E18325 /* Debug */,
+				C03184BF19AE425900E18325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C03184C019AE425900E18325 /* Build configuration list for PBXNativeTarget "GranadaLayoutTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C03184C119AE425900E18325 /* Debug */,
+				C03184C219AE425900E18325 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C031848319AE425900E18325 /* Project object */;
+}
