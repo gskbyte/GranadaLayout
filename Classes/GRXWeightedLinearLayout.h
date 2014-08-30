@@ -1,7 +1,7 @@
 #import "GRXLinearLayout.h"
+#import "GRXWeightedLinearLayoutParams.h"
 
-const static CGFloat kGRXWeightedLinearLayoutDefaultWeight = 1;
-
+const static CGFloat kGRXWeightedLinearLayoutDefaultWeightSum = 1;
 
 @interface GRXWeightedLinearLayout : GRXLinearLayout
 

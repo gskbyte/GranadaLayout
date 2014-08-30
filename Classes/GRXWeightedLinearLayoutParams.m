@@ -7,7 +7,7 @@
                       gravity:(GRXLinearLayoutGravity)gravity {
     return [self initWithSize:size
                       gravity:gravity
-                       weight:kGRXLinearLayoutParamsDefaultWeight];
+                       weight:kGRXWeightedLinearLayoutParamsDefaultWeight];
 }
 
 - (instancetype) initWithSize:(CGSize)size

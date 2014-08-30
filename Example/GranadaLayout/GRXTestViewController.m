@@ -1,4 +1,5 @@
 #import "GRXTestViewController.h"
+#import "GRXLayout.h"
 
 @implementation GRXTestViewController
 
@@ -10,4 +11,10 @@
     return @"";
 }
 
+
+
+- (void) viewWillLayoutSubviews {
+    [super viewWillLayoutSubviews];
+    self.topLayout.frame = CGRectMake(0, 60, self.view.width, self.view.height-60);
+}
 @end

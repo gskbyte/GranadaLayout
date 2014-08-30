@@ -1,7 +1,5 @@
 #import "GRXLayoutParams.h"
 
-static const CGFloat kGRXLinearLayoutParamsDefaultWeight = 0;
-
 typedef NS_ENUM(NSUInteger, GRXLinearLayoutGravity) {
     GRXLinearLayoutGravityBegin = 0,
     GRXLinearLayoutGravityCenter,

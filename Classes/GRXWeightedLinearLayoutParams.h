@@ -1,5 +1,7 @@
 #import "GRXLinearLayoutParams.h"
 
+static const CGFloat kGRXWeightedLinearLayoutParamsDefaultWeight = 0;
+
 @interface GRXWeightedLinearLayoutParams : GRXLinearLayoutParams
 
 @property(nonatomic) CGFloat weight;
@@ -13,6 +15,6 @@
 
 @interface UIView  (GRXWeightedLinearLayoutParams)
 
-@property (nonatomic, readonly) GRXLinearLayoutParams * grx_weightedLinearLayoutParams;
+@property (nonatomic, readonly) GRXWeightedLinearLayoutParams * grx_weightedLinearLayoutParams;
 
 @end

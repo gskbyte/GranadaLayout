@@ -45,6 +45,14 @@
         return [[c1 selectionTitle] compare:[c2 selectionTitle]];
     }];
     self.controllerClasses = allSubclasses;
+
+    if(FastStartViewControllerClassName.length > 0) {
+        Class clazz = NSClassFromString(FastStartViewControllerClassName);
+        if(clazz != nil) {
+            [self.navigationController pushViewController:[[clazz alloc] init]
+                                                 animated:NO];
+        }
+    }
 }
 
 

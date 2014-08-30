@@ -4,6 +4,10 @@
 
 @interface GRXLayout : UIView
 
++ (CGSize) sizeFromViewSpec:(CGSize)vSpec
+                    minSize:(CGSize)minSize
+                    maxSize:(CGSize)maxSize;
+
 - (instancetype) init;
 
 - (void)addSubview:(UIView *)view;
