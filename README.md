@@ -1,7 +1,7 @@
 GranadaLayout
 =============
 
-I know that AutoLayout exists, but I think that it doesn't solve the problem with layouting in iOS. It's too complex and slow, and animating by changing constraints even more complicated.
+I know that AutoLayout exists, but I think that it doesn't solve the problem with layouting in iOS. It's too complex and slow, and animating by changing constraints is even more complicated.
 
 This is an attempt to implement a layout system for iOS that works similar to Android. The primary goal is just to implement layout views like ``LinearLayout`` and ``RelativeLayout`` but with simplified options.
 
@@ -27,7 +27,7 @@ TODO:
     - UIPickerView
     - UIScrollView (needed?)
 - Add size calculation for the layouts, so that they can be embedded in other layouts
-- Implement the RelativeLayout
+- Implement the ``RelativeLayout``
 - Test, test, test! -> Unit and snapshot tests
 - Create a nicer syntax a la [Masonry](https://github.com/Masonry/Masonry)
 
