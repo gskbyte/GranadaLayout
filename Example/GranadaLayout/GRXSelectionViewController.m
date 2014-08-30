@@ -40,6 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    self.navigationItem.title = @"Test list";
+    self.view.backgroundColor = [UIColor whiteColor];
+
     NSMutableArray * allSubclasses = [self.class subclassesOfClass:GRXTestViewController.class];
     [allSubclasses sortUsingComparator:^NSComparisonResult(Class c1, Class c2) {
         return [[c1 selectionTitle] compare:[c2 selectionTitle]];

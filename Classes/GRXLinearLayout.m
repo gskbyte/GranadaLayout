@@ -2,6 +2,10 @@
 
 @implementation GRXLinearLayout
 
++ (Class) layoutParamsClass {
+    return GRXLinearLayoutParams.class;
+}
+
 - (instancetype) init {
     return [self initWithDirection:kGRXLinearLayoutDefaultDirection];
 }

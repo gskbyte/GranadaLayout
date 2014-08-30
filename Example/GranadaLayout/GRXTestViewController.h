@@ -7,6 +7,8 @@
 +(NSString *) selectionTitle;
 +(NSString *) selectionDetail;
 
-@property (nonatomic) GRXLayout * topLayout;
+@property (nonatomic, readonly) GRXLayout * topLayout;
+
+- (GRXLayout *) initializeTopLayout;
 
 @end

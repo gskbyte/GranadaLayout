@@ -19,6 +19,9 @@ typedef NS_ENUM(NSUInteger, GRXViewVisibility) {
 // synthetized property with -hidden and -drawable
 @property (nonatomic, setter = grx_setVisibility:) GRXViewVisibility grx_visibility;
 
+- (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams;
+- (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;
+
 // this class provides just a basic implementation, must be overriden in children classes
 - (CGSize) grx_suggestedSizeForSizeSpec:(CGSize)sizeSpec;
 

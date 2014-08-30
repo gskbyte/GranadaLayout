@@ -8,6 +8,27 @@ const static char * GRXDrawableKey = "grx_drawable";
 
 @implementation UIView (GRXLayout)
 
+#pragma mark - setup methods
+
+- (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+    self = [self initWithFrame:CGRectZero];
+    if(self) {
+        self.grx_layoutParams = layoutParams;
+    }
+    return self;
+}
+
+- (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout {
+    GRXLayoutParams * params = [[[layout.class layoutParamsClass] alloc] init];
+    self = [self initWithLayoutParams:params];
+    if(self) {
+        [layout addSubview:self];
+    }
+    return self;
+}
+
+#pragma mark - layout methods
+
 - (GRXLayoutParams *)grx_layoutParams {
     return objc_getAssociatedObject(self, GRXLayoutParamsKey);
 }

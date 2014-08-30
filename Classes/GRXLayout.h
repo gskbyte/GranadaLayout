@@ -8,6 +8,8 @@
                     minSize:(CGSize)minSize
                     maxSize:(CGSize)maxSize;
 
++ (Class) layoutParamsClass;
+
 - (instancetype) init;
 
 - (void)addSubview:(UIView *)view;

@@ -2,6 +2,10 @@
 
 @implementation GRXWeightedLinearLayout
 
++ (Class) layoutParamsClass {
+    return GRXWeightedLinearLayoutParams.class;
+}
+
 - (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction{
     return [self initWithDirection:direction
                          weightSum:kGRXWeightedLinearLayoutDefaultWeightSum];

@@ -1,11 +1,7 @@
 #import "GRXLinearLayoutTestController.h"
 #import "GRXLinearLayout.h"
 
-@implementation GRXLinearLayoutTestController {
-    UIView * view0, *view1, *view2;
-    UIImageView * image;
-    UISwitch * sw;
-}
+@implementation GRXLinearLayoutTestController
 
 + (NSString *)selectionTitle {
     return @"LinearLayout test 1";
@@ -15,44 +11,34 @@
     return @"Includes UIImageView and UISwitch";
 }
 
+- (GRXLayout *) initializeTopLayout {
+    GRXLayout * top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
+    return top;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.topLayout = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
-    self.topLayout.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:self.topLayout];
-
-    view0 = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView * view0 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view0.backgroundColor = [UIColor blueColor];
+    view0.grx_linearLayoutParams.minSize = CGSizeMake(100, 50);
+    view0.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityCenter;
+    view0.grx_linearLayoutParams.margins = UIEdgeInsetsMake(10, 0, 30, 0);
 
-    GRXLinearLayoutParams * p0 = [[GRXLinearLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
-    p0.minSize = CGSizeMake(100, 50);
-    p0.gravity = GRXLinearLayoutGravityCenter;
-    p0.margins = UIEdgeInsetsMake(10, 0, 30, 0);
-    [self.topLayout addSubview:view0 layoutParams:p0];
+    UIImageView * imageView = [[UIImageView alloc] initWithDefaultParamsInLayout:self.topLayout];
+    imageView.image = [UIImage imageNamed:@"lab"];
+    imageView.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
 
-    image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lab"]];
-    GRXLinearLayoutParams * imageParams = [[GRXLinearLayoutParams alloc] init];
-    imageParams.gravity = GRXLinearLayoutGravityEnd;
-    [self.topLayout addSubview:image layoutParams:imageParams];
-
-    view1 = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView * view1 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view1.backgroundColor = [UIColor greenColor];
+    view1.grx_linearLayoutParams.minSize = CGSizeMake(30, 80);
 
-    GRXLinearLayoutParams * p1 = [[GRXLinearLayoutParams alloc] init];
-    p1.minSize = CGSizeMake(30, 80);
-    [self.topLayout addSubview:view1 layoutParams:p1];
-
-
-    sw = [[UISwitch alloc] initWithFrame:CGRectZero];
+    UISwitch * sw = [[UISwitch alloc] initWithDefaultParamsInLayout:self.topLayout];
     sw.backgroundColor = UIColor.yellowColor;
-
-    GRXLinearLayoutParams * sw0 = [[GRXLinearLayoutParams alloc] init];
-    sw0.size = CGSizeMake(200, 200);
-    sw0.minSize = CGSizeMake(200, 200);
-    sw0.margins = UIEdgeInsetsMake(5, 10, 30, 20);
-    sw0.gravity = GRXLinearLayoutGravityEnd;
-    [self.topLayout addSubview:sw layoutParams:sw0];
+    sw.grx_linearLayoutParams.size = CGSizeMake(200, 200);
+    sw.grx_linearLayoutParams.minSize = CGSizeMake(200, 200);
+    sw.grx_linearLayoutParams.margins = UIEdgeInsetsMake(5, 10, 30, 20);
+    sw.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
 }
 
 @end
