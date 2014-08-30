@@ -125,9 +125,9 @@
     } else {
         if(params.width == GRXMatchParent) {
             measureSpec.width = availableSize.width;
-            measureSpec.widthMode = GRXMeasureSpecAtMost;
+            measureSpec.widthMode = GRXMeasureSpecExactly;
         } else if (params.width == GRXWrapContent) {
-            measureSpec.width = 0;
+            measureSpec.width = params.minSize.width;
             measureSpec.widthMode = GRXMeasureSpecUnspecified;
         } else {
             measureSpec.width = params.width;
@@ -142,9 +142,9 @@
     } else {
         if(params.height == GRXMatchParent) {
             measureSpec.height = availableSize.height;
-            measureSpec.heightMode = GRXMeasureSpecAtMost;
+            measureSpec.heightMode = GRXMeasureSpecExactly;
         } else if (params.height == GRXWrapContent) {
-            measureSpec.height = 0;
+            measureSpec.height = params.minSize.height;
             measureSpec.heightMode = GRXMeasureSpecUnspecified;
         } else {
             measureSpec.height = params.height;

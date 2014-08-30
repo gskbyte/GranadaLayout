@@ -14,6 +14,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.title = [self.class selectionTitle];
     self.view.backgroundColor = [UIColor lightGrayColor];
 

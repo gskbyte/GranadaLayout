@@ -113,14 +113,60 @@ const static char GRXMeasuredSizeKey;
 }
 
 // measurement is done within this method. Subclasses must call grx_setMeasuredSize at the end
-// and can not call super 
-- (void) grx_measureWithSpec:(GRXMeasureSpec)spec {
-    CGSize minSize = self.grx_suggestedMinimumSize;
-    CGFloat w = GRXDefaultSizeValueForSpec(minSize.width, spec.width, spec.widthMode);
-    CGFloat h = GRXDefaultSizeValueForSpec(minSize.height, spec.height, spec.heightMode);
+// and can not call super
 
-    [self grx_setMeasuredSize:CGSizeMake(w, h)];
+// different implementation for UIView because it -sizeThatFits: returns the current size
+- (void) grx_measureWithSpec:(GRXMeasureSpec)spec {
+    CGSize measuredSize;
+    if([self isMemberOfClass:UIView.class]) {
+        CGSize minSize = self.grx_suggestedMinimumSize;
+        CGFloat w = GRXDefaultSizeValueForSpec(minSize.width, spec.width, spec.widthMode);
+        CGFloat h = GRXDefaultSizeValueForSpec(minSize.height, spec.height, spec.heightMode);
+        measuredSize = CGSizeMake(w, h);
+    } else {
+        measuredSize = [self grx_measureFittingMeasureSpec:spec];
+    }
+
+    [self grx_setMeasuredSize:measuredSize];
 }
 
+- (CGSize)grx_measureFittingMeasureSpec:(GRXMeasureSpec)spec {
+    // 1. Get the maximum width for which we will compute size
+    CGSize maxTextSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+    switch (spec.widthMode) {
+        case GRXMeasureSpecExactly:
+        case GRXMeasureSpecAtMost:
+            maxTextSize.width = spec.width;
+            break;
+        default:
+        case GRXMeasureSpecUnspecified:
+            break;
+    }
+
+    // 2. Get the size for the given width
+    self.size = CGSizeZero;
+    CGSize measuredSize = [self sizeThatFits:maxTextSize];
+    switch (spec.heightMode) {
+        case GRXMeasureSpecExactly:
+            measuredSize.height = spec.height;
+            break;
+        case GRXMeasureSpecAtMost:
+            measuredSize.height = MIN(measuredSize.height, spec.height);
+            break;
+        case GRXMeasureSpecUnspecified:
+        default:
+            measuredSize.height = MAX(measuredSize.height, spec.height);
+            break;
+    }
+
+    // 3. Override computed width if set to exactly or unspecified
+    if(spec.widthMode == GRXMeasureSpecExactly) {
+        measuredSize.width = spec.width;
+    } else if(spec.widthMode == GRXMeasureSpecUnspecified) {
+        measuredSize.width = MAX(measuredSize.width, spec.width);
+    }
+
+    return measuredSize;
+}
 
 @end
