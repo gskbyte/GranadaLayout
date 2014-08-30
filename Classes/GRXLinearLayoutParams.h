@@ -12,17 +12,10 @@ static const NSInteger kGRXLinearLayoutParamsDefaultGravity = 0;
 
 @interface GRXLinearLayoutParams : GRXLayoutParams
 
-@property(nonatomic) CGFloat weight;
 @property(nonatomic) NSInteger gravity;
 
 - (instancetype) initWithSize:(CGSize)size
-                       weight:(NSInteger)weight;
-- (instancetype) initWithSize:(CGSize)size
-                      gravity:(NSInteger)gravity;
-- (instancetype) initWithSize:(CGSize)size
-                       weight:(NSInteger)weight
-                      gravity:(NSInteger)gravity;
-
+                      gravity:(GRXLinearLayoutGravity)gravity;
 
 @end
 

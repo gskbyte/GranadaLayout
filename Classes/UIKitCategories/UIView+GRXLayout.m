@@ -19,7 +19,7 @@ const static char * GRXDrawableKey = "grx_drawable";
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGSize)grx_sizeSpec {
+- (CGSize)grx_layoutSize {
     GRXLayoutParams * params = self.grx_layoutParams;
     if(params == nil) {
         return self.frame.size;
@@ -27,7 +27,6 @@ const static char * GRXDrawableKey = "grx_drawable";
         return params.size;
     }
 }
-
 
 - (BOOL)grx_drawable {
     NSNumber * n = objc_getAssociatedObject(self, GRXDrawableKey);
@@ -76,17 +75,13 @@ const static char * GRXDrawableKey = "grx_drawable";
 }
 
 - (CGSize) grx_suggestedSizeForSizeSpec:(CGSize)sizeSpec {
-    CGSize size;
-    if(sizeSpec.width == GRXMatchParent) {
-        size.width = GRXMatchParent;
-    } else {
-        size.width = sizeSpec.width==GRXWrapContent ? 0 : sizeSpec.width;
+    CGSize size = sizeSpec;
+    if(sizeSpec.width == GRXWrapContent) {
+        size.width = 0;
     }
 
-    if(sizeSpec.height == GRXMatchParent) {
-        size.height = GRXMatchParent;
-    } else {
-        size.height = sizeSpec.height==GRXWrapContent ? 0 : sizeSpec.height;
+    if(sizeSpec.height == GRXWrapContent) {
+        size.height = 0;
     }
 
     return size;

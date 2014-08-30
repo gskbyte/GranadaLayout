@@ -9,10 +9,14 @@
 - (instancetype) initWithDirection:(GRXLinearLayoutDirection)direction {
     self = [super init];
     if(self) {
-        self.direction = direction;
-        self.weightSum = kGRXLinearLayoutParamsDefaultWeight;
+        _direction = direction;
     }
     return self;
+}
+
+- (void)setDirection:(GRXLinearLayoutDirection)direction {
+    self.direction = direction;
+    [self setNeedsLayout];
 }
 
 #define MIN3(a,b,c) MIN(MIN(a,b),c)
@@ -29,12 +33,14 @@
     } else {
         size.width = MAX(vSpec.width, minSize.width);
     }
+    size.width = MIN(size.width, maxSize.width);
 
     if(vSpec.height == GRXMatchParent) {
         size.height = MAX(0, maxSize.height);
     } else {
         size.height = MAX(vSpec.height, minSize.height);
     }
+    size.height = MIN(size.height, maxSize.height);
 
     return size;
 }
@@ -47,39 +53,77 @@
         UIView * v = self.subviews[i];
         if(v.grx_drawable) {
             CGSize remainingSize = self.frame.size;
-            GRXLinearLayoutParams * p = v.grx_linearLayoutParams;
+            GRXLinearLayoutParams * params = v.grx_linearLayoutParams;
+            UIEdgeInsets margins = params.margins;
+
+            // 1. calculate remaining size and origin
+            remainingSize.width -= (margins.left + margins.right);
+            remainingSize.height -= (margins.top + margins.bottom);
+
             if(self.direction == GRXLinearLayoutDirectionHorizontal) {
-                pos.x += p.margins.left;
-                pos.y = MAX(p.margins.top, 0);
+                pos.x += margins.left;
+                pos.y = MAX(margins.top, 0);
 
-                remainingSize.width -= (pos.x + p.margins.left);
-                remainingSize.height -= (p.margins.top+p.margins.bottom);
+                remainingSize.width -= pos.x;
             } else {
-                pos.y += p.margins.top;
-                pos.x = MAX(p.margins.left, 0);
+                pos.y += margins.top;
+                pos.x = MAX(margins.left, 0);
 
-                remainingSize.width -= (p.margins.left + p.margins.right);
-                remainingSize.height -= (pos.y + p.margins.top);
+                remainingSize.height -= pos.y;
             }
 
-            CGSize vSpec = [v grx_suggestedSizeForSizeSpec:p.size];
-            CGSize viewSize = [self sizeFromViewSpec:vSpec
-                                             minSize:p.minSize
+            if(remainingSize.width < 0 || remainingSize.height < 0) {
+                v.origin = pos;
+                v.size = CGSizeZero;
+                continue;
+            }
+
+            // 2. calculate view size given its layout params and this container's size
+            CGSize viewSpec = [v grx_suggestedSizeForSizeSpec:params.size];
+            CGSize minViewSpec = [v grx_suggestedSizeForSizeSpec:params.minSize];
+
+            CGSize viewSize = [self sizeFromViewSpec:viewSpec
+                                             minSize:minViewSpec
                                              maxSize:remainingSize];
 
-            CGRect frame = v.frame;
-            frame.origin = pos;
-            frame.size = viewSize;
-            v.frame = frame;
+            v.size = viewSize;
+
+            // 3. Position view on layout depending on gravity
+            switch (params.gravity) {
+                default:
+                case GRXLinearLayoutGravityBegin:
+                    v.origin = pos;
+                    break;
+
+                case GRXLinearLayoutGravityCenter:
+                    if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+                        v.origin = CGPointMake(pos.x,
+                                               params.margins.top + (self.height-viewSize.height)/2);
+                    } else {
+                        v.origin = CGPointMake(params.margins.left + (self.width-viewSize.width)/2,
+                                               pos.y);
+                    }
+                    break;
+                case GRXLinearLayoutGravityEnd:
+                    if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+                        v.left = pos.x;
+                        v.bottom = remainingSize.height;
+                    } else {
+                        v.right = remainingSize.width;
+                        v.top = pos.y;
+                    }
+                    break;
+            }
+
+
+            // 4. Advance origin for the next view
 
             if(self.direction == GRXLinearLayoutDirectionHorizontal) {
                 pos.x += viewSize.width;
-                pos.x += p.margins.right;
-                remainingSize.width -= p.margins.right;
+                pos.x += margins.right;
             } else {
                 pos.y += viewSize.height;
-                pos.y += p.margins.bottom;
-                remainingSize.height -= p.margins.bottom;
+                pos.y += margins.bottom;
             }
         }
     }

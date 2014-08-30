@@ -1,5 +1,5 @@
 #import "UIView+GRXLayout.h"
 
-@interface UIImageView (GRXLayout)
+@interface UISwitch (GRXLayout)
 
 @end

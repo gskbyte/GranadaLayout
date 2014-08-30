@@ -1,19 +1,17 @@
 #import "UIImageView+GRXLayout.h"
+#import "UIDevice+Util.h"
 
 @implementation UIImageView (GRXLayout)
 
 - (CGSize) grx_suggestedSizeForSizeSpec:(CGSize)sizeSpec {
-    CGSize size;
-    if(sizeSpec.width == GRXMatchParent) {
-        size.width = GRXMatchParent;
-    } else {
-        size.width = sizeSpec.width==GRXWrapContent ? self.image.size.width*self.image.scale : sizeSpec.width;
+    CGSize size = sizeSpec;
+    CGFloat scaleMult = self.image.scale / UIScreen.mainScreen.scale;
+    if(sizeSpec.width == GRXWrapContent) {
+        size.width = self.image.size.width*scaleMult;
     }
 
-    if(sizeSpec.height == GRXMatchParent) {
-        size.height = GRXMatchParent;
-    } else {
-        size.height = sizeSpec.height==GRXWrapContent ? self.image.size.height*self.image.scale : sizeSpec.height;
+    if(sizeSpec.height == GRXWrapContent) {
+        size.height = self.image.size.height*scaleMult;
     }
 
     return size;

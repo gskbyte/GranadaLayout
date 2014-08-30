@@ -1,5 +1,5 @@
 #import "GRXAppDelegate.h"
-#import "GRXViewController.h"
+#import "GRXSelectionViewController.h"
 
 @implementation GRXAppDelegate
 
@@ -11,8 +11,9 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
 
-    GRXViewController * root = [[GRXViewController alloc] init];
-    self.window.rootViewController = root;
+    GRXSelectionViewController * root = [[GRXSelectionViewController alloc] init];
+    UINavigationController * nav = [[UINavigationController alloc] initWithRootViewController:root];
+    self.window.rootViewController = nav;
 
     return YES;
 }

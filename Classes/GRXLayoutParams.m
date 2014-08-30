@@ -10,7 +10,7 @@
 - (instancetype) initWithSize:(CGSize)size {
     self = [super init];
     if(self) {
-        self.size = size;
+        _size = size;
     }
     return self;
 }
@@ -21,6 +21,17 @@
     NSAssert(minSize.width>=0 && minSize.height>=0, @"minSize must have positive values");
 
     _minSize = minSize;
+    [_view setNeedsLayout];
+}
+
+- (void)setSize:(CGSize)size {
+    _size = size;
+    [_view setNeedsLayout];
+}
+
+- (void)setMargins:(UIEdgeInsets)margins {
+    _margins = margins;
+    [_view setNeedsLayout];
 }
 
 - (BOOL)hasMargins {

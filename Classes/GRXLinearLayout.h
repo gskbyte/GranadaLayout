@@ -12,7 +12,6 @@ const static CGFloat kGRXLinearLayoutDefaultWeightSum = 0;
 @interface GRXLinearLayout : GRXLayout
 
 @property(nonatomic) GRXLinearLayoutDirection direction;
-@property(nonatomic) CGFloat weightSum;
 
 - (instancetype) initWithDirection:(GRXLinearLayoutDirection)direction;
 
