@@ -10,5 +10,6 @@
 @property (nonatomic, readonly) GRXLayout * topLayout;
 
 - (GRXLayout *) initializeTopLayout;
+- (void) createViews;
 
 @end

@@ -21,10 +21,16 @@
     if(_topLayout != nil) {
         [self.view addSubview:_topLayout];
     }
+    [self createViews];
 }
 
 - (GRXLayout *) initializeTopLayout {
+    NSAssert(NO, @"implement -initializeTopLayout");
     return nil;
+}
+
+- (void) createViews {
+    
 }
 
 - (void) viewWillLayoutSubviews {

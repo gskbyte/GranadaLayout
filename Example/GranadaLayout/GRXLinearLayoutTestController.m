@@ -11,14 +11,43 @@
     return @"Includes UIImageView and UISwitch";
 }
 
-- (GRXLayout *) initializeTopLayout {
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self configureDirectionButton];
+}
+
+- (GRXLinearLayout *)topLinearLayout {
+    return (GRXLinearLayout*)self.topLayout;
+}
+
+- (void)configureDirectionButton {
+    NSString * title;
+    if(self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
+        title = @"Set horizontal";
+    } else {
+        title = @"Set vertical";
+    }
+    self.navigationItem.rightBarButtonItem =     [[UIBarButtonItem alloc] initWithTitle:title
+                                                                                  style:UIBarButtonItemStyleDone
+                                                                                 target:self
+                                                                                 action:@selector(changeLayoutDirection)];
+}
+
+- (void)changeLayoutDirection {
+    if(self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
+        self.topLinearLayout.direction = GRXLinearLayoutDirectionHorizontal;
+    } else {
+        self.topLinearLayout.direction = GRXLinearLayoutDirectionVertical;
+    }
+    [self configureDirectionButton];
+}
+
+- (GRXLayout *)initializeTopLayout {
     GRXLayout * top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
     return top;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
+- (void)createViews {
     UIView * view0 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view0.backgroundColor = [UIColor blueColor];
     view0.grx_linearLayoutParams.minSize = CGSizeMake(100, 50);

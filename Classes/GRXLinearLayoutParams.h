@@ -7,14 +7,20 @@ typedef NS_ENUM(NSUInteger, GRXLinearLayoutGravity) {
 };
 
 static const NSInteger kGRXLinearLayoutParamsDefaultGravity = 0;
+static const CGFloat kGRXLinearLayoutParamsDefaultWeight = 0;
 
 @interface GRXLinearLayoutParams : GRXLayoutParams
 
 @property(nonatomic) NSInteger gravity;
+@property(nonatomic) CGFloat weight;
 
 - (instancetype) initWithSize:(CGSize)size
                       gravity:(GRXLinearLayoutGravity)gravity;
-
+- (instancetype) initWithSize:(CGSize)size
+                       weight:(CGFloat)weight;
+- (instancetype) initWithSize:(CGSize)size
+                      gravity:(GRXLinearLayoutGravity)gravity
+                       weight:(CGFloat)weight;
 @end
 
 @interface UIView  (GRXLinearLayoutParams)

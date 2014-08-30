@@ -21,8 +21,8 @@
     return top;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)createViews {
+    [super createViews];
 
     UILabel * label0 = [[UILabel alloc] initWithDefaultParamsInLayout:self.topLayout];
     label0.text = @"test size WW for 1 line";

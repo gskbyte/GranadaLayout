@@ -25,7 +25,7 @@
     if(spec.widthMode == GRXMeasureSpecExactly) {
         measuredSize.width = spec.width;
     }
-    if(spec.widthMode == GRXMeasureSpecExactly) {
+    if(spec.heightMode == GRXMeasureSpecExactly) {
         measuredSize.height = spec.height;
     }
 
