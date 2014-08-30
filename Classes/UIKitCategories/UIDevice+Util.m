@@ -53,11 +53,20 @@
 }
 
 + (BOOL)grx_isRetina {
-    if ([[UIScreen mainScreen] scale] == 2.0f) {
+    if ([UIDevice grx_screenScale] == 2.0f) {
         return YES;
     } else {
         return NO;
     }
+}
+
++ (CGFloat) grx_screenScale {
+    static CGFloat scale;
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		scale = UIScreen.mainScreen.scale;
+	});
+	return scale;
 }
 
 

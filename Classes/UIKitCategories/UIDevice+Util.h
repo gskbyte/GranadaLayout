@@ -11,5 +11,6 @@
 + (BOOL)grx_hasLongScreen;
 
 + (BOOL)grx_isRetina;
++ (CGFloat) grx_screenScale;
 
 @end

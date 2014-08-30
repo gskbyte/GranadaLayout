@@ -29,7 +29,7 @@
 
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.topLayout.frame = CGRectMake(0, 60, self.view.width, self.view.height-60);
+    self.topLayout.frame = CGRectMake(0, 64, self.view.width, self.view.height-64);
 }
 
 @end

@@ -28,12 +28,12 @@
 
     CGPoint pos = CGPointZero;
     for(NSUInteger i=0; i<self.subviews.count; ++i) {
-        UIView * v = self.subviews[i];
-        if(!v.grx_drawable) {
+        UIView * view = self.subviews[i];
+        if(!view.grx_drawable) {
             continue;
         }
         CGSize remainingSize = self.size;
-        GRXLinearLayoutParams * params = v.grx_linearLayoutParams;
+        GRXLinearLayoutParams * params = view.grx_linearLayoutParams;
         UIEdgeInsets margins = params.margins;
 
         // 1. calculate remaining size and origin
@@ -53,43 +53,61 @@
         }
 
         if(remainingSize.width < 0 || remainingSize.height < 0) {
-            v.origin = pos;
-            v.size = CGSizeZero;
+            view.origin = pos;
+            view.size = CGSizeZero;
             continue;
         }
 
         // 2. calculate view size given its layout params and this container's size
-        CGSize viewSpec = [v grx_suggestedSizeForSizeSpec:params.size];
-        CGSize minViewSpec = [v grx_suggestedSizeForSizeSpec:params.minSize];
+        GRXMeasureSpec measureSpec;
+        if(params.width == GRXMatchParent) {
+            measureSpec.width = remainingSize.width;
+            measureSpec.widthMode = GRXMeasureSpecAtMost;
+        } else if (params.width == GRXWrapContent) {
+            measureSpec.width = 0;
+            measureSpec.widthMode = GRXMeasureSpecUnspecified;
+        } else {
+            measureSpec.width = params.width;
+            measureSpec.widthMode = GRXMeasureSpecExactly;
+        }
 
-        CGSize viewSize = [self.class sizeFromViewSpec:viewSpec
-                                               minSize:minViewSpec
-                                               maxSize:remainingSize];
+        if(params.height == GRXMatchParent) {
+            measureSpec.height = remainingSize.height;
+            measureSpec.heightMode = GRXMeasureSpecAtMost;
+        } else if (params.height == GRXWrapContent) {
+            measureSpec.height = 0;
+            measureSpec.heightMode = GRXMeasureSpecUnspecified;
+        } else {
+            measureSpec.height = params.height;
+            measureSpec.heightMode = GRXMeasureSpecExactly;
+        }
 
-        v.size = viewSize;
+        [view grx_measureWithSpec:measureSpec];
+        CGSize viewSize = view.grx_measuredSize;
+        view.size = viewSize;
 
         // 3. Position view on layout depending on gravity
         switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                v.origin = pos;
+                view.origin = pos;
                 break;
             case GRXLinearLayoutGravityCenter:
                 if(self.direction == GRXLinearLayoutDirectionHorizontal) {
-                    v.origin = CGPointMake(pos.x,
+                    view.origin = CGPointMake(pos.x,
                                            params.margins.top + (self.height-viewSize.height)/2);
                 } else {
-                    v.origin = CGPointMake(params.margins.left + (self.width-viewSize.width)/2,
+                    view.origin = CGPointMake(params.margins.left + (self.width-viewSize.width)/2,
                                            pos.y);
                 }
                 break;
             case GRXLinearLayoutGravityEnd:
                 if(self.direction == GRXLinearLayoutDirectionHorizontal) {
-                    v.left = pos.x;
-                    v.bottom = remainingSize.height;
+                    view.left = pos.x;
+                    view.bottom = remainingSize.height;
                 } else {
-                    v.right = remainingSize.width;
-                    v.top = pos.y;
+                    view.right = remainingSize.width;
+                    view.top = pos.y;
                 }
                 break;
         }

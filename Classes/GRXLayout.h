@@ -4,10 +4,6 @@
 
 @interface GRXLayout : UIView
 
-+ (CGSize) sizeFromViewSpec:(CGSize)vSpec
-                    minSize:(CGSize)minSize
-                    maxSize:(CGSize)maxSize;
-
 + (Class) layoutParamsClass;
 
 - (instancetype) init;

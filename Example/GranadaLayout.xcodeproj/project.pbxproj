@@ -73,6 +73,7 @@
 		C034383E19B2499A00653848 /* UILabel+GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UILabel+GRXLayout.m"; path = "../../Classes/UIKitCategories/UILabel+GRXLayout.m"; sourceTree = "<group>"; };
 		C034384119B249E200653848 /* GRXUILabelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXUILabelTestViewController.h; sourceTree = "<group>"; };
 		C034384219B249E200653848 /* GRXUILabelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXUILabelTestViewController.m; sourceTree = "<group>"; };
+		C034384419B254CB00653848 /* GRXMeasureSpec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GRXMeasureSpec.h; path = ../../Classes/GRXMeasureSpec.h; sourceTree = "<group>"; };
 		C0A9250219B1EBAC00086A3D /* UISwitch+GRXLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISwitch+GRXLayout.h"; path = "../../Classes/UIKitCategories/UISwitch+GRXLayout.h"; sourceTree = "<group>"; };
 		C0A9250319B1EBAC00086A3D /* UISwitch+GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISwitch+GRXLayout.m"; path = "../../Classes/UIKitCategories/UISwitch+GRXLayout.m"; sourceTree = "<group>"; };
 		C0A9250819B1EC4E00086A3D /* UIDevice+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Util.h"; path = "../../Classes/UIKitCategories/UIDevice+Util.h"; sourceTree = "<group>"; };
@@ -275,6 +276,7 @@
 				C0D9158D19AE89F000FAF0D9 /* GRXLinearLayout.m */,
 				C0A9250B19B1FCD500086A3D /* GRXWeightedLinearLayout.h */,
 				C0A9250C19B1FCD500086A3D /* GRXWeightedLinearLayout.m */,
+				C034384419B254CB00653848 /* GRXMeasureSpec.h */,
 			);
 			name = Layouts;
 			sourceTree = "<group>";

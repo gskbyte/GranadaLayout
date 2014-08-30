@@ -3,7 +3,7 @@
 
 @implementation UISwitch (GRXLayout)
 
-- (CGSize) fixedSize {
+- (CGSize) grx_suggestedMinimumSize {
     if([UIDevice grx_runningSystemVersion7]) {
         return CGSizeMake(51, 31);
     } else {
@@ -11,12 +11,10 @@
     }
 }
 
-- (CGSize) grx_suggestedSizeForSizeSpec:(CGSize)sizeSpec {
-    return [self fixedSize];
-}
-
-- (CGSize)grx_layoutSize {
-    return [self fixedSize];
+- (void) grx_measureWithSpec:(GRXMeasureSpec)spec {
+    CGSize size = [self grx_suggestedMinimumSize];
+    // I don't give a shit about what the layout says. I'M THIS BIG
+    [self grx_setMeasuredSize:size];
 }
 
 @end

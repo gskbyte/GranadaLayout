@@ -3,8 +3,9 @@
 #import <objc/runtime.h>
 #import "GRXLayout.h"
 
-const static char * GRXLayoutParamsKey = "grx_layoutParams";
-const static char * GRXDrawableKey = "grx_drawable";
+const static char GRXLayoutParamsKey;
+const static char GRXDrawableKey;
+const static char GRXMeasuredSizeKey;
 
 @implementation UIView (GRXLayout)
 
@@ -30,27 +31,18 @@ const static char * GRXDrawableKey = "grx_drawable";
 #pragma mark - layout methods
 
 - (GRXLayoutParams *)grx_layoutParams {
-    return objc_getAssociatedObject(self, GRXLayoutParamsKey);
+    return objc_getAssociatedObject(self, &GRXLayoutParamsKey);
 }
 
 - (void)grx_setLayoutParams:(GRXLayoutParams *)layoutParams {
     GRXLayoutParams * copy = layoutParams.copy;
     [copy setView:self];
-    objc_setAssociatedObject(self, GRXLayoutParamsKey, copy,
+    objc_setAssociatedObject(self, &GRXLayoutParamsKey, copy,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (CGSize)grx_layoutSize {
-    GRXLayoutParams * params = self.grx_layoutParams;
-    if(params == nil) {
-        return self.frame.size;
-    } else {
-        return params.size;
-    }
-}
-
 - (BOOL)grx_drawable {
-    NSNumber * n = objc_getAssociatedObject(self, GRXDrawableKey);
+    NSNumber * n = objc_getAssociatedObject(self, &GRXDrawableKey);
     if(n != nil) {
         return n.boolValue;
     } else {
@@ -59,7 +51,7 @@ const static char * GRXDrawableKey = "grx_drawable";
 }
 
 - (void)grx_setDrawable:(BOOL)grx_drawable {
-    objc_setAssociatedObject(self, GRXLayoutParamsKey, @(grx_drawable),
+    objc_setAssociatedObject(self, &GRXLayoutParamsKey, @(grx_drawable),
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
@@ -74,6 +66,22 @@ const static char * GRXDrawableKey = "grx_drawable";
     } else {
         return GRXViewVisibilityGone;
     }
+}
+
+- (CGSize)grx_measuredSize {
+    NSValue * value = objc_getAssociatedObject(self, &GRXMeasuredSizeKey);
+    if(value != nil) {
+        CGSize size;
+        [value getValue:&size];
+        return size;
+    } else {
+        return CGSizeZero;
+    }
+}
+
+- (void) grx_setMeasuredSize:(CGSize)size {
+    NSValue *value = [NSValue value:&size withObjCType:@encode(CGSize)];
+    objc_setAssociatedObject(self, &GRXMeasuredSizeKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (void)grx_setVisibility:(GRXViewVisibility)grx_visibility {
@@ -95,17 +103,24 @@ const static char * GRXDrawableKey = "grx_drawable";
     }
 }
 
-- (CGSize) grx_suggestedSizeForSizeSpec:(CGSize)sizeSpec {
-    CGSize size = sizeSpec;
-    if(sizeSpec.width == GRXWrapContent) {
-        size.width = 0;
+- (CGSize) grx_suggestedMinimumSize {
+    GRXLayoutParams * params = self.grx_layoutParams;
+    if(params == nil) {
+        return CGSizeZero;
+    } else {
+        return params.minSize;
     }
-
-    if(sizeSpec.height == GRXWrapContent) {
-        size.height = 0;
-    }
-
-    return size;
 }
+
+// measurement is done within this method. Subclasses must call grx_setMeasuredSize at the end
+// and can not call super 
+- (void) grx_measureWithSpec:(GRXMeasureSpec)spec {
+    CGSize minSize = self.grx_suggestedMinimumSize;
+    CGFloat w = GRXDefaultSizeValueForSpec(minSize.width, spec.width, spec.widthMode);
+    CGFloat h = GRXDefaultSizeValueForSpec(minSize.height, spec.height, spec.heightMode);
+
+    [self grx_setMeasuredSize:CGSizeMake(w, h)];
+}
+
 
 @end

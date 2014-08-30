@@ -4,30 +4,6 @@
 
 #pragma mark - static class methods
 
-+ (CGSize) sizeFromViewSpec:(CGSize)vSpec
-                    minSize:(CGSize)minSize
-                    maxSize:(CGSize)maxSize {
-    NSAssert(vSpec.width != GRXWrapContent && vSpec.height != GRXWrapContent,
-             @"Wrap content is not a valid measurement value");
-
-    CGSize size = CGSizeZero;
-    if(vSpec.width == GRXMatchParent) {
-        size.width = MAX(0, maxSize.width);
-    } else {
-        size.width = MAX(vSpec.width, minSize.width);
-    }
-    size.width = MIN(size.width, maxSize.width);
-
-    if(vSpec.height == GRXMatchParent) {
-        size.height = MAX(0, maxSize.height);
-    } else {
-        size.height = MAX(vSpec.height, minSize.height);
-    }
-    size.height = MIN(size.height, maxSize.height);
-
-    return size;
-}
-
 + (Class) layoutParamsClass {
     NSAssert(NO, @"Implement +layoutParamsClass in class %@", self.class);
     return nil;
