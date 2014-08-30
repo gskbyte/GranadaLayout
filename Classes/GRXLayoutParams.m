@@ -29,6 +29,22 @@
     [_view setNeedsLayout];
 }
 
+- (CGFloat)width {
+    return _size.width;
+}
+
+- (void)setWidth:(CGFloat)width {
+    _size.width = width;
+}
+
+- (CGFloat)height {
+    return _size.height;
+}
+
+- (void)setHeight:(CGFloat)height {
+    _size.height = height;
+}
+
 - (void)setMargins:(UIEdgeInsets)margins {
     _margins = margins;
     [_view setNeedsLayout];

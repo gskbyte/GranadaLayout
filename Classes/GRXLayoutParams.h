@@ -10,6 +10,8 @@ static const CGFloat GRXWrapContent = -2;
 @property (nonatomic, weak, readonly) UIView * view;
 
 @property (nonatomic) CGSize size;
+@property (nonatomic) CGFloat width;
+@property (nonatomic) CGFloat height;
 
 @property (nonatomic) CGSize minSize;
 

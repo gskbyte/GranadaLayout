@@ -24,24 +24,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIView * view0 = [[UIView alloc] initWithFrame:CGRectZero];
-    view0.backgroundColor = [UIColor blueColor];
+    UILabel * label0 = [[UILabel alloc] initWithDefaultParamsInLayout:self.topLayout];
+    label0.text = @"test size WW for 1 line";
+    label0.numberOfLines = 1;
+    label0.grx_linearLayoutParams.minSize = CGSizeMake(100, 40);
+    label0.backgroundColor = [UIColor greenColor];
 
-    GRXLinearLayoutParams * p0 = [[GRXLinearLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
-    p0.minSize = CGSizeMake(100, 50);
-    p0.gravity = GRXLinearLayoutGravityCenter;
-    p0.margins = UIEdgeInsetsMake(10, 0, 30, 0);
-    [self.topLayout addSubview:view0 layoutParams:p0];
-
-    
-
-    UIImageView * image = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lab"]];
-    GRXLinearLayoutParams * imageParams = [[GRXLinearLayoutParams alloc] init];
-    imageParams.gravity = GRXLinearLayoutGravityEnd;
-    [self.topLayout addSubview:image layoutParams:imageParams];
-
-    UIView * view1 = [[UIView alloc] initWithFrame:CGRectZero];
-    view1.backgroundColor = [UIColor greenColor];
-    
+    UILabel * label1 = [[UILabel alloc] initWithDefaultParamsInLayout:self.topLayout];
+    label1.text = @"test size MW for 1 line";
+    label1.numberOfLines = 1;
+    label1.grx_linearLayoutParams.width = GRXMatchParent;
+    label1.backgroundColor = [UIColor redColor];
 }
 @end
