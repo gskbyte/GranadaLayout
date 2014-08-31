@@ -7,6 +7,7 @@
 + (Class) layoutParamsClass;
 
 - (instancetype) init;
+- (instancetype) initWithFrame:(CGRect)frame;
 
 - (void)addSubview:(UIView *)view;
 - (void)addSubview:(UIView *)view

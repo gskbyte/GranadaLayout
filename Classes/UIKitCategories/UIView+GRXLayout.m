@@ -169,4 +169,11 @@ const static char GRXMeasuredSizeKey;
     return measuredSize;
 }
 
+- (void) grx_setNeedsLayout {
+    [self grx_setNeedsLayout];
+    if([self.superview isKindOfClass:GRXLayout.class]) {
+        [self.superview setNeedsLayout];
+    }
+}
+
 @end

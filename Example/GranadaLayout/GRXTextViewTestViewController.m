@@ -77,9 +77,8 @@ static NSString * ipsum =@""
         } else {
             tv.text = text;
         }
-
+        [tv setNeedsLayout];
     }
-    [self.topLayout setNeedsLayout];
 }
 
 - (GRXLayout *) initializeTopLayout {

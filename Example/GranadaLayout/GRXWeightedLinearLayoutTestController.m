@@ -37,7 +37,6 @@
 
     UISwitch * sw = [[UISwitch alloc] initWithDefaultParamsInLayout:self.topLayout];
     sw.backgroundColor = UIColor.yellowColor;
-    sw.grx_linearLayoutParams.size = CGSizeMake(200, 200);
     sw.grx_linearLayoutParams.minSize = CGSizeMake(200, 200);
     sw.grx_linearLayoutParams.margins = UIEdgeInsetsMake(5, 10, 30, 20);
     sw.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;

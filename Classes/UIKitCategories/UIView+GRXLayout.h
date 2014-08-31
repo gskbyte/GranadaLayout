@@ -27,4 +27,6 @@ typedef NS_ENUM(NSUInteger, GRXViewVisibility) {
 // measurement is done within this method. Subclasses must call grx_setMeasuredSize at the end
 - (void) grx_measureWithSpec:(GRXMeasureSpec)spec;
 
+- (void) grx_setNeedsLayout;
+
 @end

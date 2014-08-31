@@ -48,7 +48,6 @@ static NSString * ipsum =@""
         [text appendFormat:@"%@", displayedText];
         label.text = text;
     }
-    [self.topLayout setNeedsLayout];
 }
 
 - (GRXLayout *) initializeTopLayout {
