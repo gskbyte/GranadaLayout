@@ -4,12 +4,12 @@
 
 @interface GRXTestViewController : UIViewController
 
-+(NSString *) selectionTitle;
-+(NSString *) selectionDetail;
++ (NSString *)selectionTitle;
++ (NSString *)selectionDetail;
 
-@property (nonatomic, readonly) GRXLayout * topLayout;
+@property (nonatomic, readonly) GRXLayout *topLayout;
 
-- (GRXLayout *) initializeTopLayout;
-- (void) createViews;
+- (GRXLayout *)initializeTopLayout;
+- (void)createViews;
 
 @end

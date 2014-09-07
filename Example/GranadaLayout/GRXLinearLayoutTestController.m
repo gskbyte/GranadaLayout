@@ -17,12 +17,12 @@
 }
 
 - (GRXLinearLayout *)topLinearLayout {
-    return (GRXLinearLayout*)self.topLayout;
+    return (GRXLinearLayout *)self.topLayout;
 }
 
 - (void)configureDirectionButton {
-    NSString * title;
-    if(self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
+    NSString *title;
+    if (self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
         title = @"Set horizontal";
     } else {
         title = @"Set vertical";
@@ -34,7 +34,7 @@
 }
 
 - (void)changeLayoutDirection {
-    if(self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
+    if (self.topLinearLayout.direction == GRXLinearLayoutDirectionVertical) {
         self.topLinearLayout.direction = GRXLinearLayoutDirectionHorizontal;
     } else {
         self.topLinearLayout.direction = GRXLinearLayoutDirectionVertical;
@@ -43,27 +43,27 @@
 }
 
 - (GRXLayout *)initializeTopLayout {
-    GRXLayout * top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
+    GRXLayout *top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
     top.padding = UIEdgeInsetsMake(4, 6, 8, 10);
     return top;
 }
 
 - (void)createViews {
-    UIView * view0 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
+    UIView *view0 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view0.backgroundColor = [UIColor blueColor];
     view0.grx_linearLayoutParams.minSize = CGSizeMake(100, 50);
     view0.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityCenter;
     view0.grx_linearLayoutParams.margins = UIEdgeInsetsMake(10, 0, 30, 0);
 
-    UIImageView * imageView = [[UIImageView alloc] initWithDefaultParamsInLayout:self.topLayout];
+    UIImageView *imageView = [[UIImageView alloc] initWithDefaultParamsInLayout:self.topLayout];
     imageView.image = [UIImage imageNamed:@"lab"];
     imageView.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
 
-    UIView * view1 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
+    UIView *view1 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view1.backgroundColor = [UIColor greenColor];
     view1.grx_linearLayoutParams.minSize = CGSizeMake(30, 80);
 
-    UISwitch * sw = [[UISwitch alloc] initWithDefaultParamsInLayout:self.topLayout];
+    UISwitch *sw = [[UISwitch alloc] initWithDefaultParamsInLayout:self.topLayout];
     sw.backgroundColor = UIColor.yellowColor;
     sw.grx_linearLayoutParams.minSize = CGSizeMake(200, 200);
     sw.grx_linearLayoutParams.margins = UIEdgeInsetsMake(5, 10, 30, 20);

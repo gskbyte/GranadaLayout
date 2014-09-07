@@ -11,7 +11,7 @@
     return @"";
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -19,24 +19,23 @@
     self.view.backgroundColor = [UIColor lightGrayColor];
 
     _topLayout = [self initializeTopLayout];
-    if(_topLayout != nil) {
+    if (_topLayout != nil) {
         [self.view addSubview:_topLayout];
     }
     [self createViews];
 }
 
-- (GRXLayout *) initializeTopLayout {
+- (GRXLayout *)initializeTopLayout {
     NSAssert(NO, @"implement -initializeTopLayout");
     return nil;
 }
 
-- (void) createViews {
-    
+- (void)createViews {
 }
 
-- (void) viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.topLayout.frame = CGRectMake(0, 64, self.view.width, self.view.height-64);
+    self.topLayout.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
 }
 
 @end

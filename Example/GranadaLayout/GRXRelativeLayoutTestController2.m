@@ -13,11 +13,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
 }
 
-- (GRXLayout *) initializeTopLayout {
-    GRXLayout * top = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
+- (GRXLayout *)initializeTopLayout {
+    GRXLayout *top = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
     return top;
 }
 
@@ -25,20 +24,20 @@
     return (GRXRelativeLayout *)self.topLayout;
 }
 
--(void)createViews {
-    UIView * view1 = [[UIView alloc] initWithFrame:CGRectZero];
+- (void)createViews {
+    UIView *view1 = [[UIView alloc] initWithFrame:CGRectZero];
     view1.backgroundColor = [UIColor blueColor];
     view1.accessibilityLabel = @"view1";
-    GRXRelativeLayoutParams * params1 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(50, 50)];
+    GRXRelativeLayoutParams *params1 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(50, 50)];
     [params1 setParentRule:GRXRelativeLayoutParentRuleAlignTop active:YES];
     [params1 setParentRule:GRXRelativeLayoutParentRuleAlignLeft active:YES];
     [self.topLayout addSubview:view1 layoutParams:params1];
 
 
-    UIView * view2 = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *view2 = [[UIView alloc] initWithFrame:CGRectZero];
     view2.backgroundColor = [UIColor greenColor];
     view2.accessibilityLabel = @"view2";
-    GRXRelativeLayoutParams * params2 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(40, 40)];
+    GRXRelativeLayoutParams *params2 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(40, 40)];
     [params2 setRule:GRXRelativeLayoutRuleBelow forView:view1];
     [params2 setRule:GRXRelativeLayoutRuleRightOf forView:view1];
     [self.topLayout addSubview:view2 layoutParams:params2];
@@ -50,7 +49,6 @@
 //    [params3 setParentRule:GRXRelativeLayoutParentRuleCenterHorizontal active:YES];
 //    [params3 setRule:GRXRelativeLayoutRuleBelow forView:view2];
 //    [self.topLayout addSubview:view3 layoutParams:params3];
-
 }
 
 
