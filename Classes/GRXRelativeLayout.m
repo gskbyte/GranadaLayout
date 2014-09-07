@@ -38,17 +38,6 @@
     _dirtyHierarchy = YES;
 }
 
-// TODO optimize this
-+ (void) centerHorizontalView:(UIView *)view
-                       params:(GRXRelativeLayoutParams *)params
-                      myWidth:(CGFloat)myWidth {
-    CGFloat childWidth = view.grx_measuredSize.width;
-    CGFloat left = (myWidth - childWidth) / 2;
-
-    params.left = left;
-    params.right = left + childWidth;
-}
-
 + (void) centerVerticalView:(UIView *)child
                      params:(GRXRelativeLayoutParams *)params
                    myHeight:(CGFloat)myHeight {
@@ -66,10 +55,7 @@
     }
 
     self.sortedViewsVertical = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams verticalRules]];
-    //[self.class debugViewArray:self.sortedViewsVertical title:@"Vertical"];
-
     self.sortedViewsHorizontal = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams horizontalRules]];
-    //[self.class debugViewArray:self.sortedViewsHorizontal title:@"Horizontal"];
 }
 
 
@@ -160,16 +146,6 @@
         if (isWrapContentHeight) {
             measuredSize.height = MAX(measuredSize.width, params.bottom);
         }
-//
-//        if (child != ignore || verticalGravity) {
-//            left = Math.min(left, params.left - params.leftMargin);
-//            top = Math.min(top, params.top - params.topMargin);
-//        }
-//
-//        if (child != ignore || horizontalGravity) {
-//            right = Math.max(right, params.right + params.rightMargin);
-//            bottom = Math.max(bottom, params.bottom + params.bottomMargin);
-//        }
     }
 
     GRXLayoutParams * ownParams = self.grx_layoutParams;
