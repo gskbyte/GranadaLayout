@@ -75,7 +75,7 @@
         // 2. calculate view size given its layout params and this container's size
         GRXMeasureSpec measureSpec = [self measureSpecForLayoutParams:params
                                                         availableSize:availableSize];
-        [view grx_measureWithSpec:measureSpec];
+        [view grx_measuredSizeForSpec:measureSpec];
         CGSize viewSize = view.grx_measuredSize;
         view.size = viewSize;
 

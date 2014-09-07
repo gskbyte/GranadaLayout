@@ -6,6 +6,7 @@
 const static char GRXLayoutParamsKey;
 const static char GRXDrawableKey;
 const static char GRXMeasuredSizeKey;
+const static char GRXMeasuredSizeSpecKey;
 const static char GRXLayoutIDKey;
 
 static NSUInteger GRXStaticCurrentLayoutID = 0;
@@ -82,11 +83,6 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-- (void) grx_setMeasuredSize:(CGSize)size {
-    NSValue *value = [NSValue value:&size withObjCType:@encode(CGSize)];
-    objc_setAssociatedObject(self, &GRXMeasuredSizeKey, value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
 - (void)grx_setVisibility:(GRXViewVisibility)grx_visibility {
     switch (grx_visibility) {
         case GRXViewVisibilityHidden:
@@ -115,22 +111,45 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-// measurement is done within this method. Subclasses must call grx_setMeasuredSize at the end
-// and can not call super
+#pragma mark - measurement methods
+
+- (CGSize) grx_measuredSizeForSpec:(GRXMeasureSpec)spec {
+    NSValue * measuredSpecValue = objc_getAssociatedObject(self, &GRXMeasuredSizeSpecKey);
+    GRXMeasureSpec measuredSpec;
+    [measuredSpecValue getValue:&measuredSpec];
+
+    if(GRXMeasureSpecsEqual(spec, measuredSpec)) {
+        return [self grx_measuredSize];
+    } else {
+        CGSize measuredSize = [self grx_measureWithSpec:spec];
+        [self grx_setMeasuredSize:measuredSize forSpec:spec];
+        return measuredSize;
+    }
+}
+
+- (void) grx_setMeasuredSize:(CGSize)measuredSize
+                     forSpec:(GRXMeasureSpec)spec {
+    NSValue *sizeValue = [NSValue value:&measuredSize withObjCType:@encode(CGSize)];
+    objc_setAssociatedObject(self, &GRXMeasuredSizeKey, sizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+    NSValue *specValue = [NSValue value:&spec withObjCType:@encode(GRXMeasureSpec)];
+    objc_setAssociatedObject(self, &GRXMeasuredSizeSpecKey, specValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+// measurement is done within this method. Subclasses must not call super
 
 // different implementation for UIView because it -sizeThatFits: returns the current size
-- (void) grx_measureWithSpec:(GRXMeasureSpec)spec {
+- (CGSize) grx_measureWithSpec:(GRXMeasureSpec)spec {
     CGSize measuredSize;
     if([self isMemberOfClass:UIView.class]) {
         CGSize minSize = self.grx_suggestedMinimumSize;
-        CGFloat w = GRXDefaultSizeValueForSpec(minSize.width, spec.width, spec.widthMode);
-        CGFloat h = GRXDefaultSizeValueForSpec(minSize.height, spec.height, spec.heightMode);
+        CGFloat w = GRXMeasureSpecGetDefaultValue(minSize.width, spec.width, spec.widthMode);
+        CGFloat h = GRXMeasureSpecGetDefaultValue(minSize.height, spec.height, spec.heightMode);
         measuredSize = CGSizeMake(w, h);
     } else {
         measuredSize = [self grx_measureFittingMeasureSpec:spec];
     }
-
-    [self grx_setMeasuredSize:measuredSize];
+    return measuredSize;
 }
 
 - (CGSize)grx_measureFittingMeasureSpec:(GRXMeasureSpec)spec {

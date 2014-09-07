@@ -20,7 +20,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
 @property (nonatomic, setter = grx_setDrawable:) BOOL grx_drawable;
 // synthetized property with -hidden and -drawable
 @property (nonatomic, setter = grx_setVisibility:) GRXViewVisibility grx_visibility;
-@property (nonatomic, setter = grx_setMeasuredSize:) CGSize grx_measuredSize;
+@property (nonatomic, readonly) CGSize grx_measuredSize;
 @property (nonatomic, readonly) CGSize grx_suggestedMinimumSize;
 
 // does never return null, the number is always > 0
@@ -30,8 +30,12 @@ static const NSUInteger GRXLayoutIdNull = 0;
 - (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams;
 - (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;
 
-// measurement is done within this method. Subclasses must call grx_setMeasuredSize at the end
-- (void) grx_measureWithSpec:(GRXMeasureSpec)spec;
+// this method must NOT be overriden and is called by layouts
+// implements a caching mechanism so measureWithSpec: is not called for same specs
+- (CGSize) grx_measuredSizeForSpec:(GRXMeasureSpec)spec;
+
+// measurement is done within this method
+- (CGSize) grx_measureWithSpec:(GRXMeasureSpec)spec;
 
 - (void) grx_setNeedsLayout;
 

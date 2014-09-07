@@ -73,7 +73,6 @@
     [self.class debugViewArray:horizontal title:@"Horizontal"];
 
     NSLog(@"hey");
-
 }
 
 

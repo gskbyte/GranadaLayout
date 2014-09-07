@@ -4,7 +4,7 @@
 @implementation UIImageView (GRXLayout)
 
 // we override this method because -sizeThatFits doesn't consider screen and image scales
-- (void)grx_measureWithSpec:(GRXMeasureSpec)spec {
+- (CGSize)grx_measureWithSpec:(GRXMeasureSpec)spec {
     CGFloat scaleMult = self.image.scale / UIDevice.grx_screenScale;
     CGSize measuredSize = CGSizeMake(self.image.size.width*scaleMult,
                                      self.image.size.height*scaleMult);
@@ -15,8 +15,7 @@
     if(spec.heightMode == GRXMeasureSpecExactly) {
         measuredSize.height = spec.height;
     }
-
-    [self grx_setMeasuredSize:measuredSize];
+    return measuredSize;
 }
 
 @end

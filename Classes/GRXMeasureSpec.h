@@ -25,7 +25,7 @@ GRXMeasureSpecMake(CGFloat width, GRXMeasureSpecMode widthMode,
     return spec;
 }
 
-CG_INLINE CGFloat GRXDefaultSizeValueForSpec(CGFloat sizeValue, CGFloat sizeSpecValue, GRXMeasureSpecMode mode) {
+CG_INLINE CGFloat GRXMeasureSpecGetDefaultValue(CGFloat sizeValue, CGFloat sizeSpecValue, GRXMeasureSpecMode mode) {
     switch (mode) {
         default:
         case GRXMeasureSpecUnspecified:
@@ -34,4 +34,15 @@ CG_INLINE CGFloat GRXDefaultSizeValueForSpec(CGFloat sizeValue, CGFloat sizeSpec
         case GRXMeasureSpecAtMost:
             return sizeSpecValue;
     }
+}
+
+CG_INLINE BOOL GRXMeasureSpecIsZero(GRXMeasureSpec spec) {
+    return spec.width==0 && spec.widthMode==0 && spec.height==0 && spec.heightMode==0;
+}
+
+CG_INLINE BOOL GRXMeasureSpecsEqual(GRXMeasureSpec spec1, GRXMeasureSpec spec2) {
+    return spec1.width == spec2.width &&
+        spec1.widthMode == spec2.widthMode &&
+        spec1.height == spec2.height &&
+        spec1.heightMode == spec2.heightMode;
 }
