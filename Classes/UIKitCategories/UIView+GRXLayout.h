@@ -11,6 +11,8 @@ typedef NS_ENUM(NSUInteger, GRXViewVisibility) {
     GRXViewVisibilityGone = 2
 };
 
+static const NSUInteger GRXLayoutIdNull = 0;
+
 @interface UIView (GRXLayout)
 
 @property (nonatomic, copy, setter = grx_setLayoutParams:) GRXLayoutParams * grx_layoutParams;
@@ -20,6 +22,10 @@ typedef NS_ENUM(NSUInteger, GRXViewVisibility) {
 @property (nonatomic, setter = grx_setVisibility:) GRXViewVisibility grx_visibility;
 @property (nonatomic, setter = grx_setMeasuredSize:) CGSize grx_measuredSize;
 @property (nonatomic, readonly) CGSize grx_suggestedMinimumSize;
+
+// does never return null, the number is always > 0
+// we could also use tag for this but this would be dangerous
+@property (nonatomic, readonly) NSNumber * grx_layoutId;
 
 - (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams;
 - (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;

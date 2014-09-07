@@ -54,7 +54,7 @@
 @end
 
 
-@implementation UIView  (GRXLinearLayoutParams)
+@implementation UIView (GRXLinearLayoutParams)
 
 - (GRXLinearLayoutParams *)grx_linearLayoutParams {
     GRXLayoutParams * params = self.grx_layoutParams;

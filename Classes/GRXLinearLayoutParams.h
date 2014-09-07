@@ -23,7 +23,7 @@ static const CGFloat kGRXLinearLayoutParamsDefaultWeight = 0;
                        weight:(CGFloat)weight;
 @end
 
-@interface UIView  (GRXLinearLayoutParams)
+@interface UIView (GRXLinearLayoutParams)
 
 @property (nonatomic, readonly) GRXLinearLayoutParams * grx_linearLayoutParams;
 

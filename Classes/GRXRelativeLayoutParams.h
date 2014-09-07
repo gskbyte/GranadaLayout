@@ -15,7 +15,7 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutRule) {
 };
 
 typedef NS_ENUM(NSUInteger, GRXRelativeLayoutParentRule) {
-    GRXRelativeLayoutParentRuleAlignLeft,
+    GRXRelativeLayoutParentRuleAlignLeft = 0,
     GRXRelativeLayoutParentRuleAlignRight,
     GRXRelativeLayoutParentRuleAlignTop,
     GRXRelativeLayoutParentRuleAlignBottom,
@@ -28,19 +28,28 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutParentRule) {
 };
 
 
-
 @interface GRXRelativeLayoutParams : GRXLayoutParams
 
-@property (nonatomic) NSArray * rules;          // size GRXRelativeLayoutRuleCount
-@property (nonatomic) NSArray * parentRules;    // sGRXRelativeLayoutParentRuleCount
+// TODO use C arrays?
++ (NSArray*) verticalRules;
++ (NSArray*) horizontalRules;
+
+@property (nonatomic, readonly) NSArray * rules;          // size GRXRelativeLayoutRuleCount
+@property (nonatomic, readonly) NSArray * parentRules;    // size GRXRelativeLayoutParentRuleCount
 
 - (BOOL) hasRule:(GRXRelativeLayoutRule)rule;
 - (UIView*) viewForRule:(GRXRelativeLayoutRule)rule;
-- (void) setView:(UIView*)view
-         forRule:(GRXRelativeLayoutRule)rule;
+- (void) setRule:(GRXRelativeLayoutRule)rule
+         forView:(UIView*)view;
 
 - (BOOL) hasParentRule:(GRXRelativeLayoutParentRule)parentRule;
-- (void) setParentRule:(GRXRelativeLayoutRule)parentRule
+- (void) setParentRule:(GRXRelativeLayoutParentRule)parentRule
                 active:(BOOL)active;
+
+@end
+
+@interface UIView (GRXRelativeLayoutParams)
+
+@property (nonatomic, readonly) GRXRelativeLayoutParams * grx_relativeLayoutParams;
 
 @end

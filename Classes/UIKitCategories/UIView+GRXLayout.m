@@ -6,6 +6,9 @@
 const static char GRXLayoutParamsKey;
 const static char GRXDrawableKey;
 const static char GRXMeasuredSizeKey;
+const static char GRXLayoutIDKey;
+
+static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 @implementation UIView (GRXLayout)
 
@@ -167,6 +170,16 @@ const static char GRXMeasuredSizeKey;
     }
 
     return measuredSize;
+}
+
+- (NSNumber*)grx_layoutId { // initialized only if used, for example, by the relative layout
+    NSNumber * layoutIdNumber = objc_getAssociatedObject(self, &GRXLayoutIDKey);
+    if(layoutIdNumber == nil) {
+        NSUInteger layoutId = (++GRXStaticCurrentLayoutID);
+        layoutIdNumber = [NSNumber numberWithUnsignedInteger:layoutId];
+        objc_setAssociatedObject(self, &GRXLayoutIDKey, layoutIdNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    return layoutIdNumber;
 }
 
 - (void) grx_setNeedsLayout {

@@ -61,12 +61,9 @@
 
 - (void)addSubview:(UIView *)view
       layoutParams:(GRXLayoutParams*)layoutParams {
-    NSAssert([layoutParams isKindOfClass:self.class.layoutParamsClass],
-             @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
     view.grx_layoutParams = layoutParams;
-    [super addSubview:view];
+    [self addSubview:view];
 }
-
 
 - (void)addSubviews:(NSArray *)views {
     for(UIView * view in views) {
