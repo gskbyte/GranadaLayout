@@ -5,20 +5,20 @@
 
 #pragma mark - static class methods
 
-+ (Class) layoutParamsClass {
++ (Class)layoutParamsClass {
     NSAssert(NO, @"Implement +layoutParamsClass in class %@", self.class);
     return nil;
 }
 
 #pragma mark - setup methods
 
-- (instancetype) init {
+- (instancetype)init {
     return [self initWithFrame:CGRectZero];
 }
 
-- (instancetype) initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if(self) {
+    if (self) {
     }
     return self;
 }
@@ -31,32 +31,32 @@
 }
 
 - (void)addSubview:(UIView *)view
-      layoutParams:(GRXLayoutParams*)layoutParams {
+      layoutParams:(GRXLayoutParams *)layoutParams {
     view.grx_layoutParams = layoutParams;
     [self addSubview:view];
 }
 
 - (void)addSubviews:(NSArray *)views {
-    for(UIView * view in views) {
+    for (UIView *view in views) {
         [self addSubview:view];
     }
 }
 
 - (void)addSubviews:(NSArray *)views
-       layoutParams:(GRXLayoutParams*)layoutParams {
-    for(UIView * view in views) {
+       layoutParams:(GRXLayoutParams *)layoutParams {
+    for (UIView *view in views) {
         [self addSubview:view
             layoutParams:layoutParams];
     }
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
     NSAssert(self.class != GRXLayout.class, @"Override -layoutSubviews");
 }
 
-- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
-                        heightSpec:(GRXMeasureSpec)heightSpec {
+- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                       heightSpec:(GRXMeasureSpec)heightSpec {
     // TODO implement me!
     NSAssert(NO, @"Having layouts inside layouts is not yet supported");
     return CGSizeZero;

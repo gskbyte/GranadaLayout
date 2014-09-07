@@ -3,31 +3,31 @@
 
 @implementation GRXLinearLayoutParams
 
-- (instancetype) initWithSize:(CGSize)size {
+- (instancetype)initWithSize:(CGSize)size {
     return [self initWithSize:size
                       gravity:kGRXLinearLayoutParamsDefaultGravity
                        weight:kGRXLinearLayoutParamsDefaultWeight];
 }
 
-- (instancetype) initWithSize:(CGSize)size
-                      gravity:(GRXLinearLayoutGravity)gravity {
+- (instancetype)initWithSize:(CGSize)size
+                     gravity:(GRXLinearLayoutGravity)gravity {
     return [self initWithSize:size
                       gravity:gravity
                        weight:kGRXLinearLayoutParamsDefaultWeight];
 }
 
-- (instancetype) initWithSize:(CGSize)size
-                       weight:(CGFloat)weight {
+- (instancetype)initWithSize:(CGSize)size
+                      weight:(CGFloat)weight {
     return [self initWithSize:size
                       gravity:kGRXLinearLayoutParamsDefaultGravity
                        weight:weight];
 }
 
-- (instancetype) initWithSize:(CGSize)size
-                      gravity:(GRXLinearLayoutGravity)gravity
-                       weight:(CGFloat)weight {
+- (instancetype)initWithSize:(CGSize)size
+                     gravity:(GRXLinearLayoutGravity)gravity
+                      weight:(CGFloat)weight {
     self = [super initWithSize:size];
-    if(self) {
+    if (self) {
         _gravity = gravity;
         _weight = weight;
     }
@@ -45,7 +45,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    GRXLinearLayoutParams * copy = [super copyWithZone:zone];
+    GRXLinearLayoutParams *copy = [super copyWithZone:zone];
     copy.gravity = self.gravity;
     copy.weight = self.weight;
     return copy;
@@ -57,9 +57,9 @@
 @implementation UIView (GRXLinearLayoutParams)
 
 - (GRXLinearLayoutParams *)grx_linearLayoutParams {
-    GRXLayoutParams * params = self.grx_layoutParams;
-    if([params isKindOfClass:GRXLinearLayoutParams.class]) {
-        return (GRXLinearLayoutParams*) params;
+    GRXLayoutParams *params = self.grx_layoutParams;
+    if ([params isKindOfClass:GRXLinearLayoutParams.class]) {
+        return (GRXLinearLayoutParams *)params;
     } else {
         NSAssert(NO, @"Not GRXLinearLayoutParams for view %@", self);
         return nil;

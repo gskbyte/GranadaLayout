@@ -4,28 +4,28 @@
 @interface GRXRelativeLayout ()
 
 @property (nonatomic) BOOL dirtyHierarchy;
-@property (nonatomic, retain) NSArray * sortedViewsVertical, *sortedViewsHorizontal;
-@property (nonatomic) GRXDependencyGraph * dependencyGraph;
+@property (nonatomic, retain) NSArray *sortedViewsVertical, *sortedViewsHorizontal;
+@property (nonatomic) GRXDependencyGraph *dependencyGraph;
 
 @end
 
 @implementation GRXRelativeLayout
 
-+ (Class) layoutParamsClass {
++ (Class)layoutParamsClass {
     return GRXRelativeLayoutParams.class;
 }
 
 #pragma mark - Initializiation
 
-- (instancetype) initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if(self) {
+    if (self) {
         [self setupPrivate];
     }
     return self;
 }
 
-- (void) setupPrivate {
+- (void)setupPrivate {
     _sortedViewsVertical = [NSMutableArray array];
     _sortedViewsHorizontal = [NSMutableArray array];
     _dependencyGraph = [[GRXDependencyGraph alloc] init];
@@ -38,9 +38,9 @@
     _dirtyHierarchy = YES;
 }
 
-+ (void) centerVerticalView:(UIView *)child
-                     params:(GRXRelativeLayoutParams *)params
-                   myHeight:(CGFloat)myHeight {
++ (void)centerVerticalView:(UIView *)child
+                    params:(GRXRelativeLayoutParams *)params
+                  myHeight:(CGFloat)myHeight {
     CGFloat childHeight = child.grx_measuredSize.height;
     CGFloat top = (myHeight - childHeight) / 2;
 
@@ -48,9 +48,9 @@
     params.bottom = top + childHeight;
 }
 
-- (void) sortChildren {
+- (void)sortChildren {
     [self.dependencyGraph clear];
-    for(UIView * view in self.subviews) {
+    for (UIView *view in self.subviews) {
         [self.dependencyGraph add:view];
     }
 
@@ -59,24 +59,24 @@
 }
 
 
-+ (void) debugViewArray:(NSArray*)array title:(NSString*)title {
++ (void)debugViewArray:(NSArray *)array title:(NSString *)title {
     NSLog(@"%@", title);
     [self.class debugViewArray:array];
 }
 
-+ (void) debugViewArray:(NSArray*)array {
-    for(UIView *view in array) {
-        NSString * viewName = view.accessibilityLabel ? view.accessibilityLabel : @"Unnamed";
++ (void)debugViewArray:(NSArray *)array {
+    for (UIView *view in array) {
+        NSString *viewName = view.accessibilityLabel ? view.accessibilityLabel : @"Unnamed";
         NSLog(@"  %@ : %@", viewName, view.description);
     }
     NSLog(@"");
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
-    if(NO == [self.superview isKindOfClass:GRXLayout.class]) {
+    if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
         CGSize parentSize = self.superview.size;
-        if(parentSize.width>0 && parentSize.height>0) {
+        if (parentSize.width > 0 && parentSize.height > 0) {
             self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:parentSize];
             [self grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost)
                                     heightSpec:GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost)];
@@ -84,9 +84,9 @@
     }
 }
 
-- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
-                        heightSpec:(GRXMeasureSpec)heightSpec {
-    if(_dirtyHierarchy) {
+- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                       heightSpec:(GRXMeasureSpec)heightSpec {
+    if (_dirtyHierarchy) {
         [self sortChildren];
         _dirtyHierarchy = NO;
     }
@@ -114,31 +114,31 @@
     const BOOL isWrapContentWidth = widthSpec.mode != GRXMeasureSpecExactly;
     const BOOL isWrapContentHeight = heightSpec.mode != GRXMeasureSpecExactly;
 
-    for(UIView * view in self.sortedViewsHorizontal) {
-        if(NO == view.grx_drawable) {
+    for (UIView *view in self.sortedViewsHorizontal) {
+        if (NO == view.grx_drawable) {
             continue;
         }
 
         [self applyHorizontalSizeRulesToChildView:view ownWidth:myWidth];
         [self measureChildHorizontal:view ownWidth:myWidth ownHeight:myHeight];
 
-        if( [self positionChildHorizontal:view ownWidth:myWidth wrapContent:isWrapContentWidth] ) {
+        if ( [self positionChildHorizontal:view ownWidth:myWidth wrapContent:isWrapContentWidth] ) {
             offsetHorizontalAxis = YES;
         }
     }
 
-    for(UIView * view in self.sortedViewsVertical) {
-        if(NO == view.grx_drawable) {
+    for (UIView *view in self.sortedViewsVertical) {
+        if (NO == view.grx_drawable) {
             continue;
         }
 
         [self applyVerticalSizeRulesToChildView:view ownHeight:myHeight];
         [self measureChild:view ownWidth:myWidth ownHeight:myHeight];
-        if( [self positionChildVertical:view ownHeight:myHeight wrapContent:isWrapContentHeight] ) {
+        if ( [self positionChildVertical:view ownHeight:myHeight wrapContent:isWrapContentHeight] ) {
             offsetVerticalAxis = YES;
         }
 
-        GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
+        GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
         if (isWrapContentWidth) {
             measuredSize.width = MAX(measuredSize.width, params.right);
         }
@@ -148,7 +148,7 @@
         }
     }
 
-    GRXLayoutParams * ownParams = self.grx_layoutParams;
+    GRXLayoutParams *ownParams = self.grx_layoutParams;
     CGSize ownSuggestedMinSize = [self grx_suggestedMinimumSize];
 
     if (isWrapContentWidth) {
@@ -164,14 +164,14 @@
         measuredSize.width = GRXMeasureSpecResolveSizeValue(measuredSize.width, widthSpec);
 
         if (offsetHorizontalAxis) {
-            for(UIView * view in self.subviews) {
-                if(NO == view.grx_drawable) {
+            for (UIView *view in self.subviews) {
+                if (NO == view.grx_drawable) {
                     continue;
                 }
 
-                GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
-                if([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
-                   [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
+                GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
+                if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
+                    [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
                     centerHorizontal(params, view.grx_measuredSize.width, myWidth);
                 }
             }
@@ -191,41 +191,40 @@
         measuredSize.height = GRXMeasureSpecResolveSizeValue(measuredSize.height, heightSpec);
 
         if (offsetVerticalAxis) {
-            for(UIView * view in self.subviews) {
-                if(NO == view.grx_drawable) {
+            for (UIView *view in self.subviews) {
+                if (NO == view.grx_drawable) {
                     continue;
                 }
-                GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
-                if([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
-                   [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
+                GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
+                if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
+                    [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
                     centerVertical(params, view.grx_measuredSize.height, myHeight);
                 }
-
             }
         }
     }
 
-    for(UIView * view in self.subviews) {
-        GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
+    for (UIView *view in self.subviews) {
+        GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
         view.frame = params.rect;
     }
 
     return measuredSize;
 }
 
-- (GRXRelativeLayoutParams *)relatedViewParamsForViewParams:(GRXRelativeLayoutParams*)layoutParams
+- (GRXRelativeLayoutParams *)relatedViewParamsForViewParams:(GRXRelativeLayoutParams *)layoutParams
                                                    relation:(GRXRelativeLayoutRule)relation {
-    UIView * relatedView = [self relatedViewForViewParams:layoutParams
-                                                 relation:relation];
+    UIView *relatedView = [self relatedViewForViewParams:layoutParams
+                                                relation:relation];
     return relatedView.grx_relativeLayoutParams;
 }
 
-- (UIView *)relatedViewForViewParams:(GRXRelativeLayoutParams*)layoutParams
+- (UIView *)relatedViewForViewParams:(GRXRelativeLayoutParams *)layoutParams
                             relation:(GRXRelativeLayoutRule)relation {
-    UIView * view = [layoutParams viewForRule:relation];
-    if(view) {
+    UIView *view = [layoutParams viewForRule:relation];
+    if (view) {
         GRXDependencyNode *node = self.dependencyGraph.nodes[view.grx_layoutId];
-        if(node == nil) {
+        if (node == nil) {
             return nil;
         }
 
@@ -234,7 +233,7 @@
             layoutParams = view.grx_relativeLayoutParams;
             view = [layoutParams viewForRule:relation];
             node = self.dependencyGraph.nodes[view.grx_layoutId];
-            if(node == nil) {
+            if (node == nil) {
                 return nil;
             }
         }
@@ -245,9 +244,9 @@
     return nil;
 }
 
-- (void)applyHorizontalSizeRulesToChildView:(UIView*)view
+- (void)applyHorizontalSizeRulesToChildView:(UIView *)view
                                    ownWidth:(CGFloat)ownWidth {
-    GRXRelativeLayoutParams * childParams = view.grx_relativeLayoutParams;
+    GRXRelativeLayoutParams *childParams = view.grx_relativeLayoutParams;
     // -1 indicates a "soft requirement" in that direction. For example:
     // left=10, right=-1 means the view must start at 10, but can go as far as it wants to the right
     // left =-1, right=10 means the view must end at 10, but can go as far as it wants to the left
@@ -258,106 +257,106 @@
     // Adjust rules relative to other views
     GRXRelativeLayoutParams *anchorParams = [self relatedViewParamsForViewParams:childParams
                                                                         relation:GRXRelativeLayoutRuleLeftOf];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.right = anchorParams.left - (anchorParams.margins.left + childParams.margins.right);
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleRightOf];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.left = anchorParams.right + (anchorParams.margins.right + childParams.margins.left);
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleAlignLeft];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.left = anchorParams.left + childParams.margins.left;
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleAlignRight];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.right = anchorParams.right - childParams.margins.right;
     }
 
     // Adjust parent rules
-    if([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignLeft]) {
+    if ([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignLeft]) {
         childParams.left = self.padding.left + childParams.margins.left;
     }
 
-    if([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignRight]) {
+    if ([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignRight]) {
         childParams.right = ownWidth - self.padding.right - childParams.margins.right;
     }
 }
 
-- (void)applyVerticalSizeRulesToChildView:(UIView*)view
+- (void)applyVerticalSizeRulesToChildView:(UIView *)view
                                 ownHeight:(CGFloat)ownHeight {
-    GRXRelativeLayoutParams * childParams = view.grx_relativeLayoutParams;
+    GRXRelativeLayoutParams *childParams = view.grx_relativeLayoutParams;
     childParams.top = -1;
     childParams.bottom = -1;
 
     // Adjust rules relative to other views
-    GRXRelativeLayoutParams * anchorParams = [self relatedViewParamsForViewParams:childParams
-                                                                         relation:GRXRelativeLayoutRuleAbove];
-    if(anchorParams != nil) {
+    GRXRelativeLayoutParams *anchorParams = [self relatedViewParamsForViewParams:childParams
+                                                                        relation:GRXRelativeLayoutRuleAbove];
+    if (anchorParams != nil) {
         childParams.bottom = anchorParams.top - (anchorParams.margins.top + childParams.margins.bottom);
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleBelow];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.top = anchorParams.bottom + (anchorParams.margins.bottom + childParams.margins.top);
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleAlignTop];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.top = anchorParams.top + childParams.margins.top;
     }
 
     anchorParams = [self relatedViewParamsForViewParams:childParams
                                                relation:GRXRelativeLayoutRuleAlignBottom];
-    if(anchorParams != nil) {
+    if (anchorParams != nil) {
         childParams.bottom = anchorParams.bottom - childParams.margins.bottom;
     }
 
     // Adjust parent rules
-    if([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignTop]) {
+    if ([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignTop]) {
         childParams.top = self.padding.top + childParams.margins.top;
     }
 
-    if([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignBottom]) {
+    if ([childParams hasParentRule:GRXRelativeLayoutParentRuleAlignBottom]) {
         childParams.bottom = ownHeight - self.padding.bottom - childParams.margins.bottom;
     }
 }
 
-- (CGSize)measureChild:(UIView*)child
-            ownWidth:(CGFloat)ownWidth
-           ownHeight:(CGFloat)ownHeight {
-    GRXRelativeLayoutParams * params = child.grx_relativeLayoutParams;
+- (CGSize)measureChild:(UIView *)child
+              ownWidth:(CGFloat)ownWidth
+             ownHeight:(CGFloat)ownHeight {
+    GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
     GRXMeasureSpec widthSpec = getChildMeasureSpec(params.left, params.right, params.width,
-                                                          params.margins.left, params.margins.right,
-                                                          self.padding.left, self.padding.right,
-                                                          ownWidth);
+                                                   params.margins.left, params.margins.right,
+                                                   self.padding.left, self.padding.right,
+                                                   ownWidth);
     GRXMeasureSpec heightSpec = getChildMeasureSpec(params.top, params.bottom, params.height,
-                                                           params.margins.top, params.margins.bottom,
-                                                           self.padding.top, self.padding.bottom,
-                                                           ownHeight);
+                                                    params.margins.top, params.margins.bottom,
+                                                    self.padding.top, self.padding.bottom,
+                                                    ownHeight);
     CGSize childSize = [child grx_measuredSizeForWidthSpec:widthSpec
                                                 heightSpec:heightSpec];
     return childSize;
 }
 
-- (CGSize) measureChildHorizontal:(UIView*)child
-                       ownWidth:(CGFloat)ownWidth
-                      ownHeight:(CGFloat)ownHeight {
-    GRXRelativeLayoutParams * params = child.grx_relativeLayoutParams;
+- (CGSize)measureChildHorizontal:(UIView *)child
+                        ownWidth:(CGFloat)ownWidth
+                       ownHeight:(CGFloat)ownHeight {
+    GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
     GRXMeasureSpec widthSpec = getChildMeasureSpec(params.left, params.right, params.width,
                                                    params.margins.left, params.margins.right,
                                                    self.padding.left, self.padding.right,
                                                    ownWidth);
     GRXMeasureSpec heightSpec;
-    if(params.width == GRXMatchParent) {
+    if (params.width == GRXMatchParent) {
         heightSpec = GRXMeasureSpecMake(ownHeight, GRXMeasureSpecExactly);
     } else {
         heightSpec = GRXMeasureSpecMake(ownHeight, GRXMeasureSpecAtMost);
@@ -367,10 +366,10 @@
     return childSize;
 }
 
-- (BOOL) positionChildHorizontal:(UIView *)view
-                        ownWidth:(CGFloat)ownWidth
-                     wrapContent:(BOOL)wrapContent {
-    GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
+- (BOOL)positionChildHorizontal:(UIView *)view
+                       ownWidth:(CGFloat)ownWidth
+                    wrapContent:(BOOL)wrapContent {
+    GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
     CGSize measuredSize = view.grx_measuredSize;
 
     if (params.left < 0 && params.right >= 0) {
@@ -381,8 +380,8 @@
         params.right = params.left + measuredSize.width;
     } else if (params.left < 0 && params.right < 0) {
         // Both left and right vary
-        if([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
-           [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
+        if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
+            [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
             if (!wrapContent) {
                 centerHorizontal(params, measuredSize.width, ownWidth);
             } else {
@@ -398,10 +397,10 @@
     return NO;
 }
 
-- (BOOL) positionChildVertical:(UIView *)view
-                     ownHeight:(CGFloat)ownHeight
-                   wrapContent:(BOOL)wrapContent {
-    GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
+- (BOOL)positionChildVertical:(UIView *)view
+                    ownHeight:(CGFloat)ownHeight
+                  wrapContent:(BOOL)wrapContent {
+    GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
     CGSize measuredSize = view.grx_measuredSize;
 
     if (params.top < 0 && params.bottom >= 0) {
@@ -412,8 +411,8 @@
         params.bottom = params.top + measuredSize.height;
     } else if (params.top < 0 && params.bottom < 0) {
         // Both top and bottom vary
-        if([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
-           [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
+        if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
+            [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
             if (!wrapContent) {
                 centerVertical(params, measuredSize.height, ownHeight);
             } else {
@@ -445,8 +444,8 @@ CG_INLINE void centerVertical(GRXRelativeLayoutParams *viewParams, CGFloat viewH
 
 
 GRXMeasureSpec getChildMeasureSpec(CGFloat childStart, CGFloat childEnd,
-                        CGFloat childSize, CGFloat startMargin, CGFloat endMargin, CGFloat startPadding,
-                        CGFloat endPadding, CGFloat mySize) {
+                                   CGFloat childSize, CGFloat startMargin, CGFloat endMargin, CGFloat startPadding,
+                                   CGFloat endPadding, CGFloat mySize) {
     GRXMeasureSpec partialSpec;
     partialSpec.value = 0;
     partialSpec.mode = GRXMeasureSpecUnspecified;
@@ -456,7 +455,7 @@ GRXMeasureSpec getChildMeasureSpec(CGFloat childStart, CGFloat childEnd,
 
     // If the view did not express a layout constraint for an edge, use
     // view's margins and our padding
-    if(tempStart < 0) {
+    if (tempStart < 0) {
         tempStart = startPadding + startMargin;
     }
     if (tempEnd < 0) {

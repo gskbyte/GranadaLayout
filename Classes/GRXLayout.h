@@ -6,17 +6,17 @@
 
 @property (nonatomic, assign) UIEdgeInsets padding;
 
-+ (Class) layoutParamsClass;
++ (Class)layoutParamsClass;
 
-- (instancetype) init;
-- (instancetype) initWithFrame:(CGRect)frame;
+- (instancetype)init;
+- (instancetype)initWithFrame:(CGRect)frame;
 
 - (void)addSubview:(UIView *)view;
 - (void)addSubview:(UIView *)view
-      layoutParams:(GRXLayoutParams*)layoutParams;
+      layoutParams:(GRXLayoutParams *)layoutParams;
 
 - (void)addSubviews:(NSArray *)views;
 - (void)addSubviews:(NSArray *)views
-       layoutParams:(GRXLayoutParams*)layoutParams;
+       layoutParams:(GRXLayoutParams *)layoutParams;
 
 @end

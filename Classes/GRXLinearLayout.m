@@ -2,16 +2,16 @@
 
 @implementation GRXLinearLayout
 
-+ (Class) layoutParamsClass {
++ (Class)layoutParamsClass {
     return GRXLinearLayoutParams.class;
 }
 
-- (instancetype) init {
+- (instancetype)init {
     return [self initWithDirection:kGRXLinearLayoutDefaultDirection
                          weightSum:kGRXLinearLayoutDefaultWeightSum];
 }
 
-- (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction{
+- (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction {
     return [self initWithDirection:direction
                          weightSum:kGRXLinearLayoutDefaultWeightSum];
 }
@@ -19,7 +19,7 @@
 - (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction
                         weightSum:(CGFloat)weightSum {
     self = [super init];
-    if(self) {
+    if (self) {
         self.direction = direction;
         self.weightSum = weightSum;
     }
@@ -37,23 +37,23 @@
     [self grx_setNeedsLayout];
 }
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
 
     CGPoint pos = CGPointMake(self.padding.left, self.padding.top);
-    for(UIView * view in self.subviews) {
-        if(!view.grx_drawable) {
+    for (UIView *view in self.subviews) {
+        if (!view.grx_drawable) {
             continue;
         }
         CGSize availableSize = self.size;
-        GRXLinearLayoutParams * params = view.grx_linearLayoutParams;
+        GRXLinearLayoutParams *params = view.grx_linearLayoutParams;
         UIEdgeInsets margins = params.margins;
 
         // 1. calculate remaining size and origin
         availableSize.width -= (margins.left + margins.right + self.padding.left + self.padding.right);
         availableSize.height -= (margins.top + margins.bottom + self.padding.top + self.padding.bottom);
 
-        if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+        if (self.direction == GRXLinearLayoutDirectionHorizontal) {
             pos.x += margins.left;
             pos.y = MAX(margins.top, pos.y);
 
@@ -65,7 +65,7 @@
             availableSize.height -= pos.y;
         }
 
-        if(availableSize.width <= 0 || availableSize.height <= 0) {
+        if (availableSize.width <= 0 || availableSize.height <= 0) {
             view.origin = pos;
             view.size = CGSizeZero;
             continue;
@@ -85,16 +85,16 @@
                 view.origin = pos;
                 break;
             case GRXLinearLayoutGravityCenter:
-                if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+                if (self.direction == GRXLinearLayoutDirectionHorizontal) {
                     view.origin = CGPointMake(pos.x,
-                                           params.margins.top + (self.height-viewSize.height)/2);
+                                              params.margins.top + (self.height - viewSize.height) / 2);
                 } else {
-                    view.origin = CGPointMake(params.margins.left + (self.width-viewSize.width)/2,
-                                           pos.y);
+                    view.origin = CGPointMake(params.margins.left + (self.width - viewSize.width) / 2,
+                                              pos.y);
                 }
                 break;
             case GRXLinearLayoutGravityEnd:
-                if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+                if (self.direction == GRXLinearLayoutDirectionHorizontal) {
                     view.left = pos.x;
                     view.bottom = availableSize.height;
                 } else {
@@ -106,7 +106,7 @@
 
 
         // 4. Advance origin for the next view
-        if(self.direction == GRXLinearLayoutDirectionHorizontal) {
+        if (self.direction == GRXLinearLayoutDirectionHorizontal) {
             pos.x += viewSize.width + margins.right;
         } else {
             pos.y += viewSize.height + margins.bottom;
@@ -114,15 +114,15 @@
     }
 }
 
-- (GRXFullMeasureSpec) measureSpecForLayoutParams:(GRXLinearLayoutParams*)params
-                                    availableSize:(CGSize)availableSize {
+- (GRXFullMeasureSpec)measureSpecForLayoutParams:(GRXLinearLayoutParams *)params
+                                   availableSize:(CGSize)availableSize {
     GRXFullMeasureSpec fullSpec;
-    if(self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionHorizontal) {
+    if (self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionHorizontal) {
         CGFloat weightProportion = params.weight / self.weightSum;
         fullSpec.width.value = availableSize.width * weightProportion;
         fullSpec.width.mode = GRXMeasureSpecExactly;
     } else {
-        if(params.width == GRXMatchParent) {
+        if (params.width == GRXMatchParent) {
             fullSpec.width.value = availableSize.width;
             fullSpec.width.mode = GRXMeasureSpecExactly;
         } else if (params.width == GRXWrapContent) {
@@ -134,12 +134,12 @@
         }
     }
 
-    if(self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionVertical) {
+    if (self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionVertical) {
         CGFloat weightProportion = params.weight / self.weightSum;
         fullSpec.height.value = availableSize.height * weightProportion;
         fullSpec.height.mode = GRXMeasureSpecExactly;
     } else {
-        if(params.height == GRXMatchParent) {
+        if (params.height == GRXMatchParent) {
             fullSpec.height.value = availableSize.height;
             fullSpec.height.mode = GRXMeasureSpecExactly;
         } else if (params.height == GRXWrapContent) {

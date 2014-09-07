@@ -2,6 +2,6 @@
 
 @interface GRXLayoutParams ()
 
-- (void) setView:(UIView*)view;
+- (void)setView:(UIView *)view;
 
 @end

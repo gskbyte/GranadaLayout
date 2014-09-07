@@ -3,7 +3,7 @@
 
 @interface GRXDependencyGraph ()
 
-@property(nonatomic) NSMutableArray *roots;
+@property (nonatomic) NSMutableArray *roots;
 
 @end
 
@@ -11,64 +11,64 @@
 
 - (instancetype)init {
     self = [super init];
-    if(self) {
+    if (self) {
         _nodes = [NSMutableDictionary dictionary];
         _roots = [NSMutableArray array];
     }
     return self;
 }
 
-- (void) clear {
+- (void)clear {
     [_nodes removeAllObjects];
     [_roots removeAllObjects];
 }
 
-- (void) add:(UIView*)view {
-    GRXDependencyNode * node = [GRXDependencyNode nodeForView:view];
+- (void)add:(UIView *)view {
+    GRXDependencyNode *node = [GRXDependencyNode nodeForView:view];
     _nodes[view.grx_layoutId] = node;
 }
 
-- (NSArray*) sortedViewsWithRules:(NSArray*)rulesArray {
-    NSMutableArray * sortedViews = [NSMutableArray new];
+- (NSArray *)sortedViewsWithRules:(NSArray *)rulesArray {
+    NSMutableArray *sortedViews = [NSMutableArray new];
 
     [self findRootsWithRulesFilter:rulesArray];
 
     NSUInteger index = 0;
     while (_roots.count > 0) {
-        GRXDependencyNode * node = [_roots firstObject];
+        GRXDependencyNode *node = [_roots firstObject];
         [_roots removeObjectAtIndex:0];
 
-        UIView * view = node.view;
-        NSNumber * identifier = view.grx_layoutId;
+        UIView *view = node.view;
+        NSNumber *identifier = view.grx_layoutId;
 
         ++index;
         [sortedViews addObject:view];
-        for(GRXDependencyNode * dependent in node.dependents) {
+        for (GRXDependencyNode *dependent in node.dependents) {
             [dependent.dependencies removeObjectForKey:identifier];
-            if(dependent.dependencies.count == 0) {
+            if (dependent.dependencies.count == 0) {
                 [_roots addObject:dependent];
             }
         }
     }
 
-    NSAssert(index>=sortedViews.count, @"There are circular dependencies in this relative layout");
+    NSAssert(index >= sortedViews.count, @"There are circular dependencies in this relative layout");
     return sortedViews;
 }
 
-- (void) findRootsWithRulesFilter:(NSArray*)rulesFilter {
-    for(GRXDependencyNode * node in _nodes.allValues) {
+- (void)findRootsWithRulesFilter:(NSArray *)rulesFilter {
+    for (GRXDependencyNode *node in _nodes.allValues) {
         [node.dependencies removeAllObjects];
         [node.dependents removeAllObjects];
     }
 
-    for(GRXDependencyNode * node in _nodes.allValues) {
-        UIView * view = node.view;
-        NSNumber * viewId = view.grx_layoutId;
-        GRXRelativeLayoutParams * params = view.grx_relativeLayoutParams;
-        for(NSNumber * rule in rulesFilter) {
-            UIView * referred = [params viewForRule:rule.unsignedIntegerValue];
-            if(referred != nil) {
-                GRXDependencyNode * dependency = _nodes[referred.grx_layoutId];
+    for (GRXDependencyNode *node in _nodes.allValues) {
+        UIView *view = node.view;
+        NSNumber *viewId = view.grx_layoutId;
+        GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
+        for (NSNumber *rule in rulesFilter) {
+            UIView *referred = [params viewForRule:rule.unsignedIntegerValue];
+            if (referred != nil) {
+                GRXDependencyNode *dependency = _nodes[referred.grx_layoutId];
                 NSAssert(dependency != nil, @"A view must not refer to a nonexisting view on RelativeLayout");
                 NSAssert(dependency != node, @"A view must not refer to itself on RelativeLayout");
 
@@ -81,8 +81,8 @@
     }
 
     [_roots removeAllObjects];
-    for(GRXDependencyNode * node in _nodes.allValues) {
-        if(node.dependencies.count == 0) {
+    for (GRXDependencyNode *node in _nodes.allValues) {
+        if (node.dependencies.count == 0) {
             [_roots addObject:node];
         }
     }
@@ -92,18 +92,18 @@
 
 @implementation GRXDependencyNode
 
-static NSMutableArray * GRXDependencyNodePool;
+static NSMutableArray *GRXDependencyNodePool;
 static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 
-+ (GRXDependencyNode*)nodeForView:(UIView *)view {
++ (GRXDependencyNode *)nodeForView:(UIView *)view {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         GRXDependencyNodePool = [[NSMutableArray alloc] initWithCapacity:GRXDependencyNodePoolCapacity];
     });
 
-    GRXDependencyNode * node = [GRXDependencyNodePool lastObject];
+    GRXDependencyNode *node = [GRXDependencyNodePool lastObject];
     [GRXDependencyNodePool removeLastObject];
-    if(node == nil) {
+    if (node == nil) {
         node = [GRXDependencyNode new];
     }
     node.view = view;
@@ -114,9 +114,9 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
     return node;
 }
 
-- (instancetype) init {
+- (instancetype)init {
     self = [super init];
-    if(self) {
+    if (self) {
         _dependents = [NSMutableArray new];
         _dependencies = [NSMutableDictionary new];
     }
@@ -127,13 +127,13 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
     _view = nil;
     [_dependents removeAllObjects];
     [_dependencies removeAllObjects];
-    if(GRXDependencyNodePool.count < GRXDependencyNodePoolCapacity) {
+    if (GRXDependencyNodePool.count < GRXDependencyNodePoolCapacity) {
         [GRXDependencyNodePool addObject:self];
     }
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    GRXDependencyNode * node = [GRXDependencyNode nodeForView:_view];
+    GRXDependencyNode *node = [GRXDependencyNode nodeForView:_view];
     [node.dependencies setDictionary:_dependencies];
     [node.dependents setArray:_dependents];
     return node;
@@ -145,7 +145,6 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 #else
     return [super description];
 #endif
-
 }
 
 

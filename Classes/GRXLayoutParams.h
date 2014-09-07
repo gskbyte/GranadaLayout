@@ -7,7 +7,7 @@ static const CGFloat GRXWrapContent = -2;
 
 @interface GRXLayoutParams : NSObject <NSCopying>
 
-@property (nonatomic, weak, readonly) UIView * view;
+@property (nonatomic, weak, readonly) UIView *view;
 
 @property (nonatomic) CGSize size;
 @property (nonatomic) CGFloat width;
@@ -18,7 +18,7 @@ static const CGFloat GRXWrapContent = -2;
 @property (nonatomic) UIEdgeInsets margins;
 @property (nonatomic, readonly) BOOL hasMargins;
 
-- (instancetype) init;
-- (instancetype) initWithSize:(CGSize)size;
+- (instancetype)init;
+- (instancetype)initWithSize:(CGSize)size;
 
 @end

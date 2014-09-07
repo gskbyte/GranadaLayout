@@ -1,12 +1,12 @@
 #import "GRXRelativeLayoutParams.h"
 #import "UIView+GRXLayout.h"
 
-static NSNumber * NoNumber = nil;
+static NSNumber *NoNumber = nil;
 
 @interface GRXRelativeLayoutParams ()
 
-@property (nonatomic) NSMutableArray * mutableRules;
-@property (nonatomic) NSMutableArray * mutableParentRules;
+@property (nonatomic) NSMutableArray *mutableRules;
+@property (nonatomic) NSMutableArray *mutableParentRules;
 
 @end
 
@@ -15,50 +15,50 @@ static NSNumber * NoNumber = nil;
 // TODO initialize one-time
 + (NSArray *)verticalRules {
     return @[
-             @(GRXRelativeLayoutRuleAbove),
-             @(GRXRelativeLayoutRuleBelow),
-             @(GRXRelativeLayoutRuleAlignTop),
-             @(GRXRelativeLayoutRuleAlignBottom),
-             ];
+        @(GRXRelativeLayoutRuleAbove),
+        @(GRXRelativeLayoutRuleBelow),
+        @(GRXRelativeLayoutRuleAlignTop),
+        @(GRXRelativeLayoutRuleAlignBottom),
+    ];
 }
 
 + (NSArray *)horizontalRules {
     return @[
-             @(GRXRelativeLayoutRuleLeftOf),
-             @(GRXRelativeLayoutRuleRightOf),
-             @(GRXRelativeLayoutRuleAlignLeft),
-             @(GRXRelativeLayoutRuleAlignRight),
-             ];
+        @(GRXRelativeLayoutRuleLeftOf),
+        @(GRXRelativeLayoutRuleRightOf),
+        @(GRXRelativeLayoutRuleAlignLeft),
+        @(GRXRelativeLayoutRuleAlignRight),
+    ];
 }
 
 #pragma mark - initialization methods
 
 
 
-- (instancetype) initWithSize:(CGSize)size {
+- (instancetype)initWithSize:(CGSize)size {
     self = [super initWithSize:size];
-    if(self) {
+    if (self) {
         [self setupNoNumber];
         [self setupRules];
     }
     return self;
 }
 
-- (void) setupNoNumber {
+- (void)setupNoNumber {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NoNumber = @0;
     });
 }
 
-- (void) setupRules {
+- (void)setupRules {
     _mutableRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutRuleCount];
-    for(NSUInteger i=0; i<GRXRelativeLayoutRuleCount; ++i) {
+    for (NSUInteger i = 0; i < GRXRelativeLayoutRuleCount; ++i) {
         [_mutableRules addObject:NoNumber];
     }
 
     _mutableParentRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutParentRuleCount];
-    for(NSUInteger i=0; i<GRXRelativeLayoutParentRuleCount; ++i) {
+    for (NSUInteger i = 0; i < GRXRelativeLayoutParentRuleCount; ++i) {
         [_mutableParentRules addObject:NoNumber];
     }
 }
@@ -73,22 +73,22 @@ static NSNumber * NoNumber = nil;
 
 #pragma mark - instance methods
 
-- (BOOL) hasRule:(GRXRelativeLayoutRule)rule {
+- (BOOL)hasRule:(GRXRelativeLayoutRule)rule {
     return _mutableRules[rule] != NoNumber;
 }
 
 - (UIView *)viewForRule:(GRXRelativeLayoutRule)rule {
     id ret = _mutableRules[rule];
-    if(ret == NoNumber) {
+    if (ret == NoNumber) {
         return nil;
     } else {
         return ret;
     }
 }
 
-- (void) setRule:(GRXRelativeLayoutRule)rule
-         forView:(UIView*)view {
-    if(view == nil) {
+- (void)setRule:(GRXRelativeLayoutRule)rule
+        forView:(UIView *)view {
+    if (view == nil) {
         _mutableRules[rule] = NoNumber;
     } else {
         _mutableRules[rule] = view;
@@ -96,7 +96,7 @@ static NSNumber * NoNumber = nil;
 }
 
 - (BOOL)hasParentRule:(GRXRelativeLayoutParentRule)parentRule {
-    NSNumber * n = _mutableParentRules[parentRule];
+    NSNumber *n = _mutableParentRules[parentRule];
     return n.boolValue;
 }
 
@@ -107,16 +107,16 @@ static NSNumber * NoNumber = nil;
 }
 
 - (id)copyWithZone:(NSZone *)zone {
-    GRXRelativeLayoutParams * copy = [super copyWithZone:zone];
+    GRXRelativeLayoutParams *copy = [super copyWithZone:zone];
     [copy->_mutableRules setArray:_mutableRules];
     [copy->_mutableParentRules setArray:_mutableParentRules];
     return copy;
 }
 
-+ (void) grx_debugPointerArray:(NSPointerArray*)pa {
-    NSMutableString * desc = [NSMutableString stringWithString:@""];
-    for(id pointer in pa) {
-        if(pointer == nil) {
++ (void)grx_debugPointerArray:(NSPointerArray *)pa {
+    NSMutableString *desc = [NSMutableString stringWithString:@""];
+    for (id pointer in pa) {
+        if (pointer == nil) {
             [desc appendString:@"NULL, "];
         } else {
             [desc appendFormat:@"%@, ", [pointer description]];
@@ -127,7 +127,7 @@ static NSNumber * NoNumber = nil;
 
 #pragma mark - protected methods
 
-- (CGRect) rect {
+- (CGRect)rect {
     CGRect rect;
     rect.origin.x = _left;
     rect.origin.y = _top;
@@ -141,9 +141,9 @@ static NSNumber * NoNumber = nil;
 @implementation UIView (GRXRelativeLayoutParams)
 
 - (GRXRelativeLayoutParams *)grx_relativeLayoutParams {
-    GRXLayoutParams * params = self.grx_layoutParams;
-    if([params isKindOfClass:GRXRelativeLayoutParams.class]) {
-        return (GRXRelativeLayoutParams*) params;
+    GRXLayoutParams *params = self.grx_layoutParams;
+    if ([params isKindOfClass:GRXRelativeLayoutParams.class]) {
+        return (GRXRelativeLayoutParams *)params;
     } else {
         NSAssert(NO, @"Not GRXLinearLayoutParams for view %@", self);
         return nil;

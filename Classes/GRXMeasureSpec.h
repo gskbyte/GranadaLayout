@@ -1,4 +1,4 @@
-typedef NS_ENUM(NSUInteger, GRXMeasureSpecMode) {
+typedef NS_ENUM (NSUInteger, GRXMeasureSpecMode) {
     GRXMeasureSpecUnspecified = 0,
     GRXMeasureSpecExactly,
     GRXMeasureSpecAtMost
@@ -49,19 +49,19 @@ GRXMeasureSpecResolveSizeValue(CGFloat sizeValue, GRXMeasureSpec measureSpec) {
 
 CG_INLINE BOOL
 GRXMeasureSpecIsZero(GRXMeasureSpec spec) {
-    return spec.value==0 && spec.mode==0;
+    return spec.value == 0 && spec.mode == 0;
 }
 
 CG_INLINE BOOL
 GRXMeasureSpecsEqual(GRXMeasureSpec spec1, GRXMeasureSpec spec2) {
     return spec1.value == spec2.value &&
-    spec1.mode == spec2.mode;
+           spec1.mode == spec2.mode;
 }
 
 CG_INLINE BOOL
 GRXFullMeasureSpecsEqual(GRXFullMeasureSpec spec1, GRXFullMeasureSpec spec2) {
     return GRXMeasureSpecsEqual(spec1.width, spec2.width) &&
-        GRXMeasureSpecsEqual(spec1.height, spec2.height);
+           GRXMeasureSpecsEqual(spec1.height, spec2.height);
 }
 
 CG_INLINE GRXMeasureSpec
