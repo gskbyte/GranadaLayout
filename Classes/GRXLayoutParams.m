@@ -1,5 +1,6 @@
 #import "GRXLayoutParams.h"
 #import "GRXLayoutParams_Protected.h"
+#import "UIView+GRXLayout.h"
 
 @implementation GRXLayoutParams
 
@@ -21,12 +22,12 @@
     NSAssert(minSize.width>=0 && minSize.height>=0, @"minSize must have positive values");
 
     _minSize = minSize;
-    [_view setNeedsLayout];
+    [_view grx_setNeedsLayout];
 }
 
 - (void)setSize:(CGSize)size {
     _size = size;
-    [_view setNeedsLayout];
+    [_view grx_setNeedsLayout];
 }
 
 - (CGFloat)width {
@@ -47,7 +48,7 @@
 
 - (void)setMargins:(UIEdgeInsets)margins {
     _margins = margins;
-    [_view setNeedsLayout];
+    [_view grx_setNeedsLayout];
 }
 
 - (BOOL)hasMargins {

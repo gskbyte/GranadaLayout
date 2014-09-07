@@ -5,31 +5,6 @@
 
 #pragma mark - static class methods
 
-+ (void) replaceSetNeedsLayout {
-    Class class = UIView.class;
-
-    SEL originalSelector = @selector(setNeedsLayout);
-    SEL swizzledSelector = @selector(grx_setNeedsLayout);
-
-    Method originalMethod = class_getInstanceMethod(class, originalSelector);
-    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
-
-    BOOL didAddMethod =
-    class_addMethod(class,
-                    originalSelector,
-                    method_getImplementation(swizzledMethod),
-                    method_getTypeEncoding(swizzledMethod));
-
-    if (didAddMethod) {
-        class_replaceMethod(class,
-                            swizzledSelector,
-                            method_getImplementation(originalMethod),
-                            method_getTypeEncoding(originalMethod));
-    } else {
-        method_exchangeImplementations(originalMethod, swizzledMethod);
-    }
-}
-
 + (Class) layoutParamsClass {
     NSAssert(NO, @"Implement +layoutParamsClass in class %@", self.class);
     return nil;
@@ -44,10 +19,6 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [GRXLayout replaceSetNeedsLayout];
-        });
     }
     return self;
 }

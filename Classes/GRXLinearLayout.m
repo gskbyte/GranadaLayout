@@ -28,13 +28,13 @@
 
 - (void)setDirection:(GRXLinearLayoutDirection)direction {
     _direction = direction;
-    [self setNeedsLayout];
+    [self grx_setNeedsLayout];
 }
 
 - (void)setWeightSum:(CGFloat)weightSum {
     NSAssert(weightSum >= 0, @"weightSum must be >=0");
     _weightSum = weightSum;
-    [self setNeedsLayout];
+    [self grx_setNeedsLayout];
 }
 
 - (void) layoutSubviews {

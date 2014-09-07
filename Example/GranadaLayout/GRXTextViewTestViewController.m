@@ -77,7 +77,7 @@ static NSString * ipsum =@""
         } else {
             tv.text = text;
         }
-        [tv setNeedsLayout];
+        [tv grx_setNeedsLayout];
     }
 }
 

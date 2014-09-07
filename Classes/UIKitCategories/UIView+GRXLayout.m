@@ -204,7 +204,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 - (void) grx_setNeedsLayout {
     [self grx_setNeedsLayout];
     if([self.superview isKindOfClass:GRXLayout.class]) {
-        [self.superview setNeedsLayout];
+        [self.superview grx_setNeedsLayout];
     }
 }
 
