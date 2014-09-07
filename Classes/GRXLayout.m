@@ -55,7 +55,8 @@
     NSAssert(self.class != GRXLayout.class, @"Override -layoutSubviews");
 }
 
-- (CGSize) grx_measureWithSpec:(GRXMeasureSpec)spec {
+- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                        heightSpec:(GRXMeasureSpec)heightSpec {
     // TODO implement me!
     NSAssert(NO, @"Having layouts inside layouts is not yet supported");
     return CGSizeZero;

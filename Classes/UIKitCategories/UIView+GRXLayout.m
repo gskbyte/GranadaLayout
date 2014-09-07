@@ -113,52 +113,62 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 #pragma mark - measurement methods
 
-- (CGSize) grx_measuredSizeForSpec:(GRXMeasureSpec)spec {
+- (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
+                             heightSpec:(GRXMeasureSpec)heightSpec {
     NSValue * measuredSpecValue = objc_getAssociatedObject(self, &GRXMeasuredSizeSpecKey);
-    GRXMeasureSpec measuredSpec;
-    [measuredSpecValue getValue:&measuredSpec];
+    GRXFullMeasureSpec fullMeasuredSpec;
+    [measuredSpecValue getValue:&fullMeasuredSpec];
 
-    if(GRXMeasureSpecsEqual(spec, measuredSpec)) {
+    if(GRXMeasureSpecsEqual(widthSpec, fullMeasuredSpec.width) &&
+       GRXMeasureSpecsEqual(heightSpec, fullMeasuredSpec.height)) {
         return [self grx_measuredSize];
     } else {
-        CGSize measuredSize = [self grx_measureWithSpec:spec];
-        [self grx_setMeasuredSize:measuredSize forSpec:spec];
+        CGSize measuredSize = [self grx_measureForWidthSpec:widthSpec
+                                                 heightSpec:heightSpec];
+        [self grx_setMeasuredSize:measuredSize
+                     forWidthSpec:widthSpec
+                       heightSpec:heightSpec];
         return measuredSize;
     }
 }
 
 - (void) grx_setMeasuredSize:(CGSize)measuredSize
-                     forSpec:(GRXMeasureSpec)spec {
+                forWidthSpec:(GRXMeasureSpec)widthSpec
+                  heightSpec:(GRXMeasureSpec)heightSpec {
     NSValue *sizeValue = [NSValue value:&measuredSize withObjCType:@encode(CGSize)];
     objc_setAssociatedObject(self, &GRXMeasuredSizeKey, sizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-    NSValue *specValue = [NSValue value:&spec withObjCType:@encode(GRXMeasureSpec)];
+    GRXFullMeasureSpec spec = GRXFullMeasureSpecMake(widthSpec, heightSpec);
+    NSValue *specValue = [NSValue value:&spec withObjCType:@encode(GRXFullMeasureSpec)];
     objc_setAssociatedObject(self, &GRXMeasuredSizeSpecKey, specValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 // measurement is done within this method. Subclasses must not call super
 
 // different implementation for UIView because it -sizeThatFits: returns the current size
-- (CGSize) grx_measureWithSpec:(GRXMeasureSpec)spec {
+- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                        heightSpec:(GRXMeasureSpec)heightSpec {
     CGSize measuredSize;
     if([self isMemberOfClass:UIView.class]) {
         CGSize minSize = self.grx_suggestedMinimumSize;
-        CGFloat w = GRXMeasureSpecGetDefaultValue(minSize.width, spec.width, spec.widthMode);
-        CGFloat h = GRXMeasureSpecGetDefaultValue(minSize.height, spec.height, spec.heightMode);
+        CGFloat w = GRXMeasureSpecGetDefaultValue(minSize.width, widthSpec);
+        CGFloat h = GRXMeasureSpecGetDefaultValue(minSize.height, heightSpec);
         measuredSize = CGSizeMake(w, h);
     } else {
-        measuredSize = [self grx_measureFittingMeasureSpec:spec];
+        measuredSize = [self grx_measureFittingWidthMeasureSpec:widthSpec
+                                              heightMeasureSpec:heightSpec];
     }
     return measuredSize;
 }
 
-- (CGSize)grx_measureFittingMeasureSpec:(GRXMeasureSpec)spec {
+- (CGSize)grx_measureFittingWidthMeasureSpec:(GRXMeasureSpec)widthSpec
+                           heightMeasureSpec:(GRXMeasureSpec)heightSpec {
     // 1. Get the maximum width for which we will compute size
     CGSize maxTextSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-    switch (spec.widthMode) {
+    switch (widthSpec.mode) {
         case GRXMeasureSpecExactly:
         case GRXMeasureSpecAtMost:
-            maxTextSize.width = spec.width;
+            maxTextSize.width = widthSpec.value;
             break;
         default:
         case GRXMeasureSpecUnspecified:
@@ -168,24 +178,24 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     // 2. Get the size for the given width
     self.size = CGSizeZero;
     CGSize measuredSize = [self sizeThatFits:maxTextSize];
-    switch (spec.heightMode) {
+    switch (heightSpec.mode) {
         case GRXMeasureSpecExactly:
-            measuredSize.height = spec.height;
+            measuredSize.height = heightSpec.value;
             break;
         case GRXMeasureSpecAtMost:
-            measuredSize.height = MIN(measuredSize.height, spec.height);
+            measuredSize.height = MIN(measuredSize.height, heightSpec.value);
             break;
         case GRXMeasureSpecUnspecified:
         default:
-            measuredSize.height = MAX(measuredSize.height, spec.height);
+            measuredSize.height = MAX(measuredSize.height, heightSpec.value);
             break;
     }
 
     // 3. Override computed width if set to exactly or unspecified
-    if(spec.widthMode == GRXMeasureSpecExactly) {
-        measuredSize.width = spec.width;
-    } else if(spec.widthMode == GRXMeasureSpecUnspecified) {
-        measuredSize.width = MAX(measuredSize.width, spec.width);
+    if(widthSpec.mode == GRXMeasureSpecExactly) {
+        measuredSize.width = widthSpec.value;
+    } else if(widthSpec.value == GRXMeasureSpecUnspecified) {
+        measuredSize.width = MAX(measuredSize.width, widthSpec.value);
     }
 
     return measuredSize;
@@ -202,7 +212,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void) grx_setNeedsLayout {
-    [self grx_setNeedsLayout];
+    [self setNeedsLayout];
     if([self.superview isKindOfClass:GRXLayout.class]) {
         [self.superview grx_setNeedsLayout];
     }

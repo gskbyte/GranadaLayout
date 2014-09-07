@@ -31,11 +31,13 @@ static const NSUInteger GRXLayoutIdNull = 0;
 - (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;
 
 // this method must NOT be overriden and is called by layouts
-// implements a caching mechanism so measureWithSpec: is not called for same specs
-- (CGSize) grx_measuredSizeForSpec:(GRXMeasureSpec)spec;
+// implements a caching mechanism so measureForWidthSpec:heightSpec: is not called for same specs
+- (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
+                             heightSpec:(GRXMeasureSpec)heightSpec;
 
 // measurement is done within this method
-- (CGSize) grx_measureWithSpec:(GRXMeasureSpec)spec;
+- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                        heightSpec:(GRXMeasureSpec)heightSpec;
 
 - (void) grx_setNeedsLayout;
 

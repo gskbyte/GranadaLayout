@@ -13,7 +13,8 @@
 
 // UISwitches always have the same size, and -sizeThatFits: returns the currentSize
 
-- (CGSize)grx_measureWithSpec:(GRXMeasureSpec)spec {
+- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                       heightSpec:(GRXMeasureSpec)heightSpec {
     CGSize size = [self grx_suggestedMinimumSize];
     return size;
 }

@@ -50,17 +50,17 @@
         UIEdgeInsets margins = params.margins;
 
         // 1. calculate remaining size and origin
-        availableSize.width -= (margins.left + margins.right + self.padding.right);
-        availableSize.height -= (margins.top + margins.bottom + self.padding.bottom);
+        availableSize.width -= (margins.left + margins.right + self.padding.left + self.padding.right);
+        availableSize.height -= (margins.top + margins.bottom + self.padding.top + self.padding.bottom);
 
         if(self.direction == GRXLinearLayoutDirectionHorizontal) {
             pos.x += margins.left;
-            pos.y = MAX(margins.top, 0);
+            pos.y = MAX(margins.top, pos.y);
 
             availableSize.width -= pos.x;
         } else {
             pos.y += margins.top;
-            pos.x = MAX(margins.left, 0);
+            pos.x = MAX(margins.left, pos.x);
 
             availableSize.height -= pos.y;
         }
@@ -72,9 +72,10 @@
         }
 
         // 2. calculate view size given its layout params and this container's size
-        GRXMeasureSpec measureSpec = [self measureSpecForLayoutParams:params
-                                                        availableSize:availableSize];
-        CGSize viewSize = [view grx_measuredSizeForSpec:measureSpec];
+        GRXFullMeasureSpec measureSpec = [self measureSpecForLayoutParams:params
+                                                            availableSize:availableSize];
+        CGSize viewSize = [view grx_measuredSizeForWidthSpec:measureSpec.width
+                                                  heightSpec:measureSpec.height];
         view.size = viewSize;
 
         // 3. Position view on layout depending on gravity
@@ -113,44 +114,44 @@
     }
 }
 
-- (GRXMeasureSpec) measureSpecForLayoutParams:(GRXLinearLayoutParams*)params
-                                availableSize:(CGSize)availableSize {
-    GRXMeasureSpec measureSpec;
+- (GRXFullMeasureSpec) measureSpecForLayoutParams:(GRXLinearLayoutParams*)params
+                                    availableSize:(CGSize)availableSize {
+    GRXFullMeasureSpec fullSpec;
     if(self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionHorizontal) {
         CGFloat weightProportion = params.weight / self.weightSum;
-        measureSpec.width = availableSize.width * weightProportion;
-        measureSpec.widthMode = GRXMeasureSpecExactly;
+        fullSpec.width.value = availableSize.width * weightProportion;
+        fullSpec.width.mode = GRXMeasureSpecExactly;
     } else {
         if(params.width == GRXMatchParent) {
-            measureSpec.width = availableSize.width;
-            measureSpec.widthMode = GRXMeasureSpecExactly;
+            fullSpec.width.value = availableSize.width;
+            fullSpec.width.mode = GRXMeasureSpecExactly;
         } else if (params.width == GRXWrapContent) {
-            measureSpec.width = params.minSize.width;
-            measureSpec.widthMode = GRXMeasureSpecUnspecified;
+            fullSpec.width.value = params.minSize.width;
+            fullSpec.width.mode = GRXMeasureSpecUnspecified;
         } else {
-            measureSpec.width = params.width;
-            measureSpec.widthMode = GRXMeasureSpecExactly;
+            fullSpec.width.value = params.width;
+            fullSpec.width.mode = GRXMeasureSpecExactly;
         }
     }
 
     if(self.weightSum != 0 && self.direction == GRXLinearLayoutDirectionVertical) {
         CGFloat weightProportion = params.weight / self.weightSum;
-        measureSpec.height = availableSize.height * weightProportion;
-        measureSpec.heightMode = GRXMeasureSpecExactly;
+        fullSpec.height.value = availableSize.height * weightProportion;
+        fullSpec.height.mode = GRXMeasureSpecExactly;
     } else {
         if(params.height == GRXMatchParent) {
-            measureSpec.height = availableSize.height;
-            measureSpec.heightMode = GRXMeasureSpecExactly;
+            fullSpec.height.value = availableSize.height;
+            fullSpec.height.mode = GRXMeasureSpecExactly;
         } else if (params.height == GRXWrapContent) {
-            measureSpec.height = params.minSize.height;
-            measureSpec.heightMode = GRXMeasureSpecUnspecified;
+            fullSpec.height.value = params.minSize.height;
+            fullSpec.height.mode = GRXMeasureSpecUnspecified;
         } else {
-            measureSpec.height = params.height;
-            measureSpec.heightMode = GRXMeasureSpecExactly;
+            fullSpec.height.value = params.height;
+            fullSpec.height.mode = GRXMeasureSpecExactly;
         }
     }
 
-    return measureSpec;
+    return fullSpec;
 }
 
 @end

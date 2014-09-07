@@ -1,5 +1,4 @@
 #import "GRXRelativeLayoutParams.h"
-#import "GRXRelativeLayoutParams_Protected.h"
 #import "UIView+GRXLayout.h"
 
 static NSNumber * NoNumber = nil;
@@ -48,19 +47,19 @@ static NSNumber * NoNumber = nil;
 - (void) setupNoNumber {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NoNumber = @NO;
+        NoNumber = @0;
     });
 }
 
 - (void) setupRules {
     _mutableRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutRuleCount];
     for(NSUInteger i=0; i<GRXRelativeLayoutRuleCount; ++i) {
-        [_mutableRules addObject:@(NO)];
+        [_mutableRules addObject:NoNumber];
     }
 
     _mutableParentRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutParentRuleCount];
     for(NSUInteger i=0; i<GRXRelativeLayoutParentRuleCount; ++i) {
-        [_mutableParentRules addObject:@(NO)];
+        [_mutableParentRules addObject:NoNumber];
     }
 }
 
@@ -103,7 +102,8 @@ static NSNumber * NoNumber = nil;
 
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule
                active:(BOOL)active {
-    _mutableParentRules[parentRule] = @(active);
+    NSUInteger index = (NSUInteger)parentRule;
+    _mutableParentRules[index] = @((NSUInteger)active);
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -127,52 +127,13 @@ static NSNumber * NoNumber = nil;
 
 #pragma mark - protected methods
 
-- (CGFloat)top {
-    return _rect.origin.y;
-}
-
-- (void)setTop:(CGFloat)top {
-    _rect.origin.y = top;
-}
-
-- (CGFloat)left {
-    return _rect.origin.x;
-}
-
-- (void)setLeft:(CGFloat)x {
-    _rect.origin.x = x;
-}
-
-- (CGFloat)bottom {
-    return _rect.origin.y + _rect.size.height;
-}
-
-- (void)setBottom:(CGFloat)bottom {
-    _rect.origin.y = bottom - _rect.size.height;
-}
-
-- (CGFloat)right {
-    return _rect.origin.x + _rect.size.width;
-}
-
-- (void)setRight:(CGFloat)right {
-    _rect.origin.x = right - _rect.size.width;
-}
-
-- (CGFloat)width {
-    return _rect.size.width;
-}
-
-- (void)setWidth:(CGFloat)width {
-    _rect.size.width = width;
-}
-
-- (CGFloat)height {
-    return _rect.size.height;
-}
-
-- (void)setHeight:(CGFloat)height {
-    _rect.size.height = height;
+- (CGRect) rect {
+    CGRect rect;
+    rect.origin.x = _left;
+    rect.origin.y = _top;
+    rect.size.width = _right - _left;
+    rect.size.height = _bottom - _top;
+    return rect;
 }
 
 @end

@@ -44,6 +44,7 @@
 
 - (GRXLayout *)initializeTopLayout {
     GRXLayout * top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
+    top.padding = UIEdgeInsetsMake(4, 6, 8, 10);
     return top;
 }
 

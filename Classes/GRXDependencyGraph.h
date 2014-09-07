@@ -1,4 +1,4 @@
-#import "GRXRelativeLayoutParams_Protected.h"
+#import "GRXRelativeLayoutParams.h"
 
 @interface GRXDependencyGraph : NSObject
 
