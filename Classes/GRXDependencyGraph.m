@@ -1,25 +1,8 @@
 #import "GRXDependencyGraph.h"
 #import "UIView+GRXLayout.h"
 
-@interface GRXDependencyNode : NSObject <NSCopying>
-
-@property(nonatomic) UIView * view;
-@property(nonatomic) NSMutableArray *dependents;
-@property(nonatomic) NSMutableDictionary *dependencies;
-#ifdef DEBUG
-@property(nonatomic) NSNumber * viewId;
-@property(nonatomic) NSString * accessibilityLabel;
-#endif
-
-+ (GRXDependencyNode*)nodeForView:(UIView *)view;
-- (void)recycle;
-
-@end
-
-
 @interface GRXDependencyGraph ()
 
-@property(nonatomic) NSMutableDictionary *nodes; //{viewIdentifier, node}
 @property(nonatomic) NSMutableArray *roots;
 
 @end

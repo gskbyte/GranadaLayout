@@ -40,9 +40,8 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGPoint pos = CGPointZero;
-    for(NSUInteger i=0; i<self.subviews.count; ++i) {
-        UIView * view = self.subviews[i];
+    CGPoint pos = CGPointMake(self.padding.left, self.padding.top);
+    for(UIView * view in self.subviews) {
         if(!view.grx_drawable) {
             continue;
         }
@@ -51,8 +50,8 @@
         UIEdgeInsets margins = params.margins;
 
         // 1. calculate remaining size and origin
-        availableSize.width -= (margins.left + margins.right);
-        availableSize.height -= (margins.top + margins.bottom);
+        availableSize.width -= (margins.left + margins.right + self.padding.right);
+        availableSize.height -= (margins.top + margins.bottom + self.padding.bottom);
 
         if(self.direction == GRXLinearLayoutDirectionHorizontal) {
             pos.x += margins.left;
@@ -66,7 +65,7 @@
             availableSize.height -= pos.y;
         }
 
-        if(availableSize.width < 0 || availableSize.height < 0) {
+        if(availableSize.width <= 0 || availableSize.height <= 0) {
             view.origin = pos;
             view.size = CGSizeZero;
             continue;
@@ -75,8 +74,7 @@
         // 2. calculate view size given its layout params and this container's size
         GRXMeasureSpec measureSpec = [self measureSpecForLayoutParams:params
                                                         availableSize:availableSize];
-        [view grx_measuredSizeForSpec:measureSpec];
-        CGSize viewSize = view.grx_measuredSize;
+        CGSize viewSize = [view grx_measuredSizeForSpec:measureSpec];
         view.size = viewSize;
 
         // 3. Position view on layout depending on gravity

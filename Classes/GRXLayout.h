@@ -4,6 +4,8 @@
 
 @interface GRXLayout : UIView
 
+@property (nonatomic, assign) UIEdgeInsets padding;
+
 + (Class) layoutParamsClass;
 
 - (instancetype) init;
