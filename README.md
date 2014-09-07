@@ -11,10 +11,11 @@ Current Status
 - ``LinearLayout`` is already implemented and works flawlessly with the already tested views
 - There are categories to support size measurement for some views from UIKit
 - Some test controllers are implemented
+- Caching is implemented
 
 TODO:
 -----
-- Add size calculation and tests for all UIKit base views
+- Add size calculation and tests for all UIKit base views, if needed
     - UITextField
     - UISegmentedControl
     - UIWebView
@@ -27,7 +28,6 @@ TODO:
     - UIPickerView
     - UIScrollView (needed?)
 - Add size calculation for the layouts, so that they can be embedded in other layouts
-- Cache measured size for given measureSpec
 - Implement the ``RelativeLayout``
 - Test, test, test! -> Unit and snapshot tests
 - Create a nicer syntax a la [Masonry](https://github.com/Masonry/Masonry)
