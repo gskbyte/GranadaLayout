@@ -28,21 +28,39 @@
 
 - (void)setDirection:(GRXLinearLayoutDirection)direction {
     _direction = direction;
-    [self grx_setNeedsLayout];
+    [self grx_setNeedsLayoutInParent];
 }
 
 - (void)setWeightSum:(CGFloat)weightSum {
     NSAssert(weightSum >= 0, @"weightSum must be >=0");
     _weightSum = weightSum;
-    [self grx_setNeedsLayout];
+    [self grx_setNeedsLayoutInParent];
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
+- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                       heightSpec:(GRXMeasureSpec)heightSpec {
+    CGFloat ownWidth = -1, ownHeight = -1;
+    CGSize measuredSize;
+
+    // set own dimensions if they are known
+    if (widthSpec.mode != GRXMeasureSpecUnspecified) {
+        ownWidth = widthSpec.value;
+    }
+    if (heightSpec.mode != GRXMeasureSpecUnspecified) {
+        ownHeight = heightSpec.value;
+    }
+    if (widthSpec.mode == GRXMeasureSpecExactly) {
+        measuredSize.width = ownWidth;
+    }
+    if (heightSpec.mode == GRXMeasureSpecExactly) {
+        measuredSize.height = ownHeight;
+    }
+
+    
 
     CGPoint pos = CGPointMake(self.padding.left, self.padding.top);
     for (UIView *view in self.subviews) {
-        if (!view.grx_drawable) {
+        if (view.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
         CGSize availableSize = self.size;
@@ -112,6 +130,8 @@
             pos.y += viewSize.height + margins.bottom;
         }
     }
+
+    return measuredSize;
 }
 
 - (GRXFullMeasureSpec)measureSpecForLayoutParams:(GRXLinearLayoutParams *)params

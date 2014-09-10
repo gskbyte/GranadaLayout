@@ -16,23 +16,9 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
-#pragma mark - Shortcuts for relative positioning
-
-@property (nonatomic, readonly) CGPoint relativeOrigin;
-
-@property (nonatomic, readonly) CGFloat ttScreenX;
-@property (nonatomic, readonly) CGFloat ttScreenY;
-@property (nonatomic, readonly) CGFloat screenViewX;
-@property (nonatomic, readonly) CGFloat screenViewY;
-@property (nonatomic, readonly) CGRect screenFrame;
-
 #pragma mark - z index methods
 
 - (void)bringToFront;
 - (void)sendToBack;
-
-#pragma mark - Other methods
-
-- (CGPoint)offsetFromView:(UIView*)otherView;
 
 @end

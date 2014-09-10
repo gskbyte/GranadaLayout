@@ -76,7 +76,7 @@ static NSString *ipsum = @""
         } else {
             tv.text = text;
         }
-        [tv grx_setNeedsLayout];
+        [tv grx_setNeedsLayoutInParent];
     }
 }
 

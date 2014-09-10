@@ -4,12 +4,18 @@
 #import "GRXLayout.h"
 
 const static char GRXLayoutParamsKey;
-const static char GRXDrawableKey;
+const static char GRXLayoutableKey;
 const static char GRXMeasuredSizeKey;
 const static char GRXMeasuredSizeSpecKey;
 const static char GRXLayoutIDKey;
 
 static NSUInteger GRXStaticCurrentLayoutID = 0;
+
+@interface UIView (GRXLayout_Private)
+
+@property (nonatomic, setter = grx_setLayoutable:) BOOL grx_isLayoutable;
+
+@end
 
 @implementation UIView (GRXLayout)
 
@@ -45,8 +51,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (BOOL)grx_drawable {
-    NSNumber * n = objc_getAssociatedObject(self, &GRXDrawableKey);
+- (BOOL)grx_isLayoutable {
+    NSNumber * n = objc_getAssociatedObject(self, &GRXLayoutableKey);
     if(n != nil) {
         return n.boolValue;
     } else {
@@ -54,14 +60,14 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-- (void)grx_setDrawable:(BOOL)grx_drawable {
-    objc_setAssociatedObject(self, &GRXLayoutParamsKey, @(grx_drawable),
+- (void)grx_setLayoutable:(BOOL)layoutable {
+    objc_setAssociatedObject(self, &GRXLayoutParamsKey, @(layoutable),
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
 
 - (GRXViewVisibility)grx_visibility {
-    if(self.grx_drawable) {
+    if(self.grx_isLayoutable) {
         if(self.hidden) {
             return GRXViewVisibilityHidden;
         } else {
@@ -69,6 +75,24 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
         }
     } else {
         return GRXViewVisibilityGone;
+    }
+}
+
+- (void)grx_setVisibility:(GRXViewVisibility)grx_visibility {
+    switch (grx_visibility) {
+        case GRXViewVisibilityHidden:
+            self.hidden = YES;
+            self.grx_isLayoutable = YES;
+            break;
+        case GRXViewVisibilityGone:
+            self.hidden = YES;
+            self.grx_isLayoutable = NO;
+            break;
+        case GRXViewVisibilityVisible:
+        default:
+            self.hidden = NO;
+            self.grx_isLayoutable = YES;
+            break;
     }
 }
 
@@ -80,25 +104,6 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
         return size;
     } else {
         return CGSizeZero;
-    }
-}
-
-- (void)grx_setVisibility:(GRXViewVisibility)grx_visibility {
-    switch (grx_visibility) {
-        case GRXViewVisibilityHidden:
-            self.hidden = YES;
-            self.grx_drawable = NO;
-            break;
-        case GRXViewVisibilityGone:
-            self.hidden = NO;
-            self.grx_drawable = NO;
-            break;
-
-        case GRXViewVisibilityVisible:
-        default:
-            self.hidden = NO;
-            self.grx_drawable = YES;
-            break;
     }
 }
 
@@ -146,6 +151,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 // measurement is done within this method. Subclasses must not call super
 
 // different implementation for UIView because it -sizeThatFits: returns the current size
+// subviews won't usually want to call super
 - (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                         heightSpec:(GRXMeasureSpec)heightSpec {
     CGSize measuredSize;
@@ -211,10 +217,11 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     return layoutIdNumber;
 }
 
-- (void) grx_setNeedsLayout {
-    [self setNeedsLayout];
+- (void) grx_setNeedsLayoutInParent {
     if([self.superview isKindOfClass:GRXLayout.class]) {
-        [self.superview grx_setNeedsLayout];
+        [self.superview grx_setNeedsLayoutInParent];
+    } else {
+        [self setNeedsLayout];
     }
 }
 

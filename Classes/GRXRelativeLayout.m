@@ -38,16 +38,6 @@
     _dirtyHierarchy = YES;
 }
 
-+ (void)centerVerticalView:(UIView *)child
-                    params:(GRXRelativeLayoutParams *)params
-                  myHeight:(CGFloat)myHeight {
-    CGFloat childHeight = child.grx_measuredSize.height;
-    CGFloat top = (myHeight - childHeight) / 2;
-
-    params.top = top;
-    params.bottom = top + childHeight;
-}
-
 - (void)sortChildren {
     [self.dependencyGraph clear];
     for (UIView *view in self.subviews) {
@@ -58,32 +48,6 @@
     self.sortedViewsHorizontal = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams horizontalRules]];
 }
 
-
-+ (void)debugViewArray:(NSArray *)array title:(NSString *)title {
-    NSLog(@"%@", title);
-    [self.class debugViewArray:array];
-}
-
-+ (void)debugViewArray:(NSArray *)array {
-    for (UIView *view in array) {
-        NSString *viewName = view.accessibilityLabel ? view.accessibilityLabel : @"Unnamed";
-        NSLog(@"  %@ : %@", viewName, view.description);
-    }
-    NSLog(@"");
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
-        CGSize parentSize = self.superview.size;
-        if (parentSize.width > 0 && parentSize.height > 0) {
-            self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:parentSize];
-            [self grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost)
-                                    heightSpec:GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost)];
-        }
-    }
-}
-
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                        heightSpec:(GRXMeasureSpec)heightSpec {
     if (_dirtyHierarchy) {
@@ -91,21 +55,21 @@
         _dirtyHierarchy = NO;
     }
 
-    CGFloat myWidth = -1, myHeight = -1;
+    CGFloat ownWidth = -1, ownHeight = -1;
     CGSize measuredSize;
 
-    // Record our dimensions if they are known:
+    // set own dimensions if they are known
     if (widthSpec.mode != GRXMeasureSpecUnspecified) {
-        myWidth = widthSpec.value;
+        ownWidth = widthSpec.value;
     }
     if (heightSpec.mode != GRXMeasureSpecUnspecified) {
-        myHeight = heightSpec.value;
+        ownHeight = heightSpec.value;
     }
     if (widthSpec.mode == GRXMeasureSpecExactly) {
-        measuredSize.width = myWidth;
+        measuredSize.width = ownWidth;
     }
     if (heightSpec.mode == GRXMeasureSpecExactly) {
-        measuredSize.height = myHeight;
+        measuredSize.height = ownHeight;
     }
 
     BOOL offsetHorizontalAxis = NO;
@@ -115,26 +79,26 @@
     const BOOL isWrapContentHeight = heightSpec.mode != GRXMeasureSpecExactly;
 
     for (UIView *view in self.sortedViewsHorizontal) {
-        if (NO == view.grx_drawable) {
+        if (view.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
 
-        [self applyHorizontalSizeRulesToChildView:view ownWidth:myWidth];
-        [self measureChildHorizontal:view ownWidth:myWidth ownHeight:myHeight];
+        [self applyHorizontalSizeRulesToChildView:view ownWidth:ownWidth];
+        [self measureChildHorizontal:view ownWidth:ownWidth ownHeight:ownHeight];
 
-        if ( [self positionChildHorizontal:view ownWidth:myWidth wrapContent:isWrapContentWidth] ) {
+        if ( [self positionChildHorizontal:view ownWidth:ownWidth wrapContent:isWrapContentWidth] ) {
             offsetHorizontalAxis = YES;
         }
     }
 
     for (UIView *view in self.sortedViewsVertical) {
-        if (NO == view.grx_drawable) {
+        if (view.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
 
-        [self applyVerticalSizeRulesToChildView:view ownHeight:myHeight];
-        [self measureChild:view ownWidth:myWidth ownHeight:myHeight];
-        if ( [self positionChildVertical:view ownHeight:myHeight wrapContent:isWrapContentHeight] ) {
+        [self applyVerticalSizeRulesToChildView:view ownHeight:ownHeight];
+        [self measureChild:view ownWidth:ownWidth ownHeight:ownHeight];
+        if ( [self positionChildVertical:view ownHeight:ownHeight wrapContent:isWrapContentHeight] ) {
             offsetVerticalAxis = YES;
         }
 
@@ -165,14 +129,14 @@
 
         if (offsetHorizontalAxis) {
             for (UIView *view in self.subviews) {
-                if (NO == view.grx_drawable) {
+                if (view.grx_visibility == GRXViewVisibilityGone) {
                     continue;
                 }
 
                 GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
                 if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
                     [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
-                    centerHorizontal(params, view.grx_measuredSize.width, myWidth);
+                    centerHorizontal(params, view.grx_measuredSize.width, ownWidth);
                 }
             }
         }
@@ -192,13 +156,13 @@
 
         if (offsetVerticalAxis) {
             for (UIView *view in self.subviews) {
-                if (NO == view.grx_drawable) {
+                if (view.grx_visibility == GRXViewVisibilityGone) {
                     continue;
                 }
                 GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
                 if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
                     [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
-                    centerVertical(params, view.grx_measuredSize.height, myHeight);
+                    centerVertical(params, view.grx_measuredSize.height, ownHeight);
                 }
             }
         }
@@ -229,7 +193,7 @@
         }
 
         // find the first non-gone view up the chain
-        while (NO == view.grx_drawable) {
+        while (view.grx_visibility == GRXViewVisibilityGone) {
             layoutParams = view.grx_relativeLayoutParams;
             view = [layoutParams viewForRule:relation];
             node = self.dependencyGraph.nodes[view.grx_layoutId];

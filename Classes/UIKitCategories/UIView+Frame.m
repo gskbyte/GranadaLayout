@@ -84,63 +84,6 @@
     self.frame = frame;
 }
 
-#pragma mark - Shortcuts for relative positioning
-
-- (CGPoint)relativeOrigin {
-    if (self.superview == nil) {
-        return CGPointZero;
-    }
-    return CGPointMake((int)((self.superview.width-self.width) /2.0),
-                       (int)((self.superview.height-self.height) / 2.0));
-}
-
-- (CGFloat)ttScreenX {
-    CGFloat x = 0;
-    for (UIView* view = self; view != nil; view = view.superview) {
-        x += view.left;
-    }
-    return x;
-}
-
-- (CGFloat)ttScreenY {
-    CGFloat y = 0;
-    for (UIView* view = self; view != nil; view = view.superview) {
-        y += view.top;
-    }
-    return y;
-}
-
-- (CGFloat)screenViewX {
-    CGFloat x = 0;
-    for (UIView* view = self; view != nil; view = view.superview) {
-        x += view.left;
-
-        if ([view isKindOfClass:[UIScrollView class]]) {
-            UIScrollView* scrollView = (UIScrollView*)view;
-            x -= scrollView.contentOffset.x;
-        }
-    }
-
-    return x;
-}
-
-- (CGFloat)screenViewY {
-    CGFloat y = 0;
-    for (UIView* view = self; view; view = view.superview) {
-        y += view.top;
-
-        if ([view isKindOfClass:[UIScrollView class]]) {
-            UIScrollView* scrollView = (UIScrollView*)view;
-            y -= scrollView.contentOffset.y;
-        }
-    }
-    return y;
-}
-
-- (CGRect)screenFrame {
-    return CGRectMake(self.screenViewX, self.screenViewY, self.width, self.height);
-}
-
 #pragma mark - z index methods
 
 - (void)bringToFront {
@@ -149,17 +92,6 @@
 
 - (void)sendToBack {
     [self.superview sendSubviewToBack:self];
-}
-
-#pragma mark - Other methods
-
-- (CGPoint)offsetFromView:(UIView*)otherView {
-    CGFloat x = 0, y = 0;
-    for (UIView* view = self; view != nil && view != otherView; view = view.superview) {
-        x += view.left;
-        y += view.top;
-    }
-    return CGPointMake(x, y);
 }
 
 @end

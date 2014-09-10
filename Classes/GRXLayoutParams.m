@@ -22,12 +22,12 @@
     NSAssert(minSize.width >= 0 && minSize.height >= 0, @"minSize must have positive values");
 
     _minSize = minSize;
-    [_view grx_setNeedsLayout];
+    [_view grx_setNeedsLayoutInParent];
 }
 
 - (void)setSize:(CGSize)size {
     _size = size;
-    [_view grx_setNeedsLayout];
+    [_view grx_setNeedsLayoutInParent];
 }
 
 - (CGFloat)width {
@@ -48,7 +48,7 @@
 
 - (void)setMargins:(UIEdgeInsets)margins {
     _margins = margins;
-    [_view grx_setNeedsLayout];
+    [_view grx_setNeedsLayoutInParent];
 }
 
 - (BOOL)hasMargins {

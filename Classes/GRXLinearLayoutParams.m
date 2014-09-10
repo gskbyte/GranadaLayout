@@ -36,12 +36,12 @@
 
 - (void)setGravity:(NSInteger)gravity {
     _gravity = gravity;
-    [self.view grx_setNeedsLayout];
+    [self.view grx_setNeedsLayoutInParent];
 }
 
 - (void)setWeight:(CGFloat)weight {
     _weight = weight;
-    [self.view grx_setNeedsLayout];
+    [self.view grx_setNeedsLayoutInParent];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

@@ -63,7 +63,6 @@
 
     for (GRXDependencyNode *node in _nodes.allValues) {
         UIView *view = node.view;
-        NSNumber *viewId = view.grx_layoutId;
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
         for (NSNumber *rule in rulesFilter) {
             UIView *referred = [params viewForRule:rule.unsignedIntegerValue];

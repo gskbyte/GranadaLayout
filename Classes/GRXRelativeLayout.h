@@ -3,6 +3,4 @@
 
 @interface GRXRelativeLayout : GRXLayout
 
-
-
 @end

@@ -52,7 +52,17 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    NSAssert(self.class != GRXLayout.class, @"Override -layoutSubviews");
+    // measure myself and my subviews only if I don't have anyone who requests it
+    if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
+        CGSize parentSize = self.superview.size;
+        if (parentSize.width > 0 && parentSize.height > 0) {
+            if(self.grx_layoutParams == nil) {
+                self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
+            }
+            [self grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost)
+                                    heightSpec:GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost)];
+        }
+    }
 }
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
