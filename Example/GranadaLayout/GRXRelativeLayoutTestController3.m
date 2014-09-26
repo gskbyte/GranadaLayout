@@ -95,6 +95,9 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
 
     [UIView animateWithDuration:self.animate?1:0 delay:0 options:0 animations:^{
         [self adjustLayoutForCurrentMode];
+        if(self.animate) {
+            [self.topLayout layoutSubviews];
+        }
     } completion:^(BOOL finished) {
 
     }];
@@ -109,17 +112,18 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
         case GRXRelativeLayoutTestControllerMode0: {
             GRXRelativeLayoutParams *p0 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(50, 50)];
             [p0 setParentRule:GRXRelativeLayoutParentRuleAlignTop];
-            [p0 setParentRule:GRXRelativeLayoutParentRuleAlignLeft];
+            [p0 setParentRule:GRXRelativeLayoutParentRuleCenterHorizontal];
+            p0.margins = UIEdgeInsetsMake(0, 50, 0, 0);
             view0.grx_layoutParams = p0;
 
             GRXRelativeLayoutParams *p1 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(40, 40)];
             [p1 setRule:GRXRelativeLayoutRuleBelow forView:view0];
-            [p1 setRule:GRXRelativeLayoutRuleRightOf forView:view0];
+            [p1 setRule:GRXRelativeLayoutRuleLeftOf forView:view0];
             view1.grx_layoutParams = p1;
 
             GRXRelativeLayoutParams *p2 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(GRXMatchParent, 70)];
             [p2 setParentRule:GRXRelativeLayoutParentRuleAlignBottom];
-            //p2.margins = UIEdgeInsetsMake(0, 10, 15, 0);
+            p2.margins = UIEdgeInsetsMake(0, 10, 15, 0);
             view2.grx_layoutParams = p2;
         }
             break;
@@ -127,7 +131,7 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
             GRXRelativeLayoutParams *p1 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(100, 60)];
             [p1 setParentRule:GRXRelativeLayoutParentRuleAlignRight];
             [p1 setParentRule:GRXRelativeLayoutParentRuleAlignBottom];
-            //p1.margins = UIEdgeInsetsMake(10, 10, 10, 10);
+            p1.margins = UIEdgeInsetsMake(10, 10, 10, 10);
             view1.grx_layoutParams = p1;
 
             GRXRelativeLayoutParams *p0 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(50, 120)];
