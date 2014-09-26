@@ -46,6 +46,7 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
         forView:(UIView *)view;
 
 - (BOOL)hasParentRule:(GRXRelativeLayoutParentRule)parentRule;
+- (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule;
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule
                active:(BOOL)active;
 

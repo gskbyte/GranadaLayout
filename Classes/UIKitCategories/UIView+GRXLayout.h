@@ -32,6 +32,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
 // implements a caching mechanism so measureForWidthSpec:heightSpec: is not called for same specs
 - (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
                              heightSpec:(GRXMeasureSpec)heightSpec;
+- (void) grx_invalidateMeasuredSize;
 
 // measurement is done within this method
 - (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec

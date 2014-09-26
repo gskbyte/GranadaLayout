@@ -49,6 +49,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     [copy setView:self];
     objc_setAssociatedObject(self, &GRXLayoutParamsKey, copy,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self grx_setNeedsLayoutInParent];
 }
 
 - (BOOL)grx_isLayoutable {
@@ -137,6 +138,10 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
+- (void) grx_invalidateMeasuredSize {
+    objc_setAssociatedObject(self, &GRXMeasuredSizeSpecKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (void) grx_setMeasuredSize:(CGSize)measuredSize
                 forWidthSpec:(GRXMeasureSpec)widthSpec
                   heightSpec:(GRXMeasureSpec)heightSpec {
@@ -157,8 +162,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     CGSize measuredSize;
     if([self isMemberOfClass:UIView.class]) {
         CGSize minSize = self.grx_suggestedMinimumSize;
-        CGFloat w = GRXMeasureSpecGetDefaultValue(minSize.width, widthSpec);
-        CGFloat h = GRXMeasureSpecGetDefaultValue(minSize.height, heightSpec);
+        CGFloat w = GRXMeasureSpecResolveSizeValue(minSize.width, widthSpec);
+        CGFloat h = GRXMeasureSpecResolveSizeValue(minSize.height, heightSpec);
         measuredSize = CGSizeMake(w, h);
     } else {
         measuredSize = [self grx_measureFittingWidthMeasureSpec:widthSpec
@@ -218,6 +223,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void) grx_setNeedsLayoutInParent {
+    [self grx_invalidateMeasuredSize];
     if([self.superview isKindOfClass:GRXLayout.class]) {
         [self.superview grx_setNeedsLayoutInParent];
     } else {

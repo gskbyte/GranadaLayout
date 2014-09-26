@@ -100,6 +100,10 @@ static NSNumber *NoNumber = nil;
     return n.boolValue;
 }
 
+- (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule {
+    [self setParentRule:parentRule active:YES];
+}
+
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule
                active:(BOOL)active {
     NSUInteger index = (NSUInteger)parentRule;

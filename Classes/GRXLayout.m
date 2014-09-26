@@ -24,7 +24,9 @@
 }
 
 - (void)addSubview:(UIView *)view {
-    NSAssert(view.grx_layoutParams != nil, @"Set layout params before adding the view %@", view);
+    if(view.grx_layoutParams == nil) {
+        view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
+    }
     NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
              @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
     [super addSubview:view];
@@ -54,14 +56,23 @@
     [super layoutSubviews];
     // measure myself and my subviews only if I don't have anyone who requests it
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
-        CGSize parentSize = self.superview.size;
-        if (parentSize.width > 0 && parentSize.height > 0) {
-            if(self.grx_layoutParams == nil) {
-                self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
+        GRXMeasureSpec wspec, hspec;
+        CGSize ownSize = self.size;
+        if(ownSize.width != 0 && ownSize.height != 0) {
+            wspec = GRXMeasureSpecMake(ownSize.width, GRXMeasureSpecExactly);
+            hspec = GRXMeasureSpecMake(ownSize.height, GRXMeasureSpecExactly);
+        } else {
+            CGSize parentSize = self.superview.size;
+            if (parentSize.width > 0 && parentSize.height > 0) {
+                if(self.grx_layoutParams == nil) {
+                    self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
+                    wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
+                    hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
+                }
             }
-            [self grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost)
-                                    heightSpec:GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost)];
         }
+        [self grx_measuredSizeForWidthSpec:wspec
+                                heightSpec:hspec];
     }
 }
 

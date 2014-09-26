@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C00E999D19BA39E900151D1A /* GRXRelativeLayoutTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C00E999C19BA39E900151D1A /* GRXRelativeLayoutTestController.m */; };
 		C00E99A019BD172A00151D1A /* GRXRelativeLayoutTestController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C00E999F19BD172A00151D1A /* GRXRelativeLayoutTestController2.m */; };
+		C01D869C19C0CA3B002EAAF6 /* GRXMeasureSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = C01D869B19C0CA3B002EAAF6 /* GRXMeasureSpec.m */; };
+		C01D869F19C0D39C002EAAF6 /* GRXLayout+Protected.m in Sources */ = {isa = PBXBuildFile; fileRef = C01D869E19C0D39C002EAAF6 /* GRXLayout+Protected.m */; };
 		C031848F19AE425900E18325 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031848E19AE425900E18325 /* Foundation.framework */; };
 		C031849119AE425900E18325 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031849019AE425900E18325 /* CoreGraphics.framework */; };
 		C031849319AE425900E18325 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C031849219AE425900E18325 /* UIKit.framework */; };
@@ -25,6 +27,7 @@
 		C034384319B249E200653848 /* GRXTextViewTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C034384219B249E200653848 /* GRXTextViewTestViewController.m */; };
 		C034385819B2876200653848 /* GRXLabelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C034385719B2876200653848 /* GRXLabelTestViewController.m */; };
 		C034385B19B2878E00653848 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = C034385A19B2878E00653848 /* UIView+Frame.m */; };
+		C071CEA619D5985D00DE030D /* GRXRelativeLayoutTestController3.m in Sources */ = {isa = PBXBuildFile; fileRef = C071CEA519D5985D00DE030D /* GRXRelativeLayoutTestController3.m */; };
 		C0A9250419B1EBAC00086A3D /* UISwitch+GRXLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A9250319B1EBAC00086A3D /* UISwitch+GRXLayout.m */; };
 		C0A9250A19B1EC4E00086A3D /* UIDevice+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A9250919B1EC4E00086A3D /* UIDevice+Util.m */; };
 		C0A9251C19B2114900086A3D /* GRXSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A9251B19B2114900086A3D /* GRXSelectionViewController.m */; };
@@ -58,6 +61,9 @@
 		C00E999C19BA39E900151D1A /* GRXRelativeLayoutTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController.m; sourceTree = "<group>"; };
 		C00E999E19BD172A00151D1A /* GRXRelativeLayoutTestController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController2.h; sourceTree = "<group>"; };
 		C00E999F19BD172A00151D1A /* GRXRelativeLayoutTestController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController2.m; sourceTree = "<group>"; };
+		C01D869B19C0CA3B002EAAF6 /* GRXMeasureSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GRXMeasureSpec.m; path = ../../Classes/GRXMeasureSpec.m; sourceTree = "<group>"; };
+		C01D869D19C0D39C002EAAF6 /* GRXLayout+Protected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "GRXLayout+Protected.h"; path = "../../Classes/GRXLayout+Protected.h"; sourceTree = "<group>"; };
+		C01D869E19C0D39C002EAAF6 /* GRXLayout+Protected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "GRXLayout+Protected.m"; path = "../../Classes/GRXLayout+Protected.m"; sourceTree = "<group>"; };
 		C031848B19AE425900E18325 /* GranadaLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GranadaLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C031848E19AE425900E18325 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		C031849019AE425900E18325 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,6 +89,8 @@
 		C034385719B2876200653848 /* GRXLabelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLabelTestViewController.m; sourceTree = "<group>"; };
 		C034385919B2878E00653848 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+Frame.h"; path = "../../Classes/UIKitCategories/UIView+Frame.h"; sourceTree = "<group>"; };
 		C034385A19B2878E00653848 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+Frame.m"; path = "../../Classes/UIKitCategories/UIView+Frame.m"; sourceTree = "<group>"; };
+		C071CEA419D5985D00DE030D /* GRXRelativeLayoutTestController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController3.h; sourceTree = "<group>"; };
+		C071CEA519D5985D00DE030D /* GRXRelativeLayoutTestController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController3.m; sourceTree = "<group>"; };
 		C0A9250219B1EBAC00086A3D /* UISwitch+GRXLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UISwitch+GRXLayout.h"; path = "../../Classes/UIKitCategories/UISwitch+GRXLayout.h"; sourceTree = "<group>"; };
 		C0A9250319B1EBAC00086A3D /* UISwitch+GRXLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UISwitch+GRXLayout.m"; path = "../../Classes/UIKitCategories/UISwitch+GRXLayout.m"; sourceTree = "<group>"; };
 		C0A9250819B1EC4E00086A3D /* UIDevice+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIDevice+Util.h"; path = "../../Classes/UIKitCategories/UIDevice+Util.h"; sourceTree = "<group>"; };
@@ -276,6 +284,8 @@
 				C00E999C19BA39E900151D1A /* GRXRelativeLayoutTestController.m */,
 				C00E999E19BD172A00151D1A /* GRXRelativeLayoutTestController2.h */,
 				C00E999F19BD172A00151D1A /* GRXRelativeLayoutTestController2.m */,
+				C071CEA419D5985D00DE030D /* GRXRelativeLayoutTestController3.h */,
+				C071CEA519D5985D00DE030D /* GRXRelativeLayoutTestController3.m */,
 			);
 			name = TestControllers;
 			sourceTree = "<group>";
@@ -288,10 +298,13 @@
 				C0D9158C19AE89F000FAF0D9 /* GRXLinearLayout.h */,
 				C0D9158D19AE89F000FAF0D9 /* GRXLinearLayout.m */,
 				C034384419B254CB00653848 /* GRXMeasureSpec.h */,
+				C01D869B19C0CA3B002EAAF6 /* GRXMeasureSpec.m */,
 				C0AEA25519B2919D0047A3D4 /* GRXRelativeLayout.h */,
 				C0AEA25619B2919D0047A3D4 /* GRXRelativeLayout.m */,
 				C0AEA25F19B3D0A80047A3D4 /* GRXDependencyGraph.h */,
 				C0AEA26019B3D0A80047A3D4 /* GRXDependencyGraph.m */,
+				C01D869D19C0D39C002EAAF6 /* GRXLayout+Protected.h */,
+				C01D869E19C0D39C002EAAF6 /* GRXLayout+Protected.m */,
 			);
 			name = "Layouts and measurement";
 			sourceTree = "<group>";
@@ -403,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0AEA26119B3D0A80047A3D4 /* GRXDependencyGraph.m in Sources */,
+				C01D869C19C0CA3B002EAAF6 /* GRXMeasureSpec.m in Sources */,
 				C03184A519AE425900E18325 /* GRXLinearLayoutTestController.m in Sources */,
 				C0D9158E19AE89F000FAF0D9 /* GRXLayout.m in Sources */,
 				C0AEA25A19B291BA0047A3D4 /* GRXRelativeLayoutParams.m in Sources */,
@@ -418,8 +432,10 @@
 				C0D9158F19AE89F000FAF0D9 /* GRXLinearLayout.m in Sources */,
 				C0A9252519B2154500086A3D /* GRXTestViewController.m in Sources */,
 				C0AEA25D19B2A0ED0047A3D4 /* UITextView+GRXLayout.m in Sources */,
+				C071CEA619D5985D00DE030D /* GRXRelativeLayoutTestController3.m in Sources */,
 				C0AEA25719B2919D0047A3D4 /* GRXRelativeLayout.m in Sources */,
 				C0A9251C19B2114900086A3D /* GRXSelectionViewController.m in Sources */,
+				C01D869F19C0D39C002EAAF6 /* GRXLayout+Protected.m in Sources */,
 				C031849B19AE425900E18325 /* main.m in Sources */,
 				C00E99A019BD172A00151D1A /* GRXRelativeLayoutTestController2.m in Sources */,
 				C034385819B2876200653848 /* GRXLabelTestViewController.m in Sources */,

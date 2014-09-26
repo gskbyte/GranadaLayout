@@ -1,5 +1,6 @@
 #import "GRXRelativeLayout.h"
 #import "GRXDependencyGraph.h"
+#import "GRXLayout+Protected.h"
 
 @interface GRXRelativeLayout ()
 
@@ -36,6 +37,11 @@
 - (void)addSubview:(UIView *)view {
     [super addSubview:view];
     _dirtyHierarchy = YES;
+}
+
+- (void)setNeedsLayout {
+    [super setNeedsLayout];
+    _dirtyHierarchy = YES; // should be called somewhere else, doesn't always need to be called
 }
 
 - (void)sortChildren {
@@ -298,14 +304,24 @@
               ownWidth:(CGFloat)ownWidth
              ownHeight:(CGFloat)ownHeight {
     GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
-    GRXMeasureSpec widthSpec = getChildMeasureSpec(params.left, params.right, params.width,
-                                                   params.margins.left, params.margins.right,
-                                                   self.padding.left, self.padding.right,
-                                                   ownWidth);
-    GRXMeasureSpec heightSpec = getChildMeasureSpec(params.top, params.bottom, params.height,
-                                                    params.margins.top, params.margins.bottom,
-                                                    self.padding.top, self.padding.bottom,
-                                                    ownHeight);
+    GRXMeasureSpec widthSpec = [self childSpecWithStart:params.left
+                                                       end:params.right
+                                                 childSize:params.width
+                                               startMargin:params.margins.left
+                                                 endMargin:params.margins.right
+                                              startPadding:self.padding.left
+                                                endPadding:self.padding.right
+                                                   ownSize:ownWidth];
+
+    GRXMeasureSpec heightSpec = [self childSpecWithStart:params.top
+                                                        end:params.bottom
+                                                  childSize:params.height
+                                                startMargin:params.margins.top
+                                                  endMargin:params.margins.bottom
+                                               startPadding:self.padding.top
+                                                 endPadding:self.padding.bottom
+                                                    ownSize:ownHeight];
+
     CGSize childSize = [child grx_measuredSizeForWidthSpec:widthSpec
                                                 heightSpec:heightSpec];
     return childSize;
@@ -315,10 +331,14 @@
                         ownWidth:(CGFloat)ownWidth
                        ownHeight:(CGFloat)ownHeight {
     GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
-    GRXMeasureSpec widthSpec = getChildMeasureSpec(params.left, params.right, params.width,
-                                                   params.margins.left, params.margins.right,
-                                                   self.padding.left, self.padding.right,
-                                                   ownWidth);
+    GRXMeasureSpec widthSpec = [self childSpecWithStart:params.left
+                                                       end:params.right
+                                                 childSize:params.width
+                                               startMargin:params.margins.left
+                                                 endMargin:params.margins.right
+                                              startPadding:self.padding.left
+                                                endPadding:self.padding.right
+                                                   ownSize:ownWidth];
     GRXMeasureSpec heightSpec;
     if (params.width == GRXMatchParent) {
         heightSpec = GRXMeasureSpecMake(ownHeight, GRXMeasureSpecExactly);
@@ -405,69 +425,4 @@ CG_INLINE void centerVertical(GRXRelativeLayoutParams *viewParams, CGFloat viewH
     viewParams.top = top;
     viewParams.bottom = top + viewHeight;
 }
-
-
-GRXMeasureSpec getChildMeasureSpec(CGFloat childStart, CGFloat childEnd,
-                                   CGFloat childSize, CGFloat startMargin, CGFloat endMargin, CGFloat startPadding,
-                                   CGFloat endPadding, CGFloat mySize) {
-    GRXMeasureSpec partialSpec;
-    partialSpec.value = 0;
-    partialSpec.mode = GRXMeasureSpecUnspecified;
-
-    CGFloat tempStart = childStart;
-    CGFloat tempEnd = childEnd;
-
-    // If the view did not express a layout constraint for an edge, use
-    // view's margins and our padding
-    if (tempStart < 0) {
-        tempStart = startPadding + startMargin;
-    }
-    if (tempEnd < 0) {
-        tempEnd = mySize - endPadding - endMargin;
-    }
-
-    // Figure out maximum size available to this view
-    CGFloat maxAvailable = tempEnd - tempStart;
-
-    if (childStart >= 0 && childEnd >= 0) {
-        // Constraints fixed both edges, so child must be an exact size
-        partialSpec.mode = GRXMeasureSpecExactly;
-        partialSpec.value = maxAvailable;
-    } else {
-        if (childSize >= 0) {
-            // Child wanted an exact size. Give as much as possible
-            partialSpec.mode = GRXMeasureSpecExactly;
-
-            if (maxAvailable >= 0) {
-                // We have a maxmum size in this dimension.
-                partialSpec.value = MIN(maxAvailable, childSize);
-            } else {
-                // We can grow in this dimension.
-                partialSpec.value = childSize;
-            }
-        } else if (childSize == GRXMatchParent) {
-            // Child wanted to be as big as possible. Give all availble
-            // space
-            partialSpec.mode = GRXMeasureSpecExactly;
-            partialSpec.value = maxAvailable;
-        } else if (childSize == GRXWrapContent) {
-            // Child wants to wrap content. Use AT_MOST
-            // to communicate available space if we know
-            // our max size
-            if (maxAvailable >= 0) {
-                // We have a maxmum size in this dimension.
-                partialSpec.mode = GRXMeasureSpecAtMost;
-                partialSpec.value = maxAvailable;
-            } else {
-                // We can grow in this dimension. Child can be as big as it
-                // wants
-                partialSpec.mode = GRXMeasureSpecUnspecified;
-                partialSpec.value = 0;
-            }
-        }
-    }
-
-    return partialSpec;
-}
-
 @end
