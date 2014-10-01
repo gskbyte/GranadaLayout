@@ -1,6 +1,6 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-workspace '../XNGMarkdownParser'
+workspace '../GranadaLayout'
 xcodeproj 'Example.xcodeproj'
 
 target "Example" do
