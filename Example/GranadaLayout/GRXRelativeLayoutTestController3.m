@@ -82,6 +82,11 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
     [self.topLayout addSubview:view2];
     [self.views addObject:view2];
 
+    UIImageView * view3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lab.png"]];
+    view3.accessibilityLabel = @"image";
+    [self.topLayout addSubview:view3];
+    [self.views addObject:view3];
+
     [self adjustLayoutForCurrentMode];
 }
 
@@ -107,6 +112,7 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
     UIView * view0 = self.views[0];
     UIView * view1 = self.views[1];
     UIView * view2 = self.views[2];
+    UIView * view3 = self.views[3];
 
     switch (self.mode) {
         case GRXRelativeLayoutTestControllerMode0: {
@@ -125,6 +131,10 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
             [p2 setParentRule:GRXRelativeLayoutParentRuleAlignBottom];
             p2.margins = UIEdgeInsetsMake(0, 10, 15, 0);
             view2.grx_layoutParams = p2;
+
+            GRXRelativeLayoutParams *p3 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
+            [p3 setParentRule:GRXRelativeLayoutParentRuleCenter];
+            view3.grx_layoutParams = p3;
         }
             break;
         case GRXRelativeLayoutTestControllerMode1: {
@@ -143,6 +153,11 @@ typedef NS_ENUM(NSUInteger, GRXRelativeLayoutTestControllerMode) {
             [p2 setParentRule:GRXRelativeLayoutParentRuleAlignLeft];
             [p2 setRule:GRXRelativeLayoutRuleAbove forView:view0];
             view2.grx_layoutParams = p2;
+
+            GRXRelativeLayoutParams *p3 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(GRXMatchParent, GRXWrapContent)];
+            [p3 setParentRule:GRXRelativeLayoutParentRuleAlignLeft];
+            [p3 setParentRule:GRXRelativeLayoutParentRuleAlignTop];
+            view3.grx_layoutParams = p3;
         }
             break;
 
