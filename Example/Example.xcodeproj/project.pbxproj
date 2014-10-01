@@ -21,6 +21,8 @@
 		C09F225419DC5A390069C0A1 /* GRXTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224719DC5A390069C0A1 /* GRXTestViewController.m */; };
 		C09F225519DC5A390069C0A1 /* GRXTextViewTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224919DC5A390069C0A1 /* GRXTextViewTestViewController.m */; };
 		C09F225619DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224B19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m */; };
+		C09F225A19DC5D630069C0A1 /* prototype.grx in Resources */ = {isa = PBXBuildFile; fileRef = C09F225819DC5D630069C0A1 /* prototype.grx */; };
+		C09F226D19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */; };
 		D4CAAD188A56AD2BD57053B8 /* libPods-ExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4D8785C057F815E07CDBAF /* libPods-ExampleTests.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,9 @@
 		C09F224919DC5A390069C0A1 /* GRXTextViewTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXTextViewTestViewController.m; sourceTree = "<group>"; };
 		C09F224A19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXWeightedLinearLayoutTestController.h; sourceTree = "<group>"; };
 		C09F224B19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXWeightedLinearLayoutTestController.m; sourceTree = "<group>"; };
+		C09F225819DC5D630069C0A1 /* prototype.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = prototype.grx; sourceTree = "<group>"; };
+		C09F226B19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLayoutInflaterTestController1.h; sourceTree = "<group>"; };
+		C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLayoutInflaterTestController1.m; sourceTree = "<group>"; };
 		FF12DCF473391DD003B32A52 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,6 +138,7 @@
 		C09F21EE19DC590D0069C0A1 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				C09F225719DC5D560069C0A1 /* Layouts */,
 				C09F223619DC5A390069C0A1 /* Assets */,
 				C09F223819DC5A390069C0A1 /* GRXAppDelegate.h */,
 				C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */,
@@ -155,6 +161,8 @@
 				C09F224A19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.h */,
 				C09F224B19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m */,
 				C09F21EF19DC590D0069C0A1 /* Supporting Files */,
+				C09F226B19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.h */,
+				C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -191,6 +199,14 @@
 				C09F223719DC5A390069C0A1 /* lab.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		C09F225719DC5D560069C0A1 /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				C09F225819DC5D630069C0A1 /* prototype.grx */,
+			);
+			path = Layouts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +293,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09F225A19DC5D630069C0A1 /* prototype.grx in Resources */,
 				C09F224C19DC5A390069C0A1 /* lab.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +380,7 @@
 				C09F224E19DC5A390069C0A1 /* GRXLabelTestViewController.m in Sources */,
 				C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */,
 				C09F21F219DC590D0069C0A1 /* main.m in Sources */,
+				C09F226D19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m in Sources */,
 				C09F225119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m in Sources */,
 				C09F225619DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m in Sources */,
 				C09F225319DC5A390069C0A1 /* GRXSelectionViewController.m in Sources */,

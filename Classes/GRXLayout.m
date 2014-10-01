@@ -1,4 +1,5 @@
 #import "GRXLayout.h"
+#import "GRXLayoutParams.h"
 #import <objc/runtime.h>
 
 @implementation GRXLayout
@@ -6,8 +7,7 @@
 #pragma mark - static class methods
 
 + (Class)layoutParamsClass {
-    NSAssert(NO, @"Implement +layoutParamsClass in class %@", self.class);
-    return nil;
+    return GRXLayoutParams.class;
 }
 
 #pragma mark - setup methods
