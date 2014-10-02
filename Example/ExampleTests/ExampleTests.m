@@ -1,13 +1,10 @@
-//
-//  ExampleTests.m
-//  ExampleTests
-//
-//  Created by Jose Alcalá-Correa on 01/10/14.
-//  Copyright (c) 2014 gskbyte. All rights reserved.
-//
-
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+
+#import <GranadaLayout/GRXRelativeLayout.h>
+#import <GranadaLayout/GRXLinearLayout.h>
+#define EXP_SHORTHAND
+
+#import <Expecta/Expecta.h>
 
 @interface ExampleTests : XCTestCase
 
@@ -18,6 +15,11 @@
 - (void)setUp {
     [super setUp];
 
+}
+
+- (void)testSomethingStupid {
+    GRXLayout * rel = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
+    expect(rel).toNot.beNil();
 }
 
 @end
