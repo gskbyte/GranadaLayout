@@ -1,6 +1,5 @@
 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout)
 
-
 GranadaLayout
 =============
 
