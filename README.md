@@ -1,6 +1,7 @@
-[![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout)
 GranadaLayout
 =============
+
+[![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout)
 
 I know that AutoLayout exists, but I think that it doesn't solve the problem with layouting in iOS. It's too complex and slow, and animating by changing constraints is even more complicated.
 
