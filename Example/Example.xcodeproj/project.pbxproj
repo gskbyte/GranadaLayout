@@ -231,9 +231,9 @@
 			productReference = C09F21EC19DC590D0069C0A1 /* Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C09F220419DC590D0069C0A1 /* ExampleTests */ = {
+		C09F220419DC590D0069C0A1 /* Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C09F221219DC590D0069C0A1 /* Build configuration list for PBXNativeTarget "ExampleTests" */;
+			buildConfigurationList = C09F221219DC590D0069C0A1 /* Build configuration list for PBXNativeTarget "Tests" */;
 			buildPhases = (
 				3C548B0CBEE85E304C35995E /* Check Pods Manifest.lock */,
 				C09F220119DC590D0069C0A1 /* Sources */,
@@ -246,7 +246,7 @@
 			dependencies = (
 				C09F220719DC590D0069C0A1 /* PBXTargetDependency */,
 			);
-			name = ExampleTests;
+			name = Tests;
 			productName = ExampleTests;
 			productReference = C09F220519DC590D0069C0A1 /* ExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -283,7 +283,7 @@
 			projectRoot = "";
 			targets = (
 				C09F21EB19DC590D0069C0A1 /* Example */,
-				C09F220419DC590D0069C0A1 /* ExampleTests */,
+				C09F220419DC590D0069C0A1 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -578,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C09F221219DC590D0069C0A1 /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
+		C09F221219DC590D0069C0A1 /* Build configuration list for PBXNativeTarget "Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C09F221319DC590D0069C0A1 /* Debug */,
