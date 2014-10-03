@@ -1,8 +1,8 @@
 #import "GRXLayoutInflater.h"
 #import "GRXLinearLayout.h"
 #import "GRXRelativeLayout.h"
+#import "UIView+GRXLayoutInflater.h"
 #import "GRXLayout+GRXLayoutInflater.h"
-#import "GRXRelativeLayout+GRXLayoutInflater.h"
 
 @interface GRXLayoutInflater ()
 
@@ -63,10 +63,22 @@
     UIView * view = [[viewClass alloc] initWithFrame:CGRectZero];
 
     GRXLayoutParams * layoutParams = nil;
-    if([parentView.class respondsToSelector:@selector(layoutParamsForSubviewFromDictionary:)]) {
-        layoutParams = [parentView.class layoutParamsForSubviewFromDictionary:node];
+    if([parentView.class respondsToSelector:@selector(layoutParamsClass)]) {
+        Class layoutParamsClass = [parentView.class layoutParamsClass];
+        layoutParams = [[layoutParamsClass alloc] init];
     } else {
-        layoutParams = [GRXLayout layoutParamsForSubviewFromDictionary:node];
+        layoutParams = [[GRXLayoutParams alloc] init];
+    }
+    [view grx_configureFromDictionary:node];
+
+    if([parentView isKindOfClass:GRXLayout.class]) {
+        GRXLayout * parentLayout = (GRXLayout*)parentView;
+        [parentLayout configureSubviewLayoutParams:layoutParams
+                                    fromDictionary:node
+                                        inInflater:self];
+    } else {
+        [GRXLayout configureUnparentedLayoutParams:layoutParams
+                                    fromDictionary:node];
     }
     view.grx_layoutParams = layoutParams;
 
@@ -77,7 +89,8 @@
 
     NSArray * subviews = node[@"subviews"];
     for(NSDictionary * subviewDict in subviews) {
-        UIView * subview = [self parseViewNodeRecursively:subviewDict parentView:view];
+        UIView * subview = [self parseViewNodeRecursively:subviewDict
+                                               parentView:view];
         if(subview != nil) {
             [view addSubview:subview];
         }
@@ -87,7 +100,11 @@
 }
 
 - (id)viewForIdentifier:(NSString*)identifier {
-    return self.allViewsById[identifier];
+    id val = _allViewsById[identifier];
+    if(val == nil) {
+        NSLog(@"Warning: view not found for identifier %@", identifier);
+    }
+    return val;
 }
 
 @end

@@ -1,8 +1,6 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 
-@implementation GRXLayout (GRXLayoutInflater)
-
-static inline CGFloat sizeFromString(NSString * sizeStr) {
+static inline CGFloat GRXLayoutSizeFromString(NSString * sizeStr) {
     if([sizeStr isEqualToString:@"match_parent"]) {
         return GRXMatchParent;
     } else if([sizeStr isEqualToString:@"wrap_content"]) {
@@ -12,17 +10,32 @@ static inline CGFloat sizeFromString(NSString * sizeStr) {
     }
 }
 
-+ (void) parseParamsFromDictionary:(NSDictionary*)dictionary
-                   forLayoutParams:(GRXLayoutParams*)params {
-    params.width = sizeFromString(dictionary[@"width"]);
-    params.height = sizeFromString(dictionary[@"height"]);
+@implementation GRXLayout (GRXLayoutInflater)
+
+- (void)grx_configureFromDictionary:(NSDictionary *)dictionary{
+    [super grx_configureFromDictionary:dictionary];
+
+    UIEdgeInsets padding;
+
+    padding.left = [dictionary[@"paddingLeft"] floatValue];
+    padding.right = [dictionary[@"paddingRight"] floatValue];
+    padding.top = [dictionary[@"paddingTop"] floatValue];
+    padding.bottom = [dictionary[@"paddingBottom"] floatValue];
+
+    self.padding = padding;
 }
 
-+ (GRXLayoutParams*) layoutParamsForSubviewFromDictionary:(NSDictionary*)dictionary {
-    GRXLayoutParams * params = [[[self.class layoutParamsClass] alloc] init];
-    [self.class parseParamsFromDictionary:dictionary
-                          forLayoutParams:params];
-    return params;
+- (void)configureSubviewLayoutParams:(GRXLayoutParams*)params
+                      fromDictionary:(NSDictionary*)dictionary
+                          inInflater:(GRXLayoutInflater*)inflater {
+    params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
+    params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
+}
+
++ (void)configureUnparentedLayoutParams:(GRXLayoutParams*)params
+                         fromDictionary:(NSDictionary*)dictionary {
+    params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
+    params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
 }
 
 @end

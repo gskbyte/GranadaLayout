@@ -1,12 +1,13 @@
 #import "GRXLayout.h"
+#import "UIView+GRXLayoutInflater.h"
+#import "GRXLayoutInflater.h"
 
 @interface GRXLayout (GRXLayoutInflater)
 
-// method to be overriden by subclasses
-+ (void) parseParamsFromDictionary:(NSDictionary*)dictionary
-                   forLayoutParams:(GRXLayoutParams*)params;
-
-// should not be overriden, uses [self.class layoutParamsClass]
-+ (GRXLayoutParams*) layoutParamsForSubviewFromDictionary:(NSDictionary*)dictionary;
+- (void)configureSubviewLayoutParams:(GRXLayoutParams*)params
+                      fromDictionary:(NSDictionary*)dictionary
+                          inInflater:(GRXLayoutInflater*)inflater;
++ (void)configureUnparentedLayoutParams:(GRXLayoutParams*)params
+                         fromDictionary:(NSDictionary*)dictionary;
 
 @end

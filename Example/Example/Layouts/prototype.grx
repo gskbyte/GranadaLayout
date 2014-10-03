@@ -20,12 +20,13 @@
         "alignParentBottom" : "true"
       },
       {
-        "class" : "UISwitch",
-          "width" : "wrap_parent",
-          "height" : "wrap_parent",
-          
-          "above" : "image",
-          "toLeftOf" : "image"
+         "class" : "UISwitch",
+         "width" : "wrap_content",
+         "height" : "wrap_content",
+
+         "above" : "image",
+         "toLeftOf" : "image",
+         "debug_bgColor" : "green"
       },
       {
         "class" : "UIView",
