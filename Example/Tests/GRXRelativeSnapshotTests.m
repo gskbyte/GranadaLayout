@@ -13,7 +13,7 @@
 
 - (void)setUp {
     [super setUp];
-    self.recordMode = YES;
+    self.recordMode = NO;
 }
 
 - (void)testAlignParent {
