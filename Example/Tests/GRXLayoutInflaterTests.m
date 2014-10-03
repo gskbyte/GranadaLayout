@@ -1,7 +1,6 @@
 #import <XCTest/XCTest.h>
 
-#import <GranadaLayout/GRXRelativeLayout.h>
-#import <GranadaLayout/GRXLinearLayout.h>
+#import <GranadaLayout/GRXLayoutInflater.h>
 #define EXP_SHORTHAND
 
 #import <Expecta/Expecta.h>
@@ -18,8 +17,7 @@
 }
 
 - (void)testSomethingStupid {
-    GRXLayout * rel = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
-    expect(rel).toNot.beNil();
+    
 }
 
 @end

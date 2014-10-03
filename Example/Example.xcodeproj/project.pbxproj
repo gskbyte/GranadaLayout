@@ -547,7 +547,7 @@ fi
 			<key>name</key>
 			<string>Tests</string>
 			<key>productName</key>
-			<string>ExampleTests</string>
+			<string>Tests</string>
 			<key>productReference</key>
 			<string>C09F220519DC590D0069C0A1</string>
 			<key>productType</key>
@@ -597,8 +597,10 @@ fi
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Tests</string>
 			<key>path</key>
-			<string>ExampleTests</string>
+			<string>Tests</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -633,7 +635,7 @@ fi
 			<key>lastKnownFileType</key>
 			<string>sourcecode.c.objc</string>
 			<key>path</key>
-			<string>ExampleTests.m</string>
+			<string>GRXLayoutInflaterTests.m</string>
 			<key>sourceTree</key>
 			<string>&lt;group&gt;</string>
 		</dict>
@@ -902,7 +904,7 @@ fi
 				<key>GENERATE_PROFILING_CODE</key>
 				<string>YES</string>
 				<key>INFOPLIST_FILE</key>
-				<string>ExampleTests/Info.plist</string>
+				<string>Tests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>
@@ -931,7 +933,7 @@ fi
 				<key>GENERATE_PROFILING_CODE</key>
 				<string>YES</string>
 				<key>INFOPLIST_FILE</key>
-				<string>ExampleTests/Info.plist</string>
+				<string>Tests/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
 				<key>PRODUCT_NAME</key>

@@ -26,7 +26,6 @@
 
          "above" : "image",
          "toLeftOf" : "image",
-         "debug_bgColor" : "green"
       },
       {
         "class" : "UIView",

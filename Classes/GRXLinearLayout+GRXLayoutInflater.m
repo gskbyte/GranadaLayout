@@ -27,14 +27,12 @@ static NSDictionary * Gravities;
                   };
 }
 
-- (void)configureLayoutParams:(GRXLayoutParams*)params
-                   forSubview:(UIView*)view
-               fromDictionary:(NSDictionary*)dict
-                   inInflater:(GRXLayoutInflater*)inflater {
-    [super configureLayoutParams:params
-                      forSubview:view
-                  fromDictionary:dict
-                      inInflater:inflater];
+- (void)configureSubviewLayoutParams:(GRXLayoutParams*)params
+                      fromDictionary:(NSDictionary*)dict
+                          inInflater:(GRXLayoutInflater*)inflater {
+    [super configureSubviewLayoutParams:params
+                         fromDictionary:dict
+                             inInflater:inflater];
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
