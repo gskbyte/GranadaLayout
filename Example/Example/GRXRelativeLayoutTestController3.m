@@ -65,25 +65,25 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutTestControllerMode) {
 - (void)createViews {
     UIView *view0 = [[UIView alloc] initWithFrame:CGRectZero];
     view0.backgroundColor = [UIColor blueColor];
-    view0.accessibilityLabel = @"view0";
+    view0.grx_debugIdentifier = @"view0";
     [self.topLayout addSubview:view0];
     [self.views addObject:view0];
 
     UIView *view1 = [[UIView alloc] initWithFrame:CGRectZero];
     view1.backgroundColor = [UIColor greenColor];
-    view1.accessibilityLabel = @"view1";
+    view1.grx_debugIdentifier = @"view1";
     [self.topLayout addSubview:view1];
     [self.views addObject:view1];
 
     UILabel *view2 = [[UILabel alloc] initWithFrame:CGRectZero];
     view2.backgroundColor = [UIColor redColor];
-    view2.accessibilityLabel = @"view2";
+    view2.grx_debugIdentifier = @"view2";
     view2.text = @"view2 is in da haus";
     [self.topLayout addSubview:view2];
     [self.views addObject:view2];
 
     UIImageView *view3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lab.png"]];
-    view3.accessibilityLabel = @"image";
+    view3.grx_debugIdentifier = @"image";
     [self.topLayout addSubview:view3];
     [self.views addObject:view3];
 

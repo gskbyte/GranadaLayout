@@ -70,4 +70,21 @@
     _view = view;
 }
 
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@""
+            "%@",
+            NSStringFromClass(self.class)
+            ];
+
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@""
+            "%@",
+            NSStringFromClass(self.class)
+            ];
+}
+
+
 @end

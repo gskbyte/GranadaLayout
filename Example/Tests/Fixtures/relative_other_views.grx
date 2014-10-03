@@ -1,0 +1,115 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "300",
+    "height" : "400",
+
+    "debug_bgColor" : "white",
+
+    "subviews" : [
+      {
+        "id" : "topLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentTop" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "a",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+
+        "marginLeft" : "-10",
+        "marginTop" : "10",
+        
+        "below" : "topLeft",
+        "toRightOf" : "topLeft",
+
+        "debug_bgColor" : "green"
+      },
+      {
+        "id" : "b",
+        "class" : "UIView",
+        "width" : "match_parent",
+        "height" : "70",
+        
+        "below" : "a",
+        "toRightOf" : "a",
+
+        "debug_bgColor" : "blue"
+      },
+      {
+        "id" : "c",
+        "class" : "UIView",
+        "width" : "60",
+        "height" : "50",
+        
+        "margin" : "5",
+
+        "alignTop" : "b",
+        "alignRight" : "b",
+
+        "debug_bgColor" : "yellow"
+      },
+
+
+      {
+        "id" : "bottomRight",
+        "class" : "UIView",
+        "width" : "120",
+        "height" : "70",
+        
+        "alignParentBottom" : "true",
+        "alignParentRight" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "d",
+        "class" : "UIView",
+        "width" : "50",
+        "height" : "40",
+        
+        "above" : "bottomRight",
+        "alignLeft" : "bottomRight",
+
+        "debug_bgColor" : "green"
+      },
+      {
+        "id" : "e",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "30",
+        
+        "toLeftOf" : "d",
+        "alignBottom" : "d",
+
+        "debug_bgColor" : "blue"
+      },
+      {
+        "id" : "f",
+        "class" : "UIView",
+        "width" : "30",
+        "height" : "50",
+        
+        "below" : "e",
+        "alignRight" : "e",
+
+        "debug_bgColor" : "yellow"
+      },
+
+
+
+    ]
+  }  
+}

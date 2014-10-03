@@ -18,7 +18,7 @@
 @property (nonatomic) NSMutableDictionary *dependencies;
 #ifdef DEBUG
 @property (nonatomic) NSNumber *viewId;
-@property (nonatomic) NSString *accessibilityLabel;
+@property (nonatomic) NSString *debugIdentifier;
 #endif
 
 + (GRXDependencyNode *)nodeForView:(UIView *)view;

@@ -108,7 +108,7 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
     node.view = view;
 #ifdef DEBUG
     node.viewId = view.grx_layoutId;
-    node.accessibilityLabel = view.accessibilityLabel ? view.accessibilityLabel : @"UNNAMED";
+    node.debugIdentifier = view.grx_debugIdentifier ? view.grx_debugIdentifier : @"UNNAMED";
 #endif
     return node;
 }
@@ -138,13 +138,11 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
     return node;
 }
 
-- (NSString *)description {
 #ifdef DEBUG
-    return self.accessibilityLabel;
-#else
-    return [super description];
-#endif
+- (NSString *)description {
+    return self.debugIdentifier;
 }
+#endif
 
 
 @end

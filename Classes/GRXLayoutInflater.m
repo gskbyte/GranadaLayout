@@ -80,7 +80,13 @@
 
     NSString *identifier = node[@"id"];
     if (identifier != nil) {
+        if([_allViewsById objectForKey:identifier] != nil) {
+            NSLog(@"Warning: identifier used more than once in layout file: %@", identifier);
+        }
         [_allViewsById setObject:view forKey:identifier];
+#ifdef DEBUG
+        view.grx_debugIdentifier = identifier;
+#endif
     }
 
     NSArray *subviews = node[@"subviews"];

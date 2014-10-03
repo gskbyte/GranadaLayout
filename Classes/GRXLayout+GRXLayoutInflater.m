@@ -28,14 +28,49 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
 - (void)configureSubviewLayoutParams:(GRXLayoutParams *)params
                       fromDictionary:(NSDictionary *)dictionary
                           inInflater:(GRXLayoutInflater *)inflater {
-    params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
-    params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
+    [GRXLayout configureUnparentedLayoutParams:params
+                                fromDictionary:dictionary];
 }
 
 + (void)configureUnparentedLayoutParams:(GRXLayoutParams *)params
                          fromDictionary:(NSDictionary *)dictionary {
     params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
     params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
+
+    CGSize minSize;
+    minSize.width = GRXLayoutSizeFromString(dictionary[@"minWidth"]);
+    minSize.height = GRXLayoutSizeFromString(dictionary[@"minHeight"]);
+    params.minSize = minSize;
+
+    UIEdgeInsets margins;
+
+    CGFloat m = [dictionary[@"margin"] floatValue];
+    if(m != 0) {
+        margins = UIEdgeInsetsMake(m, m, m, m);
+    }
+
+    // all margins can be overriden
+    m = [dictionary[@"marginLeft"] floatValue];
+    if(m != 0) {
+        margins.left = m;
+    }
+
+    m = [dictionary[@"marginRight"]floatValue];
+    if(m != 0) {
+        margins.right = m;
+    }
+
+    m = [dictionary[@"marginTop"]floatValue];
+    if(m != 0) {
+        margins.top = m;
+    }
+
+    m = [dictionary[@"marginBottom"]floatValue];
+    if(m != 0) {
+        margins.bottom = m;
+    }
+
+    params.margins = margins;
 }
 
 @end

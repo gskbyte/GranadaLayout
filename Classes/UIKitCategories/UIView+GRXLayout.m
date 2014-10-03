@@ -231,4 +231,62 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
+const static char GRXLayoutDebugIDKey;
+
+- (NSString *)grx_debugIdentifier {
+#ifdef DEBUG
+    return objc_getAssociatedObject(self, &GRXLayoutDebugIDKey);
+#endif
+}
+
+- (void)grx_setDebugIdentifier:(NSString *)grx_debugIdentifier{
+#ifdef DEBUG
+    objc_setAssociatedObject(self, &GRXLayoutDebugIDKey, grx_debugIdentifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+#endif
+}
+
+#ifdef DEBUG
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@""
+            "%@ '%@' (%.0f, %.0f, %.0f, %.0f) (%f, %f) %@",
+            NSStringFromClass(self.class), self.grx_debugIdentifier,
+            self.top, self.left, self.width, self.height,
+            self.grx_measuredSize.width, self.grx_measuredSize.height,
+            self.grx_layoutParams.debugDescription
+            ];
+
+}
+
+- (NSString *)description {
+    return [self descriptionWithIndentationLevel:0];
+}
+
+- (NSString*)descriptionWithIndentationLevel:(NSUInteger)level {
+    NSMutableString * spaces = [NSMutableString stringWithCapacity:level*2];
+    for(NSUInteger i = 0; i<level; ++i) {
+        [spaces appendString:@"  "];
+    }
+
+    NSMutableString * subviews = [NSMutableString string];
+    for(UIView * v in self.subviews) {
+        [subviews appendString:[v descriptionWithIndentationLevel:level+1]];
+        //[subviews appendString:@"\n"];
+    }
+
+    return [NSString stringWithFormat:@"%@"
+            "%@%@ '%@'\n"
+            "%@(%.2f, %.2f, %.2f, %.2f)\n"
+            "%@%@\n"
+            "%@",
+            (level==0?@"\n":@""),
+            spaces, NSStringFromClass(self.class), self.grx_debugIdentifier,
+            spaces, self.top, self.left, self.width, self.height,
+            spaces, self.grx_layoutParams.description,
+            subviews
+            ];
+}
+
+#endif
+
 @end
