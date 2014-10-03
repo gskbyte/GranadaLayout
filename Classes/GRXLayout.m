@@ -62,14 +62,17 @@
             wspec = GRXMeasureSpecMake(ownSize.width, GRXMeasureSpecExactly);
             hspec = GRXMeasureSpecMake(ownSize.height, GRXMeasureSpecExactly);
         } else {
-            CGSize parentSize = self.superview.size;
-            if (parentSize.width > 0 && parentSize.height > 0) {
-                if (self.grx_layoutParams == nil) {
-                    self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
-                    wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
-                    hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
-                }
+            CGSize parentSize;
+            if(self.superview == nil) {
+                parentSize = UIScreen.mainScreen.bounds.size;
+            } else {
+                parentSize = self.superview.size;
             }
+            if (self.grx_layoutParams == nil) {
+                self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
+            }
+            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
+            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
         }
         [self grx_measuredSizeForWidthSpec:wspec
                                 heightSpec:hspec];

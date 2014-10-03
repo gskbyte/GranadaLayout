@@ -1,0 +1,55 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "match_parent",
+    "height" : "match_parent",
+
+    "subviews" : [
+      {
+        "class" : "UIImageView",
+        "id" : "image",
+        "width" : "60",
+        "height" : "50",
+        
+        "alignParentRight" : "true",
+        "alignParentBottom" : "true"
+      },
+      {
+         "class" : "UISwitch",
+         "width" : "wrap_content",
+         "height" : "wrap_content",
+
+         "above" : "image",
+         "toLeftOf" : "image",
+      },
+      {
+        "class" : "GRXLinearLayout",
+        "id" : "linear",
+        "width" : "match_parent",
+        "height" : "wrap_content",
+        
+        "alignParentTop" : "true",
+
+        "subviews" : [
+          {
+            "class" : "UILabel",
+            "id" : "label",
+            "width" : "wrap_content",
+            "height" : "wrap_content",
+          },
+          {
+            "class" : "UIButton",
+            "id" : "button",
+            "width" : "wrap_content",
+            "height" : "wrap_content",
+          },
+        ]
+      }
+    ]
+  }  
+}

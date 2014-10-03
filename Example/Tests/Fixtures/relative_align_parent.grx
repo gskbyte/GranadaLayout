@@ -1,0 +1,97 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "300",
+    "height" : "300",
+
+    "debug_bgColor" : "white",
+
+    "subviews" : [
+      {
+        "id" : "topLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentTop" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "topRight",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentTop" : "true",
+        "alignParentRight" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "bottomLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentBottom" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "bottomRight",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentBottom" : "true",
+        "alignParentRight" : "true",
+
+        "debug_bgColor" : "red"
+      },
+
+
+      {
+        "id" : "center",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "centerInParent" : "true",
+
+        "debug_bgColor" : "yellow"
+      },
+      {
+        "id" : "vCenterLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "centerVertical" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "blue"
+      },
+      {
+        "id" : "hCenterTop",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentTop" : "true",
+        "centerHorizontal" : "true",
+
+        "debug_bgColor" : "green"
+      },
+
+
+    ]
+  }  
+}

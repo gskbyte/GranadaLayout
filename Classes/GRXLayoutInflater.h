@@ -2,7 +2,7 @@
 
 @interface GRXLayoutInflater : NSObject
 
-@property (nonatomic, readonly) UIView *rootView;
+@property (nonatomic, readonly) id rootView; // UIView* instance
 
 - (instancetype)initWithData:(NSData *)data;
 - (instancetype)initWithBundleFile:(NSString *)filename;
