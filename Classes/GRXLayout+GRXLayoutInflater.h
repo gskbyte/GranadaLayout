@@ -4,10 +4,10 @@
 
 @interface GRXLayout (GRXLayoutInflater)
 
-- (void)configureSubviewLayoutParams:(GRXLayoutParams*)params
-                      fromDictionary:(NSDictionary*)dictionary
-                          inInflater:(GRXLayoutInflater*)inflater;
-+ (void)configureUnparentedLayoutParams:(GRXLayoutParams*)params
-                         fromDictionary:(NSDictionary*)dictionary;
+- (void)configureSubviewLayoutParams:(GRXLayoutParams *)params
+                      fromDictionary:(NSDictionary *)dictionary
+                          inInflater:(GRXLayoutInflater *)inflater;
++ (void)configureUnparentedLayoutParams:(GRXLayoutParams *)params
+                         fromDictionary:(NSDictionary *)dictionary;
 
 @end

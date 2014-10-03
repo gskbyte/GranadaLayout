@@ -24,7 +24,7 @@
 }
 
 - (void)addSubview:(UIView *)view {
-    if(view.grx_layoutParams == nil) {
+    if (view.grx_layoutParams == nil) {
         view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
     }
     NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
@@ -58,13 +58,13 @@
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
         GRXMeasureSpec wspec, hspec;
         CGSize ownSize = self.size;
-        if(ownSize.width != 0 && ownSize.height != 0) {
+        if (ownSize.width != 0 && ownSize.height != 0) {
             wspec = GRXMeasureSpecMake(ownSize.width, GRXMeasureSpecExactly);
             hspec = GRXMeasureSpecMake(ownSize.height, GRXMeasureSpecExactly);
         } else {
             CGSize parentSize = self.superview.size;
             if (parentSize.width > 0 && parentSize.height > 0) {
-                if(self.grx_layoutParams == nil) {
+                if (self.grx_layoutParams == nil) {
                     self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
                     wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
                     hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);

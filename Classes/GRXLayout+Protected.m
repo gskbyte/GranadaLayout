@@ -3,16 +3,16 @@
 @implementation GRXLayout (Protected)
 
 
-- (GRXMeasureSpec) childSpecWithParentSpec:(GRXMeasureSpec)spec
-                                   padding:(CGFloat)padding
-                            childDimension:(CGFloat)childDimension {
+- (GRXMeasureSpec)childSpecWithParentSpec:(GRXMeasureSpec)spec
+                                  padding:(CGFloat)padding
+                           childDimension:(CGFloat)childDimension {
     CGFloat size = MAX(0, spec.value - padding);
 
     CGFloat resultSize = 0;
     GRXMeasureSpecMode resultMode = 0;
 
     switch (spec.mode) {
-            // Parent has imposed an exact size on us
+        // Parent has imposed an exact size on us
         case GRXMeasureSpecExactly:
             if (childDimension >= 0) {
                 resultSize = childDimension;
@@ -29,7 +29,7 @@
             }
             break;
 
-            // Parent has imposed a maximum size on us
+        // Parent has imposed a maximum size on us
         case GRXMeasureSpecAtMost:
             if (childDimension >= 0) {
                 // Child wants a specific size... so be it
@@ -48,7 +48,7 @@
             }
             break;
 
-            // Parent asked to see how big we want to be
+        // Parent asked to see how big we want to be
         default:
         case GRXMeasureSpecUnspecified:
             if (childDimension >= 0) {
@@ -71,14 +71,14 @@
     return GRXMeasureSpecMake(resultSize, resultMode);
 }
 
-- (GRXMeasureSpec) childSpecWithStart:(CGFloat)childStart
-                                  end:(CGFloat)childEnd
-                            childSize:(CGFloat)childSize
-                          startMargin:(CGFloat)startMargin
-                            endMargin:(CGFloat)endMargin
-                         startPadding:(CGFloat)startPadding
-                           endPadding:(CGFloat)endPadding
-                              ownSize:(CGFloat)ownSize {
+- (GRXMeasureSpec)childSpecWithStart:(CGFloat)childStart
+                                 end:(CGFloat)childEnd
+                           childSize:(CGFloat)childSize
+                         startMargin:(CGFloat)startMargin
+                           endMargin:(CGFloat)endMargin
+                        startPadding:(CGFloat)startPadding
+                          endPadding:(CGFloat)endPadding
+                             ownSize:(CGFloat)ownSize {
     GRXMeasureSpec partialSpec;
     partialSpec.value = 0;
     partialSpec.mode = GRXMeasureSpecUnspecified;
@@ -139,12 +139,12 @@
     return partialSpec;
 }
 
-- (void) measureChildWithMargins:(UIView*)child
-                 parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
-                       widthUsed:(CGFloat)widthUsed
-                parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
-                      heightUsed:(CGFloat)heightUsed {
-    GRXLayoutParams * lp = child.grx_layoutParams;
+- (void)measureChildWithMargins:(UIView *)child
+                parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
+                      widthUsed:(CGFloat)widthUsed
+               parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
+                     heightUsed:(CGFloat)heightUsed {
+    GRXLayoutParams *lp = child.grx_layoutParams;
 
     CGFloat horizontalPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
     GRXMeasureSpec childWidthSpec = [self childSpecWithParentSpec:parentWidthSpec padding:horizontalPadding childDimension:lp.width];

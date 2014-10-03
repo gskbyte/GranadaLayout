@@ -3,6 +3,6 @@
 
 @interface UIView (GRXLayoutInflater)
 
-- (void)grx_configureFromDictionary:(NSDictionary*)dictionary;
+- (void)grx_configureFromDictionary:(NSDictionary *)dictionary;
 
 @end

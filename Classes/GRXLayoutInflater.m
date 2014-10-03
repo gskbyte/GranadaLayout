@@ -6,21 +6,21 @@
 
 @interface GRXLayoutInflater ()
 
-@property (nonatomic, readonly) NSMutableDictionary * allViewsById;
+@property (nonatomic, readonly) NSMutableDictionary *allViewsById;
 
 @end
 
 @implementation GRXLayoutInflater
 
-- (instancetype) initWithData:(NSData*)data {
+- (instancetype)initWithData:(NSData *)data {
     self = [super init];
-    if(self) {
+    if (self) {
         _allViewsById = [[NSMutableDictionary alloc] init];
-        NSError * error;
+        NSError *error;
         id JSON = [NSJSONSerialization JSONObjectWithData:data
                                                   options:0
                                                     error:&error];
-        if(error) {
+        if (error) {
             NSLog(@"Error parsing layout file, invalid JSON: %@", error);
             return nil;
         }
@@ -29,17 +29,17 @@
     return self;
 }
 
-- (instancetype) initWithBundleFile:(NSString*)filename {
-    NSData * data = [NSData dataWithContentsOfFile:filename];
+- (instancetype)initWithBundleFile:(NSString *)filename {
+    NSData *data = [NSData dataWithContentsOfFile:filename];
     return [self initWithData:data];
 }
 
-- (BOOL) parseJSON:(id)JSON {
-    NSDictionary * root = JSON;
+- (BOOL)parseJSON:(id)JSON {
+    NSDictionary *root = JSON;
     NSAssert([root isKindOfClass:NSDictionary.class],
              @"The layout file must be a dictionary");
 
-    NSDictionary * layout = [JSON objectForKey:@"layout"];
+    NSDictionary *layout = [JSON objectForKey:@"layout"];
     NSAssert(layout != nil,
              @"'layout' node must be defined in the root");
     NSAssert([layout isKindOfClass:NSDictionary.class],
@@ -51,19 +51,19 @@
 }
 
 
-- (UIView*) parseViewNodeRecursively:(NSDictionary*)node
-                          parentView:(UIView*)parentView {
-    NSString * className = node[@"class"];
+- (UIView *)parseViewNodeRecursively:(NSDictionary *)node
+                          parentView:(UIView *)parentView {
+    NSString *className = node[@"class"];
     Class viewClass = NSClassFromString(className);
-    if(viewClass == nil) {
+    if (viewClass == nil) {
         NSLog(@"Unknown view class '%@', layout can be badformed", className);
         return nil;
     }
 
-    UIView * view = [[viewClass alloc] initWithFrame:CGRectZero];
+    UIView *view = [[viewClass alloc] initWithFrame:CGRectZero];
 
-    GRXLayoutParams * layoutParams = nil;
-    if([parentView.class respondsToSelector:@selector(layoutParamsClass)]) {
+    GRXLayoutParams *layoutParams = nil;
+    if ([parentView.class respondsToSelector:@selector(layoutParamsClass)]) {
         Class layoutParamsClass = [parentView.class layoutParamsClass];
         layoutParams = [[layoutParamsClass alloc] init];
     } else {
@@ -71,8 +71,8 @@
     }
     [view grx_configureFromDictionary:node];
 
-    if([parentView isKindOfClass:GRXLayout.class]) {
-        GRXLayout * parentLayout = (GRXLayout*)parentView;
+    if ([parentView isKindOfClass:GRXLayout.class]) {
+        GRXLayout *parentLayout = (GRXLayout *)parentView;
         [parentLayout configureSubviewLayoutParams:layoutParams
                                     fromDictionary:node
                                         inInflater:self];
@@ -82,16 +82,16 @@
     }
     view.grx_layoutParams = layoutParams;
 
-    NSString * identifier = node[@"id"];
-    if(identifier != nil) {
+    NSString *identifier = node[@"id"];
+    if (identifier != nil) {
         [_allViewsById setObject:view forKey:identifier];
     }
 
-    NSArray * subviews = node[@"subviews"];
-    for(NSDictionary * subviewDict in subviews) {
-        UIView * subview = [self parseViewNodeRecursively:subviewDict
-                                               parentView:view];
-        if(subview != nil) {
+    NSArray *subviews = node[@"subviews"];
+    for (NSDictionary *subviewDict in subviews) {
+        UIView *subview = [self parseViewNodeRecursively:subviewDict
+                                              parentView:view];
+        if (subview != nil) {
             [view addSubview:subview];
         }
     }
@@ -99,9 +99,9 @@
     return view;
 }
 
-- (id)viewForIdentifier:(NSString*)identifier {
+- (id)viewForIdentifier:(NSString *)identifier {
     id val = _allViewsById[identifier];
-    if(val == nil) {
+    if (val == nil) {
         NSLog(@"Warning: view not found for identifier %@", identifier);
     }
     return val;

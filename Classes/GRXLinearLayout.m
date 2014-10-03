@@ -46,7 +46,7 @@
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                        heightSpec:(GRXMeasureSpec)heightSpec {
-    if(self.direction == GRXLinearLayoutDirectionVertical) {
+    if (self.direction == GRXLinearLayoutDirectionVertical) {
         return [self grx_measureVerticalForWidthSpec:widthSpec
                                           heightSpec:heightSpec];
     } else {
@@ -67,12 +67,12 @@
     BOOL matchWidth = YES;
 
     // See how tall everyone is. Also remember max width.
-    for(UIView * child in self.subviews) {
-        if(child.grx_visibility == GRXViewVisibilityGone) {
+    for (UIView *child in self.subviews) {
+        if (child.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
 
-        GRXLinearLayoutParams * lp = child.grx_linearLayoutParams;
+        GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
         totalWeight += lp.weight;
 
         if (heightSpec.mode == GRXMeasureSpecExactly && lp.height == 0 && lp.weight > 0) {
@@ -99,7 +99,7 @@
                                  widthSpec:widthSpec
                                 totalWidth:0
                                 heightSpec:heightSpec
-                               totalHeight:totalWeight==0?self.totalLength:0];
+                               totalHeight:totalWeight == 0 ? self.totalLength:0];
 
             if (oldHeight != CGFLOAT_MIN) {
                 lp.height = oldHeight;
@@ -156,7 +156,7 @@
 
         self.totalLength = 0;
 
-        for (UIView * child in self.subviews) {
+        for (UIView *child in self.subviews) {
             if (child.grx_visibility == GRXViewVisibilityGone) {
                 continue;
             }
@@ -172,8 +172,8 @@
 
                 CGFloat totalChildPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
                 GRXMeasureSpec childWidthMeasureSpec = [self childSpecWithParentSpec:widthSpec
-                                                                          padding:totalChildPadding
-                                                                   childDimension:lp.width];
+                                                                             padding:totalChildPadding
+                                                                      childDimension:lp.width];
 
                 // TODO: Use a field like lp.isMeasured to figure out if this
                 // child has been previously measured
@@ -192,7 +192,7 @@
                     // Measure for this first time here
 
                     CGSize childSize = [child grx_measuredSizeForWidthSpec:childWidthMeasureSpec
-                                                                heightSpec:GRXMeasureSpecMake(share>0?share:0, GRXMeasureSpecExactly)];
+                                                                heightSpec:GRXMeasureSpecMake(share > 0 ? share : 0, GRXMeasureSpecExactly)];
                     #pragma unused(childSize)
                 }
             }
@@ -202,7 +202,7 @@
             maxWidth = MAX(maxWidth, measuredWidth);
 
             BOOL matchWidthLocally = widthSpec.mode != GRXMeasureSpecExactly &&
-            lp.width == GRXMatchParent;
+                lp.width == GRXMatchParent;
 
             alternativeMaxWidth = MAX(alternativeMaxWidth,
                                       matchWidthLocally ? margin : measuredWidth);
@@ -242,11 +242,11 @@
     return CGSizeZero;
 }
 
-- (void) measureChildBeforeLayout:(UIView*)child
-                        widthSpec:(GRXMeasureSpec)widthSpec
-                       totalWidth:(CGFloat)totalWidth
-                       heightSpec:(GRXMeasureSpec)heightSpec
-                      totalHeight:(CGFloat)totalHeight {
+- (void)measureChildBeforeLayout:(UIView *)child
+                       widthSpec:(GRXMeasureSpec)widthSpec
+                      totalWidth:(CGFloat)totalWidth
+                      heightSpec:(GRXMeasureSpec)heightSpec
+                     totalHeight:(CGFloat)totalHeight {
     [self measureChildWithMargins:child
                   parentWidthSpec:widthSpec
                         widthUsed:totalWidth
@@ -254,14 +254,14 @@
                        heightUsed:totalHeight];
 }
 
-- (void) forceUniformWidthWithWidth:(CGFloat)width
-                         heigthSpec:(GRXMeasureSpec)heightSpec {
+- (void)forceUniformWidthWithWidth:(CGFloat)width
+                        heigthSpec:(GRXMeasureSpec)heightSpec {
     // Pretend that the linear layout has an exact size.
     GRXMeasureSpec uniformMeasureSpec = GRXMeasureSpecMake(width,
                                                            GRXMeasureSpecExactly);
-    for (UIView * child in self.subviews) {
+    for (UIView *child in self.subviews) {
         if (child.grx_visibility != GRXViewVisibilityGone) {
-            GRXLinearLayoutParams * lp = child.grx_linearLayoutParams;
+            GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
             if (lp.width == GRXMatchParent) {
                 // Temporarily force children to reuse their old measured height
                 int oldHeight = lp.height;
@@ -277,22 +277,21 @@
             }
         }
     }
-
 }
 
 
 
-- (void) layoutSubviews {
+- (void)layoutSubviews {
     [super layoutSubviews];
 
-    if(self.direction == GRXLinearLayoutDirectionVertical) {
+    if (self.direction == GRXLinearLayoutDirectionVertical) {
         return [self layoutVertical];
     } else {
         return [self layoutHorizontal];
     }
 }
 
-- (void) layoutVertical {
+- (void)layoutVertical {
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go
@@ -319,9 +318,9 @@
         }
 
     }
-*/
+ */
     /*
-    for (UIView *view in self.subviews) {
+       for (UIView *view in self.subviews) {
         if(view.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
@@ -355,7 +354,7 @@
         }
 
 
-/*
+       /*
             int gravity = lp.gravity;
             if (gravity < 0) {
                 gravity = minorGravity;
@@ -368,7 +367,7 @@
 
                 case Gravity.CENTER_HORIZONTAL:
                     childLeft = paddingLeft + ((childSpace - childWidth) / 2)
-                    + lp.leftMargin - lp.rightMargin;
+     + lp.leftMargin - lp.rightMargin;
                     break;
 
                 case Gravity.RIGHT:
@@ -384,12 +383,11 @@
 
             i += getChildrenSkipCount(child, i);
         }
-    }
-*/
+       }
+     */
 }
 
-- (void) layoutHorizontal {
-
+- (void)layoutHorizontal {
 }
 
 @end

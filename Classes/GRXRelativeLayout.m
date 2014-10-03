@@ -305,22 +305,22 @@
              ownHeight:(CGFloat)ownHeight {
     GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
     GRXMeasureSpec widthSpec = [self childSpecWithStart:params.left
-                                                       end:params.right
-                                                 childSize:params.width
-                                               startMargin:params.margins.left
-                                                 endMargin:params.margins.right
-                                              startPadding:self.padding.left
-                                                endPadding:self.padding.right
-                                                   ownSize:ownWidth];
+                                                    end:params.right
+                                              childSize:params.width
+                                            startMargin:params.margins.left
+                                              endMargin:params.margins.right
+                                           startPadding:self.padding.left
+                                             endPadding:self.padding.right
+                                                ownSize:ownWidth];
 
     GRXMeasureSpec heightSpec = [self childSpecWithStart:params.top
-                                                        end:params.bottom
-                                                  childSize:params.height
-                                                startMargin:params.margins.top
-                                                  endMargin:params.margins.bottom
-                                               startPadding:self.padding.top
-                                                 endPadding:self.padding.bottom
-                                                    ownSize:ownHeight];
+                                                     end:params.bottom
+                                               childSize:params.height
+                                             startMargin:params.margins.top
+                                               endMargin:params.margins.bottom
+                                            startPadding:self.padding.top
+                                              endPadding:self.padding.bottom
+                                                 ownSize:ownHeight];
 
     CGSize childSize = [child grx_measuredSizeForWidthSpec:widthSpec
                                                 heightSpec:heightSpec];
@@ -332,13 +332,13 @@
                        ownHeight:(CGFloat)ownHeight {
     GRXRelativeLayoutParams *params = child.grx_relativeLayoutParams;
     GRXMeasureSpec widthSpec = [self childSpecWithStart:params.left
-                                                       end:params.right
-                                                 childSize:params.width
-                                               startMargin:params.margins.left
-                                                 endMargin:params.margins.right
-                                              startPadding:self.padding.left
-                                                endPadding:self.padding.right
-                                                   ownSize:ownWidth];
+                                                    end:params.right
+                                              childSize:params.width
+                                            startMargin:params.margins.left
+                                              endMargin:params.margins.right
+                                           startPadding:self.padding.left
+                                             endPadding:self.padding.right
+                                                ownSize:ownWidth];
     GRXMeasureSpec heightSpec;
     if (params.width == GRXMatchParent) {
         heightSpec = GRXMeasureSpecMake(ownHeight, GRXMeasureSpecExactly);

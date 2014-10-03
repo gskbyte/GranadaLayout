@@ -2,34 +2,34 @@
 
 @implementation GRXLinearLayout (GRXLayoutInflater)
 
-- (void)grx_configureFromDictionary:(NSDictionary*)dictionary
-                       layoutParams:(GRXLayoutParams*)params {
-    NSString * directionStr = dictionary[@"direction"];
-    if([directionStr isEqualToString:@"horizontal"]) {
+- (void)grx_configureFromDictionary:(NSDictionary *)dictionary
+                       layoutParams:(GRXLayoutParams *)params {
+    NSString *directionStr = dictionary[@"direction"];
+    if ([directionStr isEqualToString:@"horizontal"]) {
         self.direction = GRXLinearLayoutDirectionVertical;
-    } else if([directionStr isEqualToString:@"vertical"]) {
+    } else if ([directionStr isEqualToString:@"vertical"]) {
         self.direction = GRXLinearLayoutDirectionHorizontal;
     }
 
-    NSString * weightSumStr = dictionary[@"weightSum"];
-    if(weightSumStr) {
+    NSString *weightSumStr = dictionary[@"weightSum"];
+    if (weightSumStr) {
         self.weightSum = weightSumStr.floatValue;
     }
 }
 
-static NSDictionary * Gravities;
+static NSDictionary *Gravities;
 
 + (void)initializeGravities {
     Gravities = @{
-                  @"begin" : @(GRXLinearLayoutGravityBegin),
-                  @"center" : @(GRXLinearLayoutGravityCenter),
-                  @"end" : @(GRXLinearLayoutGravityEnd),
-                  };
+        @"begin": @(GRXLinearLayoutGravityBegin),
+        @"center": @(GRXLinearLayoutGravityCenter),
+        @"end": @(GRXLinearLayoutGravityEnd),
+    };
 }
 
-- (void)configureSubviewLayoutParams:(GRXLayoutParams*)params
-                      fromDictionary:(NSDictionary*)dict
-                          inInflater:(GRXLayoutInflater*)inflater {
+- (void)configureSubviewLayoutParams:(GRXLayoutParams *)params
+                      fromDictionary:(NSDictionary *)dict
+                          inInflater:(GRXLayoutInflater *)inflater {
     [super configureSubviewLayoutParams:params
                          fromDictionary:dict
                              inInflater:inflater];
@@ -39,19 +39,19 @@ static NSDictionary * Gravities;
         [self.class initializeGravities];
     });
 
-    GRXLinearLayoutParams * p = (GRXLinearLayoutParams*)params;
+    GRXLinearLayoutParams *p = (GRXLinearLayoutParams *)params;
 
-    for(NSString * key in Gravities.allKeys) {
-        NSString * value = dict[key];
-        if(value == nil) {
+    for (NSString *key in Gravities.allKeys) {
+        NSString *value = dict[key];
+        if (value == nil) {
             continue;
         }
 
         p.gravity = [value integerValue];
     }
 
-    NSString * weightValue = dict[@"weight"];
-    if(weightValue != nil) {
+    NSString *weightValue = dict[@"weight"];
+    if (weightValue != nil) {
         p.weight = [weightValue floatValue];
     }
 }
