@@ -572,6 +572,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FF12DCF473391DD003B32A52 /* Pods-Example.release.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
@@ -586,6 +587,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 15B4BDA80C613A087E0912E1 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
