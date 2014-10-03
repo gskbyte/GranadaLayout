@@ -1,0 +1,12 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "UIView",
+    "id" : "root",
+
+    "width" : "match_parent",
+    "height" : "match_parent",
+  }  
+}

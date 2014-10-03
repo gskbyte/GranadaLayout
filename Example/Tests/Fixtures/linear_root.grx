@@ -1,0 +1,15 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXLinearLayout",
+    "id" : "root",
+
+    "width" : "match_parent",
+    "height" : "match_parent",
+
+    "direction" : "horizontal",
+    "weightSum" : "5"
+  }
+}

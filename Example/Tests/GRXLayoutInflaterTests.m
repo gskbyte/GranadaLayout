@@ -1,4 +1,5 @@
 #import <XCTest/XCTest.h>
+#import "GRXTestHelper.h"
 
 #import <GranadaLayout/GRXLayoutInflater.h>
 #define EXP_SHORTHAND
@@ -11,13 +12,15 @@
 
 @implementation ExampleTests
 
-- (void)setUp {
-    [super setUp];
-
+- (void)testEmptyInflation {
+    UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"empty.grx"];
+    expect(rootView).to.beNil();
 }
 
-- (void)testSomethingStupid {
-    
+- (void)testNoLayoutRoot {
+    UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"no_layout_root.grx"];
+    expect(rootView).notTo.beNil();
+    expect(rootView).to.beInstanceOf(UIView.class);
 }
 
 @end

@@ -1,0 +1,12 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "match_parent",
+    "height" : "match_parent",
+  }  
+}

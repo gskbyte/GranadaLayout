@@ -10,6 +10,6 @@
 
 @interface GRXRelativeLayoutTestController3 : GRXTestViewController
 
-@property (nonatomic, retain) NSMutableArray * views;
+@property (nonatomic, retain) NSMutableArray *views;
 
 @end

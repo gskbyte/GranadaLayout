@@ -2,13 +2,12 @@
 
 @implementation GRXLinearLayout (GRXLayoutInflater)
 
-- (void)grx_configureFromDictionary:(NSDictionary *)dictionary
-                       layoutParams:(GRXLayoutParams *)params {
+- (void)grx_configureFromDictionary:(NSDictionary *)dictionary {
     NSString *directionStr = dictionary[@"direction"];
     if ([directionStr isEqualToString:@"horizontal"]) {
-        self.direction = GRXLinearLayoutDirectionVertical;
-    } else if ([directionStr isEqualToString:@"vertical"]) {
         self.direction = GRXLinearLayoutDirectionHorizontal;
+    } else if ([directionStr isEqualToString:@"vertical"]) {
+        self.direction = GRXLinearLayoutDirectionVertical;
     }
 
     NSString *weightSumStr = dictionary[@"weightSum"];
