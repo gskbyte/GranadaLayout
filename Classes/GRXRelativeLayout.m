@@ -1,10 +1,10 @@
 #import "GRXRelativeLayout.h"
+#import "GRXLayout_Protected.h"
 #import "GRXDependencyGraph.h"
 #import "GRXLayout+Protected.h"
 
 @interface GRXRelativeLayout ()
 
-@property (nonatomic) BOOL dirtyHierarchy;
 @property (nonatomic, retain) NSArray *sortedViewsVertical, *sortedViewsHorizontal;
 @property (nonatomic) GRXDependencyGraph *dependencyGraph;
 
@@ -34,16 +34,6 @@
 
 #pragma mark - Overriden methods
 
-- (void)addSubview:(UIView *)view {
-    [super addSubview:view];
-    _dirtyHierarchy = YES;
-}
-
-- (void)setNeedsLayout {
-    [super setNeedsLayout];
-    _dirtyHierarchy = YES; // should be called somewhere else, doesn't always need to be called
-}
-
 - (void)sortChildren {
     [self.dependencyGraph clear];
     for (UIView *view in self.subviews) {
@@ -56,9 +46,9 @@
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                        heightSpec:(GRXMeasureSpec)heightSpec {
-    if (_dirtyHierarchy) {
+    if (self.isHierarchyDirty) {
         [self sortChildren];
-        _dirtyHierarchy = NO;
+        [self setHierarchyClean];
     }
 
     CGFloat ownWidth = -1, ownHeight = -1;

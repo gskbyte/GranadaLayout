@@ -37,6 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C05BFA4119DF09A000C8FF34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C09F21E419DC590D0069C0A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C09F21EB19DC590D0069C0A1;
+			remoteInfo = Example;
+		};
 		C09F220619DC590D0069C0A1 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C09F21E419DC590D0069C0A1 /* Project object */;
@@ -285,6 +292,7 @@
 			);
 			dependencies = (
 				C09F220719DC590D0069C0A1 /* PBXTargetDependency */,
+				C05BFA4219DF09A000C8FF34 /* PBXTargetDependency */,
 			);
 			name = Tests;
 			productName = Tests;
@@ -451,6 +459,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C05BFA4219DF09A000C8FF34 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C09F21EB19DC590D0069C0A1 /* Example */;
+			targetProxy = C05BFA4119DF09A000C8FF34 /* PBXContainerItemProxy */;
+		};
 		C09F220719DC590D0069C0A1 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C09F21EB19DC590D0069C0A1 /* Example */;
@@ -573,7 +586,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 15B4BDA80C613A087E0912E1 /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -595,7 +607,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FB68E9A3DCEB1A6BB74AC22D /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

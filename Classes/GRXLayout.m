@@ -1,4 +1,4 @@
-#import "GRXLayout.h"
+#import "GRXLayout_Protected.h"
 #import "GRXLayoutParams.h"
 #import <objc/runtime.h>
 
@@ -27,14 +27,16 @@
     if (view.grx_layoutParams == nil) {
         view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
     }
-    NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
-             @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
+    _dirtyHierarchy = YES;
     [super addSubview:view];
 }
 
 - (void)addSubview:(UIView *)view
       layoutParams:(GRXLayoutParams *)layoutParams {
+    NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
+             @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
     view.grx_layoutParams = layoutParams;
+    _dirtyHierarchy = YES;
     [self addSubview:view];
 }
 
@@ -52,31 +54,48 @@
     }
 }
 
+- (void)setNeedsLayout {
+    [super setNeedsLayout];
+    _dirtyHierarchy = YES;
+}
+
+
+// This is how the whole layout system works
+// By default, layout views don't do anything when -layoutSubviews is called
+// Except if they are inside a non-GRXLayout view, then they take the initiative and measure their children
+// And set their frame size. Position is left equal, must be changed manually outside.
+
 - (void)layoutSubviews {
-    [super layoutSubviews];
-    // measure myself and my subviews only if I don't have anyone who requests it
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
-        GRXMeasureSpec wspec, hspec;
-        CGSize ownSize = self.size;
-        if (ownSize.width != 0 && ownSize.height != 0) {
-            wspec = GRXMeasureSpecMake(ownSize.width, GRXMeasureSpecExactly);
-            hspec = GRXMeasureSpecMake(ownSize.height, GRXMeasureSpecExactly);
+        // Take parent size to see how big I can be, if I'm root, take the whole display
+        CGSize parentSize;
+        if(self.superview != nil) {
+            parentSize = self.superview.size;
+            // TODO case for UIScrollView ? (would be infinite size?)
         } else {
-            CGSize parentSize;
-            if(self.superview == nil) {
-                parentSize = UIScreen.mainScreen.bounds.size;
-            } else {
-                parentSize = self.superview.size;
-            }
-            if (self.grx_layoutParams == nil) {
-                self.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(GRXWrapContent, GRXWrapContent)];
-            }
-            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
-            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
+            parentSize = UIScreen.mainScreen.bounds.size;
         }
-        [self grx_measuredSizeForWidthSpec:wspec
-                                heightSpec:hspec];
+
+        GRXMeasureSpec wspec, hspec;
+        GRXLayoutParams * ownParams = self.grx_layoutParams;
+
+        if(ownParams.width == 0 || ownParams.width == GRXWrapContent) {
+            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
+        } else { // match_parent or exact size
+            wspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
+        }
+
+        if(ownParams.height == 0 || ownParams.height == GRXWrapContent) {
+            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
+        } else {
+            hspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
+        }
+
+        self.size = [self grx_measuredSizeForWidthSpec:wspec
+                                            heightSpec:hspec];
     }
+
+    [super layoutSubviews];
 }
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
@@ -84,6 +103,14 @@
     // TODO implement me!
     NSAssert(NO, @"Having layouts inside layouts is not yet supported");
     return CGSizeZero;
+}
+
+- (void) setHierarchyDirty {
+    _dirtyHierarchy = YES;
+}
+
+- (void)setHierarchyClean {
+    _dirtyHierarchy = NO;
 }
 
 @end

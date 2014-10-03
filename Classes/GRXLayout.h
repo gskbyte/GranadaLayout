@@ -4,7 +4,8 @@
 
 @interface GRXLayout : UIView
 
-@property (nonatomic, assign) UIEdgeInsets padding;
+@property (nonatomic) UIEdgeInsets padding;
+@property (nonatomic, getter=isHierarchyDirty) BOOL dirtyHierarchy;
 
 + (Class)layoutParamsClass;
 
@@ -18,5 +19,7 @@
 - (void)addSubviews:(NSArray *)views;
 - (void)addSubviews:(NSArray *)views
        layoutParams:(GRXLayoutParams *)layoutParams;
+
+- (void) setHierarchyDirty;
 
 @end

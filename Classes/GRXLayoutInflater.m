@@ -63,23 +63,19 @@
     UIView *view = [[viewClass alloc] initWithFrame:CGRectZero];
 
     GRXLayoutParams *layoutParams = nil;
-    if ([parentView.class respondsToSelector:@selector(layoutParamsClass)]) {
-        Class layoutParamsClass = [parentView.class layoutParamsClass];
-        layoutParams = [[layoutParamsClass alloc] init];
-    } else {
-        layoutParams = [[GRXLayoutParams alloc] init];
-    }
-    [view grx_configureFromDictionary:node];
-
     if ([parentView isKindOfClass:GRXLayout.class]) {
         GRXLayout *parentLayout = (GRXLayout *)parentView;
+        Class layoutParamsClass = [parentLayout.class layoutParamsClass];
+        layoutParams = [[layoutParamsClass alloc] init];
         [parentLayout configureSubviewLayoutParams:layoutParams
                                     fromDictionary:node
                                         inInflater:self];
     } else {
+        layoutParams = [[GRXLayoutParams alloc] init];
         [GRXLayout configureUnparentedLayoutParams:layoutParams
                                     fromDictionary:node];
     }
+    [view grx_configureFromDictionary:node];
     view.grx_layoutParams = layoutParams;
 
     NSString *identifier = node[@"id"];

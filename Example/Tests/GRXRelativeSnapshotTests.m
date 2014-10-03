@@ -13,14 +13,12 @@
 
 - (void)setUp {
     [super setUp];
-    self.recordMode = NO;
+    self.recordMode = YES;
 }
 
 - (void)testAlignParent {
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_align_parent.grx"];
-
     [rootView layoutSubviews];
-    rootView.size = rootView.grx_measuredSize;
     FBSnapshotVerifyView(rootView, nil);
 }
 
