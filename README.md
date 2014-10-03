@@ -2,6 +2,8 @@ GranadaLayout
 =============
 
 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout)
+[![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
+
 
 This is an attempt to implement a layout system for iOS that works similar to the one in Android. The primary goal is just to implement layout views like ``LinearLayout`` and ``RelativeLayout`` but with simplified options.
 
