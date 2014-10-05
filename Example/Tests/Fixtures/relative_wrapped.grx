@@ -1,0 +1,59 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "wrap_content",
+    "height" : "wrap_content",
+
+    "debug_bgColor" : "white",
+
+    "subviews" : [
+      {
+        "id" : "topLeft",
+        "class" : "UIView",
+        "width" : "wrap_content",
+        "height" : "wrap_content",
+
+        "minWidth" : "100",
+        "minHeight" : "40",
+
+        "alignParentTop" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
+      },
+
+      {
+        "id" : "belowRightOf",
+        "class" : "UIView",
+        "width" : "70",
+        "height" : "60",
+        
+        "below" : "topLeft",
+        "toRightOf" : "topLeft",
+
+        "debug_bgColor" : "blue"
+      },
+
+      {
+        "id" : "alignTopLeftOf",
+        "class" : "UIView",
+        "width" : "80",
+        "height" : "100",
+        
+        "toLeftOf" : "belowRightOf",
+        "alignTop" : "belowRightOf",
+        "margin" : "10",
+
+        "debug_bgColor" : "green"
+      },
+
+
+
+    ]
+  }  
+}

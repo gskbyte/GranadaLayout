@@ -104,7 +104,7 @@
         }
 
         if (isWrapContentHeight) {
-            measuredSize.height = MAX(measuredSize.width, params.bottom);
+            measuredSize.height = MAX(measuredSize.height, params.bottom);
         }
     }
 

@@ -20,9 +20,6 @@
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_parent.grx"];
     [rootView layoutSubviews];
 
-    // FIX minSize must be set for topLeft
-    // FIX margin for align center ??
-
     NSLog(@"%@", rootView.description);
     FBSnapshotVerifyView(rootView, nil);
 }
@@ -31,7 +28,19 @@
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_other_views.grx"];
     [rootView layoutSubviews];
 
-    // FIX views collide, see images
+    FBSnapshotVerifyView(rootView, nil);
+}
+
+- (void) testAlignWrapped {
+    UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped.grx"];
+    [rootView layoutSubviews];
+
+    FBSnapshotVerifyView(rootView, nil);
+}
+
+- (void) testAlignWrappedPush {
+    UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_push.grx"];
+    [rootView layoutSubviews];
 
     FBSnapshotVerifyView(rootView, nil);
 }

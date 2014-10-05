@@ -15,9 +15,12 @@
       {
         "id" : "topLeft",
         "class" : "UIView",
-        "width" : "40",
-        "height" : "40",
-        
+        "width" : "wrap_content",
+        "height" : "wrap_content",
+
+        "minWidth" : "40",
+        "minHeight" : "40",
+
         "alignParentTop" : "true",
         "alignParentLeft" : "true",
 
@@ -51,9 +54,12 @@
       {
         "id" : "c",
         "class" : "UIView",
-        "width" : "60",
-        "height" : "50",
-        
+        "width" : "wrap_content",
+        "height" : "wrap_content",
+
+        "minWidth" : "60",
+        "minHeight" : "50",
+
         "margin" : "5",
 
         "alignTop" : "b",
@@ -95,6 +101,18 @@
         "alignBottom" : "d",
 
         "debug_bgColor" : "blue"
+      },
+      {
+        "id" : "gone",
+        "class" : "UIView",
+        "width" : "50",
+        "height" : "50",
+        "visibility" : "gone",
+        
+        "toLeftOf" : "e",
+        "alignTop" : "e",
+
+        "debug_bgColor" : "gray"
       },
       {
         "id" : "f",
