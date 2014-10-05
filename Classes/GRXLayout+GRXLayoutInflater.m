@@ -17,24 +17,24 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
 
     UIEdgeInsets padding = UIEdgeInsetsZero;
     CGFloat p = [dictionary[@"padding"] floatValue];
-    if(p != 0) {
+    if (p != 0) {
         padding = UIEdgeInsetsMake(p, p, p, p);
     }
 
     p = [dictionary[@"paddingLeft"] floatValue];
-    if(p != 0) {
+    if (p != 0) {
         padding.left = p;
     }
     p = [dictionary[@"paddingRight"] floatValue];
-    if(p != 0) {
+    if (p != 0) {
         padding.right = p;
     }
     p = [dictionary[@"paddingTop"] floatValue];
-    if(p != 0) {
+    if (p != 0) {
         padding.top = p;
     }
     p = [dictionary[@"paddingBottom"] floatValue];
-    if(p != 0) {
+    if (p != 0) {
         padding.bottom = p;
     }
 
@@ -56,28 +56,28 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
     UIEdgeInsets margins = UIEdgeInsetsZero;
 
     CGFloat m = [dictionary[@"margin"] floatValue];
-    if(m != 0) {
+    if (m != 0) {
         margins = UIEdgeInsetsMake(m, m, m, m);
     }
 
     // all margins can be overriden
     m = [dictionary[@"marginLeft"] floatValue];
-    if(m != 0) {
+    if (m != 0) {
         margins.left = m;
     }
 
-    m = [dictionary[@"marginRight"]floatValue];
-    if(m != 0) {
+    m = [dictionary[@"marginRight"] floatValue];
+    if (m != 0) {
         margins.right = m;
     }
 
-    m = [dictionary[@"marginTop"]floatValue];
-    if(m != 0) {
+    m = [dictionary[@"marginTop"] floatValue];
+    if (m != 0) {
         margins.top = m;
     }
 
-    m = [dictionary[@"marginBottom"]floatValue];
-    if(m != 0) {
+    m = [dictionary[@"marginBottom"] floatValue];
+    if (m != 0) {
         margins.bottom = m;
     }
 

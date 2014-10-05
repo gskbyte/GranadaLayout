@@ -2,22 +2,22 @@
 
 @interface GRXLayout (Protected)
 
-- (GRXMeasureSpec)childSpecWithParentSpec:(GRXMeasureSpec)spec
-                                  padding:(CGFloat)padding
-                           childDimension:(CGFloat)childDimension;
-- (GRXMeasureSpec)childSpecWithStart:(CGFloat)childStart
-                                 end:(CGFloat)childEnd
-                           childSize:(CGFloat)childSize
-                         startMargin:(CGFloat)startMargin
-                           endMargin:(CGFloat)endMargin
-                        startPadding:(CGFloat)startPadding
-                          endPadding:(CGFloat)endPadding
-                             ownSize:(CGFloat)ownSize;
+- (GRXMeasureSpec)subviewSpecWithParentSpec:(GRXMeasureSpec)spec
+                                    padding:(CGFloat)padding
+                           subviewDimension:(CGFloat)subviewDimension;
+- (GRXMeasureSpec)subviewSpecWithStart:(CGFloat)subviewStart
+                                   end:(CGFloat)subviewEnd
+                           subviewSize:(CGFloat)subviewSize
+                           startMargin:(CGFloat)startMargin
+                             endMargin:(CGFloat)endMargin
+                          startPadding:(CGFloat)startPadding
+                            endPadding:(CGFloat)endPadding
+                               ownSize:(CGFloat)ownSize;
 
-- (void)measureChildWithMargins:(UIView *)child
-                parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
-                      widthUsed:(CGFloat)widthUsed
-               parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
-                     heightUsed:(CGFloat)heightUsed;
+- (void)measureSubviewWithMargins:(UIView *)subview
+                  parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
+                        widthUsed:(CGFloat)widthUsed
+                 parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
+                       heightUsed:(CGFloat)heightUsed;
 
 @end

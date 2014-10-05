@@ -7,14 +7,14 @@
     CGSize minSize;
     minSize.width = [dictionary[@"minWidth"] floatValue];
     minSize.height = [dictionary[@"minHeight"] floatValue];
-    if(minSize.width>0 && minSize.height>0) {
+    if (minSize.width > 0 && minSize.height > 0) {
         self.grx_minSize = minSize;
     }
 
-    NSString * visibilityString = dictionary[@"visibility"];
-    if( [visibilityString isEqualToString:@"invisible"] ) {
+    NSString *visibilityString = dictionary[@"visibility"];
+    if ( [visibilityString isEqualToString:@"invisible"] ) {
         self.grx_visibility = GRXViewVisibilityHidden;
-    } else if( [visibilityString isEqualToString:@"gone"] ) {
+    } else if ( [visibilityString isEqualToString:@"gone"] ) {
         self.grx_visibility = GRXViewVisibilityGone;
     }
 

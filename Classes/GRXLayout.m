@@ -62,14 +62,14 @@
 
 // This is how the whole layout system works
 // By default, layout views don't do anything when -layoutSubviews is called
-// Except if they are inside a non-GRXLayout view, then they take the initiative and measure their children
+// Except if they are inside a non-GRXLayout view, then they take the initiative and measure their subviews
 // And set their frame size. Position is left equal, must be changed manually outside.
 
 - (void)layoutSubviews {
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
         // Take parent size to see how big I can be, if I'm root, take the whole display
         CGSize parentSize;
-        if(self.superview != nil) {
+        if (self.superview != nil) {
             parentSize = self.superview.size;
             // TODO case for UIScrollView ? (would be infinite size?)
         } else {
@@ -77,15 +77,15 @@
         }
 
         GRXMeasureSpec wspec, hspec;
-        GRXLayoutParams * ownParams = self.grx_layoutParams;
+        GRXLayoutParams *ownParams = self.grx_layoutParams;
 
-        if(ownParams.width == 0 || ownParams.width == GRXWrapContent) {
+        if (ownParams.width == 0 || ownParams.width == GRXWrapContent) {
             wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
         } else { // match_parent or exact size
             wspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
         }
 
-        if(ownParams.height == 0 || ownParams.height == GRXWrapContent) {
+        if (ownParams.height == 0 || ownParams.height == GRXWrapContent) {
             hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
         } else {
             hspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
@@ -105,7 +105,7 @@
     return CGSizeZero;
 }
 
-- (void) setHierarchyDirty {
+- (void)setHierarchyDirty {
     _dirtyHierarchy = YES;
 }
 

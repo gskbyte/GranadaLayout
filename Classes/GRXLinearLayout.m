@@ -171,9 +171,9 @@
                 delta -= share;
 
                 CGFloat totalChildPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
-                GRXMeasureSpec childWidthMeasureSpec = [self childSpecWithParentSpec:widthSpec
-                                                                             padding:totalChildPadding
-                                                                      childDimension:lp.width];
+                GRXMeasureSpec childWidthMeasureSpec = [self subviewSpecWithParentSpec:widthSpec
+                                                                               padding:totalChildPadding
+                                                                      subviewDimension:lp.width];
 
                 // TODO: Use a field like lp.isMeasured to figure out if this
                 // child has been previously measured
@@ -247,11 +247,11 @@
                       totalWidth:(CGFloat)totalWidth
                       heightSpec:(GRXMeasureSpec)heightSpec
                      totalHeight:(CGFloat)totalHeight {
-    [self measureChildWithMargins:child
-                  parentWidthSpec:widthSpec
-                        widthUsed:totalWidth
-                 parentHeightSpec:heightSpec
-                       heightUsed:totalHeight];
+    [self measureSubviewWithMargins:child
+                    parentWidthSpec:widthSpec
+                          widthUsed:totalWidth
+                   parentHeightSpec:heightSpec
+                         heightUsed:totalHeight];
 }
 
 - (void)forceUniformWidthWithWidth:(CGFloat)width
@@ -268,11 +268,11 @@
                 lp.height = child.grx_measuredSize.height;
 
                 // Remeasure with new dimensions
-                [self measureChildWithMargins:child
-                              parentWidthSpec:uniformMeasureSpec
-                                    widthUsed:0
-                             parentHeightSpec:heightSpec
-                                   heightUsed:0];
+                [self measureSubviewWithMargins:child
+                                parentWidthSpec:uniformMeasureSpec
+                                      widthUsed:0
+                               parentHeightSpec:heightSpec
+                                     heightUsed:0];
                 lp.height = oldHeight;
             }
         }

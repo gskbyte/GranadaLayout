@@ -2,6 +2,6 @@
 
 @interface GRXLayout (ProtectedMethods)
 
-- (void) setHierarchyClean;
+- (void)setHierarchyClean;
 
 @end

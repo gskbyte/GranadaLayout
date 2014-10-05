@@ -40,7 +40,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
                         heightSpec:(GRXMeasureSpec)heightSpec;
 
 // this method must be called when the size of this view may change, and requests the top
-// layout to relayout its children
+// layout to relayout its subviews
 - (void) grx_setNeedsLayoutInParent;
 
 @end
