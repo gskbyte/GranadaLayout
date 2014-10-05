@@ -6,35 +6,103 @@
     "class" : "GRXRelativeLayout",
     "id" : "root",
 
-    "width" : "match_parent",
-    "height" : "match_parent",
+    "width" : "200",
+    "height" : "200",
+
+    "debug_bgColor" : "white",
 
     "subviews" : [
       {
-        "class" : "UIImageView",
-        "id" : "image",
+        "id" : "topLeft",
+        "class" : "UIView",
         "width" : "wrap_content",
         "height" : "wrap_content",
-        
-        "alignParentRight" : "true",
-        "alignParentBottom" : "true"
-      },
-      {
-         "class" : "UISwitch",
-         "width" : "wrap_content",
-         "height" : "wrap_content",
 
-         "above" : "image",
-         "toLeftOf" : "image",
+        "minWidth" : "50",
+        "minHeight" : "60",
+        
+        "alignParentTop" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
       },
       {
+        "id" : "topRight",
         "class" : "UIView",
-        "id" : "view",
-        "width" : "match_parent",
-        "height" : "100",
+        "width" : "40",
+        "height" : "40",
+
+        "margin" : "10",
         
-        "alignParentTop" : "true"
-      }
+        "alignParentTop" : "true",
+        "alignParentRight" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "bottomLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+
+        "marginLeft" : "20",
+        
+        "alignParentBottom" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "red"
+      },
+      {
+        "id" : "bottomRight",
+        "class" : "UIView",
+        "width" : "70",
+        "height" : "50",
+
+        "marginBottom" : "10",
+        
+        "alignParentBottom" : "true",
+        "alignParentRight" : "true",
+
+        "debug_bgColor" : "gray"
+      },
+
+
+      {
+        "id" : "center",
+        "class" : "UIView",
+        "width" : "60",
+        "height" : "60",
+        
+        "centerInParent" : "true",
+        "marginBottom" : "10",
+        "marginRight" : 10,
+
+        "debug_bgColor" : "yellow"
+      },
+      {
+        "id" : "vCenterLeft",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "centerVertical" : "true",
+        "alignParentLeft" : "true",
+
+        "debug_bgColor" : "blue"
+      },
+      {
+        "id" : "hCenterTop",
+        "class" : "UIView",
+        "width" : "40",
+        "height" : "40",
+        
+        "alignParentTop" : "true",
+        "centerHorizontal" : "true",
+
+        "debug_bgColor" : "green"
+      },
+
+
     ]
   }  
 }

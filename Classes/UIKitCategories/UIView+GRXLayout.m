@@ -7,6 +7,7 @@ const static char GRXLayoutParamsKey;
 const static char GRXLayoutableKey;
 const static char GRXMeasuredSizeKey;
 const static char GRXMeasuredSizeSpecKey;
+const static char GRXMinSizeKey;
 const static char GRXLayoutIDKey;
 
 static NSUInteger GRXStaticCurrentLayoutID = 0;
@@ -40,6 +41,22 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 #pragma mark - layout methods
 
+- (CGSize)grx_minSize {
+    NSValue * value = objc_getAssociatedObject(self, &GRXMinSizeKey);
+    if(value != nil) {
+        CGSize size;
+        [value getValue:&size];
+        return size;
+    } else {
+        return CGSizeZero;
+    }
+}
+
+- (void)grx_setMinSize:(CGSize)minSize {
+    NSValue *sizeValue = [NSValue value:&minSize withObjCType:@encode(CGSize)];
+    objc_setAssociatedObject(self, &GRXMinSizeKey, sizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (GRXLayoutParams *)grx_layoutParams {
     return objc_getAssociatedObject(self, &GRXLayoutParamsKey);
 }
@@ -57,7 +74,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     if(n != nil) {
         return n.boolValue;
     } else {
-        return YES; // drawable by default
+        return YES; // layoutable by default
     }
 }
 
@@ -108,15 +125,6 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-- (CGSize) grx_suggestedMinimumSize {
-    GRXLayoutParams * params = self.grx_layoutParams;
-    if(params == nil) {
-        return CGSizeZero;
-    } else {
-        return params.minSize;
-    }
-}
-
 #pragma mark - measurement methods
 
 - (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
@@ -159,17 +167,17 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 // subviews won't usually want to call super
 - (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                         heightSpec:(GRXMeasureSpec)heightSpec {
-    CGSize measuredSize;
+    CGSize size;
     if([self isMemberOfClass:UIView.class]) {
-        CGSize minSize = self.grx_suggestedMinimumSize;
+        CGSize minSize = self.grx_minSize;
         CGFloat w = GRXMeasureSpecResolveSizeValue(minSize.width, widthSpec);
         CGFloat h = GRXMeasureSpecResolveSizeValue(minSize.height, heightSpec);
-        measuredSize = CGSizeMake(w, h);
+        size = CGSizeMake(w, h);
     } else {
-        measuredSize = [self grx_measureFittingWidthMeasureSpec:widthSpec
-                                              heightMeasureSpec:heightSpec];
+        size = [self grx_measureFittingWidthMeasureSpec:widthSpec
+                                      heightMeasureSpec:heightSpec];
     }
-    return measuredSize;
+    return size;
 }
 
 - (CGSize)grx_measureFittingWidthMeasureSpec:(GRXMeasureSpec)widthSpec

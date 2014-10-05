@@ -15,8 +15,8 @@
       {
         "id" : "topLeft",
         "class" : "UIView",
-        "width" : "40",
-        "height" : "40",
+        "width" : "wrap_content",
+        "height" : "wrap_content",
 
         "minWidth" : "50",
         "minHeight" : "60",
@@ -55,23 +55,23 @@
       {
         "id" : "bottomRight",
         "class" : "UIView",
-        "width" : "40",
-        "height" : "40",
+        "width" : "70",
+        "height" : "50",
 
         "marginBottom" : "10",
         
         "alignParentBottom" : "true",
         "alignParentRight" : "true",
 
-        "debug_bgColor" : "red"
+        "debug_bgColor" : "gray"
       },
 
 
       {
         "id" : "center",
         "class" : "UIView",
-        "width" : "40",
-        "height" : "40",
+        "width" : "60",
+        "height" : "60",
         
         "centerInParent" : "true",
         "marginBottom" : "10",

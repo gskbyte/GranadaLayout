@@ -40,4 +40,9 @@
     view.backgroundColor = [UIColor redColor];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"%@", self.view.description);
+}
+
 @end

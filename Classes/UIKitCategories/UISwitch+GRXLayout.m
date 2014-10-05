@@ -3,7 +3,7 @@
 
 @implementation UISwitch (GRXLayout)
 
-- (CGSize) grx_suggestedMinimumSize {
+- (CGSize) grx_minSize {
     if([UIDevice grx_runningSystemVersion7]) {
         return CGSizeMake(51, 31);
     } else {
@@ -11,11 +11,15 @@
     }
 }
 
+- (void) grx_setMinSize:(CGSize)grx_minSize {
+    // do nothing
+}
+
 // UISwitches always have the same size, and -sizeThatFits: returns the currentSize
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                        heightSpec:(GRXMeasureSpec)heightSpec {
-    CGSize size = [self grx_suggestedMinimumSize];
+    CGSize size = [self grx_minSize];
     return size;
 }
 

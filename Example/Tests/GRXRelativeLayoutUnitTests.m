@@ -20,7 +20,7 @@
     expect([self viewForId:ident hasParentRule:rule inInflater:inflater]).to.beTruthy()
 
 - (void)testAlignParent {
-    GRXLayoutInflater * inflater = [GRXTestHelper inflaterForFileWithName:@"relative_align_parent.grx"];
+    GRXLayoutInflater * inflater = [GRXTestHelper inflaterForFileWithName:@"relative_parent.grx"];
 
     expectParentRule(@"topLeft", GRXRelativeLayoutParentRuleAlignTop);
     expectParentRule(@"topLeft", GRXRelativeLayoutParentRuleAlignLeft);

@@ -143,7 +143,7 @@
     CGFloat heightSize = self.totalLength;
 
     // Check against our minimum height
-    heightSize = MAX(heightSize, self.grx_suggestedMinimumSize.height);
+    heightSize = MAX(heightSize, self.grx_minSize.height);
 
     // Reconcile our calculated size with the heightMeasureSpec
     heightSize = GRXMeasureSpecResolveSizeValue(heightSize, heightSpec);
@@ -225,7 +225,7 @@
     maxWidth += self.padding.left + self.padding.right;
 
     // Check against our minimum width
-    maxWidth = MAX(maxWidth, self.grx_suggestedMinimumSize.width);
+    maxWidth = MAX(maxWidth, self.grx_minSize.width);
 
 
     CGSize ownSize = CGSizeMake(GRXMeasureSpecResolveSizeValue(maxWidth, widthSpec), heightSize);

@@ -40,8 +40,8 @@
         [self.dependencyGraph add:view];
     }
 
-    self.sortedViewsVertical = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams verticalRules]];
     self.sortedViewsHorizontal = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams horizontalRules]];
+    self.sortedViewsVertical = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams verticalRules]];
 }
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
@@ -109,8 +109,8 @@
     }
 
     GRXLayoutParams *ownParams = self.grx_layoutParams;
-    CGSize ownSuggestedMinSize = [self grx_suggestedMinimumSize];
-
+    CGSize ownMinSize = self.grx_minSize;
+    
     if (isWrapContentWidth) {
         // Width already has left padding in it since it was calculated by looking at
         // the right of each child view
@@ -120,7 +120,7 @@
             measuredSize.width = MAX(measuredSize.width, ownParams.width);
         }
 
-        measuredSize.width = MAX(measuredSize.width, ownSuggestedMinSize.width);
+        measuredSize.width = MAX(measuredSize.width, ownMinSize.width);
         measuredSize.width = GRXMeasureSpecResolveSizeValue(measuredSize.width, widthSpec);
 
         if (offsetHorizontalAxis) {
@@ -147,7 +147,7 @@
             measuredSize.height = MAX(measuredSize.height, ownParams.height);
         }
 
-        measuredSize.height = MAX(measuredSize.height, ownSuggestedMinSize.height);
+        measuredSize.height = MAX(measuredSize.height, ownMinSize.height);
         measuredSize.height = GRXMeasureSpecResolveSizeValue(measuredSize.height, heightSpec);
 
         if (offsetVerticalAxis) {

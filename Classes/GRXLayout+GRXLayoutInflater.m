@@ -15,7 +15,7 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
 - (void)grx_configureFromDictionary:(NSDictionary *)dictionary {
     [super grx_configureFromDictionary:dictionary];
 
-    UIEdgeInsets padding;
+    UIEdgeInsets padding = UIEdgeInsetsZero;
 
     padding.left = [dictionary[@"paddingLeft"] floatValue];
     padding.right = [dictionary[@"paddingRight"] floatValue];
@@ -37,12 +37,7 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
     params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
     params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
 
-    CGSize minSize;
-    minSize.width = GRXLayoutSizeFromString(dictionary[@"minWidth"]);
-    minSize.height = GRXLayoutSizeFromString(dictionary[@"minHeight"]);
-    params.minSize = minSize;
-
-    UIEdgeInsets margins;
+    UIEdgeInsets margins = UIEdgeInsetsZero;
 
     CGFloat m = [dictionary[@"margin"] floatValue];
     if(m != 0) {
