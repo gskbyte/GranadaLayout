@@ -9,7 +9,6 @@
     "width" : "wrap_content",
     "height" : "wrap_content",
 
-    "padding" : "20",
 
     "debug_bgColor" : "white",
 
@@ -23,6 +22,32 @@
         "centerInParent" : "true",
 
         "debug_bgColor" : "red"
+      },
+
+      {
+        "id" : "rightOfAlignTop",
+        "class" : "UIView",
+        "width" : "30",
+        "height" : "140",
+        
+        "toRightOf" : "center",
+        "alignTop" : "center",
+
+        "debug_bgColor" : "yellow"
+      },
+
+      {
+        "id" : "belowAlignRight",
+        "class" : "UIView",
+        "width" : "150",
+        "height" : "40",
+        
+        "below" : "center",
+        "alignRight" : "center",
+
+        "marginTop" : "-10",
+
+        "debug_bgColor" : "orange"
       },
 
 

@@ -12,7 +12,7 @@
     }
 
     NSString *visibilityString = dictionary[@"visibility"];
-    if ( [visibilityString isEqualToString:@"invisible"] ) {
+    if ( [visibilityString isEqualToString:@"hidden"] ) {
         self.grx_visibility = GRXViewVisibilityHidden;
     } else if ( [visibilityString isEqualToString:@"gone"] ) {
         self.grx_visibility = GRXViewVisibilityGone;

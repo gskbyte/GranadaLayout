@@ -44,13 +44,12 @@
 
     FBSnapshotVerifyView(rootView, nil);
 }
-/*
+
 - (void) testAlignWrappedAroundCenter {
-    self.recordMode = YES;
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_around_center.grx"];
     [rootView layoutSubviews];
 
     FBSnapshotVerifyView(rootView, nil);
 }
-*/
+
 @end

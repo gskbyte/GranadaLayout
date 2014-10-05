@@ -136,7 +136,7 @@
                 GRXRelativeLayoutParams *params = subview.grx_relativeLayoutParams;
                 if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
                     [params hasParentRule:GRXRelativeLayoutParentRuleCenterHorizontal]) {
-                    centerHorizontal(params, subview.grx_measuredSize.width, ownWidth);
+                    centerHorizontal(params, subview.grx_measuredSize.width, measuredSize.width);
                 }
             }
         }
@@ -162,7 +162,7 @@
                 GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
                 if ([params hasParentRule:GRXRelativeLayoutParentRuleCenter] ||
                     [params hasParentRule:GRXRelativeLayoutParentRuleCenterVertical]) {
-                    centerVertical(params, view.grx_measuredSize.height, ownHeight);
+                    centerVertical(params, view.grx_measuredSize.height, measuredSize.height);
                 }
             }
         }

@@ -79,7 +79,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void)grx_setLayoutable:(BOOL)layoutable {
-    objc_setAssociatedObject(self, &GRXLayoutParamsKey, @(layoutable),
+    NSNumber * n = @(layoutable);
+    objc_setAssociatedObject(self, &GRXLayoutableKey, n,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
 }
@@ -266,9 +267,10 @@ const static char GRXLayoutDebugIDKey;
     }
 
     NSMutableString * subviews = [NSMutableString string];
-    for(UIView * v in self.subviews) {
-        [subviews appendString:[v descriptionWithIndentationLevel:level+1]];
-        //[subviews appendString:@"\n"];
+    if([self isKindOfClass:GRXLayout.class]) {
+        for(UIView * v in self.subviews) {
+            [subviews appendString:[v descriptionWithIndentationLevel:level+1]];
+        }
     }
 
     return [NSString stringWithFormat:@"%@"
@@ -278,7 +280,7 @@ const static char GRXLayoutDebugIDKey;
             "%@",
             (level==0?@"\n":@""),
             spaces, NSStringFromClass(self.class), self.grx_debugIdentifier,
-            spaces, self.top, self.left, self.width, self.height, self.grx_measuredSize.width, self.grx_measuredSize.height,
+            spaces, self.left, self.top, self.width, self.height, self.grx_measuredSize.width, self.grx_measuredSize.height,
             spaces, self.grx_layoutParams.debugDescription,
             subviews
             ];

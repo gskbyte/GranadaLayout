@@ -30,19 +30,12 @@
 }
 
 - (void)createViews {
-    UIImageView *image = [self.layoutInflater viewForIdentifier:@"image"];
-    image.image = [UIImage imageNamed:@"lab.png"];
-
-    UISwitch *sw = [self.layoutInflater viewForIdentifier:@"switch"];
-    sw.backgroundColor = [UIColor greenColor];
-
-    UIView *view = [self.layoutInflater viewForIdentifier:@"view"];
-    view.backgroundColor = [UIColor redColor];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"%@", self.view.description);
+    NSLog(@"%@", self.view.debugDescription);
 }
 
 @end

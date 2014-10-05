@@ -20,6 +20,7 @@
 
     _topLayout = [self initializeTopLayout];
     if (_topLayout != nil) {
+        _topLayout.clipsToBounds = YES;
         [self.view addSubview:_topLayout];
     }
     [self createViews];
@@ -35,7 +36,7 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.topLayout.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
+    self.topLayout.top = 200;
 }
 
 @end

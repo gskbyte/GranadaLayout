@@ -53,18 +53,39 @@
     expect(linear.subviews[1]).to.beInstanceOf(UIButton.class);
 }
 
-- (void)testParams {
-    GRXRelativeLayout *rootView = self.linearInRelative.rootView;
-    expect(rootView.grx_layoutParams.width).to.equal(GRXMatchParent);
-    expect(rootView.grx_layoutParams.height).to.equal(GRXMatchParent);
+- (void)testLayoutParams {
+    GRXRelativeLayout *relative = self.linearInRelative.rootView;
+    expect(relative.grx_layoutParams.width).to.equal(GRXMatchParent);
+    expect(relative.grx_layoutParams.height).to.equal(GRXMatchParent);
+    expect(relative.padding.left).to.equal(12);
+    expect(relative.padding.right).to.equal(8);
+    expect(relative.padding.top).to.equal(20);
+    expect(relative.padding.bottom).to.equal(8);
 
-    UIImageView *image = rootView.subviews[0];
+    UIImageView *image = relative.subviews[0];
     expect(image.grx_layoutParams.width).to.equal(60);
     expect(image.grx_layoutParams.height).to.equal(50);
+    expect(image.grx_layoutParams.margins.left).to.equal(20);
+    expect(image.grx_layoutParams.margins.right).to.equal(10);
+    expect(image.grx_layoutParams.margins.top).to.equal(10);
+    expect(image.grx_layoutParams.margins.bottom).to.equal(10);
 
-    GRXLinearLayout *linear = rootView.subviews[2];
+    GRXLinearLayout *linear = relative.subviews[2];
     expect(linear.grx_layoutParams.width).to.equal(GRXMatchParent);
     expect(linear.grx_layoutParams.height).to.equal(GRXWrapContent);
+}
+
+- (void)testViewProperties {
+    UIView * sw = [self.linearInRelative viewForIdentifier:@"switch"];
+    expect(sw.grx_visibility).to.equal(GRXViewVisibilityGone);
+
+    UIView * button = [self.linearInRelative viewForIdentifier:@"button"];
+    expect(button.grx_visibility).to.equal(GRXViewVisibilityHidden);
+
+    UILabel * label = [self.linearInRelative viewForIdentifier:@"label"];
+    expect(label.grx_visibility).to.equal(GRXViewVisibilityVisible);
+    expect(label.grx_minSize.width).to.equal(200);
+    expect(label.grx_minSize.height).to.equal(50);
 }
 
 - (void)testViewByIdentifier {
@@ -87,7 +108,6 @@
     expect(button).notTo.beNil();
     expect(button.superview).to.beIdenticalTo(linear);
     expect(button).to.beInstanceOf(UIButton.class);
-
 }
 
 @end

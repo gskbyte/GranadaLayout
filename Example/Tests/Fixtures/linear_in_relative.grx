@@ -9,23 +9,33 @@
     "width" : "match_parent",
     "height" : "match_parent",
 
+    "padding" : "8",
+    "paddingLeft" : "12",
+    "paddingTop" : "20",
+
     "subviews" : [
       {
         "class" : "UIImageView",
         "id" : "image",
         "width" : "60",
         "height" : "50",
+
+        "margin" : "10",
+        "marginLeft" : "20",
         
         "alignParentRight" : "true",
         "alignParentBottom" : "true"
       },
       {
          "class" : "UISwitch",
+         "id" : "switch",
          "width" : "wrap_content",
          "height" : "wrap_content",
 
          "above" : "image",
          "toLeftOf" : "image",
+
+         "visibility" : "gone",
       },
       {
         "class" : "GRXLinearLayout",
@@ -41,12 +51,17 @@
             "id" : "label",
             "width" : "wrap_content",
             "height" : "wrap_content",
+
+            "minWidth" : "200",
+            "minHeight" : 50,
           },
           {
             "class" : "UIButton",
             "id" : "button",
             "width" : "wrap_content",
             "height" : "wrap_content",
+
+            "visibility" : "hidden",
           },
         ]
       }
