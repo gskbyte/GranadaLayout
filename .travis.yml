@@ -1,4 +1,4 @@
 language: objective-c
-before_install: rake bootstrap
+before_install: rake bootstrap; slather setup Example/Example.xcodeproj
 script: rake spec
 after_success: bundle exec slather coverage -s Example/Example.xcodeproj
