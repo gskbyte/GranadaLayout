@@ -9,6 +9,8 @@
     "width" : "wrap_content",
     "height" : "wrap_content",
 
+    "padding" : "10",
+
     "debug_bgColor" : "white",
 
     "subviews" : [

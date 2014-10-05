@@ -16,11 +16,27 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
     [super grx_configureFromDictionary:dictionary];
 
     UIEdgeInsets padding = UIEdgeInsetsZero;
+    CGFloat p = [dictionary[@"padding"] floatValue];
+    if(p != 0) {
+        padding = UIEdgeInsetsMake(p, p, p, p);
+    }
 
-    padding.left = [dictionary[@"paddingLeft"] floatValue];
-    padding.right = [dictionary[@"paddingRight"] floatValue];
-    padding.top = [dictionary[@"paddingTop"] floatValue];
-    padding.bottom = [dictionary[@"paddingBottom"] floatValue];
+    p = [dictionary[@"paddingLeft"] floatValue];
+    if(p != 0) {
+        padding.left = p;
+    }
+    p = [dictionary[@"paddingRight"] floatValue];
+    if(p != 0) {
+        padding.right = p;
+    }
+    p = [dictionary[@"paddingTop"] floatValue];
+    if(p != 0) {
+        padding.top = p;
+    }
+    p = [dictionary[@"paddingBottom"] floatValue];
+    if(p != 0) {
+        padding.bottom = p;
+    }
 
     self.padding = padding;
 }
