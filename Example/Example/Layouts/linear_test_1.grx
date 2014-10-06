@@ -3,8 +3,8 @@
  	
 	"layout" : {
 		"class" : "GRXLinearLayout",
-		"width" : "wrap_content",
-		"height" : "wrap_content",
+		"width" : "match_parent",
+		"height" : "match_parent",
 
 		"direction" : "vertical",
 		"debug_bgColor" : "white",
@@ -14,15 +14,33 @@
 				"class" : "UISwitch",
 				"id" : "switch",
 				"debug_bgColor" : "red",
+				"gravity" : "end"
 			},
 			{
 				"class" : "UIImageView",
 				"id" : "image",
+				"width" : "wrap_content",
+				"height" : "wrap_content",
+
+				"debug_bgColor" : "blue",
+				"gravity" : "center"
+			},
+			{
+				"class" : "UIView",
+				"id" : "red",
+				"width" : "match_parent",
+				"height" : "100",
+
+				"debug_bgColor" : "red",
+			},
+			{
+				"class" : "UIView",
+				"id" : "red",
 				"width" : "120",
 				"height" : "120",
 
 				"debug_bgColor" : "blue",
-
+				"gravity" : "end"
 			}
 		]
 

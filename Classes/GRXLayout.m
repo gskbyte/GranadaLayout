@@ -81,12 +81,16 @@
 
         if (ownParams.width == 0 || ownParams.width == GRXWrapContent) {
             wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
-        } else { // match_parent or exact size
+        } else if(ownParams.width == GRXMatchParent) {
+            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecExactly);
+        } else { // exact size
             wspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
         }
 
         if (ownParams.height == 0 || ownParams.height == GRXWrapContent) {
             hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
+        } else if(ownParams.height == GRXMatchParent) {
+            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecExactly);
         } else {
             hspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
         }

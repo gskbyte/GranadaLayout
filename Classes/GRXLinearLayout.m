@@ -293,101 +293,42 @@
 }
 
 - (void)layoutSubviewsVertical {
-    // TODO just iterate over views and set frames taking care of paddings and margins
-
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go
-    const CGFloat width = self.grx_measuredSize.width;
-    CGFloat childRight = width - self.padding.right;
+    const CGFloat ownWidth = self.grx_measuredSize.width;
 
     // Space available for child
-    CGFloat childSpace = width - self.padding.left - self.padding.right;
-/*
-    final int majorGravity = mGravity & Gravity.VERTICAL_GRAVITY_MASK;
-    final int minorGravity = mGravity & Gravity.HORIZONTAL_GRAVITY_MASK;
+    CGFloat availableWidth = ownWidth - self.padding.left - self.padding.right;
 
-    if (majorGravity != Gravity.TOP) {
-        switch (majorGravity) {
-            case Gravity.BOTTOM:
-                // mTotalLength contains the padding already, we add the top
-                // padding to compensate
-                childTop = mBottom - mTop + mPaddingTop - mTotalLength;
-                break;
-
-            case Gravity.CENTER_VERTICAL:
-                childTop += ((mBottom - mTop)  - mTotalLength) / 2;
-                break;
-        }
-
-    }
- */
-    /*
-       for (UIView *view in self.subviews) {
-        if(view.grx_visibility == GRXViewVisibilityGone) {
+    for (UIView *subview in self.subviews) {
+        if(subview.grx_visibility == GRXViewVisibilityGone) {
+            subview.frame = CGRectZero;
             continue;
         }
 
-        CGSize childSize = view.grx_measuredSize;
-        GRXLinearLayoutParams * lp = view.grx_linearLayoutParams;
+        CGSize subviewSize = subview.grx_measuredSize;
+        subview.size = subviewSize;
 
-        switch (lp.gravity) {
+        GRXLinearLayoutParams * params = subview.grx_linearLayoutParams;
+
+        switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                view.origin = pos;
+                subview.origin = childPos;
                 break;
             case GRXLinearLayoutGravityCenter:
-                if (self.direction == GRXLinearLayoutDirectionHorizontal) {
-                    view.origin = CGPointMake(pos.x,
-                                              params.margins.top + (self.height - viewSize.height) / 2);
-                } else {
-                    view.origin = CGPointMake(params.margins.left + (self.width - viewSize.width) / 2,
-                                              pos.y);
-                }
+                subview.origin = CGPointMake(params.margins.left + (self.width - subviewSize.width) / 2,
+                                                childPos.y);
                 break;
             case GRXLinearLayoutGravityEnd:
-                if (self.direction == GRXLinearLayoutDirectionHorizontal) {
-                    view.left = pos.x;
-                    view.bottom = availableSize.height;
-                } else {
-                    view.right = availableSize.width;
-                    view.top = pos.y;
-                }
+                subview.right = availableWidth;
+
+                subview.top = childPos.y;
                 break;
         }
-
-
-       /*
-            int gravity = lp.gravity;
-            if (gravity < 0) {
-                gravity = minorGravity;
-            }
-
-            switch (gravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
-                case Gravity.LEFT:
-                    childLeft = paddingLeft + lp.leftMargin;
-                    break;
-
-                case Gravity.CENTER_HORIZONTAL:
-                    childLeft = paddingLeft + ((childSpace - childWidth) / 2)
-     + lp.leftMargin - lp.rightMargin;
-                    break;
-
-                case Gravity.RIGHT:
-                    childLeft = childRight - childWidth - lp.rightMargin;
-                    break;
-            }
-
-
-            childTop += lp.topMargin;
-            setChildFrame(child, childLeft, childTop + getLocationOffset(child),
-                          childWidth, childHeight);
-            childTop += childHeight + lp.bottomMargin + getNextLocationOffset(child);
-
-            i += getChildrenSkipCount(child, i);
-        }
-       }
-     */
+        childPos.y += subview.height;
+    }
 }
 
 - (void)layoutSubviewsHorizontal {

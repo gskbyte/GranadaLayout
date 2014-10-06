@@ -3,6 +3,8 @@
 @implementation GRXLinearLayout (GRXLayoutInflater)
 
 - (void)grx_configureFromDictionary:(NSDictionary *)dictionary {
+    [super grx_configureFromDictionary:dictionary];
+
     NSString *directionStr = dictionary[@"direction"];
     if ([directionStr isEqualToString:@"horizontal"]) {
         self.direction = GRXLinearLayoutDirectionHorizontal;
@@ -38,20 +40,19 @@ static NSDictionary *Gravities;
         [self.class initializeGravities];
     });
 
-    GRXLinearLayoutParams *p = (GRXLinearLayoutParams *)params;
+    GRXLinearLayoutParams *lp = (GRXLinearLayoutParams *)params;
 
     for (NSString *key in Gravities.allKeys) {
-        NSString *value = dict[key];
-        if (value == nil) {
-            continue;
+        NSString *value = dict[@"gravity"];
+        if ([value isEqualToString:key]) {
+            lp.gravity = [Gravities[key] integerValue];
+            break;
         }
-
-        p.gravity = [value integerValue];
     }
 
     NSString *weightValue = dict[@"weight"];
     if (weightValue != nil) {
-        p.weight = [weightValue floatValue];
+        lp.weight = [weightValue floatValue];
     }
 }
 

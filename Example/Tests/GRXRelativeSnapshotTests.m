@@ -37,14 +37,14 @@
 
     FBSnapshotVerifyView(rootView, nil);
 }
-
+/*
 - (void) testAlignWrappedPush {
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_push.grx"];
     [rootView layoutSubviews];
 
     FBSnapshotVerifyView(rootView, nil);
 }
-
+*/
 - (void) testAlignWrappedAroundCenter {
     UIView * rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_around_center.grx"];
     [rootView layoutSubviews];
