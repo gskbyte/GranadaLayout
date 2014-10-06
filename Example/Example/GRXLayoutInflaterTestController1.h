@@ -1,5 +1,5 @@
-#import "GRXTestViewController.h"
+#import "GRXBaseInflationTestController.h"
 
-@interface GRXLayoutInflaterTestController1 : GRXTestViewController
+@interface GRXLayoutInflaterTestController1 : GRXBaseInflationTestController
 
 @end

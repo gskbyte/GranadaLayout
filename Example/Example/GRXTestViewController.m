@@ -36,7 +36,7 @@
 
 - (void)viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
-    self.topLayout.top = 200;
+    self.topLayout.top = 64;
 }
 
 @end

@@ -64,7 +64,7 @@
     BOOL allFillParent = YES;
     float totalWeight = 0;
 
-    BOOL matchWidth = YES;
+    BOOL matchWidth = NO;
 
     // See how tall everyone is. Also remember max width.
     for (UIView *child in self.subviews) {
@@ -81,7 +81,7 @@
             // there is any leftover space.
             self.totalLength += lp.margins.top + lp.margins.bottom;
         } else {
-            CGFloat oldHeight = CGFLOAT_MIN;
+            CGFloat oldHeight = -CGFLOAT_MAX;
 
             if (lp.height == 0 && lp.weight > 0) {
                 // heightMode is either UNSPECIFIED OR AT_MOST, and this child
@@ -95,13 +95,14 @@
             // previous children have given a weight, then we allow it to
             // use all available space (and we will shrink things later
             // if needed).
+            CGFloat totalHeight = (totalWeight==0)?self.totalLength:0;
             [self measureChildBeforeLayout:child
                                  widthSpec:widthSpec
                                 totalWidth:0
                                 heightSpec:heightSpec
-                               totalHeight:totalWeight == 0 ? self.totalLength:0];
+                               totalHeight:totalHeight];
 
-            if (oldHeight != CGFLOAT_MIN) {
+            if (oldHeight != -CGFLOAT_MAX) {
                 lp.height = oldHeight;
             }
 
@@ -285,13 +286,15 @@
     [super layoutSubviews];
 
     if (self.direction == GRXLinearLayoutDirectionVertical) {
-        return [self layoutVertical];
+        return [self layoutSubviewsVertical];
     } else {
-        return [self layoutHorizontal];
+        return [self layoutSubviewsHorizontal];
     }
 }
 
-- (void)layoutVertical {
+- (void)layoutSubviewsVertical {
+    // TODO just iterate over views and set frames taking care of paddings and margins
+
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go
@@ -387,7 +390,8 @@
      */
 }
 
-- (void)layoutHorizontal {
+- (void)layoutSubviewsHorizontal {
+    // TODO just iterate over views and set frames taking care of paddings and margins
 }
 
 @end

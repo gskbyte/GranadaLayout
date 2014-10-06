@@ -1,0 +1,30 @@
+{
+	"version" : "0.1",
+ 	
+	"layout" : {
+		"class" : "GRXLinearLayout",
+		"width" : "wrap_content",
+		"height" : "wrap_content",
+
+		"direction" : "vertical",
+		"debug_bgColor" : "white",
+
+		"subviews" : [
+			{
+				"class" : "UISwitch",
+				"id" : "switch",
+				"debug_bgColor" : "red",
+			},
+			{
+				"class" : "UIImageView",
+				"id" : "image",
+				"width" : "120",
+				"height" : "120",
+
+				"debug_bgColor" : "blue",
+
+			}
+		]
+
+	}
+}

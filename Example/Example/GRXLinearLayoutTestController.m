@@ -70,4 +70,9 @@
     sw.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    NSLog(@"%@", self.topLayout.debugDescription);
+}
+
 @end

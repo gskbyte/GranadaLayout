@@ -168,9 +168,14 @@
         }
     }
 
+    // Final step: set calculated frames to subviews
     for (UIView *view in self.subviews) {
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
-        view.frame = params.rect;
+        if(view.grx_visibility != GRXViewVisibilityGone) {
+            view.frame = params.rect;
+        } else {
+            view.frame = CGRectZero;
+        }
     }
 
     return measuredSize;
