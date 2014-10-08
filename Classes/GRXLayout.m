@@ -1,4 +1,4 @@
-#import "GRXLayout_Protected.h"
+#import "GRXLayout.h"
 #import "GRXLayoutParams.h"
 #import <objc/runtime.h>
 
@@ -25,19 +25,19 @@
 }
 
 - (void)addSubview:(UIView *)view {
-    if (view.grx_layoutParams == nil) {
-        view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
+    if (view.grx_layoutParams != nil) {
+        [super addSubview:view];
+    } else {
+        GRXLayoutParams * params = [[self.class.layoutParamsClass alloc] init];
+        [self addSubview:view layoutParams:params];
     }
-    _dirtyHierarchy = YES;
-    [super addSubview:view];
 }
 
 - (void)addSubview:(UIView *)view
       layoutParams:(GRXLayoutParams *)layoutParams {
-    NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
+    NSAssert([layoutParams isKindOfClass:self.class.layoutParamsClass],
              @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
     view.grx_layoutParams = layoutParams;
-    _dirtyHierarchy = YES;
     [self addSubview:view];
 }
 
@@ -57,9 +57,8 @@
 
 - (void)setNeedsLayout {
     [super setNeedsLayout];
-    _dirtyHierarchy = YES;
+    [self grx_invalidateMeasuredSize];
 }
-
 
 // This is how the whole layout system works
 // By default, layout views don't do anything when -layoutSubviews is called
@@ -108,14 +107,6 @@
     // TODO implement me!
     NSAssert(NO, @"Having layouts inside layouts is not yet supported");
     return CGSizeZero;
-}
-
-- (void)setHierarchyDirty {
-    _dirtyHierarchy = YES;
-}
-
-- (void)setHierarchyClean {
-    _dirtyHierarchy = NO;
 }
 
 @end

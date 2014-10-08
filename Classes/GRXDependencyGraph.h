@@ -11,7 +11,7 @@
 @end
 
 
-@interface GRXDependencyNode : NSObject <NSCopying>
+@interface GRXDependencyNode : NSObject
 
 @property (nonatomic) UIView *view;
 @property (nonatomic) NSMutableArray *dependents;

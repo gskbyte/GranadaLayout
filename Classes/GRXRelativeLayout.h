@@ -3,4 +3,6 @@
 
 @interface GRXRelativeLayout : GRXLayout
 
+@property (nonatomic, getter = isHierarchyDirty) BOOL dirtyHierarchy;
+
 @end

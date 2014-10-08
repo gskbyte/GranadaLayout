@@ -62,9 +62,11 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void)grx_setLayoutParams:(GRXLayoutParams *)layoutParams {
-    GRXLayoutParams * copy = layoutParams.copy;
-    [copy setView:self];
-    objc_setAssociatedObject(self, &GRXLayoutParamsKey, copy,
+    if(layoutParams.view != nil) {
+        layoutParams = layoutParams.copy;
+    }
+    [layoutParams setView:self];
+    objc_setAssociatedObject(self, &GRXLayoutParamsKey, layoutParams,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     [self grx_setNeedsLayoutInParent];
 }

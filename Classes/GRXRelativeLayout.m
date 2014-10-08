@@ -1,5 +1,4 @@
 #import "GRXRelativeLayout.h"
-#import "GRXLayout_Protected.h"
 #import "GRXDependencyGraph.h"
 #import "GRXLayout+Protected.h"
 
@@ -14,6 +13,25 @@
 
 + (Class)layoutParamsClass {
     return GRXRelativeLayoutParams.class;
+}
+
+- (void)setDirtyHierarchy:(BOOL)dirtyHierarchy {
+    _dirtyHierarchy = dirtyHierarchy;
+    if(dirtyHierarchy) {
+        [self grx_invalidateMeasuredSize];
+    }
+}
+
+#pragma mark - Overriden methods
+
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    self.dirtyHierarchy = YES;
+}
+
+- (void)willRemoveSubview:(UIView *)subview {
+    [super willRemoveSubview:subview];
+    self.dirtyHierarchy = YES;
 }
 
 #pragma mark - Initializiation
@@ -48,7 +66,7 @@
                        heightSpec:(GRXMeasureSpec)heightSpec {
     if (self.isHierarchyDirty) {
         [self sortSubviews];
-        [self setHierarchyClean];
+        self.dirtyHierarchy = NO;
     }
 
     CGFloat ownWidth = -1, ownHeight = -1;

@@ -16,7 +16,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
 @interface UIView (GRXLayout)
 
 @property (nonatomic, setter=grx_setMinSize:) CGSize grx_minSize;
-@property (nonatomic, copy, setter = grx_setLayoutParams:) GRXLayoutParams * grx_layoutParams;
+@property (nonatomic, setter = grx_setLayoutParams:) GRXLayoutParams * grx_layoutParams;
 @property (nonatomic, setter = grx_setVisibility:) GRXViewVisibility grx_visibility;
 
 @property (nonatomic, readonly) CGSize grx_measuredSize;

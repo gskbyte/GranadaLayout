@@ -3,10 +3,9 @@
 
 static NSNumber *NoNumber = nil;
 
-@interface GRXRelativeLayoutParams ()
-
-@property (nonatomic) NSMutableArray *mutableRules;
-@property (nonatomic) NSMutableArray *mutableParentRules;
+@interface GRXRelativeLayoutParams () {
+    NSMutableArray * _mutableRules, * _mutableParentRules;
+}
 
 @end
 
@@ -114,19 +113,11 @@ static NSNumber *NoNumber = nil;
     GRXRelativeLayoutParams *copy = [super copyWithZone:zone];
     [copy->_mutableRules setArray:_mutableRules];
     [copy->_mutableParentRules setArray:_mutableParentRules];
+    copy->_top = _top;
+    copy->_left = _left;
+    copy->_bottom = _bottom;
+    copy->_right = _right;
     return copy;
-}
-
-+ (void)grx_debugPointerArray:(NSPointerArray *)pa {
-    NSMutableString *desc = [NSMutableString stringWithString:@""];
-    for (id pointer in pa) {
-        if (pointer == nil) {
-            [desc appendString:@"NULL, "];
-        } else {
-            [desc appendFormat:@"%@, ", [pointer description]];
-        }
-    }
-    NSLog(@"Pointer array(%d): %@", pa.count, desc);
 }
 
 #pragma mark - protected methods

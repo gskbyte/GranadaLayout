@@ -138,6 +138,7 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
         self.message = [inflater viewForIdentifier:@"message"];
 
         [self.contentView addSubview:self.root];
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }

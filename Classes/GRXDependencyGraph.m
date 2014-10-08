@@ -1,9 +1,9 @@
 #import "GRXDependencyGraph.h"
 #import "UIView+GRXLayout.h"
 
-@interface GRXDependencyGraph ()
-
-@property (nonatomic) NSMutableArray *roots;
+@interface GRXDependencyGraph () {
+    NSMutableArray * _roots;
+}
 
 @end
 
@@ -130,19 +130,5 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
         [GRXDependencyNodePool addObject:self];
     }
 }
-
-- (id)copyWithZone:(NSZone *)zone {
-    GRXDependencyNode *node = [GRXDependencyNode nodeForView:_view];
-    [node.dependencies setDictionary:_dependencies];
-    [node.dependents setArray:_dependents];
-    return node;
-}
-
-#ifdef DEBUG
-- (NSString *)description {
-    return self.debugIdentifier;
-}
-#endif
-
 
 @end
