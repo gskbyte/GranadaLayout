@@ -20,7 +20,6 @@
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_parent.grx"];
     [rootView layoutSubviews];
 
-    NSLog(@"%@", rootView.description);
     FBSnapshotVerifyView(rootView, nil);
 }
 
@@ -72,7 +71,6 @@
 
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
-
 
     FBSnapshotVerifyView(rootView, nil);
 }

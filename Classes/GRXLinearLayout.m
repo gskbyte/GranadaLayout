@@ -1,5 +1,6 @@
 #import "GRXLinearLayout.h"
 #import "GRXLayout+Protected.h"
+#import "UIView+Frame.h"
 
 @interface GRXLinearLayout ()
 
@@ -458,18 +459,6 @@
 }
 
 - (void)layoutSubviewsVertical {
-    //
-    //
-    //
-    //  TODO CHECK MARGINS!!!!
-    //
-    //
-    //
-    //
-    //
-
-
-
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go
@@ -492,33 +481,23 @@
         switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                subview.origin = childPos;
+                subview.left = childPos.x + params.margins.left;
+                subview.top = childPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityCenter:
-                subview.origin = CGPointMake(params.margins.left + (self.width - subviewSize.width) / 2,
-                                             childPos.y);
+                subview.left = (self.width - subviewSize.width) / 2; // margin already substracted
+                subview.top = childPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityEnd:
-                subview.right = availableWidth;
-
-                subview.top = childPos.y;
+                subview.right = availableWidth - params.margins.right;
+                subview.top = childPos.y + params.margins.top;
                 break;
         }
-        childPos.y += subview.height;
+        childPos.y += subview.height + params.margins.top + params.margins.bottom;
     }
 }
 
 - (void)layoutSubviewsHorizontal {
-    //
-    //
-    //
-    //  TODO CHECK MARGINS!!!!
-    //
-    //
-    //
-    //
-    //
-
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go
@@ -540,18 +519,19 @@
         switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                subview.origin = childPos;
+                subview.left = childPos.x + params.margins.left;
+                subview.top = childPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityCenter:
-                subview.origin = CGPointMake(childPos.x,
-                                             params.margins.top + (self.height - subviewSize.height) / 2);
+                subview.left = childPos.x + params.margins.left;
+                subview.top = (self.height - subviewSize.height) / 2; // margin already substracted in size
                 break;
             case GRXLinearLayoutGravityEnd:
-                subview.left = childPos.x;
-                subview.bottom = availableHeight;
+                subview.left = childPos.x + params.margins.left;
+                subview.bottom = availableHeight - params.margins.bottom;
                 break;
         }
-        childPos.x += subview.width;
+        childPos.x += subview.width + params.margins.left + params.margins.right;
     }
 }
 

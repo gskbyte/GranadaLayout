@@ -12,7 +12,6 @@
 
 @implementation GRXLinearLayoutUnitTests
 
-
 - (void)testRootLinear {
     GRXLinearLayout *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"linear_root.grx"];
     expect(rootView).notTo.beNil();
