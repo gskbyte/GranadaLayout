@@ -4,7 +4,7 @@
 	"layout" : {
 		"class" : "GRXLinearLayout",
 		"width" : "match_parent",
-		"height" : "match_parent",
+		"height" : "400",
 
 		"direction" : "vertical",
 		"debug_bgColor" : "white",

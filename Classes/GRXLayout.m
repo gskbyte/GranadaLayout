@@ -92,7 +92,7 @@
         } else if (ownParams.height == GRXMatchParent) {
             hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecExactly);
         } else {
-            hspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
+            hspec = GRXMeasureSpecMake(ownParams.height, GRXMeasureSpecExactly);
         }
 
         self.size = [self grx_measuredSizeForWidthSpec:wspec

@@ -15,7 +15,6 @@
 		C053E0FE19E159C200336D7F /* relative_wrapped_around_center.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E0FD19E159C200336D7F /* relative_wrapped_around_center.grx */; };
 		C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */; };
 		C053E10319E1B54100336D7F /* linear_test_1.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E10219E1B54100336D7F /* linear_test_1.grx */; };
-		C053E10619E1B5FF00336D7F /* GRXLinearTestController1.m in Sources */ = {isa = PBXBuildFile; fileRef = C053E10519E1B5FF00336D7F /* GRXLinearTestController1.m */; };
 		C05BFA2C19DEAAA000C8FF34 /* empty.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2819DEAAA000C8FF34 /* empty.grx */; };
 		C05BFA2D19DEAAA000C8FF34 /* linear_root.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2919DEAAA000C8FF34 /* linear_root.grx */; };
 		C05BFA2E19DEAAA000C8FF34 /* no_layout_root.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2A19DEAAA000C8FF34 /* no_layout_root.grx */; };
@@ -33,7 +32,7 @@
 		C09F224C19DC5A390069C0A1 /* lab.png in Resources */ = {isa = PBXBuildFile; fileRef = C09F223719DC5A390069C0A1 /* lab.png */; };
 		C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */; };
 		C09F224E19DC5A390069C0A1 /* GRXLabelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223B19DC5A390069C0A1 /* GRXLabelTestViewController.m */; };
-		C09F224F19DC5A390069C0A1 /* GRXLinearLayoutTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223D19DC5A390069C0A1 /* GRXLinearLayoutTestController.m */; };
+		C09F224F19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */; };
 		C09F225019DC5A390069C0A1 /* GRXRelativeLayoutTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */; };
 		C09F225119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m */; };
 		C09F225219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224319DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m */; };
@@ -79,8 +78,6 @@
 		C053E0FF19E1AB7600336D7F /* GRXBaseInflationTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXBaseInflationTestController.h; sourceTree = "<group>"; };
 		C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXBaseInflationTestController.m; sourceTree = "<group>"; };
 		C053E10219E1B54100336D7F /* linear_test_1.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_test_1.grx; sourceTree = "<group>"; };
-		C053E10419E1B5FF00336D7F /* GRXLinearTestController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLinearTestController1.h; sourceTree = "<group>"; };
-		C053E10519E1B5FF00336D7F /* GRXLinearTestController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearTestController1.m; sourceTree = "<group>"; };
 		C05BFA2819DEAAA000C8FF34 /* empty.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty.grx; sourceTree = "<group>"; };
 		C05BFA2919DEAAA000C8FF34 /* linear_root.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_root.grx; sourceTree = "<group>"; };
 		C05BFA2A19DEAAA000C8FF34 /* no_layout_root.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = no_layout_root.grx; sourceTree = "<group>"; };
@@ -106,8 +103,8 @@
 		C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXAppDelegate.m; sourceTree = "<group>"; };
 		C09F223A19DC5A390069C0A1 /* GRXLabelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLabelTestViewController.h; sourceTree = "<group>"; };
 		C09F223B19DC5A390069C0A1 /* GRXLabelTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLabelTestViewController.m; sourceTree = "<group>"; };
-		C09F223C19DC5A390069C0A1 /* GRXLinearLayoutTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLinearLayoutTestController.h; sourceTree = "<group>"; };
-		C09F223D19DC5A390069C0A1 /* GRXLinearLayoutTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearLayoutTestController.m; sourceTree = "<group>"; };
+		C09F223C19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLinearLayoutVerticalTestController.h; sourceTree = "<group>"; };
+		C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearLayoutVerticalTestController.m; sourceTree = "<group>"; };
 		C09F223E19DC5A390069C0A1 /* GRXRelativeLayoutTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController.h; sourceTree = "<group>"; };
 		C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController.m; sourceTree = "<group>"; };
 		C09F224019DC5A390069C0A1 /* GRXRelativeLayoutTestController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController2.h; sourceTree = "<group>"; };
@@ -230,16 +227,14 @@
 				C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */,
 				C05BFA4319DF0F9F00C8FF34 /* GRXTestAppDelegate.h */,
 				C05BFA4419DF0F9F00C8FF34 /* GRXTestAppDelegate.m */,
-				C053E10419E1B5FF00336D7F /* GRXLinearTestController1.h */,
-				C053E10519E1B5FF00336D7F /* GRXLinearTestController1.m */,
 				C09F224819DC5A390069C0A1 /* GRXTextViewTestViewController.h */,
 				C09F224919DC5A390069C0A1 /* GRXTextViewTestViewController.m */,
 				C09F224A19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.h */,
 				C09F224B19DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m */,
 				C09F223A19DC5A390069C0A1 /* GRXLabelTestViewController.h */,
 				C09F223B19DC5A390069C0A1 /* GRXLabelTestViewController.m */,
-				C09F223C19DC5A390069C0A1 /* GRXLinearLayoutTestController.h */,
-				C09F223D19DC5A390069C0A1 /* GRXLinearLayoutTestController.m */,
+				C09F223C19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.h */,
+				C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */,
 				C09F223E19DC5A390069C0A1 /* GRXRelativeLayoutTestController.h */,
 				C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */,
 				C09F224019DC5A390069C0A1 /* GRXRelativeLayoutTestController2.h */,
@@ -485,7 +480,7 @@
 			files = (
 				C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */,
 				C09F225419DC5A390069C0A1 /* GRXTopLayoutTestViewController.m in Sources */,
-				C09F224F19DC5A390069C0A1 /* GRXLinearLayoutTestController.m in Sources */,
+				C09F224F19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m in Sources */,
 				C09F224E19DC5A390069C0A1 /* GRXLabelTestViewController.m in Sources */,
 				C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */,
 				C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */,
@@ -498,7 +493,6 @@
 				C09F225219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m in Sources */,
 				C09F225519DC5A390069C0A1 /* GRXTextViewTestViewController.m in Sources */,
 				C09F225019DC5A390069C0A1 /* GRXRelativeLayoutTestController.m in Sources */,
-				C053E10619E1B5FF00336D7F /* GRXLinearTestController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

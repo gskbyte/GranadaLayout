@@ -80,8 +80,8 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@""
-            "%@",
-            NSStringFromClass(self.class)
+            "%@[%.0f,%.0f]",
+            NSStringFromClass(self.class), self.width, self.height
     ];
 }
 
