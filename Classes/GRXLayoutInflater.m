@@ -34,6 +34,12 @@
     return [self initWithData:data];
 }
 
+- (instancetype)initWithFile:(NSString *)filename fromBundle:(NSBundle *)bundle {
+    NSString *path = [bundle pathForResource:filename ofType:nil];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    return [self initWithData:data];
+}
+
 - (BOOL)parseJSON:(id)JSON {
     NSDictionary *root = JSON;
     NSAssert([root isKindOfClass:NSDictionary.class],

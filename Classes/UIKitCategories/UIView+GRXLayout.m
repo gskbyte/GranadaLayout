@@ -131,20 +131,22 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 - (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
                              heightSpec:(GRXMeasureSpec)heightSpec {
     NSValue * measuredSpecValue = objc_getAssociatedObject(self, &GRXMeasuredSizeSpecKey);
-    GRXFullMeasureSpec fullMeasuredSpec;
-    [measuredSpecValue getValue:&fullMeasuredSpec];
 
-    if(GRXMeasureSpecsEqual(widthSpec, fullMeasuredSpec.width) &&
-       GRXMeasureSpecsEqual(heightSpec, fullMeasuredSpec.height)) {
-        return [self grx_measuredSize];
-    } else {
-        CGSize measuredSize = [self grx_measureForWidthSpec:widthSpec
-                                                 heightSpec:heightSpec];
-        [self grx_setMeasuredSize:measuredSize
-                     forWidthSpec:widthSpec
-                       heightSpec:heightSpec];
-        return measuredSize;
+    if(measuredSpecValue != nil) {
+        GRXFullMeasureSpec fullMeasuredSpec;
+        [measuredSpecValue getValue:&fullMeasuredSpec];
+        if(GRXMeasureSpecsEqual(widthSpec, fullMeasuredSpec.width) &&
+           GRXMeasureSpecsEqual(heightSpec, fullMeasuredSpec.height)) {
+            return [self grx_measuredSize];
+        }
     }
+
+    CGSize measuredSize = [self grx_measureForWidthSpec:widthSpec
+                                             heightSpec:heightSpec];
+    [self grx_setMeasuredSize:measuredSize
+                 forWidthSpec:widthSpec
+                   heightSpec:heightSpec];
+    return measuredSize;
 }
 
 - (void) grx_invalidateMeasuredSize {

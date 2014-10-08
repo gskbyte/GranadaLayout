@@ -19,6 +19,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
+        self.ignoreNonLayoutParentSize = YES;
     }
     return self;
 }
@@ -69,7 +70,7 @@
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
         // Take parent size to see how big I can be, if I'm root, take the whole display
         CGSize parentSize;
-        if (self.superview != nil) {
+        if (NO == self.ignoreNonLayoutParentSize && self.superview.width>0 && self.superview.height>0) {
             parentSize = self.superview.size;
             // TODO case for UIScrollView ? (would be infinite size?)
         } else {

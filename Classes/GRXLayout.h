@@ -7,6 +7,10 @@
 @property (nonatomic) UIEdgeInsets padding;
 @property (nonatomic, getter = isHierarchyDirty) BOOL dirtyHierarchy;
 
+// This property specifies if this layout must take into account the parent's size
+// when it is going to be measured ONLY IF the parent is not an instance of GRXLayout
+@property (nonatomic) BOOL ignoreNonLayoutParentSize; // YES by default
+
 + (Class)layoutParamsClass;
 
 - (instancetype)init;

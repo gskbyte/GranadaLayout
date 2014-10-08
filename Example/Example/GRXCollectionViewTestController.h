@@ -1,5 +1,5 @@
 #import "GRXTopLayoutTestViewController.h"
 
-@interface GRXCollectionViewTestController : GRXTopLayoutTestViewController
+@interface GRXCollectionViewTestController : UICollectionViewController
 
 @end
