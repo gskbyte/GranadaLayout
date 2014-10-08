@@ -1,14 +1,10 @@
-#import "GRXTestViewController.h"
+#import "GRXTopLayoutTestViewController.h"
 #import "GRXLayout.h"
 
-@implementation GRXTestViewController
+@implementation GRXTopLayoutTestViewController
 
 + (NSString *)selectionTitle {
-    return NSStringFromClass(self.class);
-}
-
-+ (NSString *)selectionDetail {
-    return @"";
+    return nil;
 }
 
 - (void)viewDidLoad {

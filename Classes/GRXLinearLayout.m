@@ -293,6 +293,18 @@
 }
 
 - (void)layoutSubviewsVertical {
+    //
+    //
+    //
+    //  TODO CHECK MARGINS!!!!
+    //
+    //
+    //
+    //
+    //
+
+
+
     CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
 
     // Where right end of child should go

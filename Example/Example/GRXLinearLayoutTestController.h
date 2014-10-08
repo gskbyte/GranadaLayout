@@ -1,5 +1,5 @@
-#import "GRXTestViewController.h"
+#import "GRXTopLayoutTestViewController.h"
 
-@interface GRXLinearLayoutTestController : GRXTestViewController
+@interface GRXLinearLayoutTestController : GRXTopLayoutTestViewController
 
 @end

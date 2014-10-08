@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 gskbyte. All rights reserved.
 //
 
-#import "GRXTestViewController.h"
+#import "GRXTopLayoutTestViewController.h"
 
-@interface GRXRelativeLayoutTestController3 : GRXTestViewController
+@interface GRXRelativeLayoutTestController3 : GRXTopLayoutTestViewController
 
 @property (nonatomic, retain) NSMutableArray *views;
 

@@ -1,14 +1,10 @@
 #import <UIKit/UIKit.h>
-#import "GRXLayout.h"
 
-@interface GRXTestViewController : UIViewController
+@protocol GRXTestViewControllerProtocol <NSObject>
 
-+ (NSString *)selectionTitle;
++ (NSString *)selectionTitle; // return nil to not appear in the list
+
+@optional
 + (NSString *)selectionDetail;
-
-@property (nonatomic, readonly) GRXLayout *topLayout;
-
-- (GRXLayout *)initializeTopLayout;
-- (void)createViews;
 
 @end

@@ -1,8 +1,6 @@
 #import "GRXSelectionViewController.h"
 #import "GRXTestViewController.h"
 
-#import "GRXTestViewController.h"
-
 #import <objc/runtime.h>
 
 @interface GRXSelectionViewController ()
@@ -13,6 +11,40 @@
 
 @implementation GRXSelectionViewController
 
+
++ (NSMutableArray *)classesImplementingProtocol:(Protocol*)protocol {
+    int numClasses = objc_getClassList(NULL, 0);
+    Class *classes = NULL;
+
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numClasses);
+    numClasses = objc_getClassList(classes, numClasses);
+
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSInteger i = 0; i < numClasses; ++i) {
+        Class clazz = classes[i];
+
+        if([NSStringFromClass(clazz) rangeOfString:@"GRX"].location != NSNotFound) {
+            NSLog(@"");
+        }
+
+        Class testProtocol = clazz;
+        do {
+            if( class_conformsToProtocol(testProtocol, protocol) ) {
+                break;
+            }
+            testProtocol = class_getSuperclass(testProtocol);
+        } while (testProtocol != nil);
+
+        if( testProtocol != nil ) {
+            [result addObject:clazz];
+        }
+    }
+
+    free(classes);
+    
+    return result;
+}
+
 + (NSMutableArray *)subclassesOfClass:(Class)parentClass {
     int numClasses = objc_getClassList(NULL, 0);
     Class *classes = NULL;
@@ -22,13 +54,14 @@
 
     NSMutableArray *result = [NSMutableArray array];
     for (NSInteger i = 0; i < numClasses; ++i) {
-        Class superClass = classes[i];
-        do {
-            superClass = class_getSuperclass(superClass);
-        } while (superClass && superClass != parentClass);
+        Class clazz = classes[i];
 
-        if (superClass != nil) {
-            [result addObject:classes[i]];
+        do {
+            clazz = class_getSuperclass(clazz);
+        } while (clazz && clazz != parentClass);
+
+        if (clazz != nil) {
+            [result addObject:clazz];
         }
     }
 
@@ -43,11 +76,19 @@
     self.navigationItem.title = @"Test list";
     self.view.backgroundColor = [UIColor whiteColor];
 
-    NSMutableArray *allSubclasses = [self.class subclassesOfClass:GRXTestViewController.class];
-    [allSubclasses sortUsingComparator:^NSComparisonResult (Class c1, Class c2) {
+    NSMutableArray *allTestControllers = [self.class classesImplementingProtocol:@protocol(GRXTestViewControllerProtocol)];
+    for(NSInteger i=allTestControllers.count-1; i>=0; --i) {
+        Class c = allTestControllers[i];
+        NSString * title = [c performSelector:@selector(selectionTitle)];
+        if(title == nil) {
+            [allTestControllers removeObjectAtIndex:i];
+        }
+    }
+    [allTestControllers sortUsingComparator:^NSComparisonResult (Class c1, Class c2) {
         return [[c1 selectionTitle] compare:[c2 selectionTitle]];
     }];
-    self.controllerClasses = allSubclasses;
+
+    self.controllerClasses = allTestControllers;
 
     if (FastStartViewControllerClassName.length > 0) {
         Class clazz = NSClassFromString(FastStartViewControllerClassName);

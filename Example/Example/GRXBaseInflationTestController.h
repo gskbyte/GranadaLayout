@@ -1,7 +1,7 @@
-#import "GRXTestViewController.h"
+#import "GRXTopLayoutTestViewController.h"
 #import <GRXLayoutInflater.h>
 
-@interface GRXBaseInflationTestController : GRXTestViewController
+@interface GRXBaseInflationTestController : GRXTopLayoutTestViewController
 
 @property (nonatomic) GRXLayoutInflater *layoutInflater;
 
