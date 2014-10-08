@@ -41,7 +41,7 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
     self = [super initWithCollectionViewLayout:layout];
     if(self) {
         NSArray * words = [baseText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        self.numberOfItems = 20 + arc4random_uniform(100);
+        self.numberOfItems = 20 + arc4random_uniform(200);
         self.cellDatas = [NSMutableArray arrayWithCapacity:self.numberOfItems];
         for(NSUInteger i=0; i<self.numberOfItems; ++i) {
             GRXInflatedCellData * data = [[GRXInflatedCellData alloc] init];
@@ -95,7 +95,6 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
                                                                        forIndexPath:indexPath];
     GRXInflatedCellData * data = self.cellDatas[indexPath.row];
     cell.data = data;
-    cell.backgroundColor = [UIColor redColor];
     return cell;
 }
 
@@ -108,7 +107,7 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
     return size;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsZero;
+    return UIEdgeInsetsMake(8, 0, 0, 8);
 }
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 8;
@@ -131,6 +130,9 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
                                                                     fromBundle:[NSBundle bundleForClass:self.class]];
         self.root = inflater.rootView;
         self.image = [inflater viewForIdentifier:@"image"];
+        self.image.backgroundColor = [UIColor blueColor];
+        self.image.contentMode = UIViewContentModeScaleAspectFit;
+
         self.title = [inflater viewForIdentifier:@"title"];
         self.subtitle = [inflater viewForIdentifier:@"subtitle"];
         self.message = [inflater viewForIdentifier:@"message"];
@@ -145,12 +147,14 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
 
     self.title.attributedText = [[NSAttributedString alloc] initWithString:data.title];
     self.subtitle.text = data.subtitle;
-    self.message.attributedText = [[NSAttributedString alloc] initWithString:data.message];
-    self.image.image = [UIImage imageNamed:@"lab.png"];
-    self.image.grx_visibility = self.data.showImage ? GRXViewVisibilityVisible : GRXViewVisibilityGone;
 
-    self.root.dirtyHierarchy = YES;
-    [self setNeedsLayout];
+    self.message.attributedText = [[NSAttributedString alloc] initWithString:data.message];
+    self.message.grx_visibility = data.message.length == 0 ? GRXViewVisibilityGone : GRXViewVisibilityVisible;
+
+    self.image.image = [UIImage imageNamed:@"lab.png"];
+    self.image.grx_visibility = data.showImage ? GRXViewVisibilityVisible : GRXViewVisibilityGone;
+
+    [self.root setNeedsLayout];
 }
 
 + (CGSize) sizeForData:(GRXInflatedCellData*)data {
