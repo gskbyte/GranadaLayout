@@ -126,10 +126,6 @@
 
         allFillParent = (allFillParent && lp.width == GRXMatchParent);
         if (lp.weight > 0) {
-            /*
-             * Widths of weighted Views are bogus if we end up
-             * remeasuring, so keep them separate.
-             */
             weightedMaxWidth = MAX(weightedMaxWidth,
                                    matchWidthLocally ? margin : measuredWidth);
         } else {
@@ -176,8 +172,6 @@
                                                                                padding:totalChildPadding
                                                                       subviewDimension:lp.width];
 
-                // TODO: Use a field like lp.isMeasured to figure out if this
-                // child has been previously measured
                 if ((lp.height != 0) || (heightSpec.mode != GRXMeasureSpecExactly)) {
                     // child was measured once already above...
                     // base new measurement on stored values
@@ -240,6 +234,25 @@
 
 - (CGSize)grx_measureHorizontalForWidthSpec:(GRXMeasureSpec)widthSpec
                                  heightSpec:(GRXMeasureSpec)heightSpec {
+    self.totalLength = 0;
+    CGFloat maxHeight = 0;
+    CGFloat alternativeMaxHeight = 0;
+    CGFloat weightedMaxHeight = 0;
+    BOOL allFillParent = YES;
+    float totalWeight = 0;
+
+    BOOL matchHeight = NO;
+
+    // See how tall everyone is. Also remember max width.
+    for (UIView *child in self.subviews) {
+        if (child.grx_visibility == GRXViewVisibilityGone) {
+            continue;
+        }
+
+        GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+        totalWeight += lp.weight;
+    }
+
     return CGSizeZero;
 }
 
