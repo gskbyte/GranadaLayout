@@ -5,6 +5,6 @@
 
 @property (nonatomic) GRXLayoutInflater *layoutInflater;
 
-- (NSString*) layoutFileNameInBundle;
+- (NSString *)layoutFileNameInBundle;
 
 @end

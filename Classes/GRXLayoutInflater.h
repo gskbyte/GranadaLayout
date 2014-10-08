@@ -6,7 +6,7 @@
 
 - (instancetype)initWithData:(NSData *)data;
 - (instancetype)initWithBundleFile:(NSString *)filename;
-- (instancetype)initWithFile:(NSString*)filename fromBundle:(NSBundle*)bundle;
+- (instancetype)initWithFile:(NSString *)filename fromBundle:(NSBundle *)bundle;
 
 - (id)viewForIdentifier:(NSString *)identifier;
 

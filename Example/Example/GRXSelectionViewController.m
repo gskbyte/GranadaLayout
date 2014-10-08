@@ -12,7 +12,7 @@
 @implementation GRXSelectionViewController
 
 
-+ (NSMutableArray *)classesImplementingProtocol:(Protocol*)protocol {
++ (NSMutableArray *)classesImplementingProtocol:(Protocol *)protocol {
     int numClasses = objc_getClassList(NULL, 0);
     Class *classes = NULL;
 
@@ -23,25 +23,25 @@
     for (NSInteger i = 0; i < numClasses; ++i) {
         Class clazz = classes[i];
 
-        if([NSStringFromClass(clazz) rangeOfString:@"GRX"].location != NSNotFound) {
+        if ([NSStringFromClass(clazz) rangeOfString:@"GRX"].location != NSNotFound) {
             NSLog(@"");
         }
 
         Class testProtocol = clazz;
         do {
-            if( class_conformsToProtocol(testProtocol, protocol) ) {
+            if ( class_conformsToProtocol(testProtocol, protocol) ) {
                 break;
             }
             testProtocol = class_getSuperclass(testProtocol);
         } while (testProtocol != nil);
 
-        if( testProtocol != nil ) {
+        if ( testProtocol != nil ) {
             [result addObject:clazz];
         }
     }
 
     free(classes);
-    
+
     return result;
 }
 
@@ -77,10 +77,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     NSMutableArray *allTestControllers = [self.class classesImplementingProtocol:@protocol(GRXTestViewControllerProtocol)];
-    for(NSInteger i=allTestControllers.count-1; i>=0; --i) {
+    for (NSInteger i = allTestControllers.count - 1; i >= 0; --i) {
         Class c = allTestControllers[i];
-        NSString * title = [c performSelector:@selector(selectionTitle)];
-        if(title == nil) {
+        NSString *title = [c performSelector:@selector(selectionTitle)];
+        if (title == nil) {
             [allTestControllers removeObjectAtIndex:i];
         }
     }

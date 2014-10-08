@@ -17,7 +17,7 @@
 
 - (void)setDirtyHierarchy:(BOOL)dirtyHierarchy {
     _dirtyHierarchy = dirtyHierarchy;
-    if(dirtyHierarchy) {
+    if (dirtyHierarchy) {
         [self grx_invalidateMeasuredSize];
     }
 }
@@ -189,7 +189,7 @@
     // Final step: set calculated frames to subviews
     for (UIView *view in self.subviews) {
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
-        if(view.grx_visibility != GRXViewVisibilityGone) {
+        if (view.grx_visibility != GRXViewVisibilityGone) {
             view.frame = params.rect;
         } else {
             view.frame = CGRectZero;

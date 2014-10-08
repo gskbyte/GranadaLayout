@@ -1,11 +1,11 @@
 #import "GRXCollectionViewTestController.h"
 #import <GRXLayoutInflater.h>
 
-static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la caidita está la cosa muy malar te voy a borrar el cerito mamaar. Se calle ustée qué dise usteer ahorarr fistro ese que llega llevame al sircoo tiene musho peligro fistro pecador benemeritaar. Hasta luego Lucas ese que llega apetecan te voy a borrar el cerito te va a hasé pupitaa está la cosa muy malar jarl caballo blanco caballo negroorl ese hombree a wan. Benemeritaar no puedor jarl llevame al sircoo diodenoo te va a hasé pupitaa te voy a borrar el cerito ese hombree. Pupita sexuarl qué dise usteer al ataquerl la caidita está la cosa muy malar. Qué dise usteer ahorarr va usté muy cargadoo diodenoo mamaar la caidita va usté muy cargadoo va usté muy cargadoo papaar papaar. Ese pedazo de sexuarl no puedor no puedor. Diodeno tiene musho peligro te va a hasé pupitaa benemeritaar va usté muy cargadoo diodenoo amatomaa apetecan está la cosa muy malar te va a hasé pupitaa. Pecador se calle ustée te voy a borrar el cerito diodeno ahorarr diodeno jarl diodenoo te voy a borrar el cerito a gramenawer ese que llega. Está la cosa muy malar torpedo condemor torpedo a wan va usté muy cargadoo va usté muy cargadoo al ataquerl ese hombree ese hombree fistro. Me cago en tus muelas no te digo trigo por no llamarte Rodrigor llevame al sircoo diodenoo torpedo.";
+static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la caidita está la cosa muy malar te voy a borrar el cerito mamaar. Se calle ustée qué dise usteer ahorarr fistro ese que llega llevame al sircoo tiene musho peligro fistro pecador benemeritaar. Hasta luego Lucas ese que llega apetecan te voy a borrar el cerito te va a hasé pupitaa está la cosa muy malar jarl caballo blanco caballo negroorl ese hombree a wan. Benemeritaar no puedor jarl llevame al sircoo diodenoo te va a hasé pupitaa te voy a borrar el cerito ese hombree. Pupita sexuarl qué dise usteer al ataquerl la caidita está la cosa muy malar. Qué dise usteer ahorarr va usté muy cargadoo diodenoo mamaar la caidita va usté muy cargadoo va usté muy cargadoo papaar papaar. Ese pedazo de sexuarl no puedor no puedor. Diodeno tiene musho peligro te va a hasé pupitaa benemeritaar va usté muy cargadoo diodenoo amatomaa apetecan está la cosa muy malar te va a hasé pupitaa. Pecador se calle ustée te voy a borrar el cerito diodeno ahorarr diodeno jarl diodenoo te voy a borrar el cerito a gramenawer ese que llega. Está la cosa muy malar torpedo condemor torpedo a wan va usté muy cargadoo va usté muy cargadoo al ataquerl ese hombree ese hombree fistro. Me cago en tus muelas no te digo trigo por no llamarte Rodrigor llevame al sircoo diodenoo torpedo.";
 
 @interface GRXCollectionViewTestController () <UICollectionViewDelegateFlowLayout>
 
-@property (nonatomic) NSMutableArray * cellDatas;
+@property (nonatomic) NSMutableArray *cellDatas;
 @property (nonatomic) NSUInteger numberOfItems;
 
 @end
@@ -20,31 +20,31 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
 @interface GRXInflatedCell : UICollectionViewCell
 
 @property (nonatomic) GRXInflatedCellData *data;
-@property (nonatomic) GRXLayout * root;
-@property (nonatomic) UIImageView * image;
+@property (nonatomic) GRXLayout *root;
+@property (nonatomic) UIImageView *image;
 @property (nonatomic) UITextView *title, *message;
 @property (nonatomic) UILabel *subtitle;
 
-+ (CGSize) sizeForData:(GRXInflatedCellData*)data;
++ (CGSize)sizeForData:(GRXInflatedCellData *)data;
 
 @end
 
 
 @implementation GRXCollectionViewTestController
 
-- (instancetype) init {
-    UICollectionViewFlowLayout * flow = [[UICollectionViewFlowLayout alloc] init];
+- (instancetype)init {
+    UICollectionViewFlowLayout *flow = [[UICollectionViewFlowLayout alloc] init];
     return [self initWithCollectionViewLayout:flow];
 }
 
-- (instancetype) initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
+- (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithCollectionViewLayout:layout];
-    if(self) {
-        NSArray * words = [baseText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (self) {
+        NSArray *words = [baseText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         self.numberOfItems = 20 + arc4random_uniform(200);
         self.cellDatas = [NSMutableArray arrayWithCapacity:self.numberOfItems];
-        for(NSUInteger i=0; i<self.numberOfItems; ++i) {
-            GRXInflatedCellData * data = [[GRXInflatedCellData alloc] init];
+        for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
+            GRXInflatedCellData *data = [[GRXInflatedCellData alloc] init];
 
             NSUInteger titleLength = 5 + ABS(arc4random_uniform(16));
             NSUInteger titleBegin = ABS(arc4random_uniform(20));
@@ -56,12 +56,12 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
 
             NSInteger messageLength = 0 + ABS(arc4random_uniform(100));
             messageLength -= 50;
-            if(messageLength < 0) {
+            if (messageLength < 0) {
                 messageLength = 0;
             }
             data.message = [[words subarrayWithRange:NSMakeRange(0, messageLength)] componentsJoinedByString:@" "];
 
-            data.showImage = arc4random()%2;
+            data.showImage = arc4random() % 2;
 
             [self.cellDatas addObject:data];
         }
@@ -77,7 +77,7 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
     return @"";
 }
 
-- (void) viewDidLoad {
+- (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
     [self.collectionView registerClass:GRXInflatedCell.class
@@ -91,28 +91,28 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GRXInflatedCell * cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(GRXInflatedCell.class)
-                                                                       forIndexPath:indexPath];
-    GRXInflatedCellData * data = self.cellDatas[indexPath.row];
+    GRXInflatedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(GRXInflatedCell.class)
+                                                                      forIndexPath:indexPath];
+    GRXInflatedCellData *data = self.cellDatas[indexPath.row];
     cell.data = data;
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    GRXInflatedCellData * data = self.cellDatas[indexPath.row];
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    GRXInflatedCellData *data = self.cellDatas[indexPath.row];
     CGSize size = [GRXInflatedCell sizeForData:data];
 
     NSLog(@"[%d] -> %.0f, %.0f", indexPath.row, size.width, size.height);
 
     return size;
 }
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(8, 0, 0, 8);
 }
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
     return 8;
 }
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
     return 8;
 }
 
@@ -125,9 +125,9 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if(self) {
-        GRXLayoutInflater * inflater = [[GRXLayoutInflater alloc] initWithFile:@"cell_test.grx"
-                                                                    fromBundle:[NSBundle bundleForClass:self.class]];
+    if (self) {
+        GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"cell_test.grx"
+                                                                   fromBundle:[NSBundle bundleForClass:self.class]];
         self.root = inflater.rootView;
         self.image = [inflater viewForIdentifier:@"image"];
         self.image.backgroundColor = [UIColor blueColor];
@@ -158,8 +158,8 @@ static NSString * baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl l
     [self.root setNeedsLayout];
 }
 
-+ (CGSize) sizeForData:(GRXInflatedCellData*)data {
-    static GRXInflatedCell * staticCell;
++ (CGSize)sizeForData:(GRXInflatedCellData *)data {
+    static GRXInflatedCell *staticCell;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         staticCell = [[GRXInflatedCell alloc] initWithFrame:CGRectZero];

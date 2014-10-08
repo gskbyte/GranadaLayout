@@ -14,12 +14,12 @@
     return @"Inflates a linear layout from a file";
 }
 
-- (NSString*) layoutFileNameInBundle {
+- (NSString *)layoutFileNameInBundle {
     return @"linear_test_1.grx";
 }
 
-- (void) createViews {
-    UIImageView * iv = [self.layoutInflater viewForIdentifier:@"image"];
+- (void)createViews {
+    UIImageView *iv = [self.layoutInflater viewForIdentifier:@"image"];
     iv.image = [UIImage imageNamed:@"lab.png"];
 }
 

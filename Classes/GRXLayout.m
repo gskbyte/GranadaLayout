@@ -28,7 +28,7 @@
     if (view.grx_layoutParams != nil) {
         [super addSubview:view];
     } else {
-        GRXLayoutParams * params = [[self.class.layoutParamsClass alloc] init];
+        GRXLayoutParams *params = [[self.class.layoutParamsClass alloc] init];
         [self addSubview:view layoutParams:params];
     }
 }
@@ -69,7 +69,7 @@
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
         // Take parent size to see how big I can be, if I'm root, take the whole display
         CGSize parentSize;
-        if (NO == self.ignoreNonLayoutParentSize && self.superview.width>0 && self.superview.height>0) {
+        if (NO == self.ignoreNonLayoutParentSize && self.superview.width > 0 && self.superview.height > 0) {
             parentSize = self.superview.size;
             // TODO case for UIScrollView ? (would be infinite size?)
         } else {
@@ -81,7 +81,7 @@
 
         if (ownParams.width == 0 || ownParams.width == GRXWrapContent) {
             wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
-        } else if(ownParams.width == GRXMatchParent) {
+        } else if (ownParams.width == GRXMatchParent) {
             wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecExactly);
         } else { // exact size
             wspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
@@ -89,7 +89,7 @@
 
         if (ownParams.height == 0 || ownParams.height == GRXWrapContent) {
             hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
-        } else if(ownParams.height == GRXMatchParent) {
+        } else if (ownParams.height == GRXMatchParent) {
             hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecExactly);
         } else {
             hspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);

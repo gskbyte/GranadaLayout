@@ -5,13 +5,10 @@
 int main(int argc, char *argv[]) {
     @autoreleasepool {
         BOOL runningTests = NSClassFromString(@"XCTestCase") != nil;
-        if(runningTests) {
+        if (runningTests) {
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([GRXTestAppDelegate class]));
         } else {
             return UIApplicationMain(argc, argv, nil, NSStringFromClass([GRXAppDelegate class]));
         }
-
     }
-
-    
 }

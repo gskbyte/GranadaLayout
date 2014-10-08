@@ -3,9 +3,9 @@
 @implementation GRXTestHelper
 
 + (UIImage *)imageWithName:(NSString *)filename {
-    NSBundle * bundle = [NSBundle bundleForClass:self.class];
-    NSString * filepath = [bundle pathForResource:filename ofType:nil];
-    NSData * data = [NSData dataWithContentsOfFile:filepath];
+    NSBundle *bundle = [NSBundle bundleForClass:self.class];
+    NSString *filepath = [bundle pathForResource:filename ofType:nil];
+    NSData *data = [NSData dataWithContentsOfFile:filepath];
     return [UIImage imageWithData:data];
 }
 

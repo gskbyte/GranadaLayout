@@ -4,7 +4,7 @@
 static NSNumber *NoNumber = nil;
 
 @interface GRXRelativeLayoutParams () {
-    NSMutableArray * _mutableRules, * _mutableParentRules;
+    NSMutableArray *_mutableRules, *_mutableParentRules;
 }
 
 @end

@@ -2,7 +2,7 @@
 #import "UIView+GRXLayout.h"
 
 @interface GRXDependencyGraph () {
-    NSMutableArray * _roots;
+    NSMutableArray *_roots;
 }
 
 @end

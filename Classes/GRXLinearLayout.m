@@ -95,7 +95,7 @@
             // previous children have given a weight, then we allow it to
             // use all available space (and we will shrink things later
             // if needed).
-            CGFloat totalHeight = (totalWeight==0)?self.totalLength:0;
+            CGFloat totalHeight = (totalWeight == 0) ? self.totalLength : 0;
             [self measureChildBeforeLayout:child
                                  widthSpec:widthSpec
                                 totalWidth:0
@@ -314,7 +314,7 @@
     CGFloat availableWidth = ownWidth - self.padding.left - self.padding.right;
 
     for (UIView *subview in self.subviews) {
-        if(subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXViewVisibilityGone) {
             subview.frame = CGRectZero;
             continue;
         }
@@ -322,7 +322,7 @@
         CGSize subviewSize = subview.grx_measuredSize;
         subview.size = subviewSize;
 
-        GRXLinearLayoutParams * params = subview.grx_linearLayoutParams;
+        GRXLinearLayoutParams *params = subview.grx_linearLayoutParams;
 
         switch (params.gravity) {
             default:
@@ -331,7 +331,7 @@
                 break;
             case GRXLinearLayoutGravityCenter:
                 subview.origin = CGPointMake(params.margins.left + (self.width - subviewSize.width) / 2,
-                                                childPos.y);
+                                             childPos.y);
                 break;
             case GRXLinearLayoutGravityEnd:
                 subview.right = availableWidth;

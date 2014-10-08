@@ -10,7 +10,7 @@
 
 @interface ExampleTests : XCTestCase
 
-@property (nonatomic) GRXLayoutInflater * linearInRelative;
+@property (nonatomic) GRXLayoutInflater *linearInRelative;
 
 @end
 
@@ -76,13 +76,13 @@
 }
 
 - (void)testViewProperties {
-    UIView * sw = [self.linearInRelative viewForIdentifier:@"switch"];
+    UIView *sw = [self.linearInRelative viewForIdentifier:@"switch"];
     expect(sw.grx_visibility).to.equal(GRXViewVisibilityGone);
 
-    UIView * button = [self.linearInRelative viewForIdentifier:@"button"];
+    UIView *button = [self.linearInRelative viewForIdentifier:@"button"];
     expect(button.grx_visibility).to.equal(GRXViewVisibilityHidden);
 
-    UILabel * label = [self.linearInRelative viewForIdentifier:@"label"];
+    UILabel *label = [self.linearInRelative viewForIdentifier:@"label"];
     expect(label.grx_visibility).to.equal(GRXViewVisibilityVisible);
     expect(label.grx_minSize.width).to.equal(200);
     expect(label.grx_minSize.height).to.equal(50);
@@ -94,17 +94,17 @@
     expect(root.superview).to.beNil();
     expect(root).to.beInstanceOf(GRXRelativeLayout.class);
 
-    UIView * image = [self.linearInRelative viewForIdentifier:@"image"];
+    UIView *image = [self.linearInRelative viewForIdentifier:@"image"];
     expect(image).notTo.beNil();
     expect(image.superview).to.beIdenticalTo(root);
     expect(image).to.beInstanceOf(UIImageView.class);
 
-    UIView * linear = [self.linearInRelative viewForIdentifier:@"linear"];
+    UIView *linear = [self.linearInRelative viewForIdentifier:@"linear"];
     expect(linear).notTo.beNil();
     expect(linear.superview).to.beIdenticalTo(root);
     expect(linear).to.beInstanceOf(GRXLinearLayout.class);
 
-    UIView * button = [self.linearInRelative viewForIdentifier:@"button"];
+    UIView *button = [self.linearInRelative viewForIdentifier:@"button"];
     expect(button).notTo.beNil();
     expect(button.superview).to.beIdenticalTo(linear);
     expect(button).to.beInstanceOf(UIButton.class);

@@ -20,7 +20,7 @@
     expect([self viewForId:ident hasParentRule:rule inInflater:inflater]).to.beTruthy()
 
 - (void)testAlignParent {
-    GRXLayoutInflater * inflater = [GRXTestHelper inflaterForFileWithName:@"relative_parent.grx"];
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_parent.grx"];
 
     expectParentRule(@"topLeft", GRXRelativeLayoutParentRuleAlignTop);
     expectParentRule(@"topLeft", GRXRelativeLayoutParentRuleAlignLeft);
@@ -43,17 +43,16 @@
     expectParentRule(@"hCenterTop", GRXRelativeLayoutParentRuleAlignTop);
 }
 
-- (void) testAlignRelative {
-
+- (void)testAlignRelative {
 }
 
 #pragma mark - Helper methods
 
-- (BOOL)viewForId:(NSString*)identifier
+- (BOOL)viewForId:(NSString *)identifier
     hasParentRule:(GRXRelativeLayoutParentRule)rule
-       inInflater:(GRXLayoutInflater*)inflater {
-    UIView * view = [inflater viewForIdentifier:identifier];
-    GRXRelativeLayoutParams * params = (GRXRelativeLayoutParams*)view.grx_layoutParams;
+       inInflater:(GRXLayoutInflater *)inflater {
+    UIView *view = [inflater viewForIdentifier:identifier];
+    GRXRelativeLayoutParams *params = (GRXRelativeLayoutParams *)view.grx_layoutParams;
     return [params hasParentRule:rule];
 }
 

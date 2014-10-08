@@ -14,7 +14,7 @@
     return @"Inflates a layout from a file";
 }
 
-- (NSString*) layoutFileNameInBundle {
+- (NSString *)layoutFileNameInBundle {
     return @"relative_test_1.grx";
 }
 

@@ -13,13 +13,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
-    if(self) {
+    if (self) {
         [self commonInit];
     }
     return self;
 }
 
-- (void) commonInit {
+- (void)commonInit {
     self.scrollEnabled = NO;
     self.editable = NO;
     self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -31,18 +31,18 @@
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
                        heightSpec:(GRXMeasureSpec)heightSpec {
     CGSize measurementSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
-    if(widthSpec.mode != GRXMeasureSpecUnspecified) {
+    if (widthSpec.mode != GRXMeasureSpecUnspecified) {
         measurementSize.width = widthSpec.value;
     }
-    if(heightSpec.mode != GRXMeasureSpecUnspecified) {
+    if (heightSpec.mode != GRXMeasureSpecUnspecified) {
         measurementSize.height = heightSpec.value;
     }
 
     CGSize measuredSize = [self sizeThatFits:measurementSize];
-    if(widthSpec.mode == GRXMeasureSpecExactly) {
+    if (widthSpec.mode == GRXMeasureSpecExactly) {
         measuredSize.width = widthSpec.value;
     }
-    if(heightSpec.mode == GRXMeasureSpecExactly) {
+    if (heightSpec.mode == GRXMeasureSpecExactly) {
         measuredSize.height = heightSpec.value;
     }
 
@@ -51,21 +51,21 @@
 
 
 - (void)setText:(NSString *)text {
-    if(NO == [self.text isEqualToString:text]) {
+    if (NO == [self.text isEqualToString:text]) {
         [super setText:text];
         [self grx_setNeedsLayoutInParent];
     }
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText {
-    if(NO == [self.attributedText isEqualToAttributedString:attributedText]) {
+    if (NO == [self.attributedText isEqualToAttributedString:attributedText]) {
         [super setAttributedText:attributedText];
         [self grx_setNeedsLayoutInParent];
     }
 }
 
 - (void)setFont:(UIFont *)font {
-    if(NO == [self.font isEqual:font]) {
+    if (NO == [self.font isEqual:font]) {
         [super setFont:font];
         [self grx_setNeedsLayoutInParent];
     }

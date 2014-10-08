@@ -6,7 +6,7 @@
 
 @implementation GRXBaseInflationTestController
 
-- (NSString*)layoutFileNameInBundle {
+- (NSString *)layoutFileNameInBundle {
     return @"";
 }
 
@@ -23,8 +23,7 @@
     return (GRXLayout *)self.layoutInflater.rootView;
 }
 
-- (void) createViews {
-
+- (void)createViews {
 }
 
 
