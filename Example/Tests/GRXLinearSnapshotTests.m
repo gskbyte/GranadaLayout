@@ -65,4 +65,17 @@
     FBSnapshotVerifyView(rootView, nil);
 }
 
+- (void)testHorizontalInVertical {
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal_in_vertical.grx"];
+
+    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+
+    UIView *rootView = inflater.rootView;
+    [rootView layoutSubviews];
+
+    FBSnapshotVerifyView(rootView, nil);
+}
+
 @end

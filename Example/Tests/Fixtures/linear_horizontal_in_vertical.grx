@@ -1,0 +1,120 @@
+{
+	"version" : "0.1",
+ 	
+	"layout" : {
+		"class" : "GRXLinearLayout",
+		"width" : "match_parent",
+		"height" : "wrap_content",
+
+		"direction" : "vertical",
+		"debug_bgColor" : "white",
+
+		"subviews" : [
+			{
+				"class" : "UIImageView",
+				"id" : "image",
+				"width" : "wrap_content",
+				"height" : "wrap_content",
+
+				"debug_bgColor" : "blue",
+				"gravity" : "center"
+			},
+			{
+				"class" : "GRXLinearLayout",
+				"width" : "match_parent",
+				"height" : "100",
+
+				"direction" : "horizontal",
+				"debug_bgColor" : "yellow",
+
+				"marginTop" : "10",
+
+				"weightSum" : 100,
+
+				"subviews" : [
+					{
+						"class" : "UIView",
+						"height" : "50",
+
+						"margin" : "10",
+						"weight" : "30",
+
+						"debug_bgColor" : "blue",
+						"gravity" : "begin"
+					},
+
+					{
+						"class" : "UIView",
+						"width" : "70",
+						"height" : "match_parent",
+						"weight" : "50",
+
+						"margin" : "20",
+
+						"debug_bgColor" : "green",
+						"gravity" : "center"
+					},
+
+					{
+						"class" : "UIView",
+						"height" : "60",
+						"weight" : "50",
+
+						"debug_bgColor" : "gray",
+						"gravity" : "end"
+					},
+				]
+
+			},
+			{
+				"class" : "UIView",
+				"id" : "red",
+				"width" : "match_parent",
+				"height" : "80",
+				"gravity" : "center",
+				"margin" : "8",
+
+				"debug_bgColor" : "red",
+			},
+			{
+				"class" : "GRXLinearLayout",
+				"width" : "wrap_content",
+				"height" : "wrap_content",
+
+				"direction" : "horizontal",
+				"debug_bgColor" : "orange",
+
+				"gravity" : "center",
+
+				"subviews" : [
+					{
+						"class" : "UIView",
+						"width" : "50",
+						"height" : "50",
+
+						"margin" : "10",
+
+						"debug_bgColor" : "blue",
+						"gravity" : "begin"
+					},
+
+					{
+						"class" : "UIView",
+						"width" : "70",
+						"height" : "60",
+
+						"marginTop" : "20",
+						"marginBottom" : "20",
+						"marginRight" : "20",
+
+						"debug_bgColor" : "green",
+						"gravity" : "center"
+					},
+
+				]
+
+			},
+		]
+
+	}
+}
