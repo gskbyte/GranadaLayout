@@ -14,22 +14,11 @@
     return GRXLinearLayoutParams.class;
 }
 
-- (instancetype)init {
-    return [self initWithDirection:kGRXLinearLayoutDefaultDirection
-                         weightSum:kGRXLinearLayoutDefaultWeightSum];
-}
-
-- (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction {
-    return [self initWithDirection:direction
-                         weightSum:kGRXLinearLayoutDefaultWeightSum];
-}
-
-- (instancetype)initWithDirection:(GRXLinearLayoutDirection)direction
-                        weightSum:(CGFloat)weightSum {
-    self = [super init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
-        self.direction = direction;
-        self.weightSum = weightSum;
+        self.direction = kGRXLinearLayoutDefaultDirection;
+        self.weightSum = kGRXLinearLayoutDefaultWeightSum;
     }
     return self;
 }

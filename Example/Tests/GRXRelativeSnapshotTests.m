@@ -65,6 +65,7 @@
     UILabel *subtitle = [inflater viewForIdentifier:@"subtitle"];
     subtitle.textColor = [UIColor darkGrayColor];
     subtitle.text = @"This is a test subtitle";
+    subtitle.font = [UIFont boldSystemFontOfSize:10];
 
     UITextView *message = [inflater viewForIdentifier:@"message"];
     message.text = @"This is a text message and should be long enough to have at least two lines";

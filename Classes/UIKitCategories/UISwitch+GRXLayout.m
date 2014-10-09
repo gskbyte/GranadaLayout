@@ -4,15 +4,11 @@
 @implementation UISwitch (GRXLayout)
 
 - (CGSize) grx_minSize {
-    if([UIDevice grx_runningSystemVersion7]) {
+    if([UIDevice grx_runningSystemVersionAfterOrEqualTo7]) {
         return CGSizeMake(51, 31);
     } else {
         return CGSizeMake(79, 27);
     }
-}
-
-- (void) grx_setMinSize:(CGSize)grx_minSize {
-    // do nothing
 }
 
 // UISwitches always have the same size, and -sizeThatFits: returns the currentSize

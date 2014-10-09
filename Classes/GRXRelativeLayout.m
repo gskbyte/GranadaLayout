@@ -39,15 +39,11 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setupPrivate];
+        _sortedSubviewsVertical = [NSMutableArray array];
+        _sortedSubviewsHorizontal = [NSMutableArray array];
+        _dependencyGraph = [[GRXDependencyGraph alloc] init];
     }
     return self;
-}
-
-- (void)setupPrivate {
-    _sortedSubviewsVertical = [NSMutableArray array];
-    _sortedSubviewsHorizontal = [NSMutableArray array];
-    _dependencyGraph = [[GRXDependencyGraph alloc] init];
 }
 
 #pragma mark - Overriden methods

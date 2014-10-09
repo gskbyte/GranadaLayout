@@ -3,28 +3,24 @@
 
 @implementation UIDevice (Util)
 
-
-+ (NSString *)grx_cachedSystemVersion {
-    __strong static NSString *kCachedSystemVersion;
-	static dispatch_once_t onceToken;
-	dispatch_once(&onceToken, ^{
-		kCachedSystemVersion = [[UIDevice currentDevice] systemVersion];
-	});
-	return kCachedSystemVersion;
++ (NSInteger)grx_cachedSystemVersionPrefix {
+    static NSInteger GRXCachedSystemVersionPrefix;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString * versionString = [[UIDevice currentDevice] systemVersion];
+        NSArray * versionNumbers = [versionString componentsSeparatedByString:@"."];
+        NSString * majorVersion = versionNumbers[0];
+        GRXCachedSystemVersionPrefix = [majorVersion integerValue];
+    });
+    return GRXCachedSystemVersionPrefix;
 }
 
-+ (BOOL)grx_runningSystemVersion6 {
-    if ([[UIDevice grx_cachedSystemVersion] hasPrefix:@"6"]) {
-        return YES;
-    }
-    return NO;
++ (BOOL)grx_runningSystemBefore7 {
+    return [UIDevice grx_cachedSystemVersionPrefix] < 7;
 }
 
-+ (BOOL)grx_runningSystemVersion7 {
-    if ([[UIDevice grx_cachedSystemVersion] hasPrefix:@"7"]) {
-        return YES;
-    }
-    return NO;
++ (BOOL)grx_runningSystemVersionAfterOrEqualTo7 {
+    return [UIDevice grx_cachedSystemVersionPrefix] >= 7;
 }
 
 + (UIUserInterfaceIdiom)grx_cachedUserInterfaceIdiom {

@@ -41,20 +41,6 @@
     [self addSubview:view];
 }
 
-- (void)addSubviews:(NSArray *)views {
-    for (UIView *view in views) {
-        [self addSubview:view];
-    }
-}
-
-- (void)addSubviews:(NSArray *)views
-       layoutParams:(GRXLayoutParams *)layoutParams {
-    for (UIView *view in views) {
-        [self addSubview:view
-            layoutParams:layoutParams];
-    }
-}
-
 - (void)setNeedsLayout {
     [super setNeedsLayout];
     [self grx_invalidateMeasuredSize];
@@ -100,13 +86,6 @@
     }
 
     [super layoutSubviews];
-}
-
-- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
-                       heightSpec:(GRXMeasureSpec)heightSpec {
-    // TODO implement me!
-    NSAssert(NO, @"Having layouts inside layouts is not yet supported");
-    return CGSizeZero;
 }
 
 @end

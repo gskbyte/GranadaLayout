@@ -19,8 +19,4 @@
 - (void)addSubview:(UIView *)view
       layoutParams:(GRXLayoutParams *)layoutParams;
 
-- (void)addSubviews:(NSArray *)views;
-- (void)addSubviews:(NSArray *)views
-       layoutParams:(GRXLayoutParams *)layoutParams;
-
 @end
