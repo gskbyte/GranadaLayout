@@ -15,6 +15,9 @@
 		C053E0FE19E159C200336D7F /* relative_wrapped_around_center.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E0FD19E159C200336D7F /* relative_wrapped_around_center.grx */; };
 		C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */; };
 		C053E10319E1B54100336D7F /* linear_test_1.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E10219E1B54100336D7F /* linear_test_1.grx */; };
+		C0548DB619E71894008DBD0B /* linear_vertical_weight.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0548DB519E71894008DBD0B /* linear_vertical_weight.grx */; };
+		C0548DB919E71B50008DBD0B /* linear_horizontal_weight.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0548DB719E71B50008DBD0B /* linear_horizontal_weight.grx */; };
+		C0548DBA19E71B50008DBD0B /* linear_horizontal.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0548DB819E71B50008DBD0B /* linear_horizontal.grx */; };
 		C05BFA2C19DEAAA000C8FF34 /* empty.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2819DEAAA000C8FF34 /* empty.grx */; };
 		C05BFA2D19DEAAA000C8FF34 /* linear_root.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2919DEAAA000C8FF34 /* linear_root.grx */; };
 		C05BFA2E19DEAAA000C8FF34 /* no_layout_root.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA2A19DEAAA000C8FF34 /* no_layout_root.grx */; };
@@ -80,6 +83,9 @@
 		C053E0FF19E1AB7600336D7F /* GRXBaseInflationTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXBaseInflationTestController.h; sourceTree = "<group>"; };
 		C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXBaseInflationTestController.m; sourceTree = "<group>"; };
 		C053E10219E1B54100336D7F /* linear_test_1.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_test_1.grx; sourceTree = "<group>"; };
+		C0548DB519E71894008DBD0B /* linear_vertical_weight.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_vertical_weight.grx; sourceTree = "<group>"; };
+		C0548DB719E71B50008DBD0B /* linear_horizontal_weight.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_horizontal_weight.grx; sourceTree = "<group>"; };
+		C0548DB819E71B50008DBD0B /* linear_horizontal.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_horizontal.grx; sourceTree = "<group>"; };
 		C05BFA2819DEAAA000C8FF34 /* empty.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = empty.grx; sourceTree = "<group>"; };
 		C05BFA2919DEAAA000C8FF34 /* linear_root.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_root.grx; sourceTree = "<group>"; };
 		C05BFA2A19DEAAA000C8FF34 /* no_layout_root.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = no_layout_root.grx; sourceTree = "<group>"; };
@@ -177,7 +183,10 @@
 			isa = PBXGroup;
 			children = (
 				C0D7926519E5A38A0075A05C /* lab.png */,
+				C0548DB719E71B50008DBD0B /* linear_horizontal_weight.grx */,
+				C0548DB819E71B50008DBD0B /* linear_horizontal.grx */,
 				C087D17419E5B55200737AF9 /* linear_vertical.grx */,
+				C0548DB519E71894008DBD0B /* linear_vertical_weight.grx */,
 				C0D7926319E5A0F20075A05C /* relative_in_relative.grx */,
 				C05BFA2819DEAAA000C8FF34 /* empty.grx */,
 				C05BFA2A19DEAAA000C8FF34 /* no_layout_root.grx */,
@@ -399,12 +408,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0548DB619E71894008DBD0B /* linear_vertical_weight.grx in Resources */,
 				C05BFA2D19DEAAA000C8FF34 /* linear_root.grx in Resources */,
 				C048AEEB19E14CA8005B163E /* relative_wrapped_push.grx in Resources */,
+				C0548DB919E71B50008DBD0B /* linear_horizontal_weight.grx in Resources */,
 				C05BFA3A19DEB03700C8FF34 /* linear_in_relative.grx in Resources */,
 				C05BFA2E19DEAAA000C8FF34 /* no_layout_root.grx in Resources */,
 				C05BFA2C19DEAAA000C8FF34 /* empty.grx in Resources */,
 				C05BFA2F19DEAAA000C8FF34 /* relative_root.grx in Resources */,
+				C0548DBA19E71B50008DBD0B /* linear_horizontal.grx in Resources */,
 				C05BFA4719DF12D300C8FF34 /* relative_other_views.grx in Resources */,
 				C087D17519E5B55200737AF9 /* linear_vertical.grx in Resources */,
 				C053E0FE19E159C200336D7F /* relative_wrapped_around_center.grx in Resources */,

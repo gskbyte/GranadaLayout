@@ -1,0 +1,42 @@
+{
+	"version" : "0.1",
+ 	
+	"layout" : {
+		"class" : "GRXLinearLayout",
+		"width" : "match_parent",
+		"height" : "wrap_content",
+
+		"direction" : "horizontal",
+		"debug_bgColor" : "white",
+
+		"subviews" : [
+			{
+				"class" : "UISwitch",
+				"id" : "switch",
+				"debug_bgColor" : "red",
+				"gravity" : "end",
+				"margin" : "8",
+			},
+			{
+				"class" : "UIImageView",
+				"id" : "image",
+				"width" : "wrap_content",
+				"height" : "wrap_content",
+
+				"debug_bgColor" : "blue",
+				"gravity" : "center"
+			},
+			{
+				"class" : "UIView",
+				"id" : "red",
+				"width" : "match_parent",
+				"height" : "100",
+				"gravity" : "center",
+				"margin" : "8",
+
+				"debug_bgColor" : "red",
+			},
+		]
+
+	}
+}

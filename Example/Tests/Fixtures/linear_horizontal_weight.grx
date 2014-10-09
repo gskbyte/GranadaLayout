@@ -1,0 +1,75 @@
+{
+	"version" : "0.1",
+ 	
+	"layout" : {
+		"class" : "GRXLinearLayout",
+		"width" : "match_parent",
+		"height" : "wrap_content",
+
+		"direction" : "horizontal",
+		"debug_bgColor" : "white",
+
+		"weightSum" : "100",
+
+		"subviews" : [
+			{
+				"class" : "UIImageView",
+				"id" : "image",
+				"width" : "0",
+				"height" : "wrap_content",
+
+				"weight" : "10",
+
+				"debug_bgColor" : "green",
+				"gravity" : "center"
+			},
+			{
+				"class" : "UIView",
+				"id" : "red1",
+				"width" : "0",
+				"height" : "match_parent",
+
+				"weight" : "30",
+
+
+				"gravity" : "center",
+				"margin" : "8",
+
+				"debug_bgColor" : "red",
+			},
+			{
+				"class" : "UIView",
+				"id" : "green_hidden",
+				"width" : "wrap_content",
+				"height" : "100",
+
+				"weight" : "10",
+				"visibility" : "hidden",
+
+				"gravity" : "center",
+
+				"debug_bgColor" : "green",
+			},
+			{
+				"class" : "UIView",
+				"id" : "orange",
+				"height" : "100",
+
+				"weight" : "10",
+
+				"debug_bgColor" : "orange",
+				"gravity" : "begin"
+			},
+			{
+				"class" : "UIView",
+				"id" : "green_visible",
+				"height" : "120",
+
+				"weight" : "20",
+
+				"debug_bgColor" : "green",
+			},
+		]
+
+	}
+}

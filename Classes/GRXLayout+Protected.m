@@ -134,7 +134,7 @@
     return partialSpec;
 }
 
-- (void)measureSubviewWithMargins:(UIView *)subview
+- (CGSize)measureSubviewWithMargins:(UIView *)subview
                   parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
                         widthUsed:(CGFloat)widthUsed
                  parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
@@ -148,7 +148,7 @@
     GRXMeasureSpec subviewHeightSpec = [self subviewSpecWithParentSpec:parentHeightSpec padding:verticalPadding subviewDimension:lp.height];
 
     CGSize subviewSize = [subview grx_measuredSizeForWidthSpec:subviewWidthSpec heightSpec:subviewHeightSpec];
-    #pragma unused(subviewSize)
+    return subviewSize;
 }
 
 

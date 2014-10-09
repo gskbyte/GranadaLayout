@@ -177,7 +177,7 @@
                 if ((lp.height != 0) || (heightSpec.mode != GRXMeasureSpecExactly)) {
                     // child was measured once already above...
                     // base new measurement on stored values
-                    int childHeight = child.grx_measuredSize.height + share;
+                    CGFloat childHeight = child.grx_measuredSize.height + share;
                     if (childHeight < 0) {
                         childHeight = 0;
                     }
@@ -261,17 +261,17 @@
                 lp.width = GRXWrapContent;
             }
             CGFloat totalWidth = (totalWeight == 0) ? self.totalLength : 0;
-            [self measureChildBeforeLayout:child
-                                 widthSpec:widthSpec
-                                totalWidth:totalWidth
-                                heightSpec:heightSpec
-                               totalHeight:0];
+            CGSize childMeasuredSize = [self measureChildBeforeLayout:child
+                                                            widthSpec:widthSpec
+                                                           totalWidth:totalWidth
+                                                           heightSpec:heightSpec
+                                                          totalHeight:0];
 
             if (oldWidth != -CGFLOAT_MAX) {
                 lp.width = oldWidth;
             }
 
-            self.totalLength += child.grx_measuredSize.width + lp.margins.left + lp.margins.right;
+            self.totalLength += childMeasuredSize.width + lp.margins.left + lp.margins.right;
         }
 
         BOOL matchHeightLocally = NO;
@@ -334,7 +334,7 @@
                 if ((lp.width != 0) || (widthSpec.mode != GRXMeasureSpecExactly)) {
                     // child was measured once already above...
                     // base new measurement on stored values
-                    int childWidth = child.grx_measuredSize.width + share;
+                    CGFloat childWidth = child.grx_measuredSize.width + share;
                     if (childWidth < 0) {
                         childWidth = 0;
                     }
@@ -385,16 +385,17 @@
     return ownSize;
 }
 
-- (void)measureChildBeforeLayout:(UIView *)child
+- (CGSize)measureChildBeforeLayout:(UIView *)child
                        widthSpec:(GRXMeasureSpec)widthSpec
                       totalWidth:(CGFloat)totalWidth
                       heightSpec:(GRXMeasureSpec)heightSpec
                      totalHeight:(CGFloat)totalHeight {
-    [self measureSubviewWithMargins:child
-                    parentWidthSpec:widthSpec
-                          widthUsed:totalWidth
-                   parentHeightSpec:heightSpec
-                         heightUsed:totalHeight];
+    CGSize measuredSize = [self measureSubviewWithMargins:child
+                                          parentWidthSpec:widthSpec
+                                                widthUsed:totalWidth
+                                         parentHeightSpec:heightSpec
+                                               heightUsed:totalHeight];
+    return measuredSize;
 }
 
 - (void)forceUniformWidthWithWidth:(CGFloat)width
@@ -524,7 +525,7 @@
                 break;
             case GRXLinearLayoutGravityCenter:
                 subview.left = childPos.x + params.margins.left;
-                subview.top = (self.height - subviewSize.height) / 2; // margin already substracted in size
+                subview.top = (ownHeight - subviewSize.height) / 2; // margin already substracted in size
                 break;
             case GRXLinearLayoutGravityEnd:
                 subview.left = childPos.x + params.margins.left;
