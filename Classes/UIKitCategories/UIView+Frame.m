@@ -84,14 +84,4 @@
     self.frame = frame;
 }
 
-#pragma mark - z index methods
-
-- (void)bringToFront {
-    [self.superview bringSubviewToFront:self];
-}
-
-- (void)sendToBack {
-    [self.superview sendSubviewToBack:self];
-}
-
 @end

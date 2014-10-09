@@ -4,32 +4,10 @@
 @implementation GRXLinearLayoutParams
 
 - (instancetype)initWithSize:(CGSize)size {
-    return [self initWithSize:size
-                      gravity:kGRXLinearLayoutParamsDefaultGravity
-                       weight:kGRXLinearLayoutParamsDefaultWeight];
-}
-
-- (instancetype)initWithSize:(CGSize)size
-                     gravity:(GRXLinearLayoutGravity)gravity {
-    return [self initWithSize:size
-                      gravity:gravity
-                       weight:kGRXLinearLayoutParamsDefaultWeight];
-}
-
-- (instancetype)initWithSize:(CGSize)size
-                      weight:(CGFloat)weight {
-    return [self initWithSize:size
-                      gravity:kGRXLinearLayoutParamsDefaultGravity
-                       weight:weight];
-}
-
-- (instancetype)initWithSize:(CGSize)size
-                     gravity:(GRXLinearLayoutGravity)gravity
-                      weight:(CGFloat)weight {
     self = [super initWithSize:size];
     if (self) {
-        _gravity = gravity;
-        _weight = weight;
+        _gravity = kGRXLinearLayoutParamsDefaultGravity;
+        _weight = kGRXLinearLayoutParamsDefaultWeight;
     }
     return self;
 }

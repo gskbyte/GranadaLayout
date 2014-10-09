@@ -32,8 +32,6 @@ static NSNumber *NoNumber = nil;
 
 #pragma mark - initialization methods
 
-
-
 - (instancetype)initWithSize:(CGSize)size {
     self = [super initWithSize:size];
     if (self) {

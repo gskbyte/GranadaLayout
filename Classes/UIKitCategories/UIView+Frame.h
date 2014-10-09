@@ -16,9 +16,4 @@
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
-#pragma mark - z index methods
-
-- (void)bringToFront;
-- (void)sendToBack;
-
 @end
