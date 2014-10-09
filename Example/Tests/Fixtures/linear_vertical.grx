@@ -3,7 +3,7 @@
  	
 	"layout" : {
 		"class" : "GRXLinearLayout",
-		"width" : "match_parent",
+		"width" : "wrap_content",
 		"height" : "wrap_content",
 
 		"direction" : "vertical",
@@ -39,7 +39,7 @@
 			{
 				"class" : "UIView",
 				"id" : "red",
-				"width" : "120",
+				"width" : "200",
 				"height" : "120",
 				"margin" : "10",
 

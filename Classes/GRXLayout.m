@@ -12,10 +12,6 @@
 
 #pragma mark - setup methods
 
-- (instancetype)init {
-    return [self initWithFrame:CGRectZero];
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
@@ -26,19 +22,12 @@
 
 - (void)addSubview:(UIView *)view {
     if (view.grx_layoutParams != nil) {
-        [super addSubview:view];
+        NSAssert([view.grx_layoutParams isKindOfClass:self.class.layoutParamsClass],
+                 @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
     } else {
-        GRXLayoutParams *params = [[self.class.layoutParamsClass alloc] init];
-        [self addSubview:view layoutParams:params];
+        view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
     }
-}
-
-- (void)addSubview:(UIView *)view
-      layoutParams:(GRXLayoutParams *)layoutParams {
-    NSAssert([layoutParams isKindOfClass:self.class.layoutParamsClass],
-             @"Layout class %@ needs layoutParams to be instances of %@", self.class, self.class.layoutParamsClass);
-    view.grx_layoutParams = layoutParams;
-    [self addSubview:view];
+    [super addSubview:view];
 }
 
 - (void)setNeedsLayout {
