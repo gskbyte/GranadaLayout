@@ -81,7 +81,8 @@ static NSString *ipsum = @""
 }
 
 - (GRXLayout *)initializeTopLayout {
-    GRXLayout *top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionVertical];
+    GRXLinearLayout *top = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    top.direction = GRXLinearLayoutDirectionVertical;
     return top;
 }
 

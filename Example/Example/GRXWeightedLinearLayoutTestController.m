@@ -12,8 +12,9 @@
 }
 
 - (GRXLayout *)initializeTopLayout {
-    GRXLayout *top = [[GRXLinearLayout alloc] initWithDirection:GRXLinearLayoutDirectionHorizontal
-                                                      weightSum:1];
+    GRXLinearLayout *top = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    top.direction = GRXLinearLayoutDirectionVertical;
+    top.weightSum = 1;
     return top;
 }
 

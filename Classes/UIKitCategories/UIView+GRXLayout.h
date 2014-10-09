@@ -26,6 +26,9 @@ static const NSUInteger GRXLayoutIdNull = 0;
 @property (nonatomic, readonly) NSNumber * grx_layoutId;
 @property (nonatomic, setter=grx_setDebugIdentifier:) NSString *grx_debugIdentifier;
 
+- (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams;
+- (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;
+
 // this method must NOT be overriden and is called by layouts
 // implements a caching mechanism so measureForWidthSpec:heightSpec: is not called for same specs
 - (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
