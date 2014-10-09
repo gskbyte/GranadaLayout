@@ -16,7 +16,7 @@
     self.recordMode = NO;
 }
 
-- (void)testVertical {§
+- (void)testVertical {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical.grx"];
 
     UIImageView *imageView = [inflater viewForIdentifier:@"image"];
