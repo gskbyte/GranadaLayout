@@ -68,16 +68,16 @@
     BOOL matchWidth = NO;
 
     // See how tall everyone is. Also remember max width.
-    for (UIView *child in self.subviews) {
-        if (child.grx_visibility == GRXViewVisibilityGone) {
+    for (UIView *subview in self.subviews) {
+        if (subview.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
 
-        GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+        GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
         totalWeight += lp.weight;
 
         if (heightSpec.mode == GRXMeasureSpecExactly && lp.height == 0 && lp.weight > 0) {
-            // Optimization: don't bother measuring children who are going to use
+            // Optimization: don't bother measuring subviews who are going to use
             // leftover space. These views will get measured again down below if
             // there is any leftover space.
             self.totalLength += lp.margins.top + lp.margins.bottom;
@@ -85,36 +85,36 @@
             CGFloat oldHeight = -CGFLOAT_MAX;
 
             if (lp.height == 0 && lp.weight > 0) {
-                // heightMode is either UNSPECIFIED OR AT_MOST, and this child
+                // heightMode is either UNSPECIFIED OR AT_MOST, and this subview
                 // wanted to stretch to fill available space. Translate that to
                 // WRAP_CONTENT so that it does not end up with a height of 0
                 oldHeight = 0;
                 lp.height = GRXWrapContent;
             }
 
-            // Determine how big this child would like to.  If this or
-            // previous children have given a weight, then we allow it to
+            // Determine how big this subview would like to.  If this or
+            // previous subviews have given a weight, then we allow it to
             // use all available space (and we will shrink things later
             // if needed).
             CGFloat totalHeight = (totalWeight == 0) ? self.totalLength : 0;
-            [self measureChildBeforeLayout:child
-                                 widthSpec:widthSpec
-                                totalWidth:0
-                                heightSpec:heightSpec
-                               totalHeight:totalHeight];
+            [self measureSubviewBeforeLayout:subview
+                                   widthSpec:widthSpec
+                                  totalWidth:0
+                                  heightSpec:heightSpec
+                                 totalHeight:totalHeight];
 
             if (oldHeight != -CGFLOAT_MAX) {
                 lp.height = oldHeight;
             }
 
-            self.totalLength += child.grx_measuredSize.height + lp.margins.top +
+            self.totalLength += subview.grx_measuredSize.height + lp.margins.top +
                 lp.margins.bottom;
         }
 
         BOOL matchWidthLocally = NO;
         if (widthSpec.mode != GRXMeasureSpecExactly && lp.width == GRXMatchParent) {
             // The width of the linear layout will scale, and at least one
-            // child said it wanted to match our width. Set a flag
+            // subview said it wanted to match our width. Set a flag
             // indicating that we need to remeasure at least that view when
             // we know our width.
             matchWidth = YES;
@@ -122,7 +122,7 @@
         }
 
         CGFloat margin = lp.margins.left + lp.margins.right;
-        CGFloat measuredWidth = child.grx_measuredSize.width + margin;
+        CGFloat measuredWidth = subview.grx_measuredSize.width + margin;
         maxWidth = MAX(maxWidth, measuredWidth);
 
         allFillParent = (allFillParent && lp.width == GRXMatchParent);
@@ -146,7 +146,7 @@
     // Reconcile our calculated size with the heightMeasureSpec
     heightSize = GRXMeasureSpecResolveSizeValue(heightSize, heightSpec);
 
-    // Either expand children with weight to take up available space or
+    // Either expand subviews with weight to take up available space or
     // shrink them if they extend beyond our current bounds
     CGFloat delta = heightSize - self.totalLength;
     if (delta != 0 && totalWeight > 0) {
@@ -154,57 +154,57 @@
 
         self.totalLength = 0;
 
-        for (UIView *child in self.subviews) {
-            if (child.grx_visibility == GRXViewVisibilityGone) {
+        for (UIView *subview in self.subviews) {
+            if (subview.grx_visibility == GRXViewVisibilityGone) {
                 continue;
             }
 
-            GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+            GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
 
-            CGFloat childExtra = lp.weight;
-            CGSize measuredChildSize;
-            if (childExtra > 0) {
-                // Child said it could absorb extra space -- give him his share
-                CGFloat share = childExtra * delta / weightSum;
-                weightSum -= childExtra;
+            CGFloat subviewExtra = lp.weight;
+            CGSize measuredSubviewSize;
+            if (subviewExtra > 0) {
+                // Subview said it could absorb extra space -- give him his share
+                CGFloat share = subviewExtra * delta / weightSum;
+                weightSum -= subviewExtra;
                 delta -= share;
 
-                CGFloat totalChildPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
-                GRXMeasureSpec childWidthMeasureSpec = [self subviewSpecWithParentSpec:widthSpec
-                                                                               padding:totalChildPadding
-                                                                      subviewDimension:lp.width];
+                CGFloat totalSubviewPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
+                GRXMeasureSpec subviewWidthMeasureSpec = [self subviewSpecWithParentSpec:widthSpec
+                                                                                 padding:totalSubviewPadding
+                                                                        subviewDimension:lp.width];
 
                 if ((lp.height != 0) || (heightSpec.mode != GRXMeasureSpecExactly)) {
-                    // child was measured once already above...
+                    // subview was measured once already above...
                     // base new measurement on stored values
-                    CGFloat childHeight = child.grx_measuredSize.height + share;
-                    if (childHeight < 0) {
-                        childHeight = 0;
+                    CGFloat subviewHeight = subview.grx_measuredSize.height + share;
+                    if (subviewHeight < 0) {
+                        subviewHeight = 0;
                     }
-                    measuredChildSize = [child grx_measuredSizeForWidthSpec:childWidthMeasureSpec
-                                                                 heightSpec:GRXMeasureSpecMake(childHeight, GRXMeasureSpecExactly)];
+                    measuredSubviewSize = [subview grx_measuredSizeForWidthSpec:subviewWidthMeasureSpec
+                                                                     heightSpec:GRXMeasureSpecMake(subviewHeight, GRXMeasureSpecExactly)];
                 } else {
-                    // child was skipped in the loop above.
+                    // subview was skipped in the loop above.
                     // Measure for this first time here
 
-                    measuredChildSize = [child grx_measuredSizeForWidthSpec:childWidthMeasureSpec
-                                                                 heightSpec:GRXMeasureSpecMake(share > 0 ? share : 0, GRXMeasureSpecExactly)];
+                    measuredSubviewSize = [subview grx_measuredSizeForWidthSpec:subviewWidthMeasureSpec
+                                                                     heightSpec:GRXMeasureSpecMake(share > 0 ? share : 0, GRXMeasureSpecExactly)];
                 }
             }
 
             CGFloat margin =  lp.margins.left + lp.margins.right;
-            CGFloat childWidth = measuredChildSize.width + margin;
-            maxWidth = MAX(maxWidth, childWidth);
+            CGFloat subviewWidth = measuredSubviewSize.width + margin;
+            maxWidth = MAX(maxWidth, subviewWidth);
 
             BOOL matchWidthLocally = widthSpec.mode != GRXMeasureSpecExactly &&
                 lp.width == GRXMatchParent;
 
             alternativeMaxWidth = MAX(alternativeMaxWidth,
-                                      matchWidthLocally ? margin : childWidth);
+                                      matchWidthLocally ? margin : subviewWidth);
 
             allFillParent = allFillParent && lp.width == GRXMatchParent;
 
-            self.totalLength += child.grx_measuredSize.height + lp.margins.top + lp.margins.bottom;
+            self.totalLength += subview.grx_measuredSize.height + lp.margins.top + lp.margins.bottom;
         }
 
         // Add in our padding
@@ -243,12 +243,12 @@
 
     BOOL matchHeight = NO;
 
-    for (UIView *child in self.subviews) {
-        if (child.grx_visibility == GRXViewVisibilityGone) {
+    for (UIView *subview in self.subviews) {
+        if (subview.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
 
-        GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+        GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
         totalWeight += lp.weight;
 
         if (widthSpec.mode == GRXMeasureSpecExactly && lp.width == 0 && lp.weight > 0) {
@@ -261,17 +261,17 @@
                 lp.width = GRXWrapContent;
             }
             CGFloat totalWidth = (totalWeight == 0) ? self.totalLength : 0;
-            CGSize childMeasuredSize = [self measureChildBeforeLayout:child
-                                                            widthSpec:widthSpec
-                                                           totalWidth:totalWidth
-                                                           heightSpec:heightSpec
-                                                          totalHeight:0];
+            CGSize subviewMeasuredSize = [self measureSubviewBeforeLayout:subview
+                                                                widthSpec:widthSpec
+                                                               totalWidth:totalWidth
+                                                               heightSpec:heightSpec
+                                                              totalHeight:0];
 
             if (oldWidth != -CGFLOAT_MAX) {
                 lp.width = oldWidth;
             }
 
-            self.totalLength += childMeasuredSize.width + lp.margins.left + lp.margins.right;
+            self.totalLength += subviewMeasuredSize.width + lp.margins.left + lp.margins.right;
         }
 
         BOOL matchHeightLocally = NO;
@@ -281,16 +281,16 @@
         }
 
         CGFloat margin = lp.margins.top + lp.margins.bottom;
-        CGFloat measuredHeight = child.grx_measuredSize.height + margin;
+        CGFloat measuredHeight = subview.grx_measuredSize.height + margin;
         maxHeight = MAX(maxHeight, measuredHeight);
 
         allFillParent = (allFillParent && lp.height == GRXMatchParent);
         if (lp.weight > 0) {
             weightedMaxHeight = MAX(weightedMaxHeight,
-                                   matchHeightLocally ? margin : measuredHeight);
+                                    matchHeightLocally ? margin : measuredHeight);
         } else {
             alternativeMaxHeight = MAX(alternativeMaxHeight,
-                                      matchHeightLocally ? margin : measuredHeight);
+                                       matchHeightLocally ? margin : measuredHeight);
         }
     }
 
@@ -311,51 +311,51 @@
 
         self.totalLength = 0;
 
-        for (UIView *child in self.subviews) {
-            if (child.grx_visibility == GRXViewVisibilityGone) {
+        for (UIView *subview in self.subviews) {
+            if (subview.grx_visibility == GRXViewVisibilityGone) {
                 continue;
             }
 
-            GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+            GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
 
-            CGFloat childExtra = lp.weight;
-            CGSize measuredChildSize;
-            if (childExtra > 0) {
-                // Child said it could absorb extra space -- give him his share
-                CGFloat share = childExtra * delta / weightSum;
-                weightSum -= childExtra;
+            CGFloat subviewExtra = lp.weight;
+            CGSize measuredSubviewSize;
+            if (subviewExtra > 0) {
+                // Subview said it could absorb extra space -- give him his share
+                CGFloat share = subviewExtra * delta / weightSum;
+                weightSum -= subviewExtra;
                 delta -= share;
 
-                CGFloat totalChildPadding = self.padding.top + self.padding.bottom + lp.margins.top + lp.margins.bottom;
-                GRXMeasureSpec childHeightMeasureSpec = [self subviewSpecWithParentSpec:heightSpec
-                                                                                padding:totalChildPadding
-                                                                       subviewDimension:lp.height];
+                CGFloat totalSubviewPadding = self.padding.top + self.padding.bottom + lp.margins.top + lp.margins.bottom;
+                GRXMeasureSpec subviewHeightMeasureSpec = [self subviewSpecWithParentSpec:heightSpec
+                                                                                  padding:totalSubviewPadding
+                                                                         subviewDimension:lp.height];
 
                 if ((lp.width != 0) || (widthSpec.mode != GRXMeasureSpecExactly)) {
-                    // child was measured once already above...
+                    // subview was measured once already above...
                     // base new measurement on stored values
-                    CGFloat childWidth = child.grx_measuredSize.width + share;
-                    if (childWidth < 0) {
-                        childWidth = 0;
+                    CGFloat subviewWidth = subview.grx_measuredSize.width + share;
+                    if (subviewWidth < 0) {
+                        subviewWidth = 0;
                     }
-                    measuredChildSize = [child grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(childWidth, GRXMeasureSpecExactly)
-                                                                 heightSpec:childHeightMeasureSpec];
+                    measuredSubviewSize = [subview grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(subviewWidth, GRXMeasureSpecExactly)
+                                                                     heightSpec:subviewHeightMeasureSpec];
                 } else {
-                    // child was skipped in the loop above.
+                    // subview was skipped in the loop above.
                     // Measure for this first time here
 
-                    measuredChildSize = [child grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(share > 0 ? share : 0, GRXMeasureSpecExactly)
-                                                                 heightSpec:childHeightMeasureSpec];
+                    measuredSubviewSize = [subview grx_measuredSizeForWidthSpec:GRXMeasureSpecMake(share > 0 ? share : 0, GRXMeasureSpecExactly)
+                                                                     heightSpec:subviewHeightMeasureSpec];
                 }
             }
 
-            self.totalLength += measuredChildSize.width + lp.margins.left + lp.margins.right;
+            self.totalLength += measuredSubviewSize.width + lp.margins.left + lp.margins.right;
             BOOL matchHeightLocally = heightSpec.mode != GRXMeasureSpecExactly && lp.height == GRXMatchParent;
             CGFloat margin = lp.margins.top + lp.margins.bottom;
-            CGFloat childHeight = measuredChildSize.height + margin;
-            maxHeight = MAX(maxHeight, childHeight);
+            CGFloat subviewHeight = measuredSubviewSize.height + margin;
+            maxHeight = MAX(maxHeight, subviewHeight);
             alternativeMaxHeight = MAX(alternativeMaxHeight,
-                                      matchHeightLocally ? margin : childHeight);
+                                       matchHeightLocally ? margin : subviewHeight);
             allFillParent = allFillParent && lp.width == GRXMatchParent;
         }
 
@@ -385,12 +385,12 @@
     return ownSize;
 }
 
-- (CGSize)measureChildBeforeLayout:(UIView *)child
-                       widthSpec:(GRXMeasureSpec)widthSpec
-                      totalWidth:(CGFloat)totalWidth
-                      heightSpec:(GRXMeasureSpec)heightSpec
-                     totalHeight:(CGFloat)totalHeight {
-    CGSize measuredSize = [self measureSubviewWithMargins:child
+- (CGSize)measureSubviewBeforeLayout:(UIView *)subview
+                           widthSpec:(GRXMeasureSpec)widthSpec
+                          totalWidth:(CGFloat)totalWidth
+                          heightSpec:(GRXMeasureSpec)heightSpec
+                         totalHeight:(CGFloat)totalHeight {
+    CGSize measuredSize = [self measureSubviewWithMargins:subview
                                           parentWidthSpec:widthSpec
                                                 widthUsed:totalWidth
                                          parentHeightSpec:heightSpec
@@ -403,22 +403,24 @@
     // Pretend that the linear layout has an exact size.
     GRXMeasureSpec uniformMeasureSpec = GRXMeasureSpecMake(width,
                                                            GRXMeasureSpecExactly);
-    for (UIView *child in self.subviews) {
-        if (child.grx_visibility != GRXViewVisibilityGone) {
-            GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
-            if (lp.width == GRXMatchParent) {
-                // Temporarily force children to reuse their old measured height
-                int oldHeight = lp.height;
-                lp.height = child.grx_measuredSize.height;
+    for (UIView *subview in self.subviews) {
+        if (subview.grx_visibility == GRXViewVisibilityGone) {
+            continue;
+        }
 
-                // Remeasure with new dimensions
-                [self measureSubviewWithMargins:child
-                                parentWidthSpec:uniformMeasureSpec
-                                      widthUsed:0
-                               parentHeightSpec:heightSpec
-                                     heightUsed:0];
-                lp.height = oldHeight;
-            }
+        GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
+        if (lp.width == GRXMatchParent) {
+            // Temporarily force subviews to reuse their old measured height
+            int oldHeight = lp.height;
+            lp.height = subview.grx_measuredSize.height;
+
+            // Remeasure with new dimensions
+            [self measureSubviewWithMargins:subview
+                            parentWidthSpec:uniformMeasureSpec
+                                  widthUsed:0
+                           parentHeightSpec:heightSpec
+                                 heightUsed:0];
+            lp.height = oldHeight;
         }
     }
 }
@@ -428,18 +430,18 @@
     // Pretend that the linear layout has an exact size.
     GRXMeasureSpec uniformMeasureSpec = GRXMeasureSpecMake(height,
                                                            GRXMeasureSpecExactly);
-    for (UIView *child in self.subviews) {
-        if (child.grx_visibility == GRXViewVisibilityGone) {
+    for (UIView *subview in self.subviews) {
+        if (subview.grx_visibility == GRXViewVisibilityGone) {
             continue;
         }
-        GRXLinearLayoutParams *lp = child.grx_linearLayoutParams;
+        GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
         if (lp.height == GRXMatchParent) {
-            // Temporarily force children to reuse their old measured height
+            // Temporarily force subviews to reuse their old measured height
             int oldWidth = lp.width;
-            lp.width = child.grx_measuredSize.width;
+            lp.width = subview.grx_measuredSize.width;
 
             // Remeasure with new dimensions
-            [self measureSubviewWithMargins:child
+            [self measureSubviewWithMargins:subview
                             parentWidthSpec:widthSpec
                                   widthUsed:0
                            parentHeightSpec:uniformMeasureSpec
@@ -460,12 +462,12 @@
 }
 
 - (void)layoutSubviewsVertical {
-    CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
+    CGPoint subviewPos = CGPointMake(self.padding.left, self.padding.top);
 
-    // Where right end of child should go
+    // Where right end of subview should go
     const CGFloat ownWidth = self.grx_measuredSize.width;
 
-    // Space available for child
+    // Space available for subview
     CGFloat availableWidth = ownWidth - self.padding.left - self.padding.right;
 
     for (UIView *subview in self.subviews) {
@@ -482,29 +484,29 @@
         switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                subview.left = childPos.x + params.margins.left;
-                subview.top = childPos.y + params.margins.top;
+                subview.left = subviewPos.x + params.margins.left;
+                subview.top = subviewPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityCenter:
                 subview.left = (self.width - subviewSize.width) / 2; // margin already substracted
-                subview.top = childPos.y + params.margins.top;
+                subview.top = subviewPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityEnd:
                 subview.right = availableWidth - params.margins.right;
-                subview.top = childPos.y + params.margins.top;
+                subview.top = subviewPos.y + params.margins.top;
                 break;
         }
-        childPos.y += subview.height + params.margins.top + params.margins.bottom;
+        subviewPos.y += subview.height + params.margins.top + params.margins.bottom;
     }
 }
 
 - (void)layoutSubviewsHorizontal {
-    CGPoint childPos = CGPointMake(self.padding.left, self.padding.top);
+    CGPoint subviewPos = CGPointMake(self.padding.left, self.padding.top);
 
-    // Where right end of child should go
+    // Where right end of subview should go
     const CGFloat ownHeight = self.grx_measuredSize.height;
 
-    // Space available for child
+    // Space available for subview
     CGFloat availableHeight = ownHeight - self.padding.top - self.padding.bottom;
 
     for (UIView *subview in self.subviews) {
@@ -520,19 +522,19 @@
         switch (params.gravity) {
             default:
             case GRXLinearLayoutGravityBegin:
-                subview.left = childPos.x + params.margins.left;
-                subview.top = childPos.y + params.margins.top;
+                subview.left = subviewPos.x + params.margins.left;
+                subview.top = subviewPos.y + params.margins.top;
                 break;
             case GRXLinearLayoutGravityCenter:
-                subview.left = childPos.x + params.margins.left;
+                subview.left = subviewPos.x + params.margins.left;
                 subview.top = (ownHeight - subviewSize.height) / 2; // margin already substracted in size
                 break;
             case GRXLinearLayoutGravityEnd:
-                subview.left = childPos.x + params.margins.left;
+                subview.left = subviewPos.x + params.margins.left;
                 subview.bottom = availableHeight - params.margins.bottom;
                 break;
         }
-        childPos.x += subview.width + params.margins.left + params.margins.right;
+        subviewPos.x += subview.width + params.margins.left + params.margins.right;
     }
 }
 

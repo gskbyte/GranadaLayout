@@ -135,10 +135,10 @@
 }
 
 - (CGSize)measureSubviewWithMargins:(UIView *)subview
-                  parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
-                        widthUsed:(CGFloat)widthUsed
-                 parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
-                       heightUsed:(CGFloat)heightUsed {
+                    parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
+                          widthUsed:(CGFloat)widthUsed
+                   parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
+                         heightUsed:(CGFloat)heightUsed {
     GRXLayoutParams *lp = subview.grx_layoutParams;
 
     CGFloat horizontalPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;

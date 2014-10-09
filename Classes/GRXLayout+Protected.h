@@ -15,9 +15,9 @@
                                ownSize:(CGFloat)ownSize;
 
 - (CGSize)measureSubviewWithMargins:(UIView *)subview
-                  parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
-                        widthUsed:(CGFloat)widthUsed
-                 parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
-                       heightUsed:(CGFloat)heightUsed;
+                    parentWidthSpec:(GRXMeasureSpec)parentWidthSpec
+                          widthUsed:(CGFloat)widthUsed
+                   parentHeightSpec:(GRXMeasureSpec)parentHeightSpec
+                         heightUsed:(CGFloat)heightUsed;
 
 @end
