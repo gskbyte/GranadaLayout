@@ -31,7 +31,8 @@
     GRXRelativeLayoutParams *params1 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(50, 50)];
     [params1 setParentRule:GRXRelativeLayoutParentRuleAlignTop active:YES];
     [params1 setParentRule:GRXRelativeLayoutParentRuleAlignLeft active:YES];
-    [self.topLayout addSubview:view1 layoutParams:params1];
+    view1.grx_layoutParams = params1;
+    [self.topLayout addSubview:view1];
 
 
     UIView *view2 = [[UIView alloc] initWithFrame:CGRectZero];
@@ -40,15 +41,8 @@
     GRXRelativeLayoutParams *params2 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(40, 40)];
     [params2 setRule:GRXRelativeLayoutRuleBelow forView:view1];
     [params2 setRule:GRXRelativeLayoutRuleRightOf forView:view1];
-    [self.topLayout addSubview:view2 layoutParams:params2];
-//
-//    UIView * view3 = [[UIView alloc] initWithFrame:CGRectZero];
-//    view3.backgroundColor = [UIColor redColor];
-//    view3.grx_debugIdentifier = @"view3";
-//    GRXRelativeLayoutParams * params3 = [[GRXRelativeLayoutParams alloc] initWithSize:CGSizeMake(100, 200)];
-//    [params3 setParentRule:GRXRelativeLayoutParentRuleCenterHorizontal active:YES];
-//    [params3 setRule:GRXRelativeLayoutRuleBelow forView:view2];
-//    [self.topLayout addSubview:view3 layoutParams:params3];
+    view2.grx_layoutParams = params2;
+    [self.topLayout addSubview:view2];
 }
 
 
