@@ -4,7 +4,7 @@ GranadaLayout
 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout)
 [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
 
-**GranadaLayout** is an alternative layout system for iOS, inspired on the Android layout system. It includes **relative** and a **linear** layout systems, that allow positioning views and reacting to size changes automatically without thinking on view frames.
+**GranadaLayout** is an alternative layout system for iOS, inspired on the Android layout system. It includes **relative** and **linear** layout systems, that allow positioning views and reacting to size changes automatically without thinking on view frames.
 
 The goal of this project is to be an alternative to Apple's AutoLayout, which I find not very intuitive under some circumstances and has poor performance on older devices. I think this system allows also easier animations and the provided layout inflater allows not to mix interface and logic code.
 
