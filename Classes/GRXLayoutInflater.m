@@ -4,9 +4,9 @@
 #import "UIView+GRXLayoutInflater.h"
 #import "GRXLayout+GRXLayoutInflater.h"
 
-@interface GRXLayoutInflater ()
-
-@property (nonatomic, readonly) NSMutableDictionary *allViewsById;
+@interface GRXLayoutInflater () {
+    NSMutableDictionary *_allViewsById;
+}
 
 @end
 

@@ -10,6 +10,7 @@
 		6EA9633F27AFC81749A1C09A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6C11B727DA51D1D5465A2F /* libPods-Tests.a */; };
 		B7E53FCEA6AA31ECD037B56B /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A29F83379014C3DF9AC03E4 /* libPods-Example.a */; };
 		C0110F4619E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */; };
+		C0110F4819E97A04002ADFF3 /* broken.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0110F4719E97A04002ADFF3 /* broken.grx */; };
 		C048AEEB19E14CA8005B163E /* relative_wrapped_push.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */; };
 		C048AEED19E14F90005B163E /* relative_wrapped.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEC19E14F90005B163E /* relative_wrapped.grx */; };
 		C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */; };
@@ -77,6 +78,7 @@
 		5A29F83379014C3DF9AC03E4 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6C11B727DA51D1D5465A2F /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLayoutParamsUnitTests.m; sourceTree = "<group>"; };
+		C0110F4719E97A04002ADFF3 /* broken.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = broken.grx; sourceTree = "<group>"; };
 		C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped_push.grx; sourceTree = "<group>"; };
 		C048AEEC19E14F90005B163E /* relative_wrapped.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped.grx; sourceTree = "<group>"; };
 		C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXCollectionViewTestController.h; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				C0D7926519E5A38A0075A05C /* lab.png */,
+				C0110F4719E97A04002ADFF3 /* broken.grx */,
 				C0548DB719E71B50008DBD0B /* linear_horizontal_weight.grx */,
 				C0548DB819E71B50008DBD0B /* linear_horizontal.grx */,
 				C087D17419E5B55200737AF9 /* linear_vertical.grx */,
@@ -430,6 +433,7 @@
 				C0D7926419E5A0F20075A05C /* relative_in_relative.grx in Resources */,
 				C0D7926619E5A38A0075A05C /* lab.png in Resources */,
 				C048AEED19E14F90005B163E /* relative_wrapped.grx in Resources */,
+				C0110F4819E97A04002ADFF3 /* broken.grx in Resources */,
 				C05BFA3C19DEB4DD00C8FF34 /* relative_parent.grx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

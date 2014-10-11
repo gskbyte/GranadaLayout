@@ -21,6 +21,11 @@
     self.linearInRelative = [GRXTestHelper inflaterForFileWithName:@"linear_in_relative.grx"];
 }
 
+- (void)testBrokenJSON {
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"broken.grx"];
+    expect(inflater).to.beNil();
+}
+
 - (void)testEmptyInflation {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"empty.grx"];
     expect(rootView).to.beNil();

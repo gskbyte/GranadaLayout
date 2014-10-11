@@ -21,7 +21,7 @@
 - (void)createViews {
     UIView *view0 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view0.backgroundColor = [UIColor blueColor];
-    view0.grx_linearLayoutParams.minSize = CGSizeMake(100, 50);
+    view0.grx_minSize = CGSizeMake(100, 50);
     view0.grx_linearLayoutParams.weight = 0.20;
     view0.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
     view0.grx_linearLayoutParams.margins = UIEdgeInsetsMake(0, 0, 10, 0);
@@ -33,12 +33,12 @@
 
     UIView *view1 = [[UIView alloc] initWithDefaultParamsInLayout:self.topLayout];
     view1.backgroundColor = [UIColor greenColor];
-    view1.grx_linearLayoutParams.minSize = CGSizeMake(30, 80);
+    view1.grx_minSize = CGSizeMake(30, 80);
     view1.grx_linearLayoutParams.weight = 0.4;
 
     UISwitch *sw = [[UISwitch alloc] initWithDefaultParamsInLayout:self.topLayout];
     sw.backgroundColor = UIColor.yellowColor;
-    sw.grx_linearLayoutParams.minSize = CGSizeMake(200, 200);
+    sw.grx_minSize = CGSizeMake(200, 200);
     sw.grx_linearLayoutParams.margins = UIEdgeInsetsMake(5, 10, 30, 20);
     sw.grx_linearLayoutParams.gravity = GRXLinearLayoutGravityEnd;
 }

@@ -32,6 +32,7 @@
             "alignParentTop" : "true",
 
             "marginRight" : "8",
+            "visibility" : "visible",
 
             "debug_bgColor" : "blue"
           },
