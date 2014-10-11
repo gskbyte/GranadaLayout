@@ -96,7 +96,7 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutTestControllerMode) {
 
 - (void)setMode:(GRXRelativeLayoutTestControllerMode)mode {
     _mode = mode;
-    self.modeItem.title = [NSString stringWithFormat:@"mode %d", self.mode];
+    self.modeItem.title = [NSString stringWithFormat:@"mode %zd", self.mode];
 
     [UIView animateWithDuration:self.animate ? 1:0 delay:0 options:0 animations:^{
         [self adjustLayoutForCurrentMode];

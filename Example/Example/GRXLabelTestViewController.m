@@ -34,13 +34,13 @@ static NSString *ipsum = @""
 
 - (void)randomizeText {
     for (UILabel *label in self.topLayout.subviews) {
-        NSUInteger length = arc4random_uniform(ipsum.length);
+        NSUInteger length = arc4random_uniform((uint32_t)ipsum.length);
 
         NSString *displayedText = [ipsum substringWithRange:NSMakeRange(0, length)];
         NSMutableString *text = [NSMutableString stringWithString:@""];
         NSUInteger numLines = arc4random_uniform(5);
         label.numberOfLines = numLines;
-        [text appendFormat:@" numLines(%d) >", numLines];
+        [text appendFormat:@" numLines(%zu) >", numLines];
         CGFloat fontSize = 11 + arc4random_uniform(70) / 10;
         label.font = [UIFont systemFontOfSize:fontSize];
         [text appendFormat:@" fontSize(%.0f) >", fontSize];

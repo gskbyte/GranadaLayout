@@ -151,7 +151,7 @@
             GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
 
             CGFloat subviewExtra = lp.weight;
-            CGSize measuredSubviewSize;
+            CGSize measuredSubviewSize = CGSizeZero;
             if (subviewExtra > 0) {
                 // Subview said it could absorb extra space -- give him his share
                 CGFloat share = subviewExtra * delta / weightSum;
@@ -308,7 +308,7 @@
             GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
 
             CGFloat subviewExtra = lp.weight;
-            CGSize measuredSubviewSize;
+            CGSize measuredSubviewSize = CGSizeZero;
             if (subviewExtra > 0) {
                 // Subview said it could absorb extra space -- give him his share
                 CGFloat share = subviewExtra * delta / weightSum;

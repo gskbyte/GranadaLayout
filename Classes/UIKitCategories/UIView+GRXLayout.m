@@ -249,15 +249,11 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 const static char GRXLayoutDebugIDKey;
 
 - (NSString *)grx_debugIdentifier {
-#ifdef DEBUG
     return objc_getAssociatedObject(self, &GRXLayoutDebugIDKey);
-#endif
 }
 
 - (void)grx_setDebugIdentifier:(NSString *)grx_debugIdentifier{
-#ifdef DEBUG
     objc_setAssociatedObject(self, &GRXLayoutDebugIDKey, grx_debugIdentifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-#endif
 }
 
 #ifdef DEBUG

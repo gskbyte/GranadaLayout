@@ -102,7 +102,7 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
     GRXInflatedCellData *data = self.cellDatas[indexPath.row];
     CGSize size = [GRXInflatedCell sizeForData:data];
 
-    NSLog(@"[%d] -> %.0f, %.0f", indexPath.row, size.width, size.height);
+    NSLog(@"[%zd] -> %.0f, %.0f", indexPath.row, size.width, size.height);
 
     return size;
 }

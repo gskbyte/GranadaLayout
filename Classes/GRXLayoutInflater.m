@@ -41,8 +41,7 @@
 }
 
 - (BOOL)parseJSON:(id)JSON {
-    NSDictionary *root = JSON;
-    NSAssert([root isKindOfClass:NSDictionary.class],
+    NSAssert([JSON isKindOfClass:NSDictionary.class],
              @"The layout file must be a dictionary");
 
     NSDictionary *layout = [JSON objectForKey:@"layout"];

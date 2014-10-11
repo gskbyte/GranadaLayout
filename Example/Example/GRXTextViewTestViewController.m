@@ -40,7 +40,7 @@ static NSString *ipsum = @""
     for (UITextView *tv in self.topLayout.subviews) {
         tv.editable = NO;
 
-        NSUInteger length = arc4random_uniform(ipsum.length);
+        NSUInteger length = arc4random_uniform((uint32_t)ipsum.length);
 
         NSString *text = [ipsum substringWithRange:NSMakeRange(0, length)];
 
@@ -49,8 +49,8 @@ static NSString *ipsum = @""
             NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:text];
             NSUInteger numAttr = arc4random_uniform(10);
             for (NSUInteger i = 0; i < numAttr; ++i) {
-                NSUInteger origin = arc4random_uniform(text.length / 2);
-                NSUInteger length = 1 + arc4random_uniform(text.length / 3);
+                NSUInteger origin = arc4random_uniform((uint32_t)text.length / 2);
+                NSUInteger length = 1 + arc4random_uniform((uint32_t)text.length / 3);
                 NSRange range = NSMakeRange(origin, length);
 
                 if (arc4random_uniform(3)) {
