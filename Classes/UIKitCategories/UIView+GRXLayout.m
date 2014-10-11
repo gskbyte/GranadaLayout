@@ -89,29 +89,29 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 }
 
-- (GRXViewVisibility)grx_visibility {
+- (GRXVisibility)grx_visibility {
     if(self.grx_isLayoutable) {
         if(self.hidden) {
-            return GRXViewVisibilityHidden;
+            return GRXVisibilityHidden;
         } else {
-            return GRXViewVisibilityVisible;
+            return GRXVisibilityVisible;
         }
     } else {
-        return GRXViewVisibilityGone;
+        return GRXVisibilityGone;
     }
 }
 
-- (void)grx_setVisibility:(GRXViewVisibility)grx_visibility {
+- (void)grx_setVisibility:(GRXVisibility)grx_visibility {
     switch (grx_visibility) {
-        case GRXViewVisibilityHidden:
+        case GRXVisibilityHidden:
             self.hidden = YES;
             self.grx_isLayoutable = YES;
             break;
-        case GRXViewVisibilityGone:
+        case GRXVisibilityGone:
             self.hidden = YES;
             self.grx_isLayoutable = NO;
             break;
-        case GRXViewVisibilityVisible:
+        case GRXVisibilityVisible:
         default:
             self.hidden = NO;
             self.grx_isLayoutable = YES;

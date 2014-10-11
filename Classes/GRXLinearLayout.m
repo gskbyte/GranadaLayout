@@ -58,7 +58,7 @@
 
     // See how tall everyone is. Also remember max width.
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -144,7 +144,7 @@
         self.totalLength = 0;
 
         for (UIView *subview in self.subviews) {
-            if (subview.grx_visibility == GRXViewVisibilityGone) {
+            if (subview.grx_visibility == GRXVisibilityGone) {
                 continue;
             }
 
@@ -233,7 +233,7 @@
     BOOL matchHeight = NO;
 
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -301,7 +301,7 @@
         self.totalLength = 0;
 
         for (UIView *subview in self.subviews) {
-            if (subview.grx_visibility == GRXViewVisibilityGone) {
+            if (subview.grx_visibility == GRXVisibilityGone) {
                 continue;
             }
 
@@ -393,7 +393,7 @@
     GRXMeasureSpec uniformMeasureSpec = GRXMeasureSpecMake(width,
                                                            GRXMeasureSpecExactly);
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -420,7 +420,7 @@
     GRXMeasureSpec uniformMeasureSpec = GRXMeasureSpecMake(height,
                                                            GRXMeasureSpecExactly);
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
         GRXLinearLayoutParams *lp = subview.grx_linearLayoutParams;
@@ -460,7 +460,7 @@
     CGFloat availableWidth = ownWidth - self.padding.left - self.padding.right;
 
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -498,7 +498,7 @@
     CGFloat availableHeight = ownHeight - self.padding.top - self.padding.bottom;
 
     for (UIView *subview in self.subviews) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 

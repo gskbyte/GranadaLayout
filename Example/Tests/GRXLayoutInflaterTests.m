@@ -82,13 +82,13 @@
 
 - (void)testViewProperties {
     UIView *sw = [self.linearInRelative viewForIdentifier:@"switch"];
-    expect(sw.grx_visibility).to.equal(GRXViewVisibilityGone);
+    expect(sw.grx_visibility).to.equal(GRXVisibilityGone);
 
     UIView *button = [self.linearInRelative viewForIdentifier:@"button"];
-    expect(button.grx_visibility).to.equal(GRXViewVisibilityHidden);
+    expect(button.grx_visibility).to.equal(GRXVisibilityHidden);
 
     UILabel *label = [self.linearInRelative viewForIdentifier:@"label"];
-    expect(label.grx_visibility).to.equal(GRXViewVisibilityVisible);
+    expect(label.grx_visibility).to.equal(GRXVisibilityVisible);
     expect(label.grx_minSize.width).to.equal(200);
     expect(label.grx_minSize.height).to.equal(50);
 }

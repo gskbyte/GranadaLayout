@@ -89,7 +89,7 @@
     const BOOL isWrapContentHeight = heightSpec.mode != GRXMeasureSpecExactly;
 
     for (UIView *subview in self.sortedSubviewsHorizontal) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -107,7 +107,7 @@
     }
 
     for (UIView *subview in self.sortedSubviewsVertical) {
-        if (subview.grx_visibility == GRXViewVisibilityGone) {
+        if (subview.grx_visibility == GRXVisibilityGone) {
             continue;
         }
 
@@ -149,7 +149,7 @@
 
         if (offsetHorizontalAxis) {
             for (UIView *subview in self.subviews) {
-                if (subview.grx_visibility == GRXViewVisibilityGone) {
+                if (subview.grx_visibility == GRXVisibilityGone) {
                     continue;
                 }
 
@@ -176,7 +176,7 @@
 
         if (offsetVerticalAxis) {
             for (UIView *view in self.subviews) {
-                if (view.grx_visibility == GRXViewVisibilityGone) {
+                if (view.grx_visibility == GRXVisibilityGone) {
                     continue;
                 }
                 GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
@@ -191,7 +191,7 @@
     // Final step: set calculated frames to subviews
     for (UIView *view in self.subviews) {
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
-        if (view.grx_visibility != GRXViewVisibilityGone) {
+        if (view.grx_visibility != GRXVisibilityGone) {
             view.frame = params.rect;
         }
     }
@@ -216,7 +216,7 @@
         }
 
         // find the first non-gone view up the chain
-        while (view.grx_visibility == GRXViewVisibilityGone) {
+        while (view.grx_visibility == GRXVisibilityGone) {
             layoutParams = view.grx_relativeLayoutParams;
             view = [layoutParams viewForRule:relation];
             node = self.dependencyGraph.nodes[view.grx_layoutId];

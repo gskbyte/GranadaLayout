@@ -5,10 +5,10 @@
 
 @class GRXLayout;
 
-typedef NS_ENUM(NSUInteger, GRXViewVisibility) {
-    GRXViewVisibilityVisible = 0,   // the view is visible and will be layouted
-    GRXViewVisibilityHidden = 1,    // the view is not visible but keeps its size and will be layouted
-    GRXViewVisibilityGone = 2       // the view is not visible, its size is zero and won't be layouted
+typedef NS_ENUM(NSUInteger, GRXVisibility) {
+    GRXVisibilityVisible = 0,   // the view is visible and will be layouted
+    GRXVisibilityHidden = 1,    // the view is not visible but keeps its size and will be layouted
+    GRXVisibilityGone = 2       // the view is not visible, its size is zero and won't be layouted
 };
 
 static const NSUInteger GRXLayoutIdNull = 0;
@@ -17,7 +17,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
 
 @property (nonatomic, setter=grx_setMinSize:) CGSize grx_minSize;
 @property (nonatomic, setter = grx_setLayoutParams:) GRXLayoutParams * grx_layoutParams;
-@property (nonatomic, setter = grx_setVisibility:) GRXViewVisibility grx_visibility;
+@property (nonatomic, setter = grx_setVisibility:) GRXVisibility grx_visibility;
 
 @property (nonatomic, readonly) CGSize grx_measuredSize;
 

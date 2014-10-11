@@ -150,10 +150,10 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
     self.subtitle.text = data.subtitle;
 
     self.message.attributedText = [[NSAttributedString alloc] initWithString:data.message];
-    self.message.grx_visibility = data.message.length == 0 ? GRXViewVisibilityGone : GRXViewVisibilityVisible;
+    self.message.grx_visibility = data.message.length == 0 ? GRXVisibilityGone : GRXVisibilityVisible;
 
     self.image.image = [UIImage imageNamed:@"lab.png"];
-    self.image.grx_visibility = data.showImage ? GRXViewVisibilityVisible : GRXViewVisibilityGone;
+    self.image.grx_visibility = data.showImage ? GRXVisibilityVisible : GRXVisibilityGone;
 
     [self.root setNeedsLayout];
 }
