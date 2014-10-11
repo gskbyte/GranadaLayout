@@ -70,7 +70,7 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
 }
 
 + (NSString *)selectionTitle {
-    return @"CollectionViewCell example";
+    return @"UICollectionViewCell example";
 }
 
 + (NSString *)selectionDetail {

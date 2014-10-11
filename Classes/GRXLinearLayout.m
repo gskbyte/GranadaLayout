@@ -461,7 +461,6 @@
 
     for (UIView *subview in self.subviews) {
         if (subview.grx_visibility == GRXViewVisibilityGone) {
-            subview.frame = CGRectZero;
             continue;
         }
 
@@ -500,7 +499,6 @@
 
     for (UIView *subview in self.subviews) {
         if (subview.grx_visibility == GRXViewVisibilityGone) {
-            subview.frame = CGRectZero;
             continue;
         }
 

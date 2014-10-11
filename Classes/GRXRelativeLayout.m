@@ -187,8 +187,6 @@
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
         if (view.grx_visibility != GRXViewVisibilityGone) {
             view.frame = params.rect;
-        } else {
-            view.frame = CGRectZero;
         }
     }
 

@@ -23,6 +23,11 @@
             measuredSize.width *= (measuredSize.height/imageSize.height);
         }
     }
+
+    CGSize minSize = self.grx_minSize;
+    measuredSize.width = MAX(minSize.width, measuredSize.width);
+    measuredSize.height = MAX(minSize.height, measuredSize.height);
+
     return measuredSize;
 }
 

@@ -22,6 +22,8 @@
 				"id" : "image",
 				"width" : "wrap_content",
 				"height" : "wrap_content",
+                "minWidth" : "40",
+                "minHeight" : "40",
 
 				"debug_bgColor" : "blue",
 				"gravity" : "center"
@@ -38,7 +40,7 @@
 			},
 			{
 				"class" : "UIView",
-				"id" : "red",
+				"id" : "blue",
 				"width" : "200",
 				"height" : "120",
 				"margin" : "10",
