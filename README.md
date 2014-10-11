@@ -8,8 +8,8 @@ GranadaLayout
 
 The goal of this project is to be an alternative to Apple's AutoLayout, which I find not very intuitive under some circumstances and has poor performance on older devices. I think this system allows also easier animations and the provided layout inflater allows not to mix interface and logic code.
 
-What can be done
-----------------
+What it can do
+--------------
 
 - Views can be arranged either horizontally or vertically in a ``GRXLinearLayout``, also by defining weights.
 - Views can be arranged relative to each other in a ``GRXRelativeLayout``, or relative to their superview.
@@ -19,12 +19,6 @@ What can be done
 - Layouting is done at a very high speed, only the views that neeed it will me measured and layouting when the superview changes.
 - Can be used inside ``UITableViewCell``s and ``UICollectionViewCell``s, also to compute measurement
 - Compatible with iOS 6 and above
-
-Examples
---------
-
-// SOON
-
 
 Current Status
 --------------
@@ -41,6 +35,141 @@ TODO:
 - Integration with NUI
 - Further testing
 - Add more examples
+- Add UILabel, UITextView, UIImage subclasses to avoid calling manually ``-grx_setNeedsLayoutInParent``.
+
+Example
+-------
+
+### Using a layout file
+
+The recommended way to use GranadaLayout is to declare your layout in a layout file (I like to use the ``.grx`` extension) and load it in your custom view or view controller:
+
+```javascript
+{
+  "version" : "0.1",
+  
+  /** Space reserved for future attributes */
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout", // The root view can be a GRXLayout, but also any other UIView
+
+    "width" : "300",  // This layout will behave a width of exactly 300px
+    "height" : "wrap_content",  // This layout will be just tall enough to fit its contents
+
+    "debug_bgColor" : "white",  // To ease debug, you can define the background color. Will not be applied in release builds
+    "padding" : "12", // Internal padding of the layout. Applies only to GRXLayout subclasses
+
+    "subviews" : [
+      {
+        "id" : "top", // You can optionally set an identifier so that other views define their position, and to retrieve it from code
+        "class" : "GRXRelativeLayout",  // You can embed layouts in other layouts
+        "width" : "match_parent",       // Fill the superview width
+        "height" : "wrap_content",      // Fit to content
+
+        "subviews" : [
+          {
+            "id" : "image",
+            "class" : "UIImageView",
+            "width" : "96",
+            "height" : "128",
+
+            "alignParentLeft" : "true", // properties to set alignment with respect to the parent
+            "alignParentTop" : "true",
+
+            "marginRight" : "8",  // views can also define a margin
+            "visibility" : "visible", // and their visibility, which can be 'visible', 'hidden' or 'gone'
+
+            "debug_bgColor" : "blue"
+          },
+
+          {
+            "id" : "title",
+            "class" : "GRXTextView", // GRXTextView is a subclass of UITextView which is ready to be layouted, without margins and scroll
+            "width" : "match_parent",
+            "height" : "wrap_content",
+            
+            "toRightOf" : "image",  // set position with respect to other view
+            "alignParentTop" : "true",
+
+            "debug_bgColor" : "yellow"
+          },
+
+          {
+            "id" : "subtitle",
+            "class" : "UILabel",
+            "width" : "match_parent",
+            "height" : "wrap_content",
+            
+            "alignLeft" : "title",
+            "below" : "title",
+            "marginTop" : "8",
+
+            "debug_bgColor" : "red"
+          },
+
+        ]
+
+      },
+
+      {
+        "id" : "message",
+        "class" : "GRXTextView",
+        "width" : "match_parent",
+        "height" : "wrap_content",
+        
+        "below" : "top",
+        "marginTop" : "8",
+
+        "debug_bgColor" : "orange"
+      },
+    ]
+  }  
+}
+```
+
+And then, just use it inside your ``UIViewController`` or custom view, just load it and set the properties:
+
+```objective-c
+GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
+
+self.view = inflater.rootView;
+UIImage *image = [inflater viewForIdentifier:@"image"];
+image.backgroundColor = [UIColor blueColor];
+image.contentMode = UIViewContentModeScaleAspectFit;
+
+GRXTextView * title = [inflater viewForIdentifier:@"title"];
+title.text = @"Title goes here";
+title.textColor = [UIColor darkGrayColor];
+
+UILabel * subtitle = [inflater viewForIdentifier:@"subtitle"];
+subtitle.text = @"Subtitle goes here";
+```
+
+If you change any property in a view that could affect its size, just call ``-grx_setNeedsLayoutInParent`` to invalidate its measured size and relayout it.
+
+```objective-c
+title.text = @"This text is longer and should occupy more lines";
+title.numberOfLines = 2;
+
+[title grx_setNeedsLayoutInParent];
+```
+
+Animating is also very easy:
+
+```objective-c
+image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the text to the left
+[image grx_setNeedsLayoutInParent];
+
+[UIView animateWithDuration:0.5 animations:^{
+    [self.view layoutIfNeeded];
+}];
+```
+
+
+
+###Just code
+
+// (soon)
 
 Thanks + Acknowledments
 -----------------------
