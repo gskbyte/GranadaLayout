@@ -32,7 +32,6 @@ Current Status
 
 TODO:
 -----
-- Integration with NUI
 - Further testing
 - Add more examples
 - Add UILabel, UITextView, UIImage subclasses to avoid calling manually ``-grx_setNeedsLayoutInParent``.
