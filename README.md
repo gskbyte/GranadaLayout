@@ -19,6 +19,7 @@ What it can do
 - Layouting is done at a very high speed, only the views that neeed it will me measured and layouting when the superview changes.
 - Can be used inside ``UITableViewCell``s and ``UICollectionViewCell``s, also to compute measurement
 - Compatible with iOS 6 and above
+- It can work together with [NUI](https://github.com/tombenner/nui)
 
 Current Status
 --------------
