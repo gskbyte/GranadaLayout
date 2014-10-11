@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6EA9633F27AFC81749A1C09A /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F6C11B727DA51D1D5465A2F /* libPods-Tests.a */; };
 		B7E53FCEA6AA31ECD037B56B /* libPods-Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A29F83379014C3DF9AC03E4 /* libPods-Example.a */; };
+		C0110F4619E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */; };
 		C048AEEB19E14CA8005B163E /* relative_wrapped_push.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */; };
 		C048AEED19E14F90005B163E /* relative_wrapped.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEC19E14F90005B163E /* relative_wrapped.grx */; };
 		C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */; };
@@ -75,6 +76,7 @@
 		52B8E55FEED8081ECE684CBE /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5A29F83379014C3DF9AC03E4 /* libPods-Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F6C11B727DA51D1D5465A2F /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLayoutParamsUnitTests.m; sourceTree = "<group>"; };
 		C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped_push.grx; sourceTree = "<group>"; };
 		C048AEEC19E14F90005B163E /* relative_wrapped.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped.grx; sourceTree = "<group>"; };
 		C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXCollectionViewTestController.h; sourceTree = "<group>"; };
@@ -285,6 +287,7 @@
 				C05BFA3719DEAC8F00C8FF34 /* GRXTestHelper.m */,
 				C05BFA3D19DEB9FF00C8FF34 /* GRXRelativeSnapshotTests.m */,
 				C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */,
+				C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0110F4619E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m in Sources */,
 				C087D17719E5B57C00737AF9 /* GRXLinearSnapshotTests.m in Sources */,
 				C05BFA3119DEAC1600C8FF34 /* GRXLinearLayoutUnitTests.m in Sources */,
 				C05BFA3319DEAC2B00C8FF34 /* GRXRelativeLayoutUnitTests.m in Sources */,

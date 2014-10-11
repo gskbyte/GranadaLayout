@@ -30,8 +30,8 @@
 				"height" : "80",
 
 				"weight" : "30",
-
-
+                "minWidth" : "100",
+                "minHeight" : "50",
 				"gravity" : "center",
 				"margin" : "8",
 

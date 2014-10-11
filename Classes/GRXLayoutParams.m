@@ -18,13 +18,6 @@
 
 #pragma mark - Instance methods
 
-- (void)setMinSize:(CGSize)minSize {
-    NSAssert(minSize.width >= 0 && minSize.height >= 0, @"minSize must have positive values");
-
-    _minSize = minSize;
-    [_view grx_setNeedsLayoutInParent];
-}
-
 - (void)setSize:(CGSize)size {
     _size = size;
     [_view grx_setNeedsLayoutInParent];
@@ -60,7 +53,6 @@
 - (id)copyWithZone:(NSZone *)zone {
     GRXLayoutParams *copy = [[self.class alloc] initWithSize:self.size];
     copy.margins = self.margins;
-    copy.minSize = self.minSize;
     return copy;
 }
 

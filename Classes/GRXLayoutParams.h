@@ -13,8 +13,6 @@ static const CGFloat GRXWrapContent = -2;
 @property (nonatomic) CGFloat width;
 @property (nonatomic) CGFloat height;
 
-@property (nonatomic) CGSize minSize;
-
 @property (nonatomic) UIEdgeInsets margins;
 @property (nonatomic, readonly) BOOL hasMargins;
 
