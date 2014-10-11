@@ -80,7 +80,6 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 
             "debug_bgColor" : "blue"
           },
-
           {
             "id" : "title",
             "class" : "GRXTextView", // GRXTextView is a subclass of UITextView which is ready to be layouted, without margins and scroll
@@ -93,7 +92,6 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 
             "debug_bgColor" : "yellow"
           },
-
           {
             "id" : "subtitle",
             "class" : "UILabel",
@@ -106,11 +104,8 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 
             "debug_bgColor" : "red"
           },
-
         ]
-
       },
-
       {
         "id" : "message",
         "class" : "GRXTextView",
@@ -127,7 +122,7 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 }
 ```
 
-And then, just use it inside your ``UIViewController`` or custom view, just load it and set the properties:
+And then, to use it inside your ``UIViewController`` or custom view, just load it and set the properties:
 
 ```objective-c
 GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
@@ -164,8 +159,6 @@ image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the 
     [self.view layoutIfNeeded];
 }];
 ```
-
-
 
 ###Just code
 
