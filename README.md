@@ -14,12 +14,12 @@ What it can do
 - Views can be arranged either horizontally or vertically in a ``GRXLinearLayout``, also by defining weights.
 - Views can be arranged relative to each other in a ``GRXRelativeLayout``, or relative to their superview.
 - Adding support for custom view types is very easy, you just need to override the method ``grx_measureForWidthSpec:heightSpec:``
-- A layout inflater is provided, allowing you separate layout and logic, defining layouts in a declarative way using simple JSON files (see example below)
-- All needed properties for layouting have been implemented on a thin category of ``UIView``, so all UIKit views are supported out-of-the-box
-- Layouting is done at a very high speed, only the views that neeed it will me measured and layouting when the superview changes.
-- Can be used inside ``UITableViewCell``s and ``UICollectionViewCell``s, also to compute measurement
+- A layout inflater is provided, allowing you to separate layout and logic, defining layouts in a declarative way using simple JSON files (see example below)
+- All needed properties for layouting have been implemented on a thin category of ``UIView``, so all UIKit views are supported out of the box
+- Layouting is done at a very high speed, only the views that neeed it will me measured and layouted when the superview changes.
+- Can be used inside ``UITableViewCell``s and ``UICollectionViewCell``s, also to compute cell size
 - Compatible with iOS 6 and above
-- It can work together with [NUI](https://github.com/tombenner/nui)
+- It can work together with [NUI](https://github.com/tombenner/nui), a styling system similar to CSS
 
 Current Status
 --------------
@@ -42,7 +42,7 @@ Installation
 
 ###CocoaPods
 
-GranadaLayout is most easily installed using [CocoaPods](http://www.cocoapods.org). Its pod name is "GranadaLayouts".
+GranadaLayout is most easily installed using [CocoaPods](http://www.cocoapods.org). Its pod name is "GranadaLayout".
 
 Without CocoaPods
 
@@ -56,7 +56,7 @@ This repository contains an Example project showcasing how GranadaLayout can be 
 
 ### Using a layout file
 
-The recommended way to use GranadaLayout is to declare your layout in a layout file (I like to use the ``.grx`` extension) and load it in your custom view or view controller:
+The recommended way to use GranadaLayout is to declare your layout in a layout file (I like to use the ``.grx`` extension):
 
 ```javascript
 {
@@ -137,7 +137,7 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 }
 ```
 
-And then, to use it inside your ``UIViewController`` or custom view, just load it and set the properties:
+And then, to use it inside your ``UIViewController`` or custom view, just load it and change the properties you want:
 
 ```objective-c
 GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
