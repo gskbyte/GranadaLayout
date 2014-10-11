@@ -60,14 +60,6 @@ static NSNumber *NoNumber = nil;
     }
 }
 
-- (NSArray *)rules {
-    return _mutableRules;
-}
-
-- (NSArray *)parentRules {
-    return _mutableParentRules;
-}
-
 #pragma mark - instance methods
 
 - (BOOL)hasRule:(GRXRelativeLayoutRule)rule {
@@ -79,7 +71,8 @@ static NSNumber *NoNumber = nil;
     if (ret == NoNumber) {
         return nil;
     } else {
-        return ret;
+        NSValue * value = ret;
+        return value.nonretainedObjectValue;
     }
 }
 
@@ -88,7 +81,7 @@ static NSNumber *NoNumber = nil;
     if (view == nil) {
         _mutableRules[rule] = NoNumber;
     } else {
-        _mutableRules[rule] = view;
+        _mutableRules[rule] = [NSValue valueWithNonretainedObject:view];
     }
 }
 

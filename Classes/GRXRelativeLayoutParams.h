@@ -34,9 +34,6 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 + (NSArray *)verticalRules;
 + (NSArray *)horizontalRules;
 
-@property (nonatomic, readonly) NSArray *rules;           // size GRXRelativeLayoutRuleCount
-@property (nonatomic, readonly) NSArray *parentRules;     // size GRXRelativeLayoutParentRuleCount
-
 @property (nonatomic) CGFloat top, left, bottom, right;
 @property (nonatomic, readonly) CGRect rect;
 

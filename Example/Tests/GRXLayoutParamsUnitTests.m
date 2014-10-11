@@ -54,11 +54,17 @@
     expect(copy.height).to.equal(relativeParams.height);
     expect(copy.margins.top).to.equal(relativeParams.margins.top);
 
-    expect([copy hasParentRule:GRXRelativeLayoutParentRuleAlignTop]).to.beTruthy();
-    expect([copy hasRule:GRXRelativeLayoutRuleRightOf]).to.beTruthy();
-    expect([copy viewForRule:GRXRelativeLayoutRuleRightOf]).to.beIdenticalTo(image);
-    expect(copy.parentRules).to.equal(relativeParams.parentRules);
-    expect(copy.rules).to.equal(relativeParams.rules);
+    for(GRXRelativeLayoutParentRule pr = GRXRelativeLayoutParentRuleAlignLeft;
+        pr < GRXRelativeLayoutParentRuleCount;
+        ++pr) {
+        expect([copy hasParentRule:pr]).to.equal([relativeParams hasParentRule:pr]);
+    }
+
+    for(GRXRelativeLayoutRule r = GRXRelativeLayoutRuleLeftOf;
+        r < GRXRelativeLayoutRuleCount;
+        ++r) {
+        expect([copy viewForRule:r]).to.equal([relativeParams viewForRule:r]);
+    }
 }
 
 @end

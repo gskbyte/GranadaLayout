@@ -22,18 +22,6 @@
     }
 }
 
-#pragma mark - Overriden methods
-
-- (void)addSubview:(UIView *)view {
-    [super addSubview:view];
-    self.dirtyHierarchy = YES;
-}
-
-- (void)willRemoveSubview:(UIView *)subview {
-    [super willRemoveSubview:subview];
-    self.dirtyHierarchy = YES;
-}
-
 #pragma mark - Initializiation
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -48,14 +36,15 @@
 
 #pragma mark - Overriden methods
 
-- (void)sortSubviews {
-    [self.dependencyGraph clear];
-    for (UIView *view in self.subviews) {
-        [self.dependencyGraph add:view];
-    }
+// Adding and removes subviews may change the view hierarchy, views might need to be resorted again
+- (void)addSubview:(UIView *)view {
+    [super addSubview:view];
+    self.dirtyHierarchy = YES;
+}
 
-    self.sortedSubviewsHorizontal = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams horizontalRules]];
-    self.sortedSubviewsVertical = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams verticalRules]];
+- (void)willRemoveSubview:(UIView *)subview {
+    [super willRemoveSubview:subview];
+    self.dirtyHierarchy = YES;
 }
 
 - (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
@@ -197,6 +186,16 @@
     }
 
     return measuredSize;
+}
+
+- (void)sortSubviews {
+    [self.dependencyGraph clear];
+    for (UIView *view in self.subviews) {
+        [self.dependencyGraph add:view];
+    }
+
+    self.sortedSubviewsHorizontal = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams horizontalRules]];
+    self.sortedSubviewsVertical = [self.dependencyGraph sortedViewsWithRules:[GRXRelativeLayoutParams verticalRules]];
 }
 
 - (GRXRelativeLayoutParams *)relatedSubviewParamsForSubviewParams:(GRXRelativeLayoutParams *)layoutParams
