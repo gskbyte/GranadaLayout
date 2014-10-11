@@ -3,8 +3,8 @@
 
 @interface UIDevice (Helper)
 
-+ (BOOL)grx_runningSystemBefore7;
-+ (BOOL)grx_runningSystemVersionAfterOrEqualTo7;
++ (BOOL)grx_runningSystemLessThan7;
++ (BOOL)grx_runningSystemVersionGreaterOrEqualTo7;
 
 + (BOOL)grx_iPad;
 + (BOOL)grx_iPhone;

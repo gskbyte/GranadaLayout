@@ -27,11 +27,8 @@
     // Try UIColor selectors
     NSString *colorSelectorName = [bgColorStr stringByAppendingString:@"Color"];
     SEL selector = NSSelectorFromString(colorSelectorName);
-    if ([UIColor.class respondsToSelector:selector]) {
-        self.backgroundColor = [UIColor performSelector:selector];
-    } else {
-        NSLog(@"Unrecognized color selector: %@", colorSelectorName);
-    }
+    NSAssert([UIColor.class respondsToSelector:selector], @"Unrecognized color selector: %@", colorSelectorName);
+    self.backgroundColor = [UIColor performSelector:selector];
 
     // TODO ? could parse also hex values
 #endif

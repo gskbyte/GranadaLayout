@@ -15,11 +15,11 @@
     return GRXCachedSystemVersionPrefix;
 }
 
-+ (BOOL)grx_runningSystemBefore7 {
++ (BOOL)grx_runningSystemLessThan7 {
     return [UIDevice grx_cachedSystemVersionPrefix] < 7;
 }
 
-+ (BOOL)grx_runningSystemVersionAfterOrEqualTo7 {
++ (BOOL)grx_runningSystemVersionGreaterOrEqualTo7 {
     return [UIDevice grx_cachedSystemVersionPrefix] >= 7;
 }
 

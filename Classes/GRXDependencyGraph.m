@@ -19,6 +19,9 @@
 }
 
 - (void)clear {
+    for(GRXDependencyNode * node in _nodes) {
+        [node recycle];
+    }
     [_nodes removeAllObjects];
     [_roots removeAllObjects];
 }
