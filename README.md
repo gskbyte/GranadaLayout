@@ -85,6 +85,7 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
           {
             "id" : "title",
             "class" : "GRXTextView", // GRXTextView is a subclass of UITextView which is ready to be layouted, without margins and scroll
+            "nuiClass" : "title", // If you use NUI, you can set the nuiClass directly to customize this view
             "width" : "match_parent",
             "height" : "wrap_content",
             
