@@ -37,8 +37,22 @@ TODO:
 - Add more examples
 - Add UILabel, UITextView, UIImage subclasses to avoid calling manually ``-grx_setNeedsLayoutInParent``.
 
+Installation
+------------
+
+###CocoaPods
+
+GranadaLayout is most easily installed using [CocoaPods](http://www.cocoapods.org). Its pod name is "GranadaLayouts".
+
+Without CocoaPods
+
+Just copy the folder ``Classes`` to your project. Rename it if needed
+
+
 Example
 -------
+
+This repository contains an Example project showcasing how GranadaLayout can be used. Feel free to have a look at the code there.
 
 ### Using a layout file
 
