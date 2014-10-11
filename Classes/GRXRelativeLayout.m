@@ -96,8 +96,11 @@
         GRXRelativeLayoutParams *subviewParams = subview.grx_relativeLayoutParams;
 
         [self applyHorizontalSizeRulesToSubview:subview params:subviewParams ownWidth:ownWidth];
-        [self measureSubviewHorizontal:subview params:subviewParams ownWidth:ownWidth ownHeight:ownHeight];
-
+        CGSize subviewSize = [self measureSubviewHorizontal:subview
+                                                     params:subviewParams
+                                                   ownWidth:ownWidth
+                                                  ownHeight:ownHeight];
+#pragma unused(subviewSize)
         if ( [self positionSubviewHorizontal:subview params:subviewParams ownWidth:ownWidth wrapContent:isWrapContentWidth] ) {
             offsetHorizontalAxis = YES;
         }
@@ -111,18 +114,21 @@
         GRXRelativeLayoutParams *subviewParams = subview.grx_relativeLayoutParams;
 
         [self applyVerticalSizeRulesToSubview:subview params:subviewParams ownHeight:ownHeight];
-        [self measureSubview:subview params:subviewParams ownWidth:ownWidth ownHeight:ownHeight];
+        CGSize subviewSize = [self measureSubview:subview
+                                           params:subviewParams
+                                         ownWidth:ownWidth
+                                        ownHeight:ownHeight];
+#pragma unused(subviewSize)
         if ( [self positionSubviewVertical:subview params:subviewParams ownHeight:ownHeight wrapContent:isWrapContentHeight] ) {
             offsetVerticalAxis = YES;
         }
 
-        GRXRelativeLayoutParams *params = subview.grx_relativeLayoutParams;
         if (isWrapContentWidth) {
-            measuredSize.width = MAX(measuredSize.width, params.right);
+            measuredSize.width = MAX(measuredSize.width, subviewParams.right);
         }
 
         if (isWrapContentHeight) {
-            measuredSize.height = MAX(measuredSize.height, params.bottom);
+            measuredSize.height = MAX(measuredSize.height, subviewParams.bottom);
         }
     }
 

@@ -118,6 +118,12 @@ static NSNumber *NoNumber = nil;
     return copy;
 }
 
+- (NSString *)debugDescription {
+    NSString * description = [super debugDescription];
+    description = [description stringByAppendingFormat:@"[%.0f,%.0f,%.0f,%.0f]",_left,_top,_right,_bottom];
+    return description;
+}
+
 #pragma mark - protected methods
 
 - (CGRect)rect {

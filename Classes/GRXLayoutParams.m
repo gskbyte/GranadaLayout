@@ -62,15 +62,7 @@
     _view = view;
 }
 
-
 - (NSString *)debugDescription {
-    return [NSString stringWithFormat:@""
-            "%@",
-            NSStringFromClass(self.class)
-    ];
-}
-
-- (NSString *)description {
     return [NSString stringWithFormat:@""
             "%@[%.0f,%.0f]",
             NSStringFromClass(self.class), self.width, self.height

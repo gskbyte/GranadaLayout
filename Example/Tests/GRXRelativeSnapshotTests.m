@@ -51,6 +51,14 @@
     FBSnapshotVerifyView(rootView, nil);
 }
 
+- (void)testRelativeToGone {
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_to_gone.grx"];
+    UIView *rootView = inflater.rootView;
+    [rootView layoutSubviews];
+
+    FBSnapshotVerifyView(rootView, nil);
+}
+
 - (void)testRelativeInRelative {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_in_relative.grx"];
 
