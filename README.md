@@ -146,7 +146,7 @@ And then, to use it inside your ``UIViewController`` or custom view, just load i
 GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
 
 self.view = inflater.rootView;
-UIImage *image = [inflater viewForIdentifier:@"image"];
+UIImageView *image = [inflater viewForIdentifier:@"image"];
 image.backgroundColor = [UIColor blueColor];
 image.contentMode = UIViewContentModeScaleAspectFit;
 
