@@ -113,6 +113,9 @@
     expect(button).notTo.beNil();
     expect(button.superview).to.beIdenticalTo(linear);
     expect(button).to.beInstanceOf(UIButton.class);
+
+    UIView *nonExistent = [self.linearInRelative viewForIdentifier:@"nonexistent"];
+    expect(nonExistent).to.beNil();
 }
 
 @end
