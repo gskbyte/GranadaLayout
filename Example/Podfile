@@ -4,7 +4,7 @@ workspace '../GranadaLayout'
 xcodeproj 'Example.xcodeproj'
 
 target "Example" do
-  pod "GranadaLayout", :path => ".."
+  pod "GranadaLayout", :path => "../GranadaLayout.podspec"
 end
 
 target "Tests" do
