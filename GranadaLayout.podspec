@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GranadaLayout"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "A simple layout system for iOS providing Android-like linear and relative layouts."
 
   s.description  = <<-DESC
