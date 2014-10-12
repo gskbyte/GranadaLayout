@@ -47,7 +47,7 @@ Installation
 
 GranadaLayout is most easily installed using [CocoaPods](http://www.cocoapods.org). Its pod name is "GranadaLayout".
 
-Without CocoaPods
+###Without CocoaPods
 
 Just copy the folder ``Classes`` to your project. Rename it if needed
 
@@ -70,7 +70,7 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
   "layout" : {
     "class" : "GRXRelativeLayout", // The root view can be a GRXLayout, but also any other UIView
 
-    "width" : "300",  // This layout will behave a width of exactly 300px
+    "width" : "300",  // This layout will have a width of exactly 300px
     "height" : "wrap_content",  // This layout will be just tall enough to fit its contents
 
     "debug_bgColor" : "white",  // To ease debug, you can define the background color. Will not be applied in release builds
