@@ -1,7 +1,7 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 
 static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
-    if(sizeStr == nil || [sizeStr isEqualToString:@"wrap_content"]) {
+    if (sizeStr == nil || [sizeStr isEqualToString:@"wrap_content"]) {
         return GRXWrapContent;
     } else if ([sizeStr isEqualToString:@"match_parent"]) {
         return GRXMatchParent;

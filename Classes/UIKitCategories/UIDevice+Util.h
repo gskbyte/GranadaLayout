@@ -5,6 +5,6 @@
 
 + (BOOL)grx_runningSystemVersionGreaterOrEqualTo7;
 
-+ (CGFloat) grx_screenScale;
++ (CGFloat)grx_screenScale;
 
 @end

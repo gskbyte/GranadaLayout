@@ -71,7 +71,7 @@ static NSNumber *NoNumber = nil;
     if (ret == NoNumber) {
         return nil;
     } else {
-        NSValue * value = ret;
+        NSValue *value = ret;
         return value.nonretainedObjectValue;
     }
 }
@@ -112,8 +112,8 @@ static NSNumber *NoNumber = nil;
 }
 
 - (NSString *)debugDescription {
-    NSString * description = [super debugDescription];
-    description = [description stringByAppendingFormat:@"[%.0f,%.0f,%.0f,%.0f]",_left,_top,_right,_bottom];
+    NSString *description = [super debugDescription];
+    description = [description stringByAppendingFormat:@"[%.0f,%.0f,%.0f,%.0f]", _left, _top, _right, _bottom];
     return description;
 }
 

@@ -184,7 +184,7 @@
     // Final step: set calculated frames to subviews
     for (UIView *view in self.subviews) {
         GRXRelativeLayoutParams *params = view.grx_relativeLayoutParams;
-        if (view.grx_visibility != GRXVisibilityGone && NO==CGRectEqualToRect(view.frame, params.rect)) {
+        if (view.grx_visibility != GRXVisibilityGone && NO == CGRectEqualToRect(view.frame, params.rect)) {
             view.frame = params.rect;
         }
     }
@@ -227,7 +227,7 @@
 
 - (void)applyHorizontalSizeRulesToSubview:(UIView *)subview
                                    params:(GRXRelativeLayoutParams *)subviewParams
-                                 maxOwnWidth:(CGFloat)ownWidth {
+                              maxOwnWidth:(CGFloat)ownWidth {
     // -1 indicates a "soft requirement" in that direction. For example:
     // left=10, right=-1 means the view must start at 10, but can go as far as it wants to the right
     // left =-1, right=10 means the view must end at 10, but can go as far as it wants to the left
@@ -272,7 +272,7 @@
 
 - (void)applyVerticalSizeRulesToSubview:(UIView *)subview
                                  params:(GRXRelativeLayoutParams *)subviewParams
-                              maxOwnHeight:(CGFloat)ownHeight {
+                           maxOwnHeight:(CGFloat)ownHeight {
     subviewParams.top = -1;
     subviewParams.bottom = -1;
 
@@ -313,7 +313,7 @@
 
 - (CGSize)measureSubview:(UIView *)subview
                   params:(GRXRelativeLayoutParams *)params
-              maxOwnSize:(CGSize)maxOwnSize{
+              maxOwnSize:(CGSize)maxOwnSize {
     GRXMeasureSpec widthSpec = [self subviewSpecWithStart:params.left
                                                       end:params.right
                                               subviewSize:params.width
@@ -362,7 +362,7 @@
 
 - (BOOL)positionSubviewHorizontal:(UIView *)subview
                            params:(GRXRelativeLayoutParams *)subviewParams
-                         maxOwnWidth:(CGFloat)ownWidth
+                      maxOwnWidth:(CGFloat)ownWidth
                       wrapContent:(BOOL)wrapContent {
     CGSize measuredSize = subview.grx_measuredSize;
 
@@ -393,7 +393,7 @@
 
 - (BOOL)positionSubviewVertical:(UIView *)subview
                          params:(GRXRelativeLayoutParams *)subviewParams
-                      maxOwnHeight:(CGFloat)ownHeight
+                   maxOwnHeight:(CGFloat)ownHeight
                     wrapContent:(BOOL)wrapContent {
     CGSize measuredSize = subview.grx_measuredSize;
 

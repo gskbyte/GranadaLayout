@@ -15,7 +15,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 @interface UIView (GRXLayout_Private)
 
-@property (nonatomic, setter = grx_setLayoutable:) BOOL grx_isLayoutable;
+@property (nonatomic, setter = grx_setLayoutable :) BOOL grx_isLayoutable;
 
 @end
 
@@ -23,18 +23,18 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 #pragma mark - setup methods
 
-- (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+- (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams {
     self = [self initWithFrame:CGRectZero];
-    if(self) {
+    if (self) {
         self.grx_layoutParams = layoutParams;
     }
     return self;
 }
 
-- (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout {
-    GRXLayoutParams * params = [[[layout.class layoutParamsClass] alloc] init];
+- (instancetype)initWithDefaultParamsInLayout:(GRXLayout *)layout {
+    GRXLayoutParams *params = [[[layout.class layoutParamsClass] alloc] init];
     self = [self initWithLayoutParams:params];
-    if(self) {
+    if (self) {
         [layout addSubview:self];
     }
     return self;
@@ -45,8 +45,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 #pragma mark - layout methods
 
 - (CGSize)grx_minSize {
-    NSValue * value = objc_getAssociatedObject(self, &GRXMinSizeKey);
-    if(value != nil) {
+    NSValue *value = objc_getAssociatedObject(self, &GRXMinSizeKey);
+    if (value != nil) {
         CGSize size;
         [value getValue:&size];
         return size;
@@ -65,7 +65,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void)grx_setLayoutParams:(GRXLayoutParams *)layoutParams {
-    if(layoutParams.view != nil) {
+    if (layoutParams.view != nil) {
         layoutParams = layoutParams.copy;
     }
     objc_setAssociatedObject(self, &GRXLayoutParamsKey, layoutParams,
@@ -75,8 +75,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (BOOL)grx_isLayoutable {
-    NSNumber * n = objc_getAssociatedObject(self, &GRXLayoutableKey);
-    if(n != nil) {
+    NSNumber *n = objc_getAssociatedObject(self, &GRXLayoutableKey);
+    if (n != nil) {
         return n.boolValue;
     } else {
         return YES; // layoutable by default
@@ -84,15 +84,14 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (void)grx_setLayoutable:(BOOL)layoutable {
-    NSNumber * n = @(layoutable);
+    NSNumber *n = @(layoutable);
     objc_setAssociatedObject(self, &GRXLayoutableKey, n,
                              OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-
 }
 
 - (GRXVisibility)grx_visibility {
-    if(self.grx_isLayoutable) {
-        if(self.hidden) {
+    if (self.grx_isLayoutable) {
+        if (self.hidden) {
             return GRXVisibilityHidden;
         } else {
             return GRXVisibilityVisible;
@@ -121,8 +120,8 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 - (CGSize)grx_measuredSize {
-    NSValue * value = objc_getAssociatedObject(self, &GRXMeasuredSizeKey);
-    if(value != nil) {
+    NSValue *value = objc_getAssociatedObject(self, &GRXMeasuredSizeKey);
+    if (value != nil) {
         CGSize size;
         [value getValue:&size];
         return size;
@@ -141,21 +140,21 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 #pragma mark - measurement methods
 
-- (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
-                             heightSpec:(GRXMeasureSpec)heightSpec {
-    NSValue * measuredSpecValue = objc_getAssociatedObject(self, &GRXMeasuredSizeSpecKey);
+- (CGSize)grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
+                            heightSpec:(GRXMeasureSpec)heightSpec {
+    NSValue *measuredSpecValue = objc_getAssociatedObject(self, &GRXMeasuredSizeSpecKey);
 
-    if(measuredSpecValue != nil) {
+    if (measuredSpecValue != nil) {
         GRXFullMeasureSpec fullMeasuredSpec;
         [measuredSpecValue getValue:&fullMeasuredSpec];
-        if(GRXMeasureSpecsEqual(widthSpec, fullMeasuredSpec.width) &&
-           GRXMeasureSpecsEqual(heightSpec, fullMeasuredSpec.height)) {
+        if (GRXMeasureSpecsEqual(widthSpec, fullMeasuredSpec.width) &&
+            GRXMeasureSpecsEqual(heightSpec, fullMeasuredSpec.height)) {
             return [self grx_measuredSize];
         }
     }
 
     CGSize measuredSize = CGSizeZero;
-    if(self.grx_measurementBlock != nil) {
+    if (self.grx_measurementBlock != nil) {
         measuredSize = self.grx_measurementBlock(widthSpec, heightSpec);
     } else {
         measuredSize = [self grx_measureForWidthSpec:widthSpec
@@ -168,13 +167,13 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     return measuredSize;
 }
 
-- (void) grx_invalidateMeasuredSize {
+- (void)grx_invalidateMeasuredSize {
     objc_setAssociatedObject(self, &GRXMeasuredSizeSpecKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (void) grx_setMeasuredSize:(CGSize)measuredSize
-                forWidthSpec:(GRXMeasureSpec)widthSpec
-                  heightSpec:(GRXMeasureSpec)heightSpec {
+- (void)grx_setMeasuredSize:(CGSize)measuredSize
+               forWidthSpec:(GRXMeasureSpec)widthSpec
+                 heightSpec:(GRXMeasureSpec)heightSpec {
     NSValue *sizeValue = [NSValue value:&measuredSize withObjCType:@encode(CGSize)];
     objc_setAssociatedObject(self, &GRXMeasuredSizeKey, sizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
@@ -187,10 +186,10 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 // different implementation for UIView because it -sizeThatFits: returns the current size
 // subviews won't usually want to call super
-- (CGSize) grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
-                        heightSpec:(GRXMeasureSpec)heightSpec {
+- (CGSize)grx_measureForWidthSpec:(GRXMeasureSpec)widthSpec
+                       heightSpec:(GRXMeasureSpec)heightSpec {
     CGSize size;
-    if([self isMemberOfClass:UIView.class]) {
+    if ([self isMemberOfClass:UIView.class]) {
         CGSize minSize = self.grx_minSize;
         CGFloat w = GRXMeasureSpecResolveSizeValue(minSize.width, widthSpec);
         CGFloat h = GRXMeasureSpecResolveSizeValue(minSize.height, heightSpec);
@@ -233,18 +232,18 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 
     // 3. Override computed width if set to exactly or unspecified
-    if(widthSpec.mode == GRXMeasureSpecExactly) {
+    if (widthSpec.mode == GRXMeasureSpecExactly) {
         measuredSize.width = widthSpec.value;
-    } else if(widthSpec.value == GRXMeasureSpecUnspecified) {
+    } else if (widthSpec.value == GRXMeasureSpecUnspecified) {
         measuredSize.width = MAX(measuredSize.width, widthSpec.value);
     }
 
     return measuredSize;
 }
 
-- (NSNumber*)grx_layoutId { // initialized only if used, for example, by the relative layout
-    NSNumber * layoutIdNumber = objc_getAssociatedObject(self, &GRXLayoutIDKey);
-    if(layoutIdNumber == nil) {
+- (NSNumber *)grx_layoutId { // initialized only if used, for example, by the relative layout
+    NSNumber *layoutIdNumber = objc_getAssociatedObject(self, &GRXLayoutIDKey);
+    if (layoutIdNumber == nil) {
         NSUInteger layoutId = (++GRXStaticCurrentLayoutID);
         layoutIdNumber = [NSNumber numberWithUnsignedInteger:layoutId];
         objc_setAssociatedObject(self, &GRXLayoutIDKey, layoutIdNumber, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -252,9 +251,9 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     return layoutIdNumber;
 }
 
-- (void) grx_setNeedsLayoutInParent {
+- (void)grx_setNeedsLayoutInParent {
     [self grx_invalidateMeasuredSize];
-    if([self.superview isKindOfClass:GRXLayout.class]) {
+    if ([self.superview isKindOfClass:GRXLayout.class]) {
         [self.superview grx_setNeedsLayoutInParent];
     } else {
         [self setNeedsLayout];
@@ -267,7 +266,7 @@ const static char GRXLayoutDebugIDKey;
     return objc_getAssociatedObject(self, &GRXLayoutDebugIDKey);
 }
 
-- (void)grx_setDebugIdentifier:(NSString *)grx_debugIdentifier{
+- (void)grx_setDebugIdentifier:(NSString *)grx_debugIdentifier {
     objc_setAssociatedObject(self, &GRXLayoutDebugIDKey, grx_debugIdentifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
@@ -277,16 +276,16 @@ const static char GRXLayoutDebugIDKey;
     return [self descriptionWithIndentationLevel:0];
 }
 
-- (NSString*)descriptionWithIndentationLevel:(NSUInteger)level {
-    NSMutableString * spaces = [NSMutableString stringWithCapacity:level*2];
-    for(NSUInteger i = 0; i<level; ++i) {
+- (NSString *)descriptionWithIndentationLevel:(NSUInteger)level {
+    NSMutableString *spaces = [NSMutableString stringWithCapacity:level * 2];
+    for (NSUInteger i = 0; i < level; ++i) {
         [spaces appendString:@"  "];
     }
 
-    NSMutableString * subviews = [NSMutableString string];
-    if([self isKindOfClass:GRXLayout.class]) {
-        for(UIView * v in self.subviews) {
-            [subviews appendString:[v descriptionWithIndentationLevel:level+1]];
+    NSMutableString *subviews = [NSMutableString string];
+    if ([self isKindOfClass:GRXLayout.class]) {
+        for (UIView *v in self.subviews) {
+            [subviews appendString:[v descriptionWithIndentationLevel:level + 1]];
         }
     }
 
@@ -295,12 +294,12 @@ const static char GRXLayoutDebugIDKey;
             "%@(%.2f, %.2f, %.2f, %.2f) (%.2f, %.2f)\n"
             "%@%@\n"
             "%@",
-            (level==0?@"\n":@""),
+            (level == 0 ? @"\n" : @""),
             spaces, NSStringFromClass(self.class), self.grx_debugIdentifier,
             spaces, self.left, self.top, self.width, self.height, self.grx_measuredSize.width, self.grx_measuredSize.height,
             spaces, self.grx_layoutParams.debugDescription,
             subviews
-            ];
+    ];
 }
 
 #endif

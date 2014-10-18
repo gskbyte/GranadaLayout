@@ -19,20 +19,20 @@
         self.grx_visibility = GRXVisibilityGone;
     }
 
-    NSString * nuiClass = dictionary[@"nuiClass"];
+    NSString *nuiClass = dictionary[@"nuiClass"];
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wundeclared-selector"
-    if(nuiClass != nil && [self respondsToSelector:@selector(setNuiClass:)]) {
+    if (nuiClass != nil && [self respondsToSelector:@selector(setNuiClass:)]) {
         [self performSelector:@selector(setNuiClass:)
                    withObject:nuiClass];
     }
 #pragma clang diagnostic pop
 
 #ifdef DEBUG
-    if(NO == [GRXLayoutInflater areDebugOptionsEnabled]) {
+    if (NO == [GRXLayoutInflater areDebugOptionsEnabled]) {
         return;
     }
-    
+
     NSString *bgColorStr = dictionary[@"debug_bgColor"];
     if (bgColorStr == nil) {
         return;

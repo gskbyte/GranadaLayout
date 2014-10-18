@@ -54,13 +54,13 @@
         // If a dimension is set to match parent, limit to the display size
         if (self.limitToNonLayoutParentWidth && self.superview.width > 0) {
             maxSize.width = self.superview.width;
-        } else if(ownParams.width == GRXMatchParent) {
+        } else if (ownParams.width == GRXMatchParent) {
             maxSize.width = screenSize.width;
         }
 
-        if(self.limitToNonLayoutParentHeight && self.superview.height > 0) {
+        if (self.limitToNonLayoutParentHeight && self.superview.height > 0) {
             maxSize.height = self.superview.height;
-        } else if(ownParams.height == GRXMatchParent) {
+        } else if (ownParams.height == GRXMatchParent) {
             maxSize.height = screenSize.height;
         }
 
