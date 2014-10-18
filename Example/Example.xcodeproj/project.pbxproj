@@ -15,6 +15,9 @@
 		C0344BAA19EA85D6008AB28A /* GRXUIViewCategoriesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C0344BA919EA85D6008AB28A /* GRXUIViewCategoriesTests.m */; };
 		C048AEEB19E14CA8005B163E /* relative_wrapped_push.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */; };
 		C048AEED19E14F90005B163E /* relative_wrapped.grx in Resources */ = {isa = PBXBuildFile; fileRef = C048AEEC19E14F90005B163E /* relative_wrapped.grx */; };
+		C05154C919F073F500E76BE1 /* green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C619F073F500E76BE1 /* green@2x.png */; };
+		C05154CA19F073F500E76BE1 /* lab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C719F073F500E76BE1 /* lab@2x.png */; };
+		C05154CB19F073F500E76BE1 /* power@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C819F073F500E76BE1 /* power@2x.png */; };
 		C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */; };
 		C053E0FE19E159C200336D7F /* relative_wrapped_around_center.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E0FD19E159C200336D7F /* relative_wrapped_around_center.grx */; };
 		C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */; };
@@ -34,17 +37,15 @@
 		C05BFA3E19DEB9FF00C8FF34 /* GRXRelativeSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C05BFA3D19DEB9FF00C8FF34 /* GRXRelativeSnapshotTests.m */; };
 		C05BFA4519DF0F9F00C8FF34 /* GRXTestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C05BFA4419DF0F9F00C8FF34 /* GRXTestAppDelegate.m */; };
 		C05BFA4719DF12D300C8FF34 /* relative_other_views.grx in Resources */ = {isa = PBXBuildFile; fileRef = C05BFA4619DF12D300C8FF34 /* relative_other_views.grx */; };
+		C078C49219F2F43000B127CC /* GRXLoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C078C49119F2F43000B127CC /* GRXLoadMoreCell.m */; };
 		C087D17519E5B55200737AF9 /* linear_vertical.grx in Resources */ = {isa = PBXBuildFile; fileRef = C087D17419E5B55200737AF9 /* linear_vertical.grx */; };
 		C087D17719E5B57C00737AF9 /* GRXLinearSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */; };
 		C09F21F219DC590D0069C0A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F21F119DC590D0069C0A1 /* main.m */; };
 		C09F220C19DC590D0069C0A1 /* GRXLayoutInflaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F220B19DC590D0069C0A1 /* GRXLayoutInflaterTests.m */; };
-		C09F224C19DC5A390069C0A1 /* lab.png in Resources */ = {isa = PBXBuildFile; fileRef = C09F223719DC5A390069C0A1 /* lab.png */; };
 		C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */; };
 		C09F224E19DC5A390069C0A1 /* GRXLabelTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223B19DC5A390069C0A1 /* GRXLabelTestViewController.m */; };
 		C09F224F19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */; };
 		C09F225019DC5A390069C0A1 /* GRXRelativeLayoutTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */; };
-		C09F225119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m */; };
-		C09F225219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224319DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m */; };
 		C09F225319DC5A390069C0A1 /* GRXSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224519DC5A390069C0A1 /* GRXSelectionViewController.m */; };
 		C09F225419DC5A390069C0A1 /* GRXTopLayoutTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224719DC5A390069C0A1 /* GRXTopLayoutTestViewController.m */; };
 		C09F225519DC5A390069C0A1 /* GRXTextViewTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F224919DC5A390069C0A1 /* GRXTextViewTestViewController.m */; };
@@ -52,6 +53,15 @@
 		C09F225A19DC5D630069C0A1 /* relative_test_1.grx in Resources */ = {isa = PBXBuildFile; fileRef = C09F225819DC5D630069C0A1 /* relative_test_1.grx */; };
 		C09F226D19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */; };
 		C0A2368B19E5174C007AA875 /* cell_test.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0A2368A19E5174C007AA875 /* cell_test.grx */; };
+		C0D6985B19F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6985A19F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.m */; };
+		C0D6985E19F15E08008F4473 /* GRXComplexCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6985D19F15E08008F4473 /* GRXComplexCollectionViewCell.m */; };
+		C0D6986119F15E19008F4473 /* GRXComplexData.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6986019F15E19008F4473 /* GRXComplexData.m */; };
+		C0D6986619F163A8008F4473 /* GRXTextGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6986519F163A8008F4473 /* GRXTextGenerator.m */; };
+		C0D6986A19F16915008F4473 /* complex_cell_body.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0D6986719F16915008F4473 /* complex_cell_body.grx */; };
+		C0D6986B19F16915008F4473 /* complex_cell_header.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0D6986819F16915008F4473 /* complex_cell_header.grx */; };
+		C0D6986C19F16915008F4473 /* complex_cell.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0D6986919F16915008F4473 /* complex_cell.grx */; };
+		C0D6986F19F16AA3008F4473 /* GRXComplexHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6986E19F16AA3008F4473 /* GRXComplexHeaderView.m */; };
+		C0D6987219F18C26008F4473 /* GRXComplexBodyView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0D6987119F18C26008F4473 /* GRXComplexBodyView.m */; };
 		C0D7926419E5A0F20075A05C /* relative_in_relative.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0D7926319E5A0F20075A05C /* relative_in_relative.grx */; };
 		C0D7926619E5A38A0075A05C /* lab.png in Resources */ = {isa = PBXBuildFile; fileRef = C0D7926519E5A38A0075A05C /* lab.png */; };
 		C0EB93A719E7247300A80AAB /* linear_horizontal_in_vertical.grx in Resources */ = {isa = PBXBuildFile; fileRef = C0EB93A619E7247300A80AAB /* linear_horizontal_in_vertical.grx */; };
@@ -85,6 +95,9 @@
 		C0344BA919EA85D6008AB28A /* GRXUIViewCategoriesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXUIViewCategoriesTests.m; sourceTree = "<group>"; };
 		C048AEEA19E14CA8005B163E /* relative_wrapped_push.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped_push.grx; sourceTree = "<group>"; };
 		C048AEEC19E14F90005B163E /* relative_wrapped.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_wrapped.grx; sourceTree = "<group>"; };
+		C05154C619F073F500E76BE1 /* green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green@2x.png"; sourceTree = "<group>"; };
+		C05154C719F073F500E76BE1 /* lab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lab@2x.png"; sourceTree = "<group>"; };
+		C05154C819F073F500E76BE1 /* power@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power@2x.png"; sourceTree = "<group>"; };
 		C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXCollectionViewTestController.h; sourceTree = "<group>"; };
 		C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXCollectionViewTestController.m; sourceTree = "<group>"; };
 		C051DE4119E4240600A64132 /* GRXTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXTestViewController.h; sourceTree = "<group>"; };
@@ -109,6 +122,8 @@
 		C05BFA4319DF0F9F00C8FF34 /* GRXTestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXTestAppDelegate.h; sourceTree = "<group>"; };
 		C05BFA4419DF0F9F00C8FF34 /* GRXTestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXTestAppDelegate.m; sourceTree = "<group>"; };
 		C05BFA4619DF12D300C8FF34 /* relative_other_views.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_other_views.grx; sourceTree = "<group>"; };
+		C078C49019F2F43000B127CC /* GRXLoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLoadMoreCell.h; sourceTree = "<group>"; };
+		C078C49119F2F43000B127CC /* GRXLoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLoadMoreCell.m; sourceTree = "<group>"; };
 		C087D17419E5B55200737AF9 /* linear_vertical.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_vertical.grx; sourceTree = "<group>"; };
 		C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearSnapshotTests.m; sourceTree = "<group>"; };
 		C09F21EC19DC590D0069C0A1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +132,6 @@
 		C09F220519DC590D0069C0A1 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09F220A19DC590D0069C0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09F220B19DC590D0069C0A1 /* GRXLayoutInflaterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GRXLayoutInflaterTests.m; sourceTree = "<group>"; };
-		C09F223719DC5A390069C0A1 /* lab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab.png; sourceTree = "<group>"; };
 		C09F223819DC5A390069C0A1 /* GRXAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXAppDelegate.h; sourceTree = "<group>"; };
 		C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXAppDelegate.m; sourceTree = "<group>"; };
 		C09F223A19DC5A390069C0A1 /* GRXLabelTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLabelTestViewController.h; sourceTree = "<group>"; };
@@ -126,10 +140,6 @@
 		C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearLayoutVerticalTestController.m; sourceTree = "<group>"; };
 		C09F223E19DC5A390069C0A1 /* GRXRelativeLayoutTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController.h; sourceTree = "<group>"; };
 		C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController.m; sourceTree = "<group>"; };
-		C09F224019DC5A390069C0A1 /* GRXRelativeLayoutTestController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController2.h; sourceTree = "<group>"; };
-		C09F224119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController2.m; sourceTree = "<group>"; };
-		C09F224219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXRelativeLayoutTestController3.h; sourceTree = "<group>"; };
-		C09F224319DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXRelativeLayoutTestController3.m; sourceTree = "<group>"; };
 		C09F224419DC5A390069C0A1 /* GRXSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXSelectionViewController.h; sourceTree = "<group>"; };
 		C09F224519DC5A390069C0A1 /* GRXSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXSelectionViewController.m; sourceTree = "<group>"; };
 		C09F224619DC5A390069C0A1 /* GRXTopLayoutTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXTopLayoutTestViewController.h; sourceTree = "<group>"; };
@@ -142,6 +152,21 @@
 		C09F226B19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXLayoutInflaterTestController1.h; sourceTree = "<group>"; };
 		C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLayoutInflaterTestController1.m; sourceTree = "<group>"; };
 		C0A2368A19E5174C007AA875 /* cell_test.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cell_test.grx; sourceTree = "<group>"; };
+		C0D6985919F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXComplexCellCollectionViewTestController.h; sourceTree = "<group>"; };
+		C0D6985A19F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXComplexCellCollectionViewTestController.m; sourceTree = "<group>"; };
+		C0D6985C19F15E08008F4473 /* GRXComplexCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXComplexCollectionViewCell.h; sourceTree = "<group>"; };
+		C0D6985D19F15E08008F4473 /* GRXComplexCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXComplexCollectionViewCell.m; sourceTree = "<group>"; };
+		C0D6985F19F15E19008F4473 /* GRXComplexData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXComplexData.h; sourceTree = "<group>"; };
+		C0D6986019F15E19008F4473 /* GRXComplexData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXComplexData.m; sourceTree = "<group>"; };
+		C0D6986419F163A8008F4473 /* GRXTextGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXTextGenerator.h; sourceTree = "<group>"; };
+		C0D6986519F163A8008F4473 /* GRXTextGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXTextGenerator.m; sourceTree = "<group>"; };
+		C0D6986719F16915008F4473 /* complex_cell_body.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_cell_body.grx; sourceTree = "<group>"; };
+		C0D6986819F16915008F4473 /* complex_cell_header.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_cell_header.grx; sourceTree = "<group>"; };
+		C0D6986919F16915008F4473 /* complex_cell.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = complex_cell.grx; sourceTree = "<group>"; };
+		C0D6986D19F16AA3008F4473 /* GRXComplexHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXComplexHeaderView.h; sourceTree = "<group>"; };
+		C0D6986E19F16AA3008F4473 /* GRXComplexHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXComplexHeaderView.m; sourceTree = "<group>"; };
+		C0D6987019F18C26008F4473 /* GRXComplexBodyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXComplexBodyView.h; sourceTree = "<group>"; };
+		C0D6987119F18C26008F4473 /* GRXComplexBodyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXComplexBodyView.m; sourceTree = "<group>"; };
 		C0D7926319E5A0F20075A05C /* relative_in_relative.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_in_relative.grx; sourceTree = "<group>"; };
 		C0D7926519E5A38A0075A05C /* lab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lab.png; sourceTree = "<group>"; };
 		C0EB93A619E7247300A80AAB /* linear_horizontal_in_vertical.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_horizontal_in_vertical.grx; sourceTree = "<group>"; };
@@ -240,6 +265,7 @@
 			children = (
 				C09F225719DC5D560069C0A1 /* Layouts */,
 				C09F223619DC5A390069C0A1 /* Assets */,
+				C09F21EF19DC590D0069C0A1 /* Supporting Files */,
 				C09F223819DC5A390069C0A1 /* GRXAppDelegate.h */,
 				C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */,
 				C09F224419DC5A390069C0A1 /* GRXSelectionViewController.h */,
@@ -249,7 +275,6 @@
 				C09F224719DC5A390069C0A1 /* GRXTopLayoutTestViewController.m */,
 				C053E0FF19E1AB7600336D7F /* GRXBaseInflationTestController.h */,
 				C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */,
-				C09F21EF19DC590D0069C0A1 /* Supporting Files */,
 				C09F226B19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.h */,
 				C09F226C19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m */,
 				C05BFA4319DF0F9F00C8FF34 /* GRXTestAppDelegate.h */,
@@ -264,12 +289,10 @@
 				C09F223D19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m */,
 				C09F223E19DC5A390069C0A1 /* GRXRelativeLayoutTestController.h */,
 				C09F223F19DC5A390069C0A1 /* GRXRelativeLayoutTestController.m */,
-				C09F224019DC5A390069C0A1 /* GRXRelativeLayoutTestController2.h */,
-				C09F224119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m */,
-				C09F224219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.h */,
-				C09F224319DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m */,
-				C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */,
-				C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */,
+				C0D6986319F15E39008F4473 /* CollectionViewController */,
+				C0D6986219F15E1E008F4473 /* ComplexCollectionViewCell */,
+				C0D6986419F163A8008F4473 /* GRXTextGenerator.h */,
+				C0D6986519F163A8008F4473 /* GRXTextGenerator.m */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -312,7 +335,9 @@
 		C09F223619DC5A390069C0A1 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				C09F223719DC5A390069C0A1 /* lab.png */,
+				C05154C619F073F500E76BE1 /* green@2x.png */,
+				C05154C719F073F500E76BE1 /* lab@2x.png */,
+				C05154C819F073F500E76BE1 /* power@2x.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -323,8 +348,39 @@
 				C053E10219E1B54100336D7F /* linear_test_1.grx */,
 				C09F225819DC5D630069C0A1 /* relative_test_1.grx */,
 				C0A2368A19E5174C007AA875 /* cell_test.grx */,
+				C0D6986719F16915008F4473 /* complex_cell_body.grx */,
+				C0D6986819F16915008F4473 /* complex_cell_header.grx */,
+				C0D6986919F16915008F4473 /* complex_cell.grx */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		C0D6986219F15E1E008F4473 /* ComplexCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				C0D6985919F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.h */,
+				C0D6985A19F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.m */,
+				C0D6985C19F15E08008F4473 /* GRXComplexCollectionViewCell.h */,
+				C0D6985D19F15E08008F4473 /* GRXComplexCollectionViewCell.m */,
+				C0D6985F19F15E19008F4473 /* GRXComplexData.h */,
+				C0D6986019F15E19008F4473 /* GRXComplexData.m */,
+				C0D6986D19F16AA3008F4473 /* GRXComplexHeaderView.h */,
+				C0D6986E19F16AA3008F4473 /* GRXComplexHeaderView.m */,
+				C0D6987019F18C26008F4473 /* GRXComplexBodyView.h */,
+				C0D6987119F18C26008F4473 /* GRXComplexBodyView.m */,
+				C078C49019F2F43000B127CC /* GRXLoadMoreCell.h */,
+				C078C49119F2F43000B127CC /* GRXLoadMoreCell.m */,
+			);
+			name = ComplexCollectionViewCell;
+			sourceTree = "<group>";
+		};
+		C0D6986319F15E39008F4473 /* CollectionViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */,
+				C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */,
+			);
+			name = CollectionViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,8 +469,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C09F225A19DC5D630069C0A1 /* relative_test_1.grx in Resources */,
+				C05154C919F073F500E76BE1 /* green@2x.png in Resources */,
+				C05154CA19F073F500E76BE1 /* lab@2x.png in Resources */,
+				C0D6986A19F16915008F4473 /* complex_cell_body.grx in Resources */,
 				C053E10319E1B54100336D7F /* linear_test_1.grx in Resources */,
-				C09F224C19DC5A390069C0A1 /* lab.png in Resources */,
+				C0D6986B19F16915008F4473 /* complex_cell_header.grx in Resources */,
+				C05154CB19F073F500E76BE1 /* power@2x.png in Resources */,
+				C0D6986C19F16915008F4473 /* complex_cell.grx in Resources */,
 				C0A2368B19E5174C007AA875 /* cell_test.grx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,19 +577,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */,
+				C0D6985B19F15DE8008F4473 /* GRXComplexCellCollectionViewTestController.m in Sources */,
 				C09F225419DC5A390069C0A1 /* GRXTopLayoutTestViewController.m in Sources */,
 				C09F224F19DC5A390069C0A1 /* GRXLinearLayoutVerticalTestController.m in Sources */,
 				C09F224E19DC5A390069C0A1 /* GRXLabelTestViewController.m in Sources */,
 				C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */,
+				C0D6986F19F16AA3008F4473 /* GRXComplexHeaderView.m in Sources */,
+				C078C49219F2F43000B127CC /* GRXLoadMoreCell.m in Sources */,
+				C0D6986619F163A8008F4473 /* GRXTextGenerator.m in Sources */,
+				C0D6987219F18C26008F4473 /* GRXComplexBodyView.m in Sources */,
 				C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */,
 				C09F21F219DC590D0069C0A1 /* main.m in Sources */,
 				C09F226D19DC69BF0069C0A1 /* GRXLayoutInflaterTestController1.m in Sources */,
-				C09F225119DC5A390069C0A1 /* GRXRelativeLayoutTestController2.m in Sources */,
 				C09F225619DC5A390069C0A1 /* GRXWeightedLinearLayoutTestController.m in Sources */,
 				C09F225319DC5A390069C0A1 /* GRXSelectionViewController.m in Sources */,
 				C05BFA4519DF0F9F00C8FF34 /* GRXTestAppDelegate.m in Sources */,
-				C09F225219DC5A390069C0A1 /* GRXRelativeLayoutTestController3.m in Sources */,
 				C09F225519DC5A390069C0A1 /* GRXTextViewTestViewController.m in Sources */,
+				C0D6985E19F15E08008F4473 /* GRXComplexCollectionViewCell.m in Sources */,
+				C0D6986119F15E19008F4473 /* GRXComplexData.m in Sources */,
 				C09F225019DC5A390069C0A1 /* GRXRelativeLayoutTestController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

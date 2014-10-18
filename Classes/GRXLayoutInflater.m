@@ -12,6 +12,16 @@
 
 @implementation GRXLayoutInflater
 
+static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
+
++ (BOOL)areDebugOptionsEnabled {
+    return GRXLayoutInflaterDebugOptionsEnabled;
+}
+
++ (void)setDebugOptionsEnabled:(BOOL)enabled {
+    GRXLayoutInflaterDebugOptionsEnabled = enabled;
+}
+
 - (instancetype)initWithData:(NSData *)data {
     self = [super init];
     if (self) {
@@ -30,8 +40,7 @@
 }
 
 - (instancetype)initWithBundleFile:(NSString *)filename {
-    NSData *data = [NSData dataWithContentsOfFile:filename];
-    return [self initWithData:data];
+    return [self initWithFile:filename fromBundle:[NSBundle mainBundle]];
 }
 
 - (instancetype)initWithFile:(NSString *)filename fromBundle:(NSBundle *)bundle {

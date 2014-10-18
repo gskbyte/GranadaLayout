@@ -8,6 +8,7 @@ const static char GRXLayoutableKey;
 const static char GRXMeasuredSizeKey;
 const static char GRXMeasuredSizeSpecKey;
 const static char GRXMinSizeKey;
+const static char GRXMeasurementBlockKey;
 const static char GRXLayoutIDKey;
 
 static NSUInteger GRXStaticCurrentLayoutID = 0;
@@ -130,6 +131,14 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
+- (CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
+    return objc_getAssociatedObject(self, &GRXMeasurementBlockKey);
+}
+
+- (void)grx_setMeasurementBlock:(CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
+    objc_setAssociatedObject(self, &GRXMeasurementBlockKey, grx_measurementBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
 #pragma mark - measurement methods
 
 - (CGSize) grx_measuredSizeForWidthSpec:(GRXMeasureSpec)widthSpec
@@ -145,8 +154,14 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
         }
     }
 
-    CGSize measuredSize = [self grx_measureForWidthSpec:widthSpec
-                                             heightSpec:heightSpec];
+    CGSize measuredSize = CGSizeZero;
+    if(self.grx_measurementBlock != nil) {
+        measuredSize = self.grx_measurementBlock(widthSpec, heightSpec);
+    } else {
+        measuredSize = [self grx_measureForWidthSpec:widthSpec
+                                          heightSpec:heightSpec];
+    }
+
     [self grx_setMeasuredSize:measuredSize
                  forWidthSpec:widthSpec
                    heightSpec:heightSpec];

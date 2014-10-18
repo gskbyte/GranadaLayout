@@ -1,0 +1,41 @@
+{
+  "version" : "0.1",
+  
+  "layout" : {
+    "class" : "GRXLinearLayout",
+    "id" : "root",
+
+    "direction" : "vertical",
+
+    "width" : "300",
+    "height" : "wrap_content",
+
+    "padding" : "8",
+
+    "subviews" : [
+      {
+        "class" : "GRXComplexHeaderView",
+        "id" : "header",
+
+        "width" : "match_parent",
+        "height" : "wrap_content",
+      },
+      {
+        "class" : "GRXLinearLayout",
+        "id" : "bodyContainer",
+
+        "direction" : "vertical",
+
+        "width" : "match_parent",
+        "height" : "wrap_content",
+
+        "marginTop" : "4",
+        "padding" : "1",
+
+        "subviews" : [
+        
+        ]
+      }
+    ]
+  }  
+}

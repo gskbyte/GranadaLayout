@@ -11,10 +11,6 @@
     return @"";
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 - (GRXLayout *)initializeTopLayout {
     GRXLayout *top = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
     return top;

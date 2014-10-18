@@ -1,5 +1,6 @@
 #import "UIView+GRXLayoutInflater.h"
 #import "UIView+GRXLayout.h"
+#import "GRXLayoutInflater.h"
 
 @implementation UIView (GRXLayoutInflater)
 
@@ -28,6 +29,10 @@
 #pragma clang diagnostic pop
 
 #ifdef DEBUG
+    if(NO == [GRXLayoutInflater areDebugOptionsEnabled]) {
+        return;
+    }
+    
     NSString *bgColorStr = dictionary[@"debug_bgColor"];
     if (bgColorStr == nil) {
         return;

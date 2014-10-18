@@ -1,12 +1,10 @@
 #import "GRXCollectionViewTestController.h"
 #import <GRXLayoutInflater.h>
-
-static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la caidita está la cosa muy malar te voy a borrar el cerito mamaar. Se calle ustée qué dise usteer ahorarr fistro ese que llega llevame al sircoo tiene musho peligro fistro pecador benemeritaar. Hasta luego Lucas ese que llega apetecan te voy a borrar el cerito te va a hasé pupitaa está la cosa muy malar jarl caballo blanco caballo negroorl ese hombree a wan. Benemeritaar no puedor jarl llevame al sircoo diodenoo te va a hasé pupitaa te voy a borrar el cerito ese hombree. Pupita sexuarl qué dise usteer al ataquerl la caidita está la cosa muy malar. Qué dise usteer ahorarr va usté muy cargadoo diodenoo mamaar la caidita va usté muy cargadoo va usté muy cargadoo papaar papaar. Ese pedazo de sexuarl no puedor no puedor. Diodeno tiene musho peligro te va a hasé pupitaa benemeritaar va usté muy cargadoo diodenoo amatomaa apetecan está la cosa muy malar te va a hasé pupitaa. Pecador se calle ustée te voy a borrar el cerito diodeno ahorarr diodeno jarl diodenoo te voy a borrar el cerito a gramenawer ese que llega. Está la cosa muy malar torpedo condemor torpedo a wan va usté muy cargadoo va usté muy cargadoo al ataquerl ese hombree ese hombree fistro. Me cago en tus muelas no te digo trigo por no llamarte Rodrigor llevame al sircoo diodenoo torpedo.";
+#import "GRXTextGenerator.h"
 
 @interface GRXCollectionViewTestController () <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) NSMutableArray *cellDatas;
-@property (nonatomic) NSUInteger numberOfItems;
 
 @end
 
@@ -40,27 +38,14 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
-        NSArray *words = [baseText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        self.numberOfItems = 20 + arc4random_uniform(200);
-        self.cellDatas = [NSMutableArray arrayWithCapacity:self.numberOfItems];
-        for (NSUInteger i = 0; i < self.numberOfItems; ++i) {
+        NSUInteger numberOfItems = 200;// + arc4random_uniform(200);
+        self.cellDatas = [NSMutableArray arrayWithCapacity:numberOfItems];
+        for (NSUInteger i = 0; i < numberOfItems; ++i) {
             GRXInflatedCellData *data = [[GRXInflatedCellData alloc] init];
 
-            NSUInteger titleLength = 5 + ABS(arc4random_uniform(16));
-            NSUInteger titleBegin = ABS(arc4random_uniform(20));
-            data.title = [[words subarrayWithRange:NSMakeRange(titleBegin, titleLength)] componentsJoinedByString:@" "];
-
-            NSUInteger subtitleLength = 4 + ABS(arc4random_uniform(8));
-            NSUInteger subtitleBegin = ABS(arc4random_uniform(20));
-            data.subtitle = [[words subarrayWithRange:NSMakeRange(subtitleBegin, subtitleLength)] componentsJoinedByString:@" "];
-
-            NSInteger messageLength = 0 + ABS(arc4random_uniform(100));
-            messageLength -= 50;
-            if (messageLength < 0) {
-                messageLength = 0;
-            }
-            data.message = [[words subarrayWithRange:NSMakeRange(0, messageLength)] componentsJoinedByString:@" "];
-
+            data.title = [GRXTextGenerator stringWithMinimumWords:5 maxWords:16];
+            data.subtitle = [GRXTextGenerator stringWithMinimumWords:4 maxWords:8];
+            data.message = [GRXTextGenerator stringWithMaxLength:100 emptyProbability:0.5];
             data.showImage = arc4random() % 2;
 
             [self.cellDatas addObject:data];
@@ -86,7 +71,7 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
      numberOfItemsInSection:(NSInteger)section {
-    return self.numberOfItems;
+    return self.cellDatas.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
@@ -133,8 +118,16 @@ static NSString *baseText = @"Lorem fistrum a wan apetecan no puedor. Sexuarl la
         self.image.backgroundColor = [UIColor blueColor];
         self.image.contentMode = UIViewContentModeScaleAspectFit;
 
+        __weak GRXInflatedCell *weakSelf = self;
+        self.image.grx_measurementBlock = ^CGSize(GRXMeasureSpec wspec, GRXMeasureSpec hspec) {
+            GRXMeasureSpec propHSpec = GRXMeasureSpecMake(wspec.value*1.1, wspec.mode);
+            return [weakSelf.image grx_measureForWidthSpec:wspec heightSpec:propHSpec]; // this forces the image to be (w, w*1.1)
+        };
+
         self.title = [inflater viewForIdentifier:@"title"];
         self.subtitle = [inflater viewForIdentifier:@"subtitle"];
+        self.subtitle.numberOfLines = 3;
+
         self.message = [inflater viewForIdentifier:@"message"];
 
         [self.contentView addSubview:self.root];

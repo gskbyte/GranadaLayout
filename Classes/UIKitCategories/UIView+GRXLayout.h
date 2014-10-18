@@ -5,6 +5,8 @@
 
 @class GRXLayout;
 
+typedef CGSize (^GRXMeasurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
+
 typedef NS_ENUM(NSUInteger, GRXVisibility) {
     GRXVisibilityVisible = 0,   // the view is visible and will be layouted
     GRXVisibilityHidden = 1,    // the view is not visible but keeps its size and will be layouted
@@ -21,10 +23,15 @@ static const NSUInteger GRXLayoutIdNull = 0;
 
 @property (nonatomic, readonly) CGSize grx_measuredSize;
 
+// set an implementation of a measurement method in order to override the default one
+// without needing to subclass
+@property (nonatomic, copy, setter=grx_setMeasurementBlock:) GRXMeasurementBlock grx_measurementBlock;
+
 // does never return null, the number is always > 0
 // we could also use tag for this but this would be dangerous
 @property (nonatomic, readonly) NSNumber * grx_layoutId;
 @property (nonatomic, setter=grx_setDebugIdentifier:) NSString *grx_debugIdentifier;
+
 
 - (instancetype) initWithLayoutParams:(GRXLayoutParams*)layoutParams;
 - (instancetype) initWithDefaultParamsInLayout:(GRXLayout*)layout;

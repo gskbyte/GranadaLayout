@@ -1,0 +1,70 @@
+{
+  "version" : "0.1",
+  
+  "layout" : {
+    "class" : "GRXComplexBodyView",
+    "id" : "root",
+
+    "width" : "300",
+    "height" : "wrap_content",
+
+    "debug_bgColor" : "white",
+
+    "marginTop" : "4",
+    "padding" : "4",
+    
+    "subviews" : [
+          {
+            "id" : "image",
+            "class" : "UIImageView",
+            "width" : "96",
+            "height" : "128",
+
+            "alignParentLeft" : "true",
+            "alignParentTop" : "true",
+
+            "marginRight" : "8",
+
+            "debug_bgColor" : "blue"
+          },
+
+          {
+            "id" : "title",
+            "class" : "UILabel",
+            "width" : "match_parent",
+            "height" : "wrap_content",
+            
+            "toRightOf" : "image",
+            "alignParentTop" : "true",
+
+            "debug_bgColor" : "yellow"
+          },
+
+          {
+            "id" : "subtitle",
+            "class" : "UILabel",
+            "width" : "match_parent",
+            "height" : "wrap_content",
+            
+            "alignLeft" : "title",
+            "below" : "title",
+            "marginTop" : "8",
+
+            "debug_bgColor" : "red"
+          },
+
+          {
+            "id" : "url",
+            "class" : "GRXTextView",
+            "width" : "match_parent",
+            "height" : "wrap_content",
+            
+            "alignLeft" : "subtitle",
+            "below" : "title",
+            "marginTop" : "8",
+
+            "debug_bgColor" : "orange"
+          }
+    ]
+  }  
+}

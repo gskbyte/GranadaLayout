@@ -15,7 +15,8 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.ignoreNonLayoutParentSize = YES;
+        _limitToNonLayoutParentWidth = YES;
+        _limitToNonLayoutParentHeight = YES;
     }
     return self;
 }
@@ -28,6 +29,7 @@
         view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
     }
     [super addSubview:view];
+    [self grx_setNeedsLayoutInParent];
 }
 
 - (void)setNeedsLayout {
@@ -42,31 +44,40 @@
 
 - (void)layoutSubviews {
     if (NO == [self.superview isKindOfClass:GRXLayout.class]) {
-        // Take parent size to see how big I can be, if I'm root, take the whole display
-        CGSize parentSize;
-        if (NO == self.ignoreNonLayoutParentSize && self.superview.width > 0 && self.superview.height > 0) {
-            parentSize = self.superview.size;
-            // TODO case for UIScrollView ? (would be infinite size?)
-        } else {
-            parentSize = UIScreen.mainScreen.bounds.size;
-        }
-
         GRXMeasureSpec wspec, hspec;
         GRXLayoutParams *ownParams = self.grx_layoutParams;
 
+        CGSize maxSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+        CGSize screenSize = UIScreen.mainScreen.bounds.size;
+
+        // Take parent size to see how big I can be, if I'm root, take the whole display
+        // If a dimension is set to match parent, limit to the display size
+        if (self.limitToNonLayoutParentWidth && self.superview.width > 0) {
+            maxSize.width = self.superview.width;
+        } else if(ownParams.width == GRXMatchParent) {
+            maxSize.width = screenSize.width;
+        }
+
+        if(self.limitToNonLayoutParentHeight && self.superview.height > 0) {
+            maxSize.height = self.superview.height;
+        } else if(ownParams.height == GRXMatchParent) {
+            maxSize.height = screenSize.height;
+        }
+
+
         if (ownParams.width == 0 || ownParams.width == GRXWrapContent) {
-            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecAtMost);
+            wspec = GRXMeasureSpecMake(maxSize.width, GRXMeasureSpecAtMost);
         } else if (ownParams.width == GRXMatchParent) {
-            wspec = GRXMeasureSpecMake(parentSize.width, GRXMeasureSpecExactly);
+            wspec = GRXMeasureSpecMake(maxSize.width, GRXMeasureSpecExactly);
         } else { // exact size
             wspec = GRXMeasureSpecMake(ownParams.width, GRXMeasureSpecExactly);
         }
 
         if (ownParams.height == 0 || ownParams.height == GRXWrapContent) {
-            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecAtMost);
+            hspec = GRXMeasureSpecMake(maxSize.height, GRXMeasureSpecAtMost);
         } else if (ownParams.height == GRXMatchParent) {
-            hspec = GRXMeasureSpecMake(parentSize.height, GRXMeasureSpecExactly);
-        } else {
+            hspec = GRXMeasureSpecMake(maxSize.height, GRXMeasureSpecExactly);
+        } else { // exact size
             hspec = GRXMeasureSpecMake(ownParams.height, GRXMeasureSpecExactly);
         }
 
