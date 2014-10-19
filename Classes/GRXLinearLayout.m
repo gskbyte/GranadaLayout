@@ -441,7 +441,7 @@
 }
 
 - (void)layoutSubviews {
-    [super layoutSubviews]; 
+    [super layoutSubviews];
 
     if (self.direction == GRXLinearLayoutDirectionVertical) {
         return [self layoutSubviewsVertical];

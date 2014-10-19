@@ -25,7 +25,8 @@ static const NSUInteger GRXLayoutIdNull = 0;
 
 // set an implementation of a measurement method in order to override the default one
 // without needing to subclass
-@property (nonatomic, copy, setter = grx_setMeasurementBlock :) GRXMeasurementBlock grx_measurementBlock;
+@property (nonatomic, copy, setter = grx_setMeasurementBlock:) CGSize (^grx_measurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
+
 
 // does never return null, the number is always > 0
 // we could also use tag for this but this would be dangerous

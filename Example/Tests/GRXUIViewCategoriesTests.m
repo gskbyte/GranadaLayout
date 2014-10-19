@@ -62,7 +62,31 @@
     [linear layoutSubviews];
 
     expect(linear.grx_debugDescription.length).to.beGreaterThan(0);
-    expect(linear.grx_debugDescription).to.contain(@"(200.00, 200.00)");
+    expect(linear.grx_debugDescription).to.contain(@"200");
+}
+
+// by default, an imageview measurement will keep the relation of the image
+// let's modify it using a block
+
+- (void)testMeasurementBlock {
+    UIImage *image = [UIImage imageNamed:@"lab.png"];
+    expect(image.size.width).to.equal(image.size.height);
+
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+
+    GRXMeasureSpec wspec = GRXMeasureSpecMake(CGFLOAT_MAX, GRXMeasureSpecAtMost);
+    GRXMeasureSpec hspec = GRXMeasureSpecMake(CGFLOAT_MAX, GRXMeasureSpecAtMost);
+
+    CGSize normalSize = [imageView grx_measuredSizeForWidthSpec:wspec heightSpec:hspec];
+    expect(normalSize.width).to.equal(normalSize.height);
+
+    [imageView grx_setMeasurementBlock:^CGSize(GRXMeasureSpec wspec, GRXMeasureSpec hspec) {
+        return CGSizeMake(200, 300);
+    }];
+
+    CGSize modSize = [imageView grx_measuredSizeForWidthSpec:wspec heightSpec:hspec];
+    expect(modSize.width).to.equal(200);
+    expect(modSize.height).to.equal(300);
 }
 
 @end

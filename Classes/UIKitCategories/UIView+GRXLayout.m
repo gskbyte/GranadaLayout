@@ -136,6 +136,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 - (void)grx_setMeasurementBlock:(CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
     objc_setAssociatedObject(self, &GRXMeasurementBlockKey, grx_measurementBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+    [self grx_invalidateMeasuredSize];
 }
 
 #pragma mark - measurement methods
