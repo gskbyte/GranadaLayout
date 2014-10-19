@@ -118,4 +118,12 @@
     expect(nonExistent).to.beNil();
 }
 
+- (void)testInflateExistingView {
+    GRXRelativeLayout *relativeLayout = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_root.grx" rootView:relativeLayout];
+    expect(inflater.rootView).to.beIdenticalTo(relativeLayout);
+    expect(relativeLayout.grx_layoutParams.size.width).to.equal(GRXMatchParent);
+    expect(relativeLayout.grx_layoutParams.size.height).to.equal(GRXMatchParent);
+}
+
 @end

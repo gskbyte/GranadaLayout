@@ -14,6 +14,13 @@
                                         fromBundle:[NSBundle bundleForClass:self.class]];
 }
 
++ (GRXLayoutInflater *)inflaterForFileWithName:(NSString *)filename
+                                      rootView:(UIView*)rootView {
+    return [[GRXLayoutInflater alloc] initWithFile:filename
+                                        fromBundle:[NSBundle bundleForClass:self.class]
+                                          rootView:rootView];
+}
+
 + (id)rootViewForLayoutFileWithName:(NSString *)filename {
     GRXLayoutInflater *inflater = [self.class inflaterForFileWithName:filename];
     NSAssert(inflater != nil, @"Invalid layout file: %@", filename);

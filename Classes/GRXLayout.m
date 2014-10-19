@@ -47,7 +47,9 @@
         GRXMeasureSpec wspec, hspec;
         GRXLayoutParams *ownParams = self.grx_layoutParams;
 
-        CGSize maxSize = CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX);
+        // could be CGFLOAT_MAX, but wrong layouts may cause problems
+        // (for example, a relativeLayout with a view alignParentBottom and alignParentRight
+        CGSize maxSize = CGSizeMake(100000, 100000);
         CGSize screenSize = UIScreen.mainScreen.bounds.size;
 
         // Take parent size to see how big I can be, if I'm root, take the whole display

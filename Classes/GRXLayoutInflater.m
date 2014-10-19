@@ -12,7 +12,9 @@
 
 @implementation GRXLayoutInflater
 
-static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
+#pragma mark - Debug options
+
+static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
 
 + (BOOL)areDebugOptionsEnabled {
     return GRXLayoutInflaterDebugOptionsEnabled;
@@ -22,7 +24,10 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
     GRXLayoutInflaterDebugOptionsEnabled = enabled;
 }
 
-- (instancetype)initWithData:(NSData *)data {
+#pragma mark - Initialisers
+
+- (instancetype)initWithData:(NSData *)data
+                    rootView:(UIView*)rootView {
     self = [super init];
     if (self) {
         _allViewsById = [[NSMutableDictionary alloc] init];
@@ -34,22 +39,47 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
             NSLog(@"Error parsing layout file, invalid JSON: %@", error);
             return nil;
         }
-        [self parseJSON:JSON];
+        [self parseJSON:JSON
+               rootView:rootView];
     }
     return self;
 }
 
-- (instancetype)initWithBundleFile:(NSString *)filename {
-    return [self initWithFile:filename fromBundle:[NSBundle mainBundle]];
+- (instancetype)initWithBundleFile:(NSString *)filename
+                          rootView:(UIView*)rootView {
+    return [self initWithFile:filename
+                   fromBundle:[NSBundle mainBundle]
+                     rootView:rootView];
 }
 
-- (instancetype)initWithFile:(NSString *)filename fromBundle:(NSBundle *)bundle {
+- (instancetype)initWithFile:(NSString *)filename
+                  fromBundle:(NSBundle *)bundle
+                    rootView:(UIView*)rootView {
     NSString *path = [bundle pathForResource:filename ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:path];
-    return [self initWithData:data];
+    return [self initWithData:data
+                     rootView:rootView];
 }
 
-- (BOOL)parseJSON:(id)JSON {
+- (instancetype)initWithData:(NSData *)data {
+    return [self initWithData:data
+                     rootView:nil];
+}
+
+- (instancetype)initWithBundleFile:(NSString *)filename {
+    return [self initWithBundleFile:filename
+                           rootView:nil];
+}
+
+- (instancetype)initWithFile:(NSString *)filename
+                  fromBundle:(NSBundle *)bundle {
+    return [self initWithFile:filename
+                   fromBundle:bundle
+                     rootView:nil];
+}
+
+- (BOOL)parseJSON:(id)JSON
+         rootView:(UIView*)rootView {
     NSAssert([JSON isKindOfClass:NSDictionary.class],
              @"The layout file must be a dictionary");
 
@@ -60,21 +90,29 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
              @"'layout' node must be a dictionary");
 
     _rootView = [self parseViewNodeRecursively:layout
-                                    parentView:nil];
+                                    parentView:nil
+                                       outView:rootView];
+
     return YES;
 }
 
 
 - (UIView *)parseViewNodeRecursively:(NSDictionary *)node
-                          parentView:(UIView *)parentView {
+                          parentView:(UIView *)parentView
+                             outView:(UIView *)outView {
     NSString *className = node[@"class"];
     Class viewClass = NSClassFromString(className);
     if (viewClass == nil) {
-        NSLog(@"Unknown view class '%@', layout can be badformed", className);
+        NSLog(@"Unknown view class '%@', layout can be badly formed", className);
         return nil;
     }
 
-    UIView *view = [[viewClass alloc] initWithFrame:CGRectZero];
+    if(outView == nil) {
+        outView = [[viewClass alloc] initWithFrame:CGRectZero];
+    } else {
+        NSAssert([outView isMemberOfClass:viewClass],
+                 @"The root view defined in the file and the view to be inflated must have the same class");
+    }
 
     GRXLayoutParams *layoutParams = nil;
     if ([parentView isKindOfClass:GRXLayout.class]) {
@@ -89,30 +127,32 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
         [GRXLayout configureUnparentedLayoutParams:layoutParams
                                     fromDictionary:node];
     }
-    [view grx_configureFromDictionary:node];
-    view.grx_layoutParams = layoutParams;
+    [outView grx_configureFromDictionary:node];
+    outView.grx_layoutParams = layoutParams;
 
     NSString *identifier = node[@"id"];
     if (identifier != nil) {
         if ([_allViewsById objectForKey:identifier] != nil) {
             NSLog(@"Warning: identifier used more than once in layout file: %@", identifier);
         }
-        [_allViewsById setObject:view forKey:identifier];
-#ifdef DEBUG
-        view.grx_debugIdentifier = identifier;
-#endif
+        [_allViewsById setObject:outView forKey:identifier];
+
+        if([self.class areDebugOptionsEnabled]) {
+            outView.grx_debugIdentifier = identifier;
+        }
     }
 
     NSArray *subviews = node[@"subviews"];
     for (NSDictionary *subviewDict in subviews) {
         UIView *subview = [self parseViewNodeRecursively:subviewDict
-                                              parentView:view];
+                                              parentView:outView
+                                                 outView:nil];
         if (subview != nil) {
-            [view addSubview:subview];
+            [outView addSubview:subview];
         }
     }
 
-    return view;
+    return outView;
 }
 
 - (id)viewForIdentifier:(NSString *)identifier {
