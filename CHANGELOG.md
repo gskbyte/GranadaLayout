@@ -1,8 +1,8 @@
 # 0.1.0: Initial release
 ## 0.1.1: minor bugfixes
 # 0.2.0: Improved layout inflater
-  ### Fixed size calculation for root layouts
-  ### Layout inflater can include external files
+  - Fixed size calculation for root layouts
+  - Layout inflater can include external files
     ```json
     {
         "id" : "included1",
@@ -32,7 +32,7 @@
         "debug_bgColor" : "blue"
       }
   ```
-  ### Layout inflater can inflate existing views
+  - Layout inflater can inflate existing views
   
   ```objc
   - (instancetype)initWithData:(NSData *)data
@@ -43,5 +43,5 @@
                     fromBundle:(NSBundle *)bundle
                       rootView:(UIView *)rootView;
   ```
-  ### Improved examples
-  ### Measurement block in ``UIView+GRXLayout`` allow overriding default ``-grx_measureWithWidthSpec:heightSpec:``
+  - Improved examples
+  - Measurement block in ``UIView+GRXLayout`` allow overriding default ``-grx_measureWithWidthSpec:heightSpec:``
