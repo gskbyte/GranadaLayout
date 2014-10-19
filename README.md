@@ -23,6 +23,8 @@ What it can do
 - Compatible with iOS 6 and above
 - It can work together with [NUI](https://github.com/tombenner/nui), a styling system similar to CSS
 
+Please check the [changelog](https://github.com/gskbyte/GranadaLayout/blob/master/CHANGELOG.md) and the [license](https://github.com/gskbyte/GranadaLayout/blob/master/LICENSE).
+
 Current Status
 --------------
 
@@ -179,12 +181,12 @@ image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the 
 
 ###Just code
 
-// (soon)
+// Please check the test controllers to see this
 
 Thanks + Acknowledments
 -----------------------
 
-- To the developers of the Android Projects, for designing such a simple but powerful layout system
+- To the developers of the Android Project, for designing such a simple but powerful layout system
 
 Collaboration
 -------------
