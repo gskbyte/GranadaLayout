@@ -37,7 +37,6 @@
         [self.class.bodyPool removeLastObject];
     } else {
         bodyView = [[GRXComplexBodyView alloc] initWithFrame:CGRectZero];
-        [bodyView loadViews];
     }
 
     return bodyView;
@@ -51,7 +50,6 @@
         self.root = inflater.rootView;
         [self.contentView addSubview:self.root];
         self.headerView = [inflater viewForIdentifier:@"header"];
-        [self.headerView loadViews];
         self.bodyContainer = [inflater viewForIdentifier:@"bodyContainer"];
 
         self.backgroundColor = [UIColor whiteColor];
@@ -70,10 +68,8 @@
         bodyView.body = body;
         [self.bodyContainer addSubview:bodyView];
         bodyView.grx_layoutParams.margins = UIEdgeInsetsMake(4, 0, 0, 0);
-        [bodyView grx_setNeedsLayoutInParent];
     }
     self.bodyContainer.grx_visibility = data.bodies.count>0 ? GRXVisibilityVisible : GRXVisibilityGone;
-    [self.bodyContainer grx_setNeedsLayoutInParent];
 }
 
 + (CGSize) sizeForData:(GRXComplexData*)data {

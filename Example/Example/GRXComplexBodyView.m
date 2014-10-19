@@ -11,14 +11,19 @@
 
 @implementation GRXComplexBodyView
 
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        [self loadViews];
+    }
+    return self;
+}
+
 - (void) loadViews {
     GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"complex_cell_body.grx"
-                                                               fromBundle:[NSBundle bundleForClass:self.class]];
-    self.grx_layoutParams.margins = UIEdgeInsetsMake(4, 0, 0, 0);
-    self.padding = UIEdgeInsetsMake(4, 4, 4, 4);
-    for(UIView *v in [inflater.rootView subviews]) {
-        [self addSubview:v];
-    }
+                                                               fromBundle:[NSBundle bundleForClass:self.class]
+                                                                 rootView:self];
 
     self.image = [inflater viewForIdentifier:@"image"];
     self.image.backgroundColor = [UIColor blueColor];
@@ -37,8 +42,7 @@
     self.url.font = [UIFont systemFontOfSize:14];
     self.url.textAlignment = NSTextAlignmentCenter;
 
-    self.backgroundColor = [UIColor grayColor];
-
+    self.backgroundColor = [UIColor lightGrayColor];
 }
 
 - (void)setBody:(GRXComplexDataBody *)body {

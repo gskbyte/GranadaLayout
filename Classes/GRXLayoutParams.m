@@ -16,6 +16,14 @@
     return self;
 }
 
+- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+    self = [self initWithSize:layoutParams.size];
+    if(self) {
+        _margins = layoutParams.margins;
+    }
+    return self;
+}
+
 #pragma mark - Instance methods
 
 - (void)setSize:(CGSize)size {
@@ -51,9 +59,7 @@
 #pragma mark - Copy method
 
 - (id)copyWithZone:(NSZone *)zone {
-    GRXLayoutParams *copy = [[self.class alloc] initWithSize:self.size];
-    copy.margins = self.margins;
-    return copy;
+    return [[self.class alloc] initWithLayoutParams:self];
 }
 
 #pragma mark - Protected methods

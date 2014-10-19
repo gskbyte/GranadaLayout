@@ -41,6 +41,24 @@ static NSNumber *NoNumber = nil;
     return self;
 }
 
+- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+    self = [super initWithLayoutParams:layoutParams];
+    if(self) {
+        [self setupNoNumber];
+        [self setupRules];
+        if([layoutParams isKindOfClass:GRXRelativeLayoutParams.class]) {
+            GRXRelativeLayoutParams *relParams = (GRXRelativeLayoutParams*)layoutParams;
+            [_mutableRules setArray:relParams->_mutableRules];
+            [_mutableParentRules setArray:relParams->_mutableParentRules];
+            _top = relParams.top;
+            _left = relParams.left;
+            _bottom = relParams.bottom;
+            _right = relParams.right;
+        }
+    }
+    return self;
+}
+
 - (void)setupNoNumber {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -98,17 +116,6 @@ static NSNumber *NoNumber = nil;
                active:(BOOL)active {
     NSUInteger index = (NSUInteger)parentRule;
     _mutableParentRules[index] = @((NSUInteger)active);
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    GRXRelativeLayoutParams *copy = [super copyWithZone:zone];
-    [copy->_mutableRules setArray:_mutableRules];
-    [copy->_mutableParentRules setArray:_mutableParentRules];
-    copy->_top = _top;
-    copy->_left = _left;
-    copy->_bottom = _bottom;
-    copy->_right = _right;
-    return copy;
 }
 
 - (NSString *)debugDescription {

@@ -6,10 +6,28 @@
 - (instancetype)initWithSize:(CGSize)size {
     self = [super initWithSize:size];
     if (self) {
-        _gravity = kGRXLinearLayoutParamsDefaultGravity;
-        _weight = kGRXLinearLayoutParamsDefaultWeight;
+        [self setupDefaultGravityAndWeight];
     }
     return self;
+}
+
+- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+    self = [super initWithLayoutParams:layoutParams];
+    if(self) {
+        [self setupDefaultGravityAndWeight];
+
+        if([layoutParams isKindOfClass:GRXLinearLayoutParams.class]) {
+            GRXLinearLayoutParams *linParams = (GRXLinearLayoutParams*)layoutParams;
+            _gravity = linParams.gravity;
+            _weight = linParams.weight;
+        }
+    }
+    return self;
+}
+
+- (void) setupDefaultGravityAndWeight {
+    _gravity = kGRXLinearLayoutParamsDefaultGravity;
+    _weight = kGRXLinearLayoutParamsDefaultWeight;
 }
 
 - (void)setGravity:(NSInteger)gravity {
@@ -20,13 +38,6 @@
 - (void)setWeight:(CGFloat)weight {
     _weight = weight;
     [self.view grx_setNeedsLayoutInParent];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-    GRXLinearLayoutParams *copy = [super copyWithZone:zone];
-    copy.gravity = self.gravity;
-    copy.weight = self.weight;
-    return copy;
 }
 
 @end

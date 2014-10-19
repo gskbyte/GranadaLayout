@@ -90,7 +90,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
              @"'layout' node must be a dictionary");
 
     _rootView = [self parseViewNodeRecursively:layout
-                                    parentView:nil
+                                    parentView:rootView.superview
                                        outView:rootView];
 
     return YES;

@@ -5,6 +5,4 @@
 
 @property (nonatomic) GRXComplexDataHeader *header;
 
-- (void) loadViews;
-
 @end
