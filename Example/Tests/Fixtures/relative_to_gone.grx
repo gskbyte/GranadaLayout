@@ -6,8 +6,8 @@
     "class" : "GRXRelativeLayout",
     "id" : "root",
 
-    "width" : "match_parent",
-    "height" : "match_parent",
+    "width" : "320",
+    "height" : "480",
 
     "debug_bgColor" : "white",
 
