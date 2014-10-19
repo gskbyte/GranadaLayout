@@ -15,8 +15,11 @@
 
 #pragma mark - Debug options
 
-static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
-
+#ifdef DEBUG
+    static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
+#else
+    static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
+#endif
 + (BOOL)areDebugOptionsEnabled {
     return GRXLayoutInflaterDebugOptionsEnabled;
 }
