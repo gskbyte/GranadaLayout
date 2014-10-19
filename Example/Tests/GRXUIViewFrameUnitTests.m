@@ -13,7 +13,7 @@
 
 
 - (void)testFrameMethods {
-    UIView * v = [[UIView alloc] initWithFrame:CGRectMake(1, 2, 3, 4)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(1, 2, 3, 4)];
     expect(v.origin.x).to.equal(1);
     expect(v.origin.y).to.equal(2);
 
@@ -34,7 +34,6 @@
     v.height = 30;
     expect(v.size.width).to.equal(20);
     expect(v.size.height).to.equal(30);
-
 }
 
 @end

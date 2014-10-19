@@ -22,7 +22,7 @@
 }
 
 - (void)testLinearVertical {
-    GRXLayoutInflater * inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical.grx"];
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical.grx"];
     GRXLinearLayout *rootView = inflater.rootView;
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);
@@ -56,21 +56,21 @@
     [rootView layoutSubviews];
 
     expect(sw.top).to.equal(8);
-    expect(sw.right).to.equal(rootView.width-8);
+    expect(sw.right).to.equal(rootView.width - 8);
 
     expect(image.width).to.beGreaterThanOrEqualTo(40);
     expect(image.height).to.beGreaterThanOrEqualTo(40);
-    expect(image.top).to.equal(sw.bottom+8);
+    expect(image.top).to.equal(sw.bottom + 8);
 
     expect(blueView.top).to.beGreaterThan(image.bottom);
-    expect(blueView.bottom).to.equal(rootView.height-10);
+    expect(blueView.bottom).to.equal(rootView.height - 10);
     expect(blueView.left).to.equal(10);
     expect(blueView.width).to.equal(200);
     expect(blueView.height).to.equal(120);
 }
 
 - (void)testLinearVerticalWeighted {
-    GRXLayoutInflater * inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical_weight.grx"];
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical_weight.grx"];
     GRXLinearLayout *rootView = inflater.rootView;
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);

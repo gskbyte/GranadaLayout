@@ -15,7 +15,7 @@
 }
 
 + (GRXLayoutInflater *)inflaterForFileWithName:(NSString *)filename
-                                      rootView:(UIView*)rootView {
+                                      rootView:(UIView *)rootView {
     return [[GRXLayoutInflater alloc] initWithFile:filename
                                         fromBundle:[NSBundle bundleForClass:self.class]
                                           rootView:rootView];

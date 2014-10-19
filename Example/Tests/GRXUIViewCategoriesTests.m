@@ -14,27 +14,27 @@
 @implementation GRXUIViewCategoriesTests
 
 - (void)testLayoutParams {
-    GRXLinearLayout * linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
-    UIView * viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
+    GRXLinearLayout *linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    UIView *viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
     expect(viewInLinear.grx_layoutParams).to.beInstanceOf(GRXLinearLayoutParams.class);
-    expect(^{[viewInLinear grx_relativeLayoutParams];}).to.raiseAny();
+    expect (^{[viewInLinear grx_relativeLayoutParams]; }).to.raiseAny();
 
-    GRXRelativeLayout * relative = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
-    UIView * viewInRelative = [[UIView alloc] initWithDefaultParamsInLayout:relative];
+    GRXRelativeLayout *relative = [[GRXRelativeLayout alloc] initWithFrame:CGRectZero];
+    UIView *viewInRelative = [[UIView alloc] initWithDefaultParamsInLayout:relative];
     expect(viewInRelative.grx_layoutParams).to.beInstanceOf(GRXRelativeLayoutParams.class);
-    expect(^{[viewInRelative grx_linearLayoutParams];}).to.raiseAny();
+    expect (^{[viewInRelative grx_linearLayoutParams]; }).to.raiseAny();
 
-    GRXLinearLayoutParams * linearParams = [GRXLinearLayoutParams alloc];
-    UIView * standalone = [[UIView alloc] initWithLayoutParams:linearParams];
-    expect(^{[relative addSubview:standalone];}).to.raiseAny();
+    GRXLinearLayoutParams *linearParams = [GRXLinearLayoutParams alloc];
+    UIView *standalone = [[UIView alloc] initWithLayoutParams:linearParams];
+    expect (^{[relative addSubview:standalone]; }).to.raiseAny();
 
-    UIView * viewWithSameParams = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *viewWithSameParams = [[UIView alloc] initWithFrame:CGRectZero];
     viewWithSameParams.grx_layoutParams = linearParams;
     expect(viewWithSameParams.grx_layoutParams).notTo.beIdenticalTo(linearParams);
 }
 
 - (void)testVisibility {
-    UIView * view = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
     view.grx_visibility = GRXVisibilityGone;
     expect(view.hidden).to.beTruthy();
 
@@ -51,10 +51,10 @@
 }
 
 - (void)testDebugProperties {
-    GRXLinearLayout * linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    GRXLinearLayout *linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
     linear.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(200, 200)];
     linear.grx_debugIdentifier = @"linear";
-    UIView * viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
+    UIView *viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
     viewInLinear.grx_layoutParams.size = CGSizeMake(GRXMatchParent, GRXMatchParent);
     viewInLinear.grx_debugIdentifier = @"view";
     viewInLinear.backgroundColor = [UIColor redColor];
@@ -80,7 +80,7 @@
     CGSize normalSize = [imageView grx_measuredSizeForWidthSpec:wspec heightSpec:hspec];
     expect(normalSize.width).to.equal(normalSize.height);
 
-    [imageView grx_setMeasurementBlock:^CGSize(GRXMeasureSpec wspec, GRXMeasureSpec hspec) {
+    [imageView grx_setMeasurementBlock:^CGSize (GRXMeasureSpec wspec, GRXMeasureSpec hspec) {
         return CGSizeMake(200, 300);
     }];
 
