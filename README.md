@@ -15,7 +15,7 @@ What it can do
 
 - Views can be arranged either horizontally or vertically in a ``GRXLinearLayout``, also by defining weights.
 - Views can be arranged relative to each other in a ``GRXRelativeLayout``, or relative to their superview.
-- Adding support for custom view types is very easy, you just need to override the method ``grx_measureForWidthSpec:heightSpec:``
+- Adding support for custom view types is very easy, you just need to override the method ``grx_measureForWidthSpec:heightSpec:`` in a subclass, or set a ``grx_measureBlock`` to an object.
 - A layout inflater is provided, allowing you to separate layout and logic, defining layouts in a declarative way using simple JSON files (see example below)
 - All needed properties for layouting have been implemented on a thin category of ``UIView``, so all UIKit views are supported out of the box
 - Layouting is done at a very high speed, only the views that neeed it will me measured and layouted when the superview changes.
