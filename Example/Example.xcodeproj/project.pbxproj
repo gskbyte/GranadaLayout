@@ -42,6 +42,7 @@
 		C078C49719F347A300B127CC /* inflate_contained_2.grx in Resources */ = {isa = PBXBuildFile; fileRef = C078C49419F347A300B127CC /* inflate_contained_2.grx */; };
 		C078C49819F347A300B127CC /* inflate_container.grx in Resources */ = {isa = PBXBuildFile; fileRef = C078C49519F347A300B127CC /* inflate_container.grx */; };
 		C078C49A19F3481D00B127CC /* GRXCombinationSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C078C49919F3481D00B127CC /* GRXCombinationSnapshotTests.m */; };
+		C078C49C19F40BE000B127CC /* GRXUIViewFrameUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C078C49B19F40BE000B127CC /* GRXUIViewFrameUnitTests.m */; };
 		C087D17519E5B55200737AF9 /* linear_vertical.grx in Resources */ = {isa = PBXBuildFile; fileRef = C087D17419E5B55200737AF9 /* linear_vertical.grx */; };
 		C087D17719E5B57C00737AF9 /* GRXLinearSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */; };
 		C09F21F219DC590D0069C0A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F21F119DC590D0069C0A1 /* main.m */; };
@@ -132,6 +133,7 @@
 		C078C49419F347A300B127CC /* inflate_contained_2.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inflate_contained_2.grx; sourceTree = "<group>"; };
 		C078C49519F347A300B127CC /* inflate_container.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = inflate_container.grx; sourceTree = "<group>"; };
 		C078C49919F3481D00B127CC /* GRXCombinationSnapshotTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXCombinationSnapshotTests.m; sourceTree = "<group>"; };
+		C078C49B19F40BE000B127CC /* GRXUIViewFrameUnitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXUIViewFrameUnitTests.m; sourceTree = "<group>"; };
 		C087D17419E5B55200737AF9 /* linear_vertical.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_vertical.grx; sourceTree = "<group>"; };
 		C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearSnapshotTests.m; sourceTree = "<group>"; };
 		C09F21EC19DC590D0069C0A1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +327,7 @@
 				C09F220B19DC590D0069C0A1 /* GRXLayoutInflaterTests.m */,
 				C05BFA3019DEAC1600C8FF34 /* GRXLinearLayoutUnitTests.m */,
 				C05BFA3219DEAC2B00C8FF34 /* GRXRelativeLayoutUnitTests.m */,
+				C078C49B19F40BE000B127CC /* GRXUIViewFrameUnitTests.m */,
 				C05BFA3619DEAC8F00C8FF34 /* GRXTestHelper.h */,
 				C05BFA3719DEAC8F00C8FF34 /* GRXTestHelper.m */,
 				C0110F4519E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m */,
@@ -622,6 +625,7 @@
 				C0110F4619E9752E002ADFF3 /* GRXLayoutParamsUnitTests.m in Sources */,
 				C087D17719E5B57C00737AF9 /* GRXLinearSnapshotTests.m in Sources */,
 				C05BFA3119DEAC1600C8FF34 /* GRXLinearLayoutUnitTests.m in Sources */,
+				C078C49C19F40BE000B127CC /* GRXUIViewFrameUnitTests.m in Sources */,
 				C05BFA3319DEAC2B00C8FF34 /* GRXRelativeLayoutUnitTests.m in Sources */,
 				C078C49A19F3481D00B127CC /* GRXCombinationSnapshotTests.m in Sources */,
 				C09F220C19DC590D0069C0A1 /* GRXLayoutInflaterTests.m in Sources */,

@@ -29,7 +29,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    NSLog(@"%@", self.topLayout.debugDescription);
+    NSLog(@"%@", self.topLayout.grx_debugDescription);
 }
 
 @end

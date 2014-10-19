@@ -26,7 +26,6 @@
     }
 #pragma clang diagnostic pop
 
-#ifdef DEBUG
     if (NO == [GRXLayoutInflater areDebugOptionsEnabled]) {
         return;
     }
@@ -43,7 +42,6 @@
     self.backgroundColor = [UIColor performSelector:selector];
 
     // TODO ? could parse also hex values
-#endif
 }
 
 - (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater {

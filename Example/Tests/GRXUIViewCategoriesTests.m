@@ -50,4 +50,19 @@
     expect(view.grx_visibility).to.equal(GRXVisibilityHidden);
 }
 
+- (void)testDebugProperties {
+    GRXLinearLayout * linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    linear.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(200, 200)];
+    linear.grx_debugIdentifier = @"linear";
+    UIView * viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
+    viewInLinear.grx_layoutParams.size = CGSizeMake(GRXMatchParent, GRXMatchParent);
+    viewInLinear.grx_debugIdentifier = @"view";
+    viewInLinear.backgroundColor = [UIColor redColor];
+
+    [linear layoutSubviews];
+
+    expect(linear.grx_debugDescription.length).to.beGreaterThan(0);
+    expect(linear.grx_debugDescription).to.contain(@"(200.00, 200.00)");
+}
+
 @end

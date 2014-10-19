@@ -270,9 +270,7 @@ const static char GRXLayoutDebugIDKey;
     objc_setAssociatedObject(self, &GRXLayoutDebugIDKey, grx_debugIdentifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-#ifdef DEBUG
-
-- (NSString *)debugDescription {
+- (NSString *)grx_debugDescription {
     return [self descriptionWithIndentationLevel:0];
 }
 
@@ -301,7 +299,5 @@ const static char GRXLayoutDebugIDKey;
             subviews
     ];
 }
-
-#endif
 
 @end

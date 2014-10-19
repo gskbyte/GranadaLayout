@@ -5,6 +5,7 @@
 
 #pragma mark - Shorthand properties for frame
 
+@property (nonatomic) CGPoint origin;
 @property (nonatomic) CGSize size;
 
 @property (nonatomic) CGFloat top;

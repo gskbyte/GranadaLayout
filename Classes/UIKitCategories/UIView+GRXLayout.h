@@ -49,5 +49,6 @@ static const NSUInteger GRXLayoutIdNull = 0;
 // this method must be called when the size of this view may change, and requests the top
 // layout to relayout its subviews
 - (void)grx_setNeedsLayoutInParent;
+- (NSString *)grx_debugDescription;
 
 @end

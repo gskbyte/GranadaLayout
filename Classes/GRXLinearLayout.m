@@ -86,17 +86,17 @@
             // use all available space (and we will shrink things later
             // if needed).
             CGFloat totalHeight = (totalWeight == 0) ? self.totalLength : 0;
-            [self measureSubviewBeforeLayout:subview
-                                   widthSpec:widthSpec
-                                  totalWidth:0
-                                  heightSpec:heightSpec
-                                 totalHeight:totalHeight];
+            CGSize subviewMeasuredSize = [self measureSubviewBeforeLayout:subview
+                                                                widthSpec:widthSpec
+                                                               totalWidth:0
+                                                               heightSpec:heightSpec
+                                                              totalHeight:totalHeight];
 
             if (oldHeight != -CGFLOAT_MAX) {
                 lp.height = oldHeight;
             }
 
-            self.totalLength += subview.grx_measuredSize.height + lp.margins.top +
+            self.totalLength += subviewMeasuredSize.height + lp.margins.top +
                 lp.margins.bottom;
         }
 
@@ -441,7 +441,7 @@
 }
 
 - (void)layoutSubviews {
-    [super layoutSubviews];
+    [super layoutSubviews]; 
 
     if (self.direction == GRXLinearLayoutDirectionVertical) {
         return [self layoutSubviewsVertical];
