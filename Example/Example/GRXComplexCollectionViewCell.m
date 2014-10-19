@@ -14,7 +14,7 @@
 
 @implementation GRXComplexCollectionViewCell
 
-+ (NSMutableArray*)bodyPool {
++ (NSMutableArray *)bodyPool {
     static NSMutableArray *bodyPool = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -23,16 +23,16 @@
     return bodyPool;
 }
 
-+ (void)recycleBodies:(NSArray*)bodyViews {
-    for(GRXComplexBodyView *bodyView in bodyViews) {
++ (void)recycleBodies:(NSArray *)bodyViews {
+    for (GRXComplexBodyView *bodyView in bodyViews) {
         [bodyView removeFromSuperview];
         [self.class.bodyPool addObject:bodyView];
     }
 }
 
-+ (GRXComplexBodyView*)dequeueBody {
++ (GRXComplexBodyView *)dequeueBody {
     GRXComplexBodyView *bodyView = nil;
-    if(self.class.bodyPool.count>0) {
+    if (self.class.bodyPool.count > 0) {
         bodyView = [self.class.bodyPool lastObject];
         [self.class.bodyPool removeLastObject];
     } else {
@@ -44,7 +44,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if(self) {
+    if (self) {
         GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"complex_cell.grx"];
         self.root = inflater.rootView;
         [self.contentView addSubview:self.root];
@@ -62,17 +62,17 @@
     [self.headerView grx_setNeedsLayoutInParent];
 
     [self.class recycleBodies:self.bodyContainer.subviews];
-    for(GRXComplexDataBody *body in data.bodies) {
-        GRXComplexBodyView * bodyView = [self.class dequeueBody];
+    for (GRXComplexDataBody *body in data.bodies) {
+        GRXComplexBodyView *bodyView = [self.class dequeueBody];
         bodyView.body = body;
         bodyView.grx_layoutParams = [[GRXLinearLayoutParams alloc] initWithSize:CGSizeMake(GRXMatchParent, GRXWrapContent)];
         [self.bodyContainer addSubview:bodyView];
         bodyView.grx_layoutParams.margins = UIEdgeInsetsMake(4, 0, 0, 0);
     }
-    self.bodyContainer.grx_visibility = data.bodies.count>0 ? GRXVisibilityVisible : GRXVisibilityGone;
+    self.bodyContainer.grx_visibility = data.bodies.count > 0 ? GRXVisibilityVisible : GRXVisibilityGone;
 }
 
-+ (CGSize) sizeForData:(GRXComplexData*)data {
++ (CGSize)sizeForData:(GRXComplexData *)data {
     static GRXComplexCollectionViewCell *staticComplexCell = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

@@ -2,6 +2,6 @@
 
 @interface GRXLoadMoreCell : UICollectionViewCell
 
-+ (CGSize) cellSizeForCollectionView:(UICollectionView*)collectionView;
++ (CGSize)cellSizeForCollectionView:(UICollectionView *)collectionView;
 
 @end

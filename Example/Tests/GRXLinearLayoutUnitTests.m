@@ -27,7 +27,7 @@
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);
     expect(rootView.direction).to.equal(GRXLinearLayoutDirectionVertical);
-    expect(rootView.subviews).to.haveCountOf(4);
+    expect(rootView.subviews).to.haveCountOf(5);
 
     UIView *sw = [inflater viewForIdentifier:@"switch"];
     expect(sw).to.beInstanceOf(UISwitch.class);
@@ -75,7 +75,7 @@
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);
     expect(rootView.direction).to.equal(GRXLinearLayoutDirectionVertical);
-    expect(rootView.subviews).to.haveCountOf(5);
+    expect(rootView.subviews).to.haveCountOf(6);
     expect(rootView.weightSum).to.equal(100);
 
     UIImageView *image = [inflater viewForIdentifier:@"image"];

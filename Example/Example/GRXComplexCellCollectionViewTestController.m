@@ -6,7 +6,7 @@
 
 const static NSUInteger GRXNumItemsPerRequest = 10;
 
-typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
+typedef NS_ENUM (NSUInteger, GRXComplexCellControllerSection) {
     GRXComplexCellControllerSectionCells = 0,
     GRXComplexCellControllerSectionLoadMore,
 
@@ -47,6 +47,7 @@ typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    // set to YES to show debug background colors
     [GRXLayoutInflater setDebugOptionsEnabled:NO];
 
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
@@ -61,7 +62,13 @@ typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
                             action:@selector(beginRefreshing)
                   forControlEvents:UIControlEventValueChanged];
     [self.collectionView addSubview:self.refreshControl];
+}
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+
+    // enable again for other controllers
+    [GRXLayoutInflater setDebugOptionsEnabled:YES];
 }
 
 - (void)beginRefreshing {
@@ -70,11 +77,10 @@ typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
         [newCellDatas addObjectsFromArray:[GRXComplexData generateDataWithCount:GRXNumItemsPerRequest]];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            self.cellDatas = newCellDatas;
-            [self.collectionView reloadData];
-            [self.refreshControl endRefreshing];
-        });
-
+                self.cellDatas = newCellDatas;
+                [self.collectionView reloadData];
+                [self.refreshControl endRefreshing];
+            });
     });
 }
 
@@ -84,20 +90,18 @@ typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
         [newCellDatas addObjectsFromArray:[GRXComplexData generateDataWithCount:GRXNumItemsPerRequest]];
 
         dispatch_async(dispatch_get_main_queue(), ^{
-            [self.collectionView performBatchUpdates:^{
-                NSUInteger oldNumObjects = self.cellDatas.count;
-                [self.cellDatas addObjectsFromArray:newCellDatas];
-                NSMutableArray *newIndexPaths = [NSMutableArray arrayWithCapacity:newCellDatas.count];
-                for(NSUInteger i= oldNumObjects; i<self.cellDatas.count; ++i) {
-                    [newIndexPaths addObject:[NSIndexPath indexPathForItem:i
-                                                                 inSection:GRXComplexCellControllerSectionCells]];
-                }
-                [self.collectionView insertItemsAtIndexPaths:newIndexPaths];
-            } completion:^(BOOL finished) {
-
-            }];
-        });
-        
+                [self.collectionView performBatchUpdates:^{
+                        NSUInteger oldNumObjects = self.cellDatas.count;
+                        [self.cellDatas addObjectsFromArray:newCellDatas];
+                        NSMutableArray *newIndexPaths = [NSMutableArray arrayWithCapacity:newCellDatas.count];
+                        for (NSUInteger i = oldNumObjects; i < self.cellDatas.count; ++i) {
+                            [newIndexPaths addObject:[NSIndexPath indexPathForItem:i
+                                                                         inSection:GRXComplexCellControllerSectionCells]];
+                        }
+                        [self.collectionView insertItemsAtIndexPaths:newIndexPaths];
+                    } completion:^(BOOL finished) {
+                    }];
+            });
     });
 }
 
@@ -139,16 +143,16 @@ typedef NS_ENUM(NSUInteger, GRXComplexCellControllerSection) {
 }
 
 
-- (CGSize)collectionView:(UICollectionView *)collectionView
-                  layout:(UICollectionViewLayout *)collectionViewLayout
-  sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+- (CGSize)  collectionView:(UICollectionView *)collectionView
+                    layout:(UICollectionViewLayout *)collectionViewLayout
+    sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     switch (indexPath.section) {
         case GRXComplexCellControllerSectionCells: {
             GRXComplexData *data = self.cellDatas[indexPath.row];
             CGSize size = [GRXComplexCollectionViewCell sizeForData:data];
 
-            //NSLog(@"[%zd] -> %.0f, %.0f", indexPath.row, size.width, size.height);
-            
+            // NSLog(@"[%zd] -> %.0f, %.0f", indexPath.row, size.width, size.height);
+
             return size;
         }
         case GRXComplexCellControllerSectionLoadMore: {

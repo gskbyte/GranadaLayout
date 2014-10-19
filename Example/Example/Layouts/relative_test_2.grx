@@ -1,0 +1,57 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXRelativeLayout",
+    "id" : "root",
+
+    "width" : "300",
+    "height" : "wrap_content",
+
+    "debug_bgColor" : "white",
+    "padding" : "12",
+
+    "subviews" : [
+      {
+        "id" : "image",
+        "class" : "UIImageView",
+        "width" : "64",
+        "height" : "96",
+
+        "alignParentLeft" : "true",
+        "alignParentTop" : "true",
+
+        "marginRight" : "8",
+
+        "debug_bgColor" : "blue"
+      },
+
+      {
+        "id" : "title",
+        "class" : "GRXTextView",
+        "width" : "match_parent",
+        "height" : "wrap_content",
+        
+        "toRightOf" : "image",
+        "alignParentTop" : "true",
+
+        "debug_bgColor" : "yellow"
+      },
+
+      {
+        "id" : "subtitle",
+        "class" : "UILabel",
+        "width" : "match_parent",
+        "height" : "wrap_content",
+        
+        "alignLeft" : "title",
+        "alignRight" : "title",
+        "below" : "title",
+        "marginTop" : "8",
+
+        "debug_bgColor" : "red"
+      }
+    ]
+  }  
+}

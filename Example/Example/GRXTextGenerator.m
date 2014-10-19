@@ -4,7 +4,7 @@ static NSString *GRXRandomTextBase = @"Lorem fistrum a wan apetecan no puedor. S
 
 @implementation GRXTextGenerator
 
-+ (NSArray*)words {
++ (NSArray *)words {
     static NSArray *GRXRandomTextGeneratorWords;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -13,33 +13,33 @@ static NSString *GRXRandomTextBase = @"Lorem fistrum a wan apetecan no puedor. S
     return GRXRandomTextGeneratorWords;
 }
 
-+ (NSString*)stringWithMinimumLength:(NSUInteger)minLength
-                                 maxLength:(NSUInteger)maxLength {
-    NSUInteger length = minLength + arc4random_uniform(maxLength-minLength);
-    NSUInteger begin = arc4random_uniform(GRXRandomTextBase.length-length);
++ (NSString *)stringWithMinimumLength:(NSUInteger)minLength
+                            maxLength:(NSUInteger)maxLength {
+    NSUInteger length = minLength + arc4random_uniform(maxLength - minLength);
+    NSUInteger begin = arc4random_uniform(GRXRandomTextBase.length - length);
     return [GRXRandomTextBase substringWithRange:NSMakeRange(begin, length)];
 }
 
-+ (NSString*)stringWithMinimumWords:(NSUInteger)minWords
-                                 maxWords:(NSUInteger)maxWords {
-    if(minWords > self.class.words.count) {
-        minWords = self.class.words.count-1;
++ (NSString *)stringWithMinimumWords:(NSUInteger)minWords
+                            maxWords:(NSUInteger)maxWords {
+    if (minWords > self.class.words.count) {
+        minWords = self.class.words.count - 1;
     }
 
-    if(maxWords > self.class.words.count) {
-        maxWords = self.class.words.count-1;
+    if (maxWords > self.class.words.count) {
+        maxWords = self.class.words.count - 1;
     }
 
-    NSUInteger words = minWords + arc4random_uniform(maxWords-minWords);
-    NSUInteger begin = arc4random_uniform([self.class words].count-words);
+    NSUInteger words = minWords + arc4random_uniform(maxWords - minWords);
+    NSUInteger begin = arc4random_uniform([self.class words].count - words);
 
     return [[self.class.words subarrayWithRange:NSMakeRange(begin, words)] componentsJoinedByString:@" "];
 }
 
-+ (NSString*)stringWithMaxLength:(NSUInteger)maxLength
-                      emptyProbability:(CGFloat)emptyProbability {
++ (NSString *)stringWithMaxLength:(NSUInteger)maxLength
+                 emptyProbability:(CGFloat)emptyProbability {
     NSUInteger random = arc4random_uniform(1000);
-    if(random < emptyProbability*1000) {
+    if (random < emptyProbability * 1000) {
         return @"";
     }
     return [self.class stringWithMinimumLength:0 maxLength:maxLength];

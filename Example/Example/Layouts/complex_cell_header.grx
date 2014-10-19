@@ -27,10 +27,10 @@
             "width" : "64",
             "height" : "96",
 
-            "alignParentLeft" : "true",
+            "alignParentRight" : "true",
             "alignParentTop" : "true",
 
-            "marginRight" : "8",
+            "marginLeft" : "8",
 
             "debug_bgColor" : "blue"
           },
@@ -41,7 +41,7 @@
             "width" : "match_parent",
             "height" : "wrap_content",
             
-            "toRightOf" : "image",
+            "toLeftOf" : "image",
             "alignParentTop" : "true",
 
             "debug_bgColor" : "yellow"
@@ -54,6 +54,7 @@
             "height" : "wrap_content",
             
             "alignLeft" : "title",
+            "alignRight" : "title",
             "below" : "title",
             "marginTop" : "8",
 

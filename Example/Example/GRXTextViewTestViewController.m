@@ -36,6 +36,7 @@ static NSString *ipsum = @""
     "Lorem fistrum no puedor mamaar quietooor a gramenawer. Condemor quietooor por la gloria de mi madre diodenoo diodeno no puedor a wan pecador pupita ese que llega. Ahorarr no te digo trigo por no llamarte Rodrigor por la gloria de mi madre a gramenawer benemeritaar no te digo trigo por no llamarte Rodrigor al ataquerl ahorarr quietooor.\n"
     "Al ataquerl amatomaa me cago en tus muelas a gramenawer a wan quietooor hasta luego Lucas te voy a borrar el cerito tiene musho peligro. Amatomaa quietooor llevame al sircoo al ataquerl caballo blanco caballo negroorl.";
 
+// just set random attributes in random positions to the generated text
 - (void)randomizeText {
     for (UITextView *tv in self.topLayout.subviews) {
         tv.editable = NO;

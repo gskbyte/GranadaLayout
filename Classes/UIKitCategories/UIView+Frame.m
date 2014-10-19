@@ -4,7 +4,7 @@
 
 #pragma mark - Shorthand properties for frame
 
--(CGPoint)origin {
+- (CGPoint)origin {
     return self.frame.origin;
 }
 

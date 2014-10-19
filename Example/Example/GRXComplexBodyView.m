@@ -11,8 +11,7 @@
 
 @implementation GRXComplexBodyView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self loadViews];
@@ -20,7 +19,7 @@
     return self;
 }
 
-- (void) loadViews {
+- (void)loadViews {
     GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"complex_cell_body.grx"
                                                                fromBundle:[NSBundle bundleForClass:self.class]
                                                                  rootView:self];
@@ -42,24 +41,27 @@
     self.url.font = [UIFont systemFontOfSize:14];
     self.url.textAlignment = NSTextAlignmentCenter;
 
-    self.backgroundColor = [UIColor lightGrayColor];
+
+    self.layer.borderColor = [UIColor grayColor].CGColor;
+    self.layer.borderWidth = 2;
+    self.layer.cornerRadius = 4;
 }
 
 - (void)setBody:(GRXComplexDataBody *)body {
     self.image.image = body.image;
-    self.image.grx_visibility = body.image!=nil ? GRXVisibilityVisible : GRXVisibilityGone;
+    self.image.grx_visibility = body.image != nil ? GRXVisibilityVisible : GRXVisibilityGone;
 
     self.title.text = body.title;
-    self.title.grx_visibility = body.title.length>0 ? GRXVisibilityVisible : GRXVisibilityGone;
+    self.title.grx_visibility = body.title.length > 0 ? GRXVisibilityVisible : GRXVisibilityGone;
 
     self.subtitle.text = body.subtitle;
-    self.subtitle.grx_visibility = body.subtitle.length>0 ? GRXVisibilityVisible : GRXVisibilityGone;
+    self.subtitle.grx_visibility = body.subtitle.length > 0 ? GRXVisibilityVisible : GRXVisibilityGone;
 
-    if(body.url != nil) {
+    if (body.url != nil) {
         self.url.attributedText = [[NSAttributedString alloc] initWithString:body.url.absoluteString
-                                                                  attributes:@{NSLinkAttributeName : body.url}];
+                                                                  attributes:@{NSLinkAttributeName: body.url}];
     }
-    self.url.grx_visibility = body.url!=nil ? GRXVisibilityVisible : GRXVisibilityGone;
+    self.url.grx_visibility = body.url != nil ? GRXVisibilityVisible : GRXVisibilityGone;
 }
 
 

@@ -3,10 +3,10 @@
 
 @implementation GRXComplexDataHeader
 
-@synthesize formattedDate=_formattedDate;
+@synthesize formattedDate = _formattedDate;
 
 - (NSString *)formattedDate {
-    if(_formattedDate == nil) {
+    if (_formattedDate == nil) {
         static NSDateFormatter *formatter;
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -27,9 +27,9 @@
 
 @implementation GRXComplexData
 
-+ (NSArray*)generateDataWithCount:(NSUInteger)count {
++ (NSArray *)generateDataWithCount:(NSUInteger)count {
     NSMutableArray *datas = [NSMutableArray arrayWithCapacity:count];
-    for(NSUInteger i=0; i<count; ++i) {
+    for (NSUInteger i = 0; i < count; ++i) {
         GRXComplexData *data = [[GRXComplexData alloc] init];
 
         GRXComplexDataHeader *header = [[GRXComplexDataHeader alloc] init];
@@ -37,31 +37,31 @@
         NSTimeInterval dateInterval = [NSDate date].timeIntervalSince1970 - arc4random_uniform(10000);
         header.date = [NSDate dateWithTimeIntervalSince1970:dateInterval];
         header.image = [self.class randomImageWithProbability:0.9];
-        header.message = [GRXTextGenerator stringWithMaxLength:120 emptyProbability:0.7];
+        header.message = [GRXTextGenerator stringWithMaxLength:150 emptyProbability:0.7];
         data.header = header;
 
         NSUInteger numBodies = ABS(arc4random_uniform(4));
         data.bodies = [NSMutableArray arrayWithCapacity:numBodies];
-        for(NSUInteger i=0; i<numBodies; ++i) {
+        for (NSUInteger i = 0; i < numBodies; ++i) {
             GRXComplexDataBody *body = [[GRXComplexDataBody alloc] init];
             body.title = [GRXTextGenerator stringWithMinimumWords:5 maxWords:16];
             body.subtitle = [GRXTextGenerator stringWithMaxLength:32 emptyProbability:0.3];
             body.image = [self.class randomImageWithProbability:0.6];
             body.url = [self.class randomURL];
-            [(NSMutableArray*)data.bodies addObject:body];
+            [(NSMutableArray *)data.bodies addObject : body];
         }
         [datas addObject:data];
     }
     return datas;
 }
 
-+ (UIImage*)randomImageWithProbability:(CGFloat)prob {
++ (UIImage *)randomImageWithProbability:(CGFloat)prob {
     BOOL hasImage = ((CGFloat)arc4random_uniform(1000) / 1000) < prob;
-    if(NO == hasImage) {
+    if (NO == hasImage) {
         return nil;
     }
 
-    NSString * name = nil;
+    NSString *name = nil;
     NSUInteger number = arc4random_uniform(3);
     switch (number) {
         case 0:
@@ -75,14 +75,14 @@
             break;
     }
 
-    if(name != nil) {
+    if (name != nil) {
         return [UIImage imageNamed:name];
     } else {
         return nil;
     }
 }
 
-+ (NSURL*)randomURL {
++ (NSURL *)randomURL {
     NSUInteger number = arc4random_uniform(3);
     switch (number) {
         case 0:

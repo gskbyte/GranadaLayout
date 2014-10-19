@@ -5,6 +5,6 @@
 
 @property (nonatomic) GRXComplexData *data;
 
-+ (CGSize) sizeForData:(GRXComplexData*)data;
++ (CGSize)sizeForData:(GRXComplexData *)data;
 
 @end

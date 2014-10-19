@@ -60,7 +60,7 @@
             "height" : "wrap_content",
             
             "alignLeft" : "subtitle",
-            "below" : "title",
+            "below" : "subtitle",
             "marginTop" : "8",
 
             "debug_bgColor" : "orange"

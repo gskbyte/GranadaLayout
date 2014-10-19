@@ -28,17 +28,17 @@
 			},
 			{
 				"class" : "UIView",
-				"id" : "red",
+				"id" : "green",
 				"width" : "match_parent",
 				"height" : "80",
 				"gravity" : "center",
 				"margin" : "8",
 
-				"debug_bgColor" : "red",
+				"debug_bgColor" : "green",
 			},
 			{
 				"class" : "UIView",
-				"id" : "red",
+				"id" : "blue",
 				"width" : "120",
 				"height" : "120",
 				"margin" : "10",

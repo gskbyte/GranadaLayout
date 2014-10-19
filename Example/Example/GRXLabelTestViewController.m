@@ -38,15 +38,17 @@ static NSString *ipsum = @""
 
         NSString *displayedText = [ipsum substringWithRange:NSMakeRange(0, length)];
         NSMutableString *text = [NSMutableString stringWithString:@""];
-        NSUInteger numLines = arc4random_uniform(5);
+        NSUInteger numLines = arc4random_uniform(15);
         label.numberOfLines = numLines;
-        [text appendFormat:@" numLines(%zu) >", numLines];
+        [text appendFormat:@" numLines(%lu) >", (unsigned long)numLines];
         CGFloat fontSize = 11 + arc4random_uniform(70) / 10;
         label.font = [UIFont systemFontOfSize:fontSize];
         [text appendFormat:@" fontSize(%.0f) >", fontSize];
 
         [text appendFormat:@"%@", displayedText];
         label.text = text;
+
+        [label grx_setNeedsLayoutInParent];
     }
 }
 

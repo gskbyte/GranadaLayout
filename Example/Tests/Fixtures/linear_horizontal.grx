@@ -28,6 +28,18 @@
 			},
 			{
 				"class" : "UIView",
+				"id" : "green",
+				"width" : "match_parent",
+				"height" : "100",
+				"gravity" : "center",
+				"margin" : "12",
+
+				"visibility" : "gone",
+
+				"debug_bgColor" : "green",
+			},
+			{
+				"class" : "UIView",
 				"id" : "red",
 				"width" : "match_parent",
 				"height" : "100",

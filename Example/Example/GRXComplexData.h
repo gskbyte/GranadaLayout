@@ -25,6 +25,6 @@
 @property (nonatomic) GRXComplexDataHeader *header;
 @property (nonatomic) NSArray *bodies;
 
-+ (NSArray*)generateDataWithCount:(NSUInteger)count;
++ (NSArray *)generateDataWithCount:(NSUInteger)count;
 
 @end

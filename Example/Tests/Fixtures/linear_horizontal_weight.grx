@@ -39,6 +39,18 @@
 			},
 			{
 				"class" : "UIView",
+				"id" : "green",
+				"width" : "match_parent",
+				"height" : "0",
+				"weight" : "5",
+				"margin" : "12",
+
+				"visibility" : "gone",
+
+				"debug_bgColor" : "green",
+			},
+			{
+				"class" : "UIView",
 				"id" : "green_hidden",
 				"width" : "wrap_content",
 				"height" : "100",
