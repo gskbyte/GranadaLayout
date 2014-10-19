@@ -18,6 +18,6 @@ static const CGFloat GRXWrapContent = -2;
 
 - (instancetype)init;
 - (instancetype)initWithSize:(CGSize)size;
-- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams;
+- (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams;
 
 @end

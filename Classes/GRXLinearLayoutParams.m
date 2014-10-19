@@ -11,13 +11,13 @@
     return self;
 }
 
-- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+- (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams {
     self = [super initWithLayoutParams:layoutParams];
-    if(self) {
+    if (self) {
         [self setupDefaultGravityAndWeight];
 
-        if([layoutParams isKindOfClass:GRXLinearLayoutParams.class]) {
-            GRXLinearLayoutParams *linParams = (GRXLinearLayoutParams*)layoutParams;
+        if ([layoutParams isKindOfClass:GRXLinearLayoutParams.class]) {
+            GRXLinearLayoutParams *linParams = (GRXLinearLayoutParams *)layoutParams;
             _gravity = linParams.gravity;
             _weight = linParams.weight;
         }
@@ -25,7 +25,7 @@
     return self;
 }
 
-- (void) setupDefaultGravityAndWeight {
+- (void)setupDefaultGravityAndWeight {
     _gravity = kGRXLinearLayoutParamsDefaultGravity;
     _weight = kGRXLinearLayoutParamsDefaultWeight;
 }

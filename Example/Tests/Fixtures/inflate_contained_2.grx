@@ -1,0 +1,39 @@
+{
+  "version" : "0.1",
+  
+  
+  "layout" : {
+    "class" : "GRXLinearLayout",
+    "id" : "root",
+    "direction" : "horizontal",
+
+    "width" : "match_parent",
+    "height" : "200",
+
+    "debug_bgColor" : "white",
+    "weightSum" : "100",
+
+    "subviews" : [
+      {
+        "id" : "topLeft",
+        "class" : "UIView",
+        "height" : "match_parent",
+        "weight" : "60",
+
+        "debug_bgColor" : "darkGray"
+      },
+
+      {
+        "id" : "bottomRight",
+        "class" : "UIView",
+        "height" : "60",
+        "weight" : "40",
+
+        "debug_bgColor" : "yellow"
+      },
+
+
+
+    ]
+  }  
+}

@@ -16,9 +16,9 @@
     return self;
 }
 
-- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+- (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams {
     self = [self initWithSize:layoutParams.size];
-    if(self) {
+    if (self) {
         _margins = layoutParams.margins;
     }
     return self;

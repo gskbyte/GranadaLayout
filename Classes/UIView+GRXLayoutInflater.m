@@ -1,6 +1,4 @@
 #import "UIView+GRXLayoutInflater.h"
-#import "UIView+GRXLayout.h"
-#import "GRXLayoutInflater.h"
 
 @implementation UIView (GRXLayoutInflater)
 
@@ -46,6 +44,9 @@
 
     // TODO ? could parse also hex values
 #endif
+}
+
+- (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater {
 }
 
 @end

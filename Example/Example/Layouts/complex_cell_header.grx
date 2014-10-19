@@ -6,7 +6,7 @@
     "class" : "GRXComplexHeaderView",
     "id" : "root",
 
-    "width" : "300",
+    "width" : "match_parent",
     "height" : "wrap_content",
 
     "debug_bgColor" : "white",

@@ -6,6 +6,7 @@
 
 @interface GRXLayoutInflater () {
     NSMutableDictionary *_allViewsById;
+    NSBundle *_bundle; // can be nil if data was not loaded from a bundle
 }
 
 @end
@@ -27,7 +28,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
 #pragma mark - Initialisers
 
 - (instancetype)initWithData:(NSData *)data
-                    rootView:(UIView*)rootView {
+                    rootView:(UIView *)rootView {
     self = [super init];
     if (self) {
         _allViewsById = [[NSMutableDictionary alloc] init];
@@ -46,7 +47,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
 }
 
 - (instancetype)initWithBundleFile:(NSString *)filename
-                          rootView:(UIView*)rootView {
+                          rootView:(UIView *)rootView {
     return [self initWithFile:filename
                    fromBundle:[NSBundle mainBundle]
                      rootView:rootView];
@@ -54,9 +55,10 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
 
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle
-                    rootView:(UIView*)rootView {
+                    rootView:(UIView *)rootView {
     NSString *path = [bundle pathForResource:filename ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:path];
+    _bundle = bundle;
     return [self initWithData:data
                      rootView:rootView];
 }
@@ -79,7 +81,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
 }
 
 - (BOOL)parseJSON:(id)JSON
-         rootView:(UIView*)rootView {
+         rootView:(UIView *)rootView {
     NSAssert([JSON isKindOfClass:NSDictionary.class],
              @"The layout file must be a dictionary");
 
@@ -92,27 +94,38 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
     _rootView = [self parseViewNodeRecursively:layout
                                     parentView:rootView.superview
                                        outView:rootView];
+    [_rootView grx_didLoadFromInflater:self];
 
     return YES;
 }
-
 
 - (UIView *)parseViewNodeRecursively:(NSDictionary *)node
                           parentView:(UIView *)parentView
                              outView:(UIView *)outView {
     NSString *className = node[@"class"];
-    Class viewClass = NSClassFromString(className);
-    if (viewClass == nil) {
-        NSLog(@"Unknown view class '%@', layout can be badly formed", className);
+    id inflationObject = node[@"inflate"];
+    if (className != nil) {
+        outView = [self initializeViewWithClassName:className outView:outView];
+    } else if (inflationObject != nil) {
+        NSDictionary *inflationDict = nil;
+        if ([inflationObject isKindOfClass:NSDictionary.class]) {
+            inflationDict = inflationObject;
+        } else if ([inflationObject isKindOfClass:NSString.class]) {
+            inflationDict = @{@"filename": inflationObject};
+        } else {
+            NSAssert(NO, @"Invalid inflation object");
+        }
+
+        outView = [self initializeViewWithInflationDict:inflationDict
+                                                outView:outView];
+        if (outView == nil) {
+            return nil;
+        }
+    } else {
+        NSLog(@"Warning: Please specify 'class' or 'inflate' to inflate a view. Layout can be badly formed.");
         return nil;
     }
 
-    if(outView == nil) {
-        outView = [[viewClass alloc] initWithFrame:CGRectZero];
-    } else {
-        NSAssert([outView isMemberOfClass:viewClass],
-                 @"The root view defined in the file and the view to be inflated must have the same class");
-    }
 
     GRXLayoutParams *layoutParams = nil;
     if ([parentView isKindOfClass:GRXLayout.class]) {
@@ -137,7 +150,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
         }
         [_allViewsById setObject:outView forKey:identifier];
 
-        if([self.class areDebugOptionsEnabled]) {
+        if ([self.class areDebugOptionsEnabled]) {
             outView.grx_debugIdentifier = identifier;
         }
     }
@@ -153,6 +166,42 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = DEBUG;
     }
 
     return outView;
+}
+
+- (UIView *)initializeViewWithClassName:(NSString *)className
+                                outView:(UIView *)outView {
+    Class viewClass = NSClassFromString(className);
+    if (viewClass == nil) {
+        NSLog(@"Unknown view class '%@', layout can be badly formed", className);
+        return nil;
+    }
+
+    if (outView == nil) {
+        outView = [[viewClass alloc] initWithFrame:CGRectZero];
+    } else {
+        NSAssert([outView isMemberOfClass:viewClass],
+                 @"The root view defined in the file and the view to be inflated must have the same class");
+    }
+    return outView;
+}
+
+- (UIView *)initializeViewWithInflationDict:(NSDictionary *)inflateDict
+                                    outView:(UIView *)outView {
+    NSString *filename = inflateDict[@"filename"];
+    NSString *bundleIdentifier = inflateDict[@"bundle"];
+    NSBundle *bundle = _bundle;
+    if (bundleIdentifier != nil) {
+        bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
+    }
+    if (bundle == nil) {
+        bundle = [NSBundle mainBundle];
+    }
+
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename fromBundle:bundle rootView:outView];
+    if (inflater.rootView == nil) {
+        NSLog(@"Warning: Error inflating file '%@' from bundle '%@'. Layout will be incomplete.", filename, bundle.bundleIdentifier);
+    }
+    return inflater.rootView;
 }
 
 - (id)viewForIdentifier:(NSString *)identifier {

@@ -14,7 +14,10 @@
 
     "subviews" : [
       {
-        "class" : "GRXComplexHeaderView",
+        "inflate" : {
+          "filename" : "complex_cell_header.grx",
+        },
+
         "id" : "header",
 
         "width" : "match_parent",

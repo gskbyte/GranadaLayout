@@ -45,8 +45,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if(self) {
-        GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"complex_cell.grx"
-                                                                   fromBundle:[NSBundle bundleForClass:self.class]];
+        GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"complex_cell.grx"];
         self.root = inflater.rootView;
         [self.contentView addSubview:self.root];
         self.headerView = [inflater viewForIdentifier:@"header"];
@@ -66,6 +65,7 @@
     for(GRXComplexDataBody *body in data.bodies) {
         GRXComplexBodyView * bodyView = [self.class dequeueBody];
         bodyView.body = body;
+        bodyView.grx_layoutParams = [[GRXLinearLayoutParams alloc] initWithSize:CGSizeMake(GRXMatchParent, GRXWrapContent)];
         [self.bodyContainer addSubview:bodyView];
         bodyView.grx_layoutParams.margins = UIEdgeInsetsMake(4, 0, 0, 0);
     }

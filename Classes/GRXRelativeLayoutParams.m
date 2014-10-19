@@ -41,13 +41,13 @@ static NSNumber *NoNumber = nil;
     return self;
 }
 
-- (instancetype)initWithLayoutParams:(GRXLayoutParams*)layoutParams {
+- (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams {
     self = [super initWithLayoutParams:layoutParams];
-    if(self) {
+    if (self) {
         [self setupNoNumber];
         [self setupRules];
-        if([layoutParams isKindOfClass:GRXRelativeLayoutParams.class]) {
-            GRXRelativeLayoutParams *relParams = (GRXRelativeLayoutParams*)layoutParams;
+        if ([layoutParams isKindOfClass:GRXRelativeLayoutParams.class]) {
+            GRXRelativeLayoutParams *relParams = (GRXRelativeLayoutParams *)layoutParams;
             [_mutableRules setArray:relParams->_mutableRules];
             [_mutableParentRules setArray:relParams->_mutableParentRules];
             _top = relParams.top;

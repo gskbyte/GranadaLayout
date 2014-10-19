@@ -1,5 +1,5 @@
 #import "GRXComplexHeaderView.h"
-#import <GranadaLayout/GRXLayoutInflater.h>
+#import <GranadaLayout/UIView+GRXLayoutInflater.h>
 
 @interface GRXComplexHeaderView ()
 
@@ -11,18 +11,7 @@
 
 @implementation GRXComplexHeaderView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if(self) {
-        [self loadViews];
-    }
-    return self;
-}
-
-- (void)loadViews {
-    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"complex_cell_header.grx"
-                                                               fromBundle:[NSBundle bundleForClass:self.class]
-                                                                 rootView:self];
+- (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater {
     self.image = [inflater viewForIdentifier:@"image"];
     self.image.backgroundColor = [UIColor blueColor];
     self.image.contentMode = UIViewContentModeScaleAspectFit;
