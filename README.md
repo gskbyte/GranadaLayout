@@ -4,14 +4,14 @@ GranadaLayout
 ![CocoaPods Platform](http://img.shields.io/cocoapods/p/XNGMarkdownParser.svg?style=flat)
 ![CocoaPods License](http://img.shields.io/cocoapods/l/XNGMarkdownParser.svg?style=flat)
 
-###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
-
-###0.2.0 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.2.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.2.0.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
-
 
 **GranadaLayout** is an alternative layout system for iOS, inspired on the Android layout system. It includes **relative** and **linear** layout systems, that allow positioning views and reacting to size changes automatically without thinking on view frames.
 
 The goal of this project is to be an alternative to Apple's AutoLayout, which I find not very intuitive under some circumstances and has poor performance on older devices. I think this system allows also easier animations and the provided layout inflater allows not to mix interface and logic code.
+
+###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
+
+###0.2.0 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.2.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.2.0.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
 
 What it can do
 --------------
