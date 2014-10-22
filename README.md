@@ -21,7 +21,7 @@ What it can do
 - Adding support for custom view types is very easy, you just need to override the method ``grx_measureForWidthSpec:heightSpec:`` in a subclass, or set a ``grx_measureBlock`` to an object.
 - A layout inflater is provided, allowing you to separate layout and logic, defining layouts in a declarative way using simple JSON files (see example below)
 - All needed properties for layouting have been implemented on a thin category of ``UIView``, so all UIKit views are supported out of the box
-- Layouting is done at a very high speed, only the views that neeed it will me measured and layouted when the superview changes.
+- Layouting is done at a very high speed, only the views that neeed it will be measured and layouted when the superview changes.
 - Can be used inside ``UITableViewCell``s and ``UICollectionViewCell``s, also to compute cell size
 - Compatible with iOS 6 and above
 - It can work together with [NUI](https://github.com/tombenner/nui), a styling system similar to CSS
