@@ -184,7 +184,7 @@ image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the 
 
 ###Just code
 
-// Please check the test controllers to see this
+// Please check the test controllers to see how it works, but really, it's much better to use layout files!
 
 Thanks + Acknowledments
 -----------------------
@@ -200,3 +200,7 @@ Licensing
 ---------
 
 This project is licensed under the [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html), just like the Android Project
+
+Some analytics
+---------
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/gskbyte/granadalayout/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
