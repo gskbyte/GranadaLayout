@@ -191,10 +191,12 @@
 - (UIView *)initializeViewWithInflationDict:(NSDictionary *)inflateDict
                                     outView:(UIView *)outView {
     NSString *filename = inflateDict[@"filename"];
-    NSString *bundleIdentifier = inflateDict[@"bundle"];
+    NSString *bundleName = inflateDict[@"bundle"];
     NSBundle *bundle = _bundle;
-    if (bundleIdentifier != nil) {
-        bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
+    if (bundleName != nil) {
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
+                                                               ofType:@"bundle"];
+        bundle = [NSBundle bundleWithPath:bundlePath];
     }
     if (bundle == nil) {
         bundle = [NSBundle mainBundle];
