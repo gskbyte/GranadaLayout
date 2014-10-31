@@ -40,7 +40,7 @@
         "id" : "included2",
         "inflate" : {
           "filename" : "inflate_contained_2.grx",
-          "bundle" : "org.gskbyte.GranadaLayout.Tests"
+          "bundleId" : "org.gskbyte.GranadaLayout.Tests"
         },
 
         "width" : "200",
