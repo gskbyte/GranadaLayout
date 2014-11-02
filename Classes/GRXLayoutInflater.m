@@ -16,9 +16,9 @@
 #pragma mark - Debug options
 
 #ifdef DEBUG
-    static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
+static BOOL GRXLayoutInflaterDebugOptionsEnabled = YES;
 #else
-    static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
+static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 #endif
 + (BOOL)areDebugOptionsEnabled {
     return GRXLayoutInflaterDebugOptionsEnabled;
@@ -129,20 +129,34 @@
         return nil;
     }
 
-
-    GRXLayoutParams *layoutParams = nil;
-    if ([parentView isKindOfClass:GRXLayout.class]) {
-        GRXLayout *parentLayout = (GRXLayout *)parentView;
-        Class layoutParamsClass = [parentLayout.class layoutParamsClass];
-        layoutParams = [[layoutParamsClass alloc] init];
-        [parentLayout configureSubviewLayoutParams:layoutParams
-                                    fromDictionary:node
-                                        inInflater:self];
+    // Create new params if needed, translate old ones to the new required params
+    GRXLayoutParams *layoutParams = outView.grx_layoutParams;
+    if(layoutParams == nil) {
+        if ([parentView isKindOfClass:GRXLayout.class]) {
+            GRXLayout *parentLayout = (GRXLayout *)parentView;
+            Class layoutParamsClass = [parentLayout.class layoutParamsClass];
+            layoutParams = [[layoutParamsClass alloc] init];
+            [parentLayout configureSubviewLayoutParams:layoutParams
+                                        fromDictionary:node
+                                            inInflater:self];
+        } else {
+            layoutParams = [[GRXLayoutParams alloc] init];
+            [GRXLayout configureUnparentedLayoutParams:layoutParams
+                                        fromDictionary:node];
+        }
     } else {
-        layoutParams = [[GRXLayoutParams alloc] init];
-        [GRXLayout configureUnparentedLayoutParams:layoutParams
-                                    fromDictionary:node];
+        if([parentView isKindOfClass:GRXLayout.class]) {
+            GRXLayout * parentLayout = (GRXLayout*)parentView;
+            Class parentLayoutParamsClass = [parentLayout.class layoutParamsClass];
+            if(layoutParams.class != parentLayoutParamsClass) {
+                layoutParams = [[parentLayoutParamsClass alloc] initWithLayoutParams:layoutParams];
+            }
+            [parentLayout configureSubviewLayoutParams:layoutParams
+                                        fromDictionary:node
+                                            inInflater:self];
+        }
     }
+
     [outView grx_configureFromDictionary:node];
     outView.grx_layoutParams = layoutParams;
 

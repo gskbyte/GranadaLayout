@@ -15,6 +15,8 @@
         self.grx_visibility = GRXVisibilityHidden;
     } else if ( [visibilityString isEqualToString:@"gone"] ) {
         self.grx_visibility = GRXVisibilityGone;
+    } else if ( [visibilityString isEqualToString:@"visible"] ) {
+        self.grx_visibility = GRXVisibilityVisible;
     }
 
     NSString *nuiClass = dictionary[@"nuiClass"];
