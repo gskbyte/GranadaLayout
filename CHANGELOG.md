@@ -1,3 +1,5 @@
+# 0.2.4: Fix layout when adding subviews, improve performance
+
 # 0.2.3: Fix recursive layout inflation
   - Some values were being overriden when loading an inflated layout from within another one
   - Update snapshot tests according to the fixed inflation
