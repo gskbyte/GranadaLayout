@@ -1,3 +1,10 @@
+# 0.2.3: Fix recursive layout inflation
+  - Some values were being overriden when loading an inflated layout from within another one
+  - Update snapshot tests according to the fixed inflation
+
+# 0.2.2 and 0.2.1: Fix recursive inflation
+  - Using now ``bundleName`` and ``bundleIdentifier`` to refer to other bundles (like the ones coming from Pods)
+
 # 0.2.0: Improved layout inflater
   - Fixed size calculation for root layouts
   - Layout inflater can include external files
@@ -17,7 +24,7 @@
         "id" : "included2",
         "inflate" : {
           "filename" : "inflate_contained_2.grx",
-          "bundle" : "org.gskbyte.GranadaLayout.Tests"
+          "bundleIdentifier" : "org.gskbyte.GranadaLayout.Tests"
         },
 
         "width" : "200",
@@ -41,7 +48,6 @@
   - Improved examples
   - Measurement block in ``UIView+GRXLayout`` allow overriding default ``-grx_measureWithWidthSpec:heightSpec:``
   - Added more tests
-  - 
   
 # 0.1.1: minor bugfixes
 
