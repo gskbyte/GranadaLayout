@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = { "Jose Alcalá Correa" => "jose.alcala.correa@gmail.com" }
   s.platform     = :ios, "6.0"
 
-  s.source       = { :git => "https://github.com/gskbyte/GranadaLayout.git", :tag => "0.2.3"  }
+  s.source       = { :git => "https://github.com/gskbyte/GranadaLayout.git", :tag => "0.2.4"  }
   s.social_media_url   = "http://twitter.com/gskbyte"
   
   s.requires_arc = "true"
