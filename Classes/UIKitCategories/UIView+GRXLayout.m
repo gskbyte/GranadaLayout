@@ -217,7 +217,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 
     // 2. Get the size for the given width
-    self.size = CGSizeZero;
+    //self.size = CGSizeZero; // needed for UILabels and UITextViews?
     CGSize measuredSize = [self sizeThatFits:maxTextSize];
     switch (heightSpec.mode) {
         case GRXMeasureSpecExactly:

@@ -27,8 +27,7 @@ static const NSUInteger GRXLayoutIdNull = 0;
 // without needing to subclass
 @property (nonatomic, copy, setter = grx_setMeasurementBlock :) CGSize (^grx_measurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
 
-
-// does never return null, the number is always > 0
+// does never return nil, the number is always > 0
 // we could also use tag for this but this would be dangerous
 @property (nonatomic, readonly) NSNumber *grx_layoutId;
 @property (nonatomic, setter = grx_setDebugIdentifier :) NSString *grx_debugIdentifier;

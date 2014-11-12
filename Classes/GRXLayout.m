@@ -28,8 +28,8 @@
     } else {
         view.grx_layoutParams = [[self.class.layoutParamsClass alloc] init];
     }
-    [view grx_setNeedsLayoutInParent];
     [super addSubview:view];
+    [view grx_setNeedsLayoutInParent];
 }
 
 - (void)setNeedsLayout {
