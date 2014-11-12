@@ -1,7 +1,7 @@
 PODS:
   - Expecta (0.3.1)
-  - FBSnapshotTestCase (1.3)
-  - GranadaLayout (0.2.3)
+  - FBSnapshotTestCase (1.4)
+  - GranadaLayout (0.2.4)
 
 DEPENDENCIES:
   - Expecta (~> 0.3.1)
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  FBSnapshotTestCase: 4fc617f1cb970fe987b98b3525b3aac106baaabf
-  GranadaLayout: 730dfc3b9700aaa8981ca3bd36dd1b790b17a88a
+  FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
+  GranadaLayout: 6b096430b551e7466d3b090949daa7696bcab80c
 
 COCOAPODS: 0.34.4
