@@ -5,6 +5,7 @@
 @interface GRXCollectionViewTestController () <UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic) NSMutableArray *cellDatas;
+@property (nonatomic, readonly) UICollectionViewFlowLayout *collectionViewFlowLayout;
 
 @end
 
@@ -62,11 +63,21 @@
     return @"";
 }
 
+- (UICollectionViewFlowLayout *)collectionViewFlowLayout {
+    return (UICollectionViewFlowLayout*)self.collectionViewLayout;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.collectionView.backgroundColor = [UIColor lightGrayColor];
     [self.collectionView registerClass:GRXInflatedCell.class
             forCellWithReuseIdentifier:NSStringFromClass(GRXInflatedCell.class)];
+
+    // CollectionViewCell self sizing in iOS 8.
+    // To make it work, comment out or remove collectionView:layout:sizeForItemAtIndexPath: below
+    if([self.collectionViewFlowLayout respondsToSelector:@selector(setEstimatedItemSize:)]) {
+        self.collectionViewFlowLayout.estimatedItemSize = CGSizeMake(300, 120);
+    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView
@@ -83,6 +94,8 @@
     return cell;
 }
 
+// HINT: comment this out to try self-sizing cells on ios 8
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     GRXInflatedCellData *data = self.cellDatas[indexPath.row];
     CGSize size = [GRXInflatedCell sizeForData:data];
@@ -91,6 +104,7 @@
 
     return size;
 }
+
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(8, 0, 0, 8);
 }
@@ -114,6 +128,8 @@
         GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"cell_test.grx"
                                                                    fromBundle:[NSBundle bundleForClass:self.class]];
         self.root = inflater.rootView;
+        self.root.limitToNonLayoutParentHeight = NO;
+
         self.image = [inflater viewForIdentifier:@"image"];
         self.image.backgroundColor = [UIColor blueColor];
         self.image.contentMode = UIViewContentModeScaleAspectFit;
@@ -149,6 +165,13 @@
     self.image.grx_visibility = data.showImage ? GRXVisibilityVisible : GRXVisibilityGone;
 
     [self.root setNeedsLayout];
+}
+
+- (CGSize)sizeThatFits:(CGSize)size {
+    self.root.grx_layoutParams.width = size.width;
+    [self.root layoutIfNeeded];
+    CGSize computedSize = [self.root grx_measuredSize];
+    return computedSize;
 }
 
 + (CGSize)sizeForData:(GRXInflatedCellData *)data {
