@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GranadaLayout"
-  s.version      = "0.3.0"
+  s.version      = "0.3.1"
   s.summary      = "A simple layout system for iOS providing Android-like linear and relative layouts."
 
   s.description  = <<-DESC
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.author       = { "Jose Alcalá Correa" => "jose.alcala.correa@gmail.com" }
   s.platform     = :ios, "6.0"
 
-  s.source       = { :git => "https://github.com/gskbyte/GranadaLayout.git", :tag => "0.3.0"  }
+  s.source       = { :git => "https://github.com/gskbyte/GranadaLayout.git", :tag => "0.3.1"  }
   s.social_media_url   = "http://twitter.com/gskbyte"
     
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
