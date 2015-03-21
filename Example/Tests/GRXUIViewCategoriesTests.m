@@ -50,13 +50,44 @@
     expect(view.grx_visibility).to.equal(GRXVisibilityHidden);
 }
 
+- (void)testIdentifiers {
+    GRXLinearLayout *linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
+    linear.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(200, 200)];
+    linear.grx_identifier = @"linear";
+
+    UIView *viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
+    viewInLinear.grx_layoutParams.size = CGSizeMake(GRXMatchParent, GRXMatchParent);
+    viewInLinear.grx_identifier = @"view";
+
+    GRXRelativeLayout *relative = [[GRXRelativeLayout alloc] initWithDefaultParamsInLayout:linear];
+    relative.grx_identifier = @"relative";
+
+    UIView *blueView = [[UIView alloc] initWithDefaultParamsInLayout:relative];
+    blueView.backgroundColor = [UIColor blueColor];
+    blueView.grx_identifier = @"blue";
+
+    UIView *redView = [[UIView alloc] initWithDefaultParamsInLayout:relative];
+    redView.backgroundColor = [UIColor redColor];
+    redView.grx_identifier = @"red";
+
+    expect(linear.grx_identifier).to.equal(@"linear");
+    expect([linear grx_findViewForIdentifier:@"view"]).to.beIdenticalTo(viewInLinear);
+    expect([linear grx_subviewForIdentifier:@"view"]).to.beIdenticalTo(viewInLinear);
+    expect([linear grx_findViewForIdentifier:@"relative"]).to.beIdenticalTo(relative);
+    expect([linear grx_findViewForIdentifier:@"blue"]).to.beIdenticalTo(blueView);
+    expect([linear grx_subviewForIdentifier:@"blue"]).to.beNil();
+    expect([relative grx_subviewForIdentifier:@"blue"]).to.beIdenticalTo(blueView);
+    expect([linear grx_findViewForIdentifier:@"red"]).to.beIdenticalTo(redView);
+    expect([linear grx_findViewForIdentifier:@"green"]).to.beNil();
+}
+
 - (void)testDebugProperties {
     GRXLinearLayout *linear = [[GRXLinearLayout alloc] initWithFrame:CGRectZero];
     linear.grx_layoutParams = [[GRXLayoutParams alloc] initWithSize:CGSizeMake(200, 200)];
-    linear.grx_debugIdentifier = @"linear";
+    linear.grx_identifier = @"linear";
     UIView *viewInLinear = [[UIView alloc] initWithDefaultParamsInLayout:linear];
     viewInLinear.grx_layoutParams.size = CGSizeMake(GRXMatchParent, GRXMatchParent);
-    viewInLinear.grx_debugIdentifier = @"view";
+    viewInLinear.grx_identifier = @"view";
     viewInLinear.backgroundColor = [UIColor redColor];
 
     [linear layoutSubviews];

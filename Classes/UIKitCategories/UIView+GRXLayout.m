@@ -10,6 +10,7 @@ const static char GRXMeasuredSizeSpecKey;
 const static char GRXMinSizeKey;
 const static char GRXMeasurementBlockKey;
 const static char GRXLayoutIDKey;
+const static char GRXIdentifierKey;
 
 static NSUInteger GRXStaticCurrentLayoutID = 0;
 
@@ -39,8 +40,6 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
     return self;
 }
-
-
 
 #pragma mark - layout methods
 
@@ -261,15 +260,39 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-const static char GRXLayoutDebugIDKey;
+#pragma mark - identifiers
 
-- (NSString *)grx_debugIdentifier {
-    return objc_getAssociatedObject(self, &GRXLayoutDebugIDKey);
+- (NSString *)grx_identifier {
+    return objc_getAssociatedObject(self, &GRXIdentifierKey);
 }
 
-- (void)grx_setDebugIdentifier:(NSString *)grx_debugIdentifier {
-    objc_setAssociatedObject(self, &GRXLayoutDebugIDKey, grx_debugIdentifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)grx_setIdentifier:(NSString *)identifier {
+    objc_setAssociatedObject(self, &GRXIdentifierKey, identifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
+- (UIView *)grx_subviewForIdentifier:(NSString *)identifier {
+    for (UIView *subview in self.subviews) {
+        if ([subview.grx_identifier isEqualToString:identifier]) {
+            return subview;
+        }
+    }
+    return nil;
+}
+
+- (UIView *)grx_findViewForIdentifier:(NSString *)identifier {
+    for (UIView *subview in self.subviews) {
+        if ([subview.grx_identifier isEqualToString:identifier]) {
+            return subview;
+        }
+        UIView *subSubView = [subview grx_findViewForIdentifier:identifier];
+        if (subSubView != nil) {
+            return subSubView;
+        }
+    }
+    return nil;
+}
+
+#pragma mark - debug
 
 - (NSString *)grx_debugDescription {
     return [self descriptionWithIndentationLevel:0];
@@ -294,7 +317,7 @@ const static char GRXLayoutDebugIDKey;
             "%@%@\n"
             "%@",
             (level == 0 ? @"\n" : @""),
-            spaces, NSStringFromClass(self.class), self.grx_debugIdentifier,
+            spaces, NSStringFromClass(self.class), self.grx_identifier,
             spaces, self.left, self.top, self.width, self.height, self.grx_measuredSize.width, self.grx_measuredSize.height,
             spaces, self.grx_layoutParams.debugDescription,
             subviews

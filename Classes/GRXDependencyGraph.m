@@ -111,7 +111,7 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
     node.view = view;
 #ifdef DEBUG
     node.viewId = view.grx_layoutId;
-    node.debugIdentifier = view.grx_debugIdentifier ? view.grx_debugIdentifier : @"UNNAMED";
+    node.debugIdentifier = view.grx_identifier ? view.grx_identifier : @"UNNAMED";
 #endif
     return node;
 }
