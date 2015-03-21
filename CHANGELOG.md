@@ -1,3 +1,7 @@
+# 0.3.1 Common header file
+ - Add ``GranadaLayout.h`` to ease import of files
+ - Hide private headers
+
 # 0.3.0: Various improvements
  - Property ``grx_debugIdentifier`` renamed to ``grx_identifier``
  - Added methods ``-grx_subviewForIdentifier:`` and ``grx_findViewWithIdentifier:``
