@@ -1,3 +1,11 @@
+# 0.3.0: Various improvements
+ - Property ``grx_debugIdentifier`` renamed to ``grx_identifier``
+ - Added methods ``-grx_subviewForIdentifier:`` and ``grx_findViewWithIdentifier:``
+ - Remove method ``-viewForIdentifier`` from the ``GRXLayoutInflater``, now the previous methods have to be used
+ - Improved stability of snapshot tests
+ - Update dependencies
+ - Improve compatibility with Swift
+
 # 0.2.4: Fix layout when adding subviews, improve performance
 
 # 0.2.3: Fix recursive layout inflation
