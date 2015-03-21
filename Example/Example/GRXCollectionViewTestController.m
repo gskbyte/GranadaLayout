@@ -39,7 +39,7 @@
 - (instancetype)initWithCollectionViewLayout:(UICollectionViewLayout *)layout {
     self = [super initWithCollectionViewLayout:layout];
     if (self) {
-        NSUInteger numberOfItems = 200; // + arc4random_uniform(200);
+        NSUInteger numberOfItems = arc4random_uniform(200);
         self.cellDatas = [NSMutableArray arrayWithCapacity:numberOfItems];
         for (NSUInteger i = 0; i < numberOfItems; ++i) {
             GRXInflatedCellData *data = [[GRXInflatedCellData alloc] init];
@@ -131,13 +131,12 @@
         self.root.limitToNonLayoutParentHeight = NO;
 
         self.image = [inflater viewForIdentifier:@"image"];
-        self.image.backgroundColor = [UIColor blueColor];
         self.image.contentMode = UIViewContentModeScaleAspectFit;
 
         __weak GRXInflatedCell *weakSelf = self;
         self.image.grx_measurementBlock = ^CGSize (GRXMeasureSpec wspec, GRXMeasureSpec hspec) {
-            GRXMeasureSpec propHSpec = GRXMeasureSpecMake(wspec.value * 1.1, wspec.mode);
-            return [weakSelf.image grx_measureForWidthSpec:wspec heightSpec:propHSpec]; // this forces the image to be (w, w*1.1)
+            GRXMeasureSpec propHSpec = GRXMeasureSpecMake(wspec.value * 1.25, wspec.mode);
+            return [weakSelf.image grx_measureForWidthSpec:wspec heightSpec:propHSpec]; // this forces the image to be (w, w*1.25)
         };
 
         self.title = [inflater viewForIdentifier:@"title"];
@@ -179,6 +178,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         staticCell = [[GRXInflatedCell alloc] initWithFrame:CGRectZero];
+        staticCell.root.grx_layoutParams.width = 300;
     });
     staticCell.data = data;
 
