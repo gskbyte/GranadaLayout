@@ -20,35 +20,35 @@
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_parent.grx"];
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testAlignRelative {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_other_views.grx"];
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testAlignWrapped {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped.grx"];
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testAlignWrappedPush {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_push.grx"];
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testAlignWrappedAroundCenter {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"relative_wrapped_around_center.grx"];
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testRelativeToGone {
@@ -56,7 +56,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testRelativeInRelative {
@@ -81,7 +81,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 @end

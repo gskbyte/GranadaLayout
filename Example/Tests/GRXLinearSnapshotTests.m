@@ -25,7 +25,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testVerticalWeighted {
@@ -37,7 +37,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testHorizontal {
@@ -49,7 +49,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testHorizontalWeighted {
@@ -62,7 +62,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 - (void)testHorizontalInVertical {
@@ -75,7 +75,7 @@
     UIView *rootView = inflater.rootView;
     [rootView layoutSubviews];
 
-    FBSnapshotVerifyView(rootView, nil);
+    FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
 @end

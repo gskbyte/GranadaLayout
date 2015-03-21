@@ -10,15 +10,23 @@
 }
 
 + (GRXLayoutInflater *)inflaterForFileWithName:(NSString *)filename {
-    return [[GRXLayoutInflater alloc] initWithFile:filename
-                                        fromBundle:[NSBundle bundleForClass:self.class]];
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename
+                                                               fromBundle:[NSBundle bundleForClass:self.class]];
+    if (inflater.parseError) {
+        NSLog(@"Error inflating file %@: %@", filename, inflater.parseError);
+    }
+    return inflater;
 }
 
 + (GRXLayoutInflater *)inflaterForFileWithName:(NSString *)filename
                                       rootView:(UIView *)rootView {
-    return [[GRXLayoutInflater alloc] initWithFile:filename
-                                        fromBundle:[NSBundle bundleForClass:self.class]
-                                          rootView:rootView];
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename
+                                                                      fromBundle:[NSBundle bundleForClass:self.class]
+                                                                 rootView:rootView];
+    if (inflater.parseError) {
+        NSLog(@"Error inflating file %@: %@", filename, inflater.parseError);
+    }
+    return inflater;
 }
 
 + (id)rootViewForLayoutFileWithName:(NSString *)filename {
