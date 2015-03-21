@@ -11,7 +11,7 @@ The goal of this project is to be an alternative to Apple's AutoLayout, which I 
 
 ###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
 
-###0.2.4 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.2.4.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.2.4.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
+###0.3.0 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.3.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.3.0.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
 
 What it can do
 --------------
@@ -150,15 +150,15 @@ And then, to use it inside your ``UIViewController`` or custom view, just load i
 GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
 
 self.view = inflater.rootView;
-UIImageView *image = [inflater viewForIdentifier:@"image"];
+UIImageView *image = [self.view grx_viewWithIdentifier:@"image"];
 image.backgroundColor = [UIColor blueColor];
 image.contentMode = UIViewContentModeScaleAspectFit;
 
-GRXTextView * title = [inflater viewForIdentifier:@"title"];
+GRXTextView * title = [self.view grx_viewWithIdentifier:@"title"];
 title.text = @"Title goes here";
 title.textColor = [UIColor darkGrayColor];
 
-UILabel * subtitle = [inflater viewForIdentifier:@"subtitle"];
+UILabel * subtitle = [self.view grx_viewWithIdentifier:@"subtitle"];
 subtitle.text = @"Subtitle goes here";
 ```
 
