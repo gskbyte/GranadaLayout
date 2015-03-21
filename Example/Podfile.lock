@@ -1,6 +1,6 @@
 PODS:
-  - Expecta (0.3.1)
-  - FBSnapshotTestCase (1.4)
+  - Expecta (0.3.2)
+  - FBSnapshotTestCase (1.5)
   - GranadaLayout (0.2.4)
 
 DEPENDENCIES:
@@ -13,8 +13,8 @@ EXTERNAL SOURCES:
     :path: ../GranadaLayout.podspec
 
 SPEC CHECKSUMS:
-  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
-  FBSnapshotTestCase: f9f225b5ba11c8d8c09075590490df16314e4d62
-  GranadaLayout: 6b096430b551e7466d3b090949daa7696bcab80c
+  Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
+  FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
+  GranadaLayout: 966c643d3b689cb512191bf36dd24dfe0433ea51
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.36.0
