@@ -1,5 +1,5 @@
 #import "GRXTopLayoutTestViewController.h"
-#import <GRXLayoutInflater.h>
+#import <GranadaLayout/GranadaLayout.h>
 
 @interface GRXBaseInflationTestController : GRXTopLayoutTestViewController
 

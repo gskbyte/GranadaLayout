@@ -20,4 +20,5 @@ Pod::Spec.new do |s|
     
   s.source_files  = "Classes", "Classes/**/*.{h,m}"
   s.exclude_files = "Example/*"
+  s.private_header_files = "Classes/Private/*.h"
 end

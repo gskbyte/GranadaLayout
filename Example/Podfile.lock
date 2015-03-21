@@ -15,6 +15,6 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Expecta: ee641011fe10aa1855d487b40e4976dac50ec342
   FBSnapshotTestCase: e2914fbaabccea1dcc773d6a16b1c24540642488
-  GranadaLayout: 87f12c386b2d76860eb4f8dd9da4a19db8cd50b7
+  GranadaLayout: c2bf7a10d31c3c100a5b9820e564ad4741d9bc25
 
 COCOAPODS: 0.36.0
