@@ -59,7 +59,7 @@ static NSDictionary *ParentRules = nil;
         if (viewId == nil) {
             continue;
         }
-        UIView *view = [inflater viewForIdentifier:viewId];
+        UIView *view = [self grx_subviewForIdentifier:viewId];
         if (view == nil) {
             NSLog(@"Warning: view not found for id %@ in GRXRelativeLayout", viewId);
             continue;

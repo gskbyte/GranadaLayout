@@ -15,8 +15,8 @@ static NSString *GRXRandomTextBase = @"Lorem fistrum a wan apetecan no puedor. S
 
 + (NSString *)stringWithMinimumLength:(NSUInteger)minLength
                             maxLength:(NSUInteger)maxLength {
-    NSUInteger length = minLength + arc4random_uniform(maxLength - minLength);
-    NSUInteger begin = arc4random_uniform(GRXRandomTextBase.length - length);
+    NSUInteger length = minLength + arc4random_uniform((u_int32_t)(maxLength - minLength));
+    NSUInteger begin = arc4random_uniform((u_int32_t)(GRXRandomTextBase.length - length));
     return [GRXRandomTextBase substringWithRange:NSMakeRange(begin, length)];
 }
 
@@ -30,8 +30,8 @@ static NSString *GRXRandomTextBase = @"Lorem fistrum a wan apetecan no puedor. S
         maxWords = self.class.words.count - 1;
     }
 
-    NSUInteger words = minWords + arc4random_uniform(maxWords - minWords);
-    NSUInteger begin = arc4random_uniform([self.class words].count - words);
+    NSUInteger words = minWords + arc4random_uniform((u_int32_t)(maxWords - minWords));
+    NSUInteger begin = arc4random_uniform((u_int32_t)([self.class words].count - words));
 
     return [[self.class.words subarrayWithRange:NSMakeRange(begin, words)] componentsJoinedByString:@" "];
 }

@@ -62,20 +62,20 @@
 - (void)testRelativeInRelative {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_in_relative.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
 
-    UITextView *title = [inflater viewForIdentifier:@"title"];
+    UITextView *title = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"title"];
 
     title.attributedText = [[NSAttributedString alloc] initWithString:@"This is a test title with two lines"
                                                            attributes:@{NSFontAttributeName: [UIFont fontWithName:@"AmericanTypewriter" size:18]}];
 
-    UILabel *subtitle = [inflater viewForIdentifier:@"subtitle"];
+    UILabel *subtitle = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"subtitle"];
     subtitle.textColor = [UIColor darkGrayColor];
     subtitle.text = @"This is a test subtitle";
     subtitle.font = [UIFont boldSystemFontOfSize:10];
 
-    UITextView *message = [inflater viewForIdentifier:@"message"];
+    UITextView *message = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"message"];
     message.text = @"This is a text message and should be long enough to have at least two lines";
 
     UIView *rootView = inflater.rootView;

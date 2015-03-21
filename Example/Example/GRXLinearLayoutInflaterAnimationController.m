@@ -16,7 +16,7 @@
 }
 
 - (void)createViews {
-    UIImageView *imageView = [self.layoutInflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [self.layoutInflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [UIImage imageNamed:@"power.png"];
 }
 

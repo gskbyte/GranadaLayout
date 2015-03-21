@@ -48,7 +48,7 @@
 }
 
 - (void)createViews {
-    UIImageView *iv = [self.layoutInflater viewForIdentifier:@"image"];
+    UIImageView *iv = (UIImageView *) [self.layoutInflater.rootView grx_findViewWithIdentifier:@"image"];
     iv.image = [UIImage imageNamed:@"lab.png"];
 }
 

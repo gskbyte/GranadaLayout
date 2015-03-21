@@ -12,20 +12,20 @@
 @implementation GRXComplexHeaderView
 
 - (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater {
-    self.image = [inflater viewForIdentifier:@"image"];
+    self.image = (UIImageView*) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     self.image.layer.borderColor = [UIColor darkGrayColor].CGColor;
     self.image.layer.borderWidth = 1;
     self.image.contentMode = UIViewContentModeScaleAspectFit;
 
-    self.title = [inflater viewForIdentifier:@"title"];
+    self.title = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"title"];
     self.title.font = [UIFont boldSystemFontOfSize:16];
 
-    self.subtitle = [inflater viewForIdentifier:@"subtitle"];
+    self.subtitle = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"subtitle"];
     self.subtitle.numberOfLines = 1000;
     self.subtitle.font = [UIFont systemFontOfSize:12];
     self.subtitle.textColor = [UIColor grayColor];
 
-    self.message = [inflater viewForIdentifier:@"message"];
+    self.message = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"message"];
     self.message.font = [UIFont systemFontOfSize:14];
 }
 

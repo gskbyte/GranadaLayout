@@ -23,13 +23,13 @@
 
 - (void)testLinearVertical {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical.grx"];
-    GRXLinearLayout *rootView = inflater.rootView;
+    GRXLinearLayout *rootView = (GRXLinearLayout *) inflater.rootView;
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);
     expect(rootView.direction).to.equal(GRXLinearLayoutDirectionVertical);
     expect(rootView.subviews).to.haveCountOf(5);
 
-    UIView *sw = [inflater viewForIdentifier:@"switch"];
+    UIView *sw = [inflater.rootView grx_findViewWithIdentifier:@"switch"];
     expect(sw).to.beInstanceOf(UISwitch.class);
     expect(sw.grx_linearLayoutParams.width).to.equal(GRXWrapContent);
     expect(sw.grx_linearLayoutParams.height).to.equal(GRXWrapContent);
@@ -37,7 +37,7 @@
     expect(sw.grx_linearLayoutParams.hasMargins).to.beTruthy();
     expect(sw.grx_linearLayoutParams.margins.top).to.equal(8);
 
-    UIImageView *image = [inflater viewForIdentifier:@"image"];
+    UIImageView *image = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     expect(image).to.beInstanceOf(UIImageView.class);
     expect(image.grx_linearLayoutParams.width).to.equal(GRXWrapContent);
     expect(image.grx_linearLayoutParams.height).to.equal(GRXWrapContent);
@@ -45,7 +45,7 @@
     expect(image.grx_linearLayoutParams.hasMargins).to.beFalsy();
     expect(image.grx_linearLayoutParams.margins.top).to.equal(0);
 
-    UIImageView *blueView = [inflater viewForIdentifier:@"blue"];
+    UIImageView *blueView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"blue"];
     expect(blueView).to.beInstanceOf(UIView.class);
     expect(blueView.grx_linearLayoutParams.width).to.equal(200);
     expect(blueView.grx_linearLayoutParams.height).to.equal(120);
@@ -71,14 +71,14 @@
 
 - (void)testLinearVerticalWeighted {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical_weight.grx"];
-    GRXLinearLayout *rootView = inflater.rootView;
+    GRXLinearLayout *rootView = (GRXLinearLayout *) inflater.rootView;
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(GRXLinearLayout.class);
     expect(rootView.direction).to.equal(GRXLinearLayoutDirectionVertical);
     expect(rootView.subviews).to.haveCountOf(6);
     expect(rootView.weightSum).to.equal(100);
 
-    UIImageView *image = [inflater viewForIdentifier:@"image"];
+    UIImageView *image = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     expect(image).to.beInstanceOf(UIImageView.class);
     expect(image.grx_linearLayoutParams.width).to.equal(GRXWrapContent);
     expect(image.grx_linearLayoutParams.height).to.equal(0);

@@ -2,11 +2,11 @@
 
 @interface GRXLayoutInflater : NSObject
 
-@property (nonatomic, readonly) id rootView; // UIView* instance
+@property (nonatomic, readonly) NSError *parseError;
+@property (nonatomic, readonly) UIView* rootView;
 
 + (BOOL)areDebugOptionsEnabled;
 + (void)setDebugOptionsEnabled:(BOOL)active;
-
 
 - (instancetype)initWithData:(NSData *)data
                     rootView:(UIView *)rootView;
@@ -21,9 +21,5 @@
 - (instancetype)initWithBundleFile:(NSString *)filename;
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle;
-
-- (id)viewForIdentifier:(NSString *)identifier;
-
-
 
 @end

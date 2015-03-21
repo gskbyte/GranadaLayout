@@ -19,7 +19,7 @@
 - (void)testVertical {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
 
     UIView *rootView = inflater.rootView;
@@ -31,7 +31,7 @@
 - (void)testVerticalWeighted {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical_weight.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
 
     UIView *rootView = inflater.rootView;
@@ -43,7 +43,7 @@
 - (void)testHorizontal {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
 
     UIView *rootView = inflater.rootView;
@@ -55,7 +55,7 @@
 - (void)testHorizontalWeighted {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal_weight.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
 
@@ -68,7 +68,7 @@
 - (void)testHorizontalInVertical {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal_in_vertical.grx"];
 
-    UIImageView *imageView = [inflater viewForIdentifier:@"image"];
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
     imageView.contentMode = UIViewContentModeScaleAspectFit;
 

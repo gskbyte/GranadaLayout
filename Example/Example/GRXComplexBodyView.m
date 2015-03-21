@@ -24,20 +24,20 @@
                                                                fromBundle:[NSBundle bundleForClass:self.class]
                                                                  rootView:self];
 
-    self.image = [inflater viewForIdentifier:@"image"];
+    self.image = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
     self.image.backgroundColor = [UIColor blueColor];
     self.image.contentMode = UIViewContentModeScaleAspectFit;
 
-    self.title = [inflater viewForIdentifier:@"title"];
+    self.title = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"title"];
     self.title.font = [UIFont boldSystemFontOfSize:16];
     self.title.numberOfLines = 2;
 
-    self.subtitle = [inflater viewForIdentifier:@"subtitle"];
+    self.subtitle = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"subtitle"];
     self.subtitle.numberOfLines = 3;
     self.subtitle.font = [UIFont systemFontOfSize:12];
     self.subtitle.textColor = [UIColor grayColor];
 
-    self.url = [inflater viewForIdentifier:@"url"];
+    self.url = (UITextView *)[inflater.rootView grx_findViewWithIdentifier:@"url"];
     self.url.font = [UIFont systemFontOfSize:14];
     self.url.textAlignment = NSTextAlignmentCenter;
 

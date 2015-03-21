@@ -16,7 +16,7 @@
 
 - (void)testLinearLayoutParams {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_vertical_weight.grx"];
-    UIView *red = [inflater viewForIdentifier:@"red1"];
+    UIView *red = [inflater.rootView grx_findViewWithIdentifier:@"red1"];
     GRXLinearLayoutParams *linearParams = red.grx_linearLayoutParams;
     expect(linearParams).to.beInstanceOf(GRXLinearLayoutParams.class);
     expect(linearParams.width).to.equal(GRXMatchParent);
@@ -38,8 +38,8 @@
 
 - (void)testRelativeParams {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"relative_in_relative.grx"];
-    UIImage *image = [inflater viewForIdentifier:@"image"];
-    UIView *title = [inflater viewForIdentifier:@"title"];
+    UIImageView *image = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
+    UIView *title = [inflater.rootView grx_findViewWithIdentifier:@"title"];
     GRXRelativeLayoutParams *relativeParams = title.grx_relativeLayoutParams;
     expect(relativeParams).to.beInstanceOf(GRXRelativeLayoutParams.class);
     expect(relativeParams.width).to.equal(GRXMatchParent);

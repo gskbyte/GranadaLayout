@@ -127,10 +127,10 @@
     if (self) {
         GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:@"cell_test.grx"
                                                                    fromBundle:[NSBundle bundleForClass:self.class]];
-        self.root = inflater.rootView;
+        self.root = (GRXLayout*)inflater.rootView;
         self.root.limitToNonLayoutParentHeight = NO;
 
-        self.image = [inflater viewForIdentifier:@"image"];
+        self.image = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
         self.image.contentMode = UIViewContentModeScaleAspectFit;
 
         __weak GRXInflatedCell *weakSelf = self;
@@ -139,11 +139,11 @@
             return [weakSelf.image grx_measureForWidthSpec:wspec heightSpec:propHSpec]; // this forces the image to be (w, w*1.25)
         };
 
-        self.title = [inflater viewForIdentifier:@"title"];
-        self.subtitle = [inflater viewForIdentifier:@"subtitle"];
+        self.title = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"title"];
+        self.subtitle = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"subtitle"];
         self.subtitle.numberOfLines = 3;
 
-        self.message = [inflater viewForIdentifier:@"message"];
+        self.message = (UITextView *) [inflater.rootView grx_findViewWithIdentifier:@"message"];
 
         [self.contentView addSubview:self.root];
         self.backgroundColor = [UIColor whiteColor];

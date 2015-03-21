@@ -46,10 +46,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"complex_cell.grx"];
-        self.root = inflater.rootView;
+        self.root = (GRXLinearLayout*) inflater.rootView;
         [self.contentView addSubview:self.root];
-        self.headerView = [inflater viewForIdentifier:@"header"];
-        self.bodyContainer = [inflater viewForIdentifier:@"bodyContainer"];
+        self.headerView = (GRXComplexHeaderView *) [inflater.rootView grx_findViewWithIdentifier:@"header"];
+        self.bodyContainer = (GRXLinearLayout *) [inflater.rootView grx_findViewWithIdentifier:@"bodyContainer"];
 
         self.backgroundColor = [UIColor whiteColor];
     }

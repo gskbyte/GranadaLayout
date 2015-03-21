@@ -51,7 +51,7 @@
 - (BOOL)viewForId:(NSString *)identifier
     hasParentRule:(GRXRelativeLayoutParentRule)rule
        inInflater:(GRXLayoutInflater *)inflater {
-    UIView *view = [inflater viewForIdentifier:identifier];
+    UIView *view = [inflater.rootView grx_findViewWithIdentifier:identifier];
     GRXRelativeLayoutParams *params = (GRXRelativeLayoutParams *)view.grx_layoutParams;
     return [params hasParentRule:rule];
 }

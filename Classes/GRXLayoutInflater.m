@@ -5,7 +5,6 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 
 @interface GRXLayoutInflater () {
-    NSMutableDictionary *_allViewsById;
     NSBundle *_bundle; // can be nil if data was not loaded from a bundle
 }
 
@@ -34,17 +33,17 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                     rootView:(UIView *)rootView {
     self = [super init];
     if (self) {
-        _allViewsById = [[NSMutableDictionary alloc] init];
         NSError *error;
         id JSON = [NSJSONSerialization JSONObjectWithData:data
                                                   options:0
                                                     error:&error];
         if (error) {
             NSLog(@"Error parsing layout file, invalid JSON: %@", error);
-            return nil;
+        } else {
+            [self parseJSON:JSON
+                   rootView:rootView];
         }
-        [self parseJSON:JSON
-               rootView:rootView];
+        _parseError = error;
     }
     return self;
 }
@@ -162,13 +161,12 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
     NSString *identifier = node[@"id"];
     if (identifier != nil) {
-        if ([_allViewsById objectForKey:identifier] != nil) {
+        if ([parentView grx_subviewForIdentifier:identifier] != nil) {
             NSLog(@"Warning: identifier used more than once in layout file: %@", identifier);
         }
-        [_allViewsById setObject:outView forKey:identifier];
 
         if ([self.class areDebugOptionsEnabled]) {
-            outView.grx_debugIdentifier = identifier;
+            outView.grx_identifier = identifier;
         }
     }
 
@@ -225,14 +223,6 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
         NSLog(@"Warning: Error inflating file '%@' from bundle '%@'. Layout will be incomplete.", filename, bundle.bundleIdentifier);
     }
     return inflater.rootView;
-}
-
-- (id)viewForIdentifier:(NSString *)identifier {
-    id val = _allViewsById[identifier];
-    if (val == nil) {
-        NSLog(@"Warning: view not found for identifier %@", identifier);
-    }
-    return val;
 }
 
 @end

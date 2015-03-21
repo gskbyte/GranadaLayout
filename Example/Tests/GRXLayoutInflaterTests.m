@@ -23,12 +23,15 @@
 
 - (void)testBrokenJSON {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"broken.grx"];
-    expect(inflater).to.beNil();
+    expect(inflater).notTo.beNil();
+    expect(inflater.parseError).notTo.beNil();
+    expect(inflater.rootView).to.beNil();
 }
 
 - (void)testEmptyInflation {
-    UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"empty.grx"];
-    expect(rootView).to.beNil();
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"empty.grx"];
+    expect(inflater.rootView).to.beNil();
+    expect(inflater.parseError).to.beNil();
 }
 
 - (void)testNoLayoutRoot {
@@ -59,7 +62,7 @@
 }
 
 - (void)testLayoutParams {
-    GRXRelativeLayout *relative = self.linearInRelative.rootView;
+    GRXRelativeLayout *relative = (GRXRelativeLayout *) self.linearInRelative.rootView;
     expect(relative.grx_layoutParams.width).to.equal(GRXMatchParent);
     expect(relative.grx_layoutParams.height).to.equal(GRXMatchParent);
     expect(relative.padding.left).to.equal(12);
@@ -81,40 +84,40 @@
 }
 
 - (void)testViewProperties {
-    UIView *sw = [self.linearInRelative viewForIdentifier:@"switch"];
+    UIView *sw = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"switch"];
     expect(sw.grx_visibility).to.equal(GRXVisibilityGone);
 
-    UIView *button = [self.linearInRelative viewForIdentifier:@"button"];
+    UIView *button = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"button"];
     expect(button.grx_visibility).to.equal(GRXVisibilityHidden);
 
-    UILabel *label = [self.linearInRelative viewForIdentifier:@"label"];
+    UILabel *label = (UILabel *) [self.linearInRelative.rootView grx_findViewWithIdentifier:@"label"];
     expect(label.grx_visibility).to.equal(GRXVisibilityVisible);
     expect(label.grx_minSize.width).to.equal(200);
     expect(label.grx_minSize.height).to.equal(50);
 }
 
 - (void)testViewByIdentifier {
-    UIView *root = [self.linearInRelative viewForIdentifier:@"root"];
+    UIView *root = self.linearInRelative.rootView;
     expect(root).notTo.beNil();
     expect(root.superview).to.beNil();
     expect(root).to.beInstanceOf(GRXRelativeLayout.class);
 
-    UIView *image = [self.linearInRelative viewForIdentifier:@"image"];
+    UIView *image = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"image"];
     expect(image).notTo.beNil();
     expect(image.superview).to.beIdenticalTo(root);
     expect(image).to.beInstanceOf(UIImageView.class);
 
-    UIView *linear = [self.linearInRelative viewForIdentifier:@"linear"];
+    UIView *linear = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"linear"];
     expect(linear).notTo.beNil();
     expect(linear.superview).to.beIdenticalTo(root);
     expect(linear).to.beInstanceOf(GRXLinearLayout.class);
 
-    UIView *button = [self.linearInRelative viewForIdentifier:@"button"];
+    UIView *button = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"button"];
     expect(button).notTo.beNil();
     expect(button.superview).to.beIdenticalTo(linear);
     expect(button).to.beInstanceOf(UIButton.class);
 
-    UIView *nonExistent = [self.linearInRelative viewForIdentifier:@"nonexistent"];
+    UIView *nonExistent = [self.linearInRelative.rootView grx_findViewWithIdentifier:@"nonexistent"];
     expect(nonExistent).to.beNil();
 }
 

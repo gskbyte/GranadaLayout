@@ -38,7 +38,7 @@ typedef NS_ENUM (NSUInteger, GRXVisibility) {
 - (UIView *)grx_subviewForIdentifier:(NSString *)identifier;
 // finds a subview through the whole hierarchy with the given identifier
 // returns the first one found, nil if no results
-- (UIView *)grx_findViewForIdentifier:(NSString *)identifier;
+- (UIView *)grx_findViewWithIdentifier:(NSString *)identifier;
 
 // this method must NOT be overriden and is called by layouts
 // implements a caching mechanism so measureForWidthSpec:heightSpec: is not called for same specs

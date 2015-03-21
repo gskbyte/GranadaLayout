@@ -27,13 +27,13 @@
 }
 
 - (void)createViews {
-    self.imageView = [self.layoutInflater viewForIdentifier:@"image"];
+    self.imageView = (UIImageView *) [self.layoutInflater.rootView grx_findViewWithIdentifier:@"image"];
     self.imageView.image = [UIImage imageNamed:@"lab.png"];
 
-    self.titleView = [self.layoutInflater viewForIdentifier:@"title"];
+    self.titleView = (GRXTextView *) [self.layoutInflater.rootView grx_findViewWithIdentifier:@"title"];
     self.titleView.font = [UIFont systemFontOfSize:14];
 
-    self.subtitleView = [self.layoutInflater viewForIdentifier:@"subtitle"];
+    self.subtitleView = (UILabel *) [self.layoutInflater.rootView grx_findViewWithIdentifier:@"subtitle"];
     self.subtitleView.numberOfLines = 10;
     self.subtitleView.font = [UIFont systemFontOfSize:12];
     [self generateText];

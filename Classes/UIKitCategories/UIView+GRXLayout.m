@@ -279,12 +279,12 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     return nil;
 }
 
-- (UIView *)grx_findViewForIdentifier:(NSString *)identifier {
+- (UIView *)grx_findViewWithIdentifier:(NSString *)identifier {
     for (UIView *subview in self.subviews) {
         if ([subview.grx_identifier isEqualToString:identifier]) {
             return subview;
         }
-        UIView *subSubView = [subview grx_findViewForIdentifier:identifier];
+        UIView *subSubView = [subview grx_findViewWithIdentifier:identifier];
         if (subSubView != nil) {
             return subSubView;
         }

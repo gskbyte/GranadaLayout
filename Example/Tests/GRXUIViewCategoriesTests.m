@@ -71,14 +71,14 @@
     redView.grx_identifier = @"red";
 
     expect(linear.grx_identifier).to.equal(@"linear");
-    expect([linear grx_findViewForIdentifier:@"view"]).to.beIdenticalTo(viewInLinear);
+    expect([linear grx_findViewWithIdentifier:@"view"]).to.beIdenticalTo(viewInLinear);
     expect([linear grx_subviewForIdentifier:@"view"]).to.beIdenticalTo(viewInLinear);
-    expect([linear grx_findViewForIdentifier:@"relative"]).to.beIdenticalTo(relative);
-    expect([linear grx_findViewForIdentifier:@"blue"]).to.beIdenticalTo(blueView);
+    expect([linear grx_findViewWithIdentifier:@"relative"]).to.beIdenticalTo(relative);
+    expect([linear grx_findViewWithIdentifier:@"blue"]).to.beIdenticalTo(blueView);
     expect([linear grx_subviewForIdentifier:@"blue"]).to.beNil();
     expect([relative grx_subviewForIdentifier:@"blue"]).to.beIdenticalTo(blueView);
-    expect([linear grx_findViewForIdentifier:@"red"]).to.beIdenticalTo(redView);
-    expect([linear grx_findViewForIdentifier:@"green"]).to.beNil();
+    expect([linear grx_findViewWithIdentifier:@"red"]).to.beIdenticalTo(redView);
+    expect([linear grx_findViewWithIdentifier:@"green"]).to.beNil();
 }
 
 - (void)testDebugProperties {
