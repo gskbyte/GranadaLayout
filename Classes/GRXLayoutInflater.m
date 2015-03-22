@@ -165,9 +165,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
             NSLog(@"Warning: identifier used more than once in layout file: %@", identifier);
         }
 
-        if ([self.class areDebugOptionsEnabled]) {
-            outView.grx_identifier = identifier;
-        }
+        outView.grx_identifier = identifier;
     }
 
     NSArray *subviews = node[@"subviews"];
