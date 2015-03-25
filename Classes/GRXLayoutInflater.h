@@ -22,4 +22,6 @@
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle;
 
+- (UIView *)viewWithIdentifier:(NSString *)identifier;
+
 @end

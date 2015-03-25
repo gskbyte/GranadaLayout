@@ -82,6 +82,10 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                      rootView:nil];
 }
 
+- (UIView *)viewWithIdentifier:(NSString *)identifier {
+    return [self.rootView grx_findViewWithIdentifier:identifier];
+}
+
 - (BOOL)parseJSON:(id)JSON
          rootView:(UIView *)rootView {
     NSAssert([JSON isKindOfClass:NSDictionary.class],

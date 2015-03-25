@@ -129,4 +129,8 @@
     expect(relativeLayout.grx_layoutParams.size.height).to.equal(GRXMatchParent);
 }
 
+- (void)testFindView {
+    expect([self.linearInRelative viewWithIdentifier:@"image"]).to.equal([self.linearInRelative.rootView grx_findViewWithIdentifier:@"image"]);
+}
+
 @end
