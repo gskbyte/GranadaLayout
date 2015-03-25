@@ -150,11 +150,11 @@ And then, to use it inside your ``UIViewController`` or custom view, just load i
 GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"layout.grx"];
 
 self.view = inflater.rootView;
-UIImageView *image = [self.view grx_viewWithIdentifier:@"image"];
+UIImageView *image = [inflater viewWithIdentifier:@"image"];
 image.backgroundColor = [UIColor blueColor];
 image.contentMode = UIViewContentModeScaleAspectFit;
 
-GRXTextView * title = [self.view grx_viewWithIdentifier:@"title"];
+GRXTextView * title = [self.view grx_viewWithIdentifier:@"title"]; // alternative way to find a view
 title.text = @"Title goes here";
 title.textColor = [UIColor darkGrayColor];
 

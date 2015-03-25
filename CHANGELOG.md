@@ -1,3 +1,7 @@
+# 0.4.0 Improved layout inflater, bugs fixed
+ - Fix layout error on weighted linear layouts
+ - Layout inflater now supports comments in layout files (thanks to https://github.com/blach/NSJSONSerialization-Comments)
+
 # 0.3.1 Common header file
  - Add ``GranadaLayout.h`` to ease import of files
  - Hide private headers
