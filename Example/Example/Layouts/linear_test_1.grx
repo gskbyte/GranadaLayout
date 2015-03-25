@@ -14,7 +14,7 @@
 				"class" : "UISwitch",
 				"id" : "switch",
 				"debug_bgColor" : "red",
-				"gravity" : "end",
+				"gravity" : "end", // should be aligned to the right
 				"margin" : "8",
 			},
 			{
@@ -44,7 +44,7 @@
 				"margin" : "10",
 
 				"debug_bgColor" : "blue",
-				"gravity" : "begin"
+				"gravity" : "begin" // should be aligned to the left
 			}
 		]
 

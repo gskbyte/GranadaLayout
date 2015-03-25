@@ -3,6 +3,7 @@
 #import "GRXRelativeLayout.h"
 #import "UIView+GRXLayoutInflater.h"
 #import "GRXLayout+GRXLayoutInflater.h"
+#import "GRXJSONCleaner.h"
 
 @interface GRXLayoutInflater () {
     NSBundle *_bundle; // can be nil if data was not loaded from a bundle
@@ -34,7 +35,9 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     self = [super init];
     if (self) {
         NSError *error;
-        id JSON = [NSJSONSerialization JSONObjectWithData:data
+
+        NSData *dataWithoutComments = [GRXJSONCleaner cleanJSONDataWithData:data];
+        id JSON = [NSJSONSerialization JSONObjectWithData:dataWithoutComments
                                                   options:0
                                                     error:&error];
         if (error) {
