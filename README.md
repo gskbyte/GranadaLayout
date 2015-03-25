@@ -11,7 +11,7 @@ The goal of this project is to be an alternative to Apple's AutoLayout, which I 
 
 ###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
 
-###0.3.1 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.3.1.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.3.1.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
+###0.4.0 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
 
 What it can do
 --------------
