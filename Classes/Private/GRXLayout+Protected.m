@@ -141,10 +141,10 @@
                          heightUsed:(CGFloat)heightUsed {
     GRXLayoutParams *lp = subview.grx_layoutParams;
 
-    CGFloat horizontalPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right;
+    CGFloat horizontalPadding = self.padding.left + self.padding.right + lp.margins.left + lp.margins.right + widthUsed;
     GRXMeasureSpec subviewWidthSpec = [self subviewSpecWithParentSpec:parentWidthSpec padding:horizontalPadding subviewDimension:lp.width];
 
-    CGFloat verticalPadding = self.padding.top + self.padding.bottom + lp.margins.top + lp.margins.bottom;
+    CGFloat verticalPadding = self.padding.top + self.padding.bottom + lp.margins.top + lp.margins.bottom + heightUsed;
     GRXMeasureSpec subviewHeightSpec = [self subviewSpecWithParentSpec:parentHeightSpec padding:verticalPadding subviewDimension:lp.height];
 
     CGSize subviewSize = [subview grx_measuredSizeForWidthSpec:subviewWidthSpec heightSpec:subviewHeightSpec];

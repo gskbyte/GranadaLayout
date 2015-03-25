@@ -1,0 +1,68 @@
+{
+	"version" : "0.1",
+ 	
+	"layout" : {
+		"id": "root",
+		"class" : "GRXLinearLayout",
+		"width" : "match_parent",
+		"height" : "wrap_content",
+
+		"direction" : "horizontal",
+		"debug_bgColor" : "white",
+
+		"weightSum" : "100",
+
+		"subviews" : [
+			{
+				"id" : "inner",
+				"class" : "GRXLinearLayout",
+				"width" : "0",
+				"height" : "wrap_content",
+
+				"direction" : "horizontal",
+				"debug_bgColor" : "yellow",
+
+				"weight" : "70",
+
+				"subviews" : [
+					{
+						"class" : "UIImageView",
+						"id" : "image",
+						"width" : "wrap_content",
+						"height" : "wrap_content",
+
+						"debug_bgColor" : "green",
+						"gravity" : "center"
+					},
+					{
+						"class" : "UILabel",
+						"id" : "label",
+						"width" : "match_parent",
+						"height" : "wrap_content",
+
+						"gravity" : "center",
+						"margin" : "8",
+
+						"debug_bgColor" : "red",
+					},
+
+				]
+
+			},
+
+			{
+				"class" : "UIView",
+				"width" : "0",
+				"height" : "match_parent",
+
+				"debug_bgColor" : "orange",
+
+				"weight" : "30",
+
+
+			}
+
+		]
+
+	}
+}

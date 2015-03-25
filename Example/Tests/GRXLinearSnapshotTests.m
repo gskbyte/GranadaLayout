@@ -65,6 +65,22 @@
     FBSnapshotVerifyLayer(rootView.layer, nil);
 }
 
+- (void)testHorizontalWeightedWithLabel {
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal_weight_label.grx"];
+
+    UIImageView *imageView = (UIImageView *) [inflater.rootView grx_findViewWithIdentifier:@"image"];
+    imageView.image = [GRXTestHelper imageWithName:@"lab.png"];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
+
+    UILabel *label = (UILabel *) [inflater.rootView grx_findViewWithIdentifier:@"label"];
+    label.text = @"This is a text in a UILabel";
+
+    UIView *rootView = inflater.rootView;
+    [rootView layoutSubviews];
+
+    FBSnapshotVerifyLayer(rootView.layer, nil);
+}
+
 - (void)testHorizontalInVertical {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"linear_horizontal_in_vertical.grx"];
 

@@ -494,7 +494,7 @@
     // Where right end of subview should go
     const CGFloat ownHeight = self.grx_measuredSize.height;
 
-    // Space available for subview
+    // Space available for subviews
     CGFloat availableHeight = ownHeight - self.padding.top - self.padding.bottom;
 
     for (UIView *subview in self.subviews) {
