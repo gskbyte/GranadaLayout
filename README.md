@@ -67,7 +67,7 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 
 ```javascript
 {
-  "version" : "0.1",
+  "version" : "0.4",
   
   /** Space reserved for future attributes */
   
@@ -186,8 +186,8 @@ image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the 
 
 // Please check the test controllers to see how it works, but really, it's much better to use layout files!
 
-Thanks + Acknowledments
------------------------
+Thanks + Acknowledgements
+-------------------------
 
 - To the developers of the Android Project, for designing such a simple but powerful layout system
 
