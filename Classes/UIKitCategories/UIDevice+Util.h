@@ -3,8 +3,6 @@
 
 @interface UIDevice (Helper)
 
-+ (BOOL)grx_runningSystemVersionGreaterOrEqualTo7;
-
 + (CGFloat)grx_screenScale;
 
 @end
