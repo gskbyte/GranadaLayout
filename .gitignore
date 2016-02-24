@@ -18,6 +18,9 @@ profile
 DerivedData
 *.hmap
 *.ipa
+*.gcda
+*.gcno
+*.xcscmblueprint
 
 Pods/
 
