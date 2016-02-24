@@ -6,5 +6,5 @@ end
 
 desc "Runs the specs [EMPTY]"
 task :spec do
-  sh 'xcodebuild -workspace GranadaLayout.xcworkspace -derivedDataPath "./build" -scheme \'Example\' -configuration Debug -destination platform=\'iOS Simulator\',OS=9.2,name=\'iPhone Retina (4-inch)\' clean build test -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -sc && exit ${PIPESTATUS[0]}'
+  sh 'xcodebuild -workspace GranadaLayout.xcworkspace -derivedDataPath "./build" -scheme \'Example\' -configuration Debug -destination platform=\'iOS Simulator\',OS=9.2,name=\'iPhone 5s\' clean build test -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty -sc && exit ${PIPESTATUS[0]}'
 end
