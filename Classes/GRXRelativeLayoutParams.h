@@ -40,7 +40,7 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 @property (nonatomic, readonly) CGRect rect;
 
 - (BOOL)hasRule:(GRXRelativeLayoutRule)rule;
-- (UIView *)viewForRule:(GRXRelativeLayoutRule)rule;
+- (nullable __kindof UIView *)viewForRule:(GRXRelativeLayoutRule)rule;
 - (void)setRule:(GRXRelativeLayoutRule)rule
         forView:(nullable __kindof UIView *)view;
 

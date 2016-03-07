@@ -5,7 +5,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GRXLayoutInflater : NSObject
 
 @property (nullable, nonatomic, readonly) NSError *parseError;
-@property (nullable, nonatomic, readonly) UIView* rootView;
+@property (nullable, nonatomic, readonly) UIView *rootView;
 
 + (BOOL)areDebugOptionsEnabled;
 + (void)setDebugOptionsEnabled:(BOOL)active;

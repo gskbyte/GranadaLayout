@@ -75,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
     return [self.mutableRules objectForKey:@(rule)] != nil;
 }
 
-- (UIView *)viewForRule:(GRXRelativeLayoutRule)rule {
+- (nullable __kindof UIView *)viewForRule:(GRXRelativeLayoutRule)rule {
     return [self.mutableRules objectForKey:@(rule)];
 }
 

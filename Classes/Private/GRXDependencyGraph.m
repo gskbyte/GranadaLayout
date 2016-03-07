@@ -3,10 +3,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GRXDependencyGraph () {
-    NSMutableArray<GRXDependencyNode *> *_roots;
-}
-
+@interface GRXDependencyGraph ()
+@property (nonatomic) NSMutableArray<GRXDependencyNode *> *roots;
 @end
 
 @implementation GRXDependencyGraph
