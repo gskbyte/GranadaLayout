@@ -3,13 +3,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSNumber *NoNumber = nil;
-
-@interface GRXRelativeLayoutParams () {
-    // TODO use typed collections
-    NSMutableArray *_mutableRules, *_mutableParentRules;
-}
-
+@interface GRXRelativeLayoutParams ()
+@property(nonatomic) NSMapTable<NSNumber *, UIView *> *mutableRules;
+@property(nonatomic) NSMutableSet<NSNumber *> *mutableParentRules;
 @end
 
 @implementation GRXRelativeLayoutParams
@@ -46,7 +42,6 @@ static NSNumber *NoNumber = nil;
 - (instancetype)initWithSize:(CGSize)size {
     self = [super initWithSize:size];
     if (self) {
-        [self setupNoNumber];
         [self setupRules];
     }
     return self;
@@ -55,12 +50,11 @@ static NSNumber *NoNumber = nil;
 - (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams {
     self = [super initWithLayoutParams:layoutParams];
     if (self) {
-        [self setupNoNumber];
         [self setupRules];
         if ([layoutParams isKindOfClass:GRXRelativeLayoutParams.class]) {
             GRXRelativeLayoutParams *relParams = (GRXRelativeLayoutParams *)layoutParams;
-            [_mutableRules setArray:relParams->_mutableRules];
-            [_mutableParentRules setArray:relParams->_mutableParentRules];
+            _mutableRules = relParams.mutableRules;
+            _mutableParentRules = relParams.mutableParentRules;
             _top = relParams.top;
             _left = relParams.left;
             _bottom = relParams.bottom;
@@ -70,53 +64,28 @@ static NSNumber *NoNumber = nil;
     return self;
 }
 
-- (void)setupNoNumber {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        NoNumber = @0;
-    });
-}
-
 - (void)setupRules {
-    _mutableRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutRuleCount];
-    for (NSUInteger i = 0; i < GRXRelativeLayoutRuleCount; ++i) {
-        [_mutableRules addObject:NoNumber];
-    }
-
-    _mutableParentRules = [NSMutableArray arrayWithCapacity:GRXRelativeLayoutParentRuleCount];
-    for (NSUInteger i = 0; i < GRXRelativeLayoutParentRuleCount; ++i) {
-        [_mutableParentRules addObject:NoNumber];
-    }
+    _mutableRules = [NSMapTable strongToWeakObjectsMapTable];
+    _mutableParentRules = [NSMutableSet setWithCapacity:GRXRelativeLayoutParentRuleCount];
 }
 
 #pragma mark - instance methods
 
 - (BOOL)hasRule:(GRXRelativeLayoutRule)rule {
-    return _mutableRules[rule] != NoNumber;
+    return [self.mutableRules objectForKey:@(rule)] != nil;
 }
 
 - (UIView *)viewForRule:(GRXRelativeLayoutRule)rule {
-    id ret = _mutableRules[rule];
-    if (ret == NoNumber) {
-        return nil;
-    } else {
-        NSValue *value = ret;
-        return value.nonretainedObjectValue;
-    }
+    return [self.mutableRules objectForKey:@(rule)];
 }
 
 - (void)setRule:(GRXRelativeLayoutRule)rule
         forView:(nullable __kindof UIView *)view {
-    if (view == nil) {
-        _mutableRules[rule] = NoNumber;
-    } else {
-        _mutableRules[rule] = [NSValue valueWithNonretainedObject:view];
-    }
+    [self.mutableRules setObject:view forKey:@(rule)];
 }
 
 - (BOOL)hasParentRule:(GRXRelativeLayoutParentRule)parentRule {
-    NSNumber *n = _mutableParentRules[parentRule];
-    return n.boolValue;
+    return [self.mutableParentRules containsObject:@(parentRule)];
 }
 
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule {
@@ -125,13 +94,16 @@ static NSNumber *NoNumber = nil;
 
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule
                active:(BOOL)active {
-    NSUInteger index = (NSUInteger)parentRule;
-    _mutableParentRules[index] = @((NSUInteger)active);
+    if (active) {
+        [self.mutableParentRules addObject:@(parentRule)];
+    } else {
+        [self.mutableParentRules removeObject:@(parentRule)];
+    }
 }
 
 - (NSString *)debugDescription {
     NSString *description = [super debugDescription];
-    description = [description stringByAppendingFormat:@"[%.0f,%.0f,%.0f,%.0f]", _left, _top, _right, _bottom];
+    description = [description stringByAppendingFormat:@"[%.0f, %.0f, %.0f, %.0f]", _left, _top, _right, _bottom];
     return description;
 }
 
