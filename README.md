@@ -11,7 +11,7 @@ The goal of this project is to be an alternative to Apple's AutoLayout, which I 
 
 ###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
 
-###0.4.0 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
+###0.4.1 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.4.1.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
 
 What it can do
 --------------
@@ -68,9 +68,9 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
 ```javascript
 {
   "version" : "0.4",
-  
+
   /** Space reserved for future attributes */
-  
+
   "layout" : {
     "class" : "GRXRelativeLayout", // The root view can be a GRXLayout, but also any other UIView
 
@@ -108,23 +108,23 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
             "nuiClass" : "title", // If you use NUI, you can set the nuiClass directly to customize this view
             "width" : "match_parent",
             "height" : "wrap_content",
-            
+
             "toRightOf" : "image",  // set position with respect to other view
             "alignParentTop" : "true",
 
-            "debug_bgColor" : "yellow"
+            "debug_bgColor" : "#A0F864"
           },
           {
             "id" : "subtitle",
             "class" : "UILabel",
             "width" : "match_parent",
             "height" : "wrap_content",
-            
+
             "alignLeft" : "title",
             "below" : "title",
             "marginTop" : "8",
 
-            "debug_bgColor" : "red"
+            "debug_bgColor" : "#FF0000"
           },
         ]
       },
@@ -133,14 +133,14 @@ The recommended way to use GranadaLayout is to declare your layout in a layout f
         "class" : "GRXTextView",
         "width" : "match_parent",
         "height" : "wrap_content",
-        
+
         "below" : "top",
         "marginTop" : "8",
 
         "debug_bgColor" : "orange"
       },
     ]
-  }  
+  }
 }
 ```
 
