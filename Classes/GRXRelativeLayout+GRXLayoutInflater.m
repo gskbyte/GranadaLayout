@@ -1,9 +1,11 @@
 #import "GRXRelativeLayout+GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXRelativeLayout (GRXLayoutInflater)
 
-static NSDictionary * RelativeRules = nil;
-static NSDictionary *ParentRules = nil;
+static NSDictionary<NSString *, NSNumber *> *RelativeRules = nil;
+static NSDictionary<NSString *, NSNumber *> *ParentRules = nil;
 
 + (void)initializeRuleDictionaries {
     RelativeRules = @{@"toLeftOf": @(GRXRelativeLayoutRuleLeftOf),
@@ -70,3 +72,5 @@ static NSDictionary *ParentRules = nil;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -2,6 +2,8 @@
 #import "GRXLayoutParams.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXLayout : UIView
 
 @property (nonatomic) UIEdgeInsets padding;
@@ -16,6 +18,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame;
 
-- (void)addSubview:(UIView *)view;
-
 @end
+
+NS_ASSUME_NONNULL_END

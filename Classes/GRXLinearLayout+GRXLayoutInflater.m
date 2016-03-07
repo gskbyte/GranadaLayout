@@ -1,5 +1,7 @@
 #import "GRXLinearLayout+GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXLinearLayout (GRXLayoutInflater)
 
 - (void)grx_configureFromDictionary:(NSDictionary *)dictionary {
@@ -57,3 +59,5 @@ static NSDictionary *Gravities;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

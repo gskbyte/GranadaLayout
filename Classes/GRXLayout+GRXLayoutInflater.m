@@ -1,5 +1,7 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
     if (sizeStr == nil || [sizeStr isEqualToString:@"wrap_content"]) {
         return GRXWrapContent;
@@ -44,7 +46,7 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
         paddingDefined = YES;
     }
 
-    if(paddingDefined) {
+    if (paddingDefined) {
         self.padding = padding;
     }
 }
@@ -58,10 +60,10 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
 
 + (void)configureUnparentedLayoutParams:(GRXLayoutParams *)params
                          fromDictionary:(NSDictionary *)dictionary {
-    if(dictionary[@"width"] != nil) {
+    if (dictionary[@"width"] != nil) {
         params.width = GRXLayoutSizeFromString(dictionary[@"width"]);
     }
-    if(dictionary[@"height"] != nil) {
+    if (dictionary[@"height"] != nil) {
         params.height = GRXLayoutSizeFromString(dictionary[@"height"]);
     }
 
@@ -99,9 +101,11 @@ static inline CGFloat GRXLayoutSizeFromString(NSString *sizeStr) {
         definesMargins = YES;
     }
 
-    if(definesMargins) {
+    if (definesMargins) {
         params.margins = margins;
     }
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

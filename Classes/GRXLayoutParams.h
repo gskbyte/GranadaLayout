@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 static const CGFloat GRXMatchParent = -1;
 static const CGFloat GRXWrapContent = -2;
 
@@ -21,3 +23,5 @@ static const CGFloat GRXWrapContent = -2;
 - (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams;
 
 @end
+
+NS_ASSUME_NONNULL_END

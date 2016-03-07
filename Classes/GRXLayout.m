@@ -2,6 +2,8 @@
 #import "GRXLayoutParams.h"
 #import <objc/runtime.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXLayout
 
 #pragma mark - static class methods
@@ -91,3 +93,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

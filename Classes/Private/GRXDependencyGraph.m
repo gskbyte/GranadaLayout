@@ -1,10 +1,10 @@
 #import "GRXDependencyGraph.h"
 #import "UIView+GRXLayout.h"
 
-@interface GRXDependencyGraph () {
-    NSMutableArray *_roots;
-}
+NS_ASSUME_NONNULL_BEGIN
 
+@interface GRXDependencyGraph ()
+@property (nonatomic) NSMutableArray<GRXDependencyNode *> *roots;
 @end
 
 @implementation GRXDependencyGraph
@@ -31,8 +31,8 @@
     _nodes[view.grx_layoutId] = node;
 }
 
-- (NSArray *)sortedViewsWithRules:(NSArray *)rulesArray {
-    NSMutableArray *sortedViews = [NSMutableArray new];
+- (NSArray<__kindof UIView *> *)sortedViewsWithRules:(NSArray<NSNumber *> *)rulesArray {
+    NSMutableArray<__kindof UIView *> *sortedViews = [NSMutableArray new];
 
     [self findRootsWithRulesFilter:rulesArray];
 
@@ -58,7 +58,7 @@
     return sortedViews;
 }
 
-- (void)findRootsWithRulesFilter:(NSArray *)rulesFilter {
+- (void)findRootsWithRulesFilter:(NSArray<NSNumber *> *)rulesFilter {
     for (GRXDependencyNode *node in _nodes.allValues) {
         [node.dependencies removeAllObjects];
         [node.dependents removeAllObjects];
@@ -94,7 +94,7 @@
 
 @implementation GRXDependencyNode
 
-static NSMutableArray *GRXDependencyNodePool;
+static NSMutableArray<GRXDependencyNode *> *GRXDependencyNodePool;
 static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 
 + (GRXDependencyNode *)nodeForView:(UIView *)view {
@@ -135,3 +135,5 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

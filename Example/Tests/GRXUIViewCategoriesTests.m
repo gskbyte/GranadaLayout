@@ -4,7 +4,6 @@
 #import <GranadaLayout/GRXRelativeLayout.h>
 #import <GranadaLayout/GRXLinearLayout.h>
 #define EXP_SHORTHAND
-
 #import <Expecta/Expecta.h>
 
 @interface GRXUIViewCategoriesTests : XCTestCase

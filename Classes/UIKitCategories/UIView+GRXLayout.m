@@ -3,6 +3,8 @@
 #import <objc/runtime.h>
 #import "GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 const static char GRXLayoutParamsKey;
 const static char GRXLayoutableKey;
 const static char GRXMeasuredSizeKey;
@@ -59,11 +61,11 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     objc_setAssociatedObject(self, &GRXMinSizeKey, sizeValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (GRXLayoutParams *)grx_layoutParams {
+- (nullable GRXLayoutParams *)grx_layoutParams {
     return objc_getAssociatedObject(self, &GRXLayoutParamsKey);
 }
 
-- (void)grx_setLayoutParams:(GRXLayoutParams *)layoutParams {
+- (void)grx_setLayoutParams:(nullable GRXLayoutParams *)layoutParams {
     if (layoutParams.view != nil) {
         layoutParams = layoutParams.copy;
     }
@@ -129,11 +131,11 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     }
 }
 
-- (CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
+- (nullable CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
     return objc_getAssociatedObject(self, &GRXMeasurementBlockKey);
 }
 
-- (void)grx_setMeasurementBlock:(CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
+- (void)grx_setMeasurementBlock:(nullable CGSize (^)(GRXMeasureSpec, GRXMeasureSpec))grx_measurementBlock {
     objc_setAssociatedObject(self, &GRXMeasurementBlockKey, grx_measurementBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
     [self grx_invalidateMeasuredSize];
 }
@@ -262,15 +264,15 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 
 #pragma mark - identifiers
 
-- (NSString *)grx_identifier {
+- (nullable NSString *)grx_identifier {
     return objc_getAssociatedObject(self, &GRXIdentifierKey);
 }
 
-- (void)grx_setIdentifier:(NSString *)identifier {
+- (void)grx_setIdentifier:(nullable NSString *)identifier {
     objc_setAssociatedObject(self, &GRXIdentifierKey, identifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIView *)grx_subviewForIdentifier:(NSString *)identifier {
+- (nullable __kindof UIView *)grx_subviewForIdentifier:(NSString *)identifier {
     for (UIView *subview in self.subviews) {
         if ([subview.grx_identifier isEqualToString:identifier]) {
             return subview;
@@ -279,7 +281,7 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
     return nil;
 }
 
-- (UIView *)grx_findViewWithIdentifier:(NSString *)identifier {
+- (nullable __kindof UIView *)grx_findViewWithIdentifier:(NSString *)identifier {
     for (UIView *subview in self.subviews) {
         if ([subview.grx_identifier isEqualToString:identifier]) {
             return subview;
@@ -325,3 +327,5 @@ static NSUInteger GRXStaticCurrentLayoutID = 0;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

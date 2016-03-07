@@ -2,6 +2,8 @@
 #import "GRXLayout+Protected.h"
 #import "UIView+Frame.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXLinearLayout ()
 
 @property (nonatomic) CGFloat totalLength;
@@ -526,3 +528,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

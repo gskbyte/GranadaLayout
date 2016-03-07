@@ -2,6 +2,8 @@
 #import "GRXLayoutParams_Protected.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXLayoutParams
 
 - (instancetype)init {
@@ -58,7 +60,7 @@
 
 #pragma mark - Copy method
 
-- (id)copyWithZone:(NSZone *)zone {
+- (id)copyWithZone:(nullable NSZone *)zone {
     return [[self.class alloc] initWithLayoutParams:self];
 }
 
@@ -75,5 +77,6 @@
     ];
 }
 
-
 @end
+
+NS_ASSUME_NONNULL_END

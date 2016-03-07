@@ -3,6 +3,8 @@
 #import "GRXLayoutParams.h"
 #import "GRXMeasureSpec.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class GRXLayout;
 
 typedef CGSize (^GRXMeasurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
@@ -20,25 +22,26 @@ typedef NS_ENUM (NSUInteger, GRXVisibility) {
 @property (nonatomic, readonly) NSNumber *grx_layoutId;
 
 @property (nonatomic, setter = grx_setMinSize :) CGSize grx_minSize;
-@property (nonatomic, setter = grx_setLayoutParams :) GRXLayoutParams *grx_layoutParams;
+@property (nullable, nonatomic, setter = grx_setLayoutParams :) GRXLayoutParams *grx_layoutParams;
 @property (nonatomic, setter = grx_setVisibility :) GRXVisibility grx_visibility;
 
 @property (nonatomic, readonly) CGSize grx_measuredSize;
 
 // set an implementation of a measurement method in order to override the default one
 // without needing to subclass
-@property (nonatomic, copy, setter = grx_setMeasurementBlock :) CGSize (^grx_measurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
+@property (nullable, nonatomic, copy, setter = grx_setMeasurementBlock :) CGSize (^grx_measurementBlock)(GRXMeasureSpec widthSpec, GRXMeasureSpec heightSpec);
 
-@property (nonatomic, setter = grx_setIdentifier :) NSString *grx_identifier;
+@property (nullable, nonatomic, setter = grx_setIdentifier :) NSString *grx_identifier;
 
 - (instancetype)initWithLayoutParams:(GRXLayoutParams *)layoutParams;
 - (instancetype)initWithDefaultParamsInLayout:(GRXLayout *)layout;
 
 // returns a subview with the given identifier, nil if none
-- (UIView *)grx_subviewForIdentifier:(NSString *)identifier;
+- (nullable __kindof UIView *)grx_subviewForIdentifier:(NSString *)identifier;
+
 // finds a subview through the whole hierarchy with the given identifier
 // returns the first one found, nil if no results
-- (UIView *)grx_findViewWithIdentifier:(NSString *)identifier;
+- (nullable __kindof UIView *)grx_findViewWithIdentifier:(NSString *)identifier;
 
 // this method must NOT be overriden and is called by layouts
 // implements a caching mechanism so measureForWidthSpec:heightSpec: is not called for same specs
@@ -57,3 +60,5 @@ typedef NS_ENUM (NSUInteger, GRXVisibility) {
 - (NSString *)grx_debugDescription;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -20,7 +20,7 @@
 
 				"weight" : "40",
 
-				"debug_bgColor" : "blue",
+                "debug_bgColor" : "#0000FF",
 				"gravity" : "center"
 			},
 			{

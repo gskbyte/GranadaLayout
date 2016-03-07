@@ -1,21 +1,12 @@
 #import "GRXRelativeLayoutParams.h"
 
-@interface GRXDependencyGraph : NSObject
-
-@property (nonatomic) NSMutableDictionary *nodes; // {viewIdentifier, node}
-
-- (void)add:(UIView *)view;
-- (NSArray *)sortedViewsWithRules:(NSArray *)rulesArray;
-- (void)clear;
-
-@end
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface GRXDependencyNode : NSObject
 
 @property (nonatomic) UIView *view;
-@property (nonatomic) NSMutableArray *dependents;
-@property (nonatomic) NSMutableDictionary *dependencies;
+@property (nonatomic) NSMutableArray<GRXDependencyNode *> *dependents;
+@property (nonatomic) NSMutableDictionary<NSNumber *, GRXDependencyNode *> *dependencies;
 #ifdef DEBUG
 @property (nonatomic) NSNumber *viewId;
 @property (nonatomic) NSString *debugIdentifier;
@@ -26,3 +17,14 @@
 
 @end
 
+@interface GRXDependencyGraph : NSObject
+
+@property (nullable, nonatomic) NSMutableDictionary<NSNumber *, GRXDependencyNode *> *nodes; // {viewIdentifier, node}
+
+- (void)add:(UIView *)view;
+- (NSArray<__kindof UIView *> *)sortedViewsWithRules:(NSArray<NSNumber *> *)rulesArray;
+- (void)clear;
+
+@end
+
+NS_ASSUME_NONNULL_END

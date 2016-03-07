@@ -1,7 +1,8 @@
 #import "GRXLayout+Protected.h"
 
-@implementation GRXLayout (Protected)
+NS_ASSUME_NONNULL_BEGIN
 
+@implementation GRXLayout (Protected)
 
 - (GRXMeasureSpec)subviewSpecWithParentSpec:(GRXMeasureSpec)spec
                                     padding:(CGFloat)padding
@@ -151,5 +152,6 @@
     return subviewSize;
 }
 
-
 @end
+
+NS_ASSUME_NONNULL_END

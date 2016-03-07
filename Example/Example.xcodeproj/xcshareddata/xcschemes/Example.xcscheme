@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0720"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -42,7 +42,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5A5C0FD8423FF4960E82FBDC7BCEF818"
+               BlueprintIdentifier = "530B764220B043E726F7E89C8E9E0FA6"
                BuildableName = "libGranadaLayout.a"
                BlueprintName = "GranadaLayout"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">

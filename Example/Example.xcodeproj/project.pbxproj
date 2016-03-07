@@ -18,6 +18,7 @@
 		C05154C919F073F500E76BE1 /* green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C619F073F500E76BE1 /* green@2x.png */; };
 		C05154CA19F073F500E76BE1 /* lab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C719F073F500E76BE1 /* lab@2x.png */; };
 		C05154CB19F073F500E76BE1 /* power@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05154C819F073F500E76BE1 /* power@2x.png */; };
+		C051B6101C8D7C4B003C3A27 /* UIColor+GRXHexParseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C051B60F1C8D7C4B003C3A27 /* UIColor+GRXHexParseTests.m */; };
 		C051DE4019E423AA00A64132 /* GRXCollectionViewTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */; };
 		C053E0FE19E159C200336D7F /* relative_wrapped_around_center.grx in Resources */ = {isa = PBXBuildFile; fileRef = C053E0FD19E159C200336D7F /* relative_wrapped_around_center.grx */; };
 		C053E10119E1AB7600336D7F /* GRXBaseInflationTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = C053E10019E1AB7600336D7F /* GRXBaseInflationTestController.m */; };
@@ -109,6 +110,7 @@
 		C05154C619F073F500E76BE1 /* green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "green@2x.png"; sourceTree = "<group>"; };
 		C05154C719F073F500E76BE1 /* lab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lab@2x.png"; sourceTree = "<group>"; };
 		C05154C819F073F500E76BE1 /* power@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "power@2x.png"; sourceTree = "<group>"; };
+		C051B60F1C8D7C4B003C3A27 /* UIColor+GRXHexParseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+GRXHexParseTests.m"; path = "Tests/UIColor+GRXHexParseTests.m"; sourceTree = SOURCE_ROOT; };
 		C051DE3E19E423AA00A64132 /* GRXCollectionViewTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXCollectionViewTestController.h; sourceTree = "<group>"; };
 		C051DE3F19E423AA00A64132 /* GRXCollectionViewTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXCollectionViewTestController.m; sourceTree = "<group>"; };
 		C051DE4119E4240600A64132 /* GRXTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GRXTestViewController.h; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */,
 				C05BFA3D19DEB9FF00C8FF34 /* GRXRelativeSnapshotTests.m */,
 				C078C49919F3481D00B127CC /* GRXCombinationSnapshotTests.m */,
+				C051B60F1C8D7C4B003C3A27 /* UIColor+GRXHexParseTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -471,7 +474,7 @@
 		C09F21E419DC590D0069C0A1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = gskbyte;
 				TargetAttributes = {
 					C09F21EB19DC590D0069C0A1 = {
@@ -691,6 +694,7 @@
 				C09F220C19DC590D0069C0A1 /* GRXLayoutInflaterTests.m in Sources */,
 				C05BFA3819DEAC8F00C8FF34 /* GRXTestHelper.m in Sources */,
 				C05BFA3E19DEB9FF00C8FF34 /* GRXRelativeSnapshotTests.m in Sources */,
+				C051B6101C8D7C4B003C3A27 /* UIColor+GRXHexParseTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -730,6 +734,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
@@ -843,6 +848,7 @@
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.gskbyte.GranadaLayout.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};
@@ -862,6 +868,7 @@
 				GENERATE_PROFILING_CODE = YES;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.gskbyte.GranadaLayout.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Example.app/Example";
 			};

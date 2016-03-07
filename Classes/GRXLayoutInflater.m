@@ -5,10 +5,10 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 #import "GRXJSONCleaner.h"
 
-@interface GRXLayoutInflater () {
-    NSBundle *_bundle; // can be nil if data was not loaded from a bundle
-}
+NS_ASSUME_NONNULL_BEGIN
 
+@interface GRXLayoutInflater ()
+@property (nullable, nonatomic) NSBundle *bundle;
 @end
 
 @implementation GRXLayoutInflater
@@ -31,7 +31,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 #pragma mark - Initialisers
 
 - (instancetype)initWithData:(NSData *)data
-                    rootView:(UIView *)rootView {
+                    rootView:(nullable __kindof UIView *)rootView {
     self = [super init];
     if (self) {
         NSError *error;
@@ -52,7 +52,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 }
 
 - (instancetype)initWithBundleFile:(NSString *)filename
-                          rootView:(UIView *)rootView {
+                          rootView:(nullable __kindof UIView *)rootView {
     return [self initWithFile:filename
                    fromBundle:[NSBundle mainBundle]
                      rootView:rootView];
@@ -60,7 +60,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle
-                    rootView:(UIView *)rootView {
+                    rootView:(nullable __kindof UIView *)rootView {
     NSString *path = [bundle pathForResource:filename ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:path];
     _bundle = bundle;
@@ -85,7 +85,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                      rootView:nil];
 }
 
-- (UIView *)viewWithIdentifier:(NSString *)identifier {
+- (nullable __kindof UIView *)viewWithIdentifier:(NSString *)identifier {
     return [self.rootView grx_findViewWithIdentifier:identifier];
 }
 
@@ -108,9 +108,9 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     return YES;
 }
 
-- (UIView *)parseViewNodeRecursively:(NSDictionary *)node
-                          parentView:(UIView *)parentView
-                             outView:(UIView *)outView {
+- (nullable __kindof UIView *)parseViewNodeRecursively:(NSDictionary *)node
+                                            parentView:(UIView *)parentView
+                                               outView:(nullable __kindof UIView *)outView {
     NSString *className = node[@"class"];
     id inflationObject = node[@"inflate"];
     if (className != nil) {
@@ -137,7 +137,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
     // Create new params if needed, translate old ones to the new required params
     GRXLayoutParams *layoutParams = outView.grx_layoutParams;
-    if(layoutParams == nil) {
+    if (layoutParams == nil) {
         if ([parentView isKindOfClass:GRXLayout.class]) {
             GRXLayout *parentLayout = (GRXLayout *)parentView;
             Class layoutParamsClass = [parentLayout.class layoutParamsClass];
@@ -151,10 +151,10 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                                         fromDictionary:node];
         }
     } else {
-        if([parentView isKindOfClass:GRXLayout.class]) {
-            GRXLayout * parentLayout = (GRXLayout*)parentView;
+        if ([parentView isKindOfClass:GRXLayout.class]) {
+            GRXLayout * parentLayout = (GRXLayout *)parentView;
             Class parentLayoutParamsClass = [parentLayout.class layoutParamsClass];
-            if(layoutParams.class != parentLayoutParamsClass) {
+            if (layoutParams.class != parentLayoutParamsClass) {
                 layoutParams = [[parentLayoutParamsClass alloc] initWithLayoutParams:layoutParams];
             }
             [parentLayout configureSubviewLayoutParams:layoutParams
@@ -175,7 +175,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
         outView.grx_identifier = identifier;
     }
 
-    NSArray *subviews = node[@"subviews"];
+    NSArray<UIView *> *subviews = node[@"subviews"];
     for (NSDictionary *subviewDict in subviews) {
         UIView *subview = [self parseViewNodeRecursively:subviewDict
                                               parentView:outView
@@ -188,8 +188,8 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     return outView;
 }
 
-- (UIView *)initializeViewWithClassName:(NSString *)className
-                                outView:(UIView *)outView {
+- (nullable __kindof UIView *)initializeViewWithClassName:(NSString *)className
+                                                  outView:(nullable __kindof UIView *)outView {
     Class viewClass = NSClassFromString(className);
     if (viewClass == nil) {
         NSLog(@"Unknown view class '%@', layout can be badly formed", className);
@@ -205,29 +205,32 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     return outView;
 }
 
-- (UIView *)initializeViewWithInflationDict:(NSDictionary *)inflateDict
-                                    outView:(UIView *)outView {
+- (nullable __kindof UIView *)initializeViewWithInflationDict:(NSDictionary *)inflateDict
+                                                      outView:(nullable __kindof UIView *)outView {
     NSString *filename = inflateDict[@"filename"];
     NSString *bundleName = inflateDict[@"bundleName"];
     NSString *bundleIdentifier = inflateDict[@"bundleId"];
-    NSBundle *bundle = _bundle;
-    if (bundleName != nil) {
-        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
-                                                               ofType:@"bundle"];
-        bundle = [NSBundle bundleWithPath:bundlePath];
-    } else if(bundleIdentifier != nil) {
-        bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
+    if (self.bundle == nil) {
+        if (bundleName != nil) {
+            NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
+                                                                   ofType:@"bundle"];
+            self.bundle = [NSBundle bundleWithPath:bundlePath];
+        } else if (bundleIdentifier != nil) {
+            self.bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
+        }
+
+        if (self.bundle == nil) {
+            self.bundle = [NSBundle mainBundle];
+        }
     }
 
-    if (bundle == nil) {
-        bundle = [NSBundle mainBundle];
-    }
-
-    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename fromBundle:bundle rootView:outView];
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename fromBundle:self.bundle rootView:outView];
     if (inflater.rootView == nil) {
-        NSLog(@"Warning: Error inflating file '%@' from bundle '%@'. Layout will be incomplete.", filename, bundle.bundleIdentifier);
+        NSLog(@"Warning: Error inflating file '%@' from bundle '%@'. Layout will be incomplete.", filename, self.bundle.bundleIdentifier);
     }
     return inflater.rootView;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

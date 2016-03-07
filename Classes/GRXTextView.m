@@ -1,9 +1,11 @@
 #import "GRXTextView.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXTextView
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self commonInit];
@@ -11,7 +13,7 @@
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
+- (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
     if (self) {
         [self commonInit];
@@ -50,21 +52,21 @@
 }
 
 
-- (void)setText:(NSString *)text {
+- (void)setText:(nullable NSString *)text {
     if (NO == [self.text isEqualToString:text]) {
         [super setText:text];
         [self grx_setNeedsLayoutInParent];
     }
 }
 
-- (void)setAttributedText:(NSAttributedString *)attributedText {
+- (void)setAttributedText:(nullable NSAttributedString *)attributedText {
     if (NO == [self.attributedText isEqualToAttributedString:attributedText]) {
         [super setAttributedText:attributedText];
         [self grx_setNeedsLayoutInParent];
     }
 }
 
-- (void)setFont:(UIFont *)font {
+- (void)setFont:(nullable UIFont *)font {
     if (NO == [self.font isEqual:font]) {
         [super setFont:font];
         [self grx_setNeedsLayoutInParent];
@@ -72,3 +74,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

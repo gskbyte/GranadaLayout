@@ -1,4 +1,7 @@
 #import "UIView+GRXLayoutInflater.h"
+#import "UIColor+GRXHexParse.h"
+
+NS_ASSUME_NONNULL_BEGIN
 
 @implementation UIView (GRXLayoutInflater)
 
@@ -33,20 +36,20 @@
     }
 
     NSString *bgColorStr = dictionary[@"debug_bgColor"];
-    if (bgColorStr == nil) {
-        return;
+    if (bgColorStr.length) {
+        NSString *colorSelectorName = [bgColorStr stringByAppendingString:@"Color"];
+        SEL selector = NSSelectorFromString(colorSelectorName);
+        if ([[UIColor class] respondsToSelector:selector]) {
+            self.backgroundColor = [UIColor performSelector:selector];
+        } else {
+            self.backgroundColor = [UIColor grx_colorFromRGBHexString:bgColorStr];
+        }
     }
-
-    // Try UIColor selectors
-    NSString *colorSelectorName = [bgColorStr stringByAppendingString:@"Color"];
-    SEL selector = NSSelectorFromString(colorSelectorName);
-    NSAssert([UIColor.class respondsToSelector:selector], @"Unrecognized color selector: %@", colorSelectorName);
-    self.backgroundColor = [UIColor performSelector:selector];
-
-    // TODO ? could parse also hex values
 }
 
 - (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater {
 }
 
 @end
+
+NS_ASSUME_NONNULL_END
