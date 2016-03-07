@@ -1,9 +1,12 @@
 #import "GRXRelativeLayoutParams.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 static NSNumber *NoNumber = nil;
 
 @interface GRXRelativeLayoutParams () {
+    // TODO use typed collections
     NSMutableArray *_mutableRules, *_mutableParentRules;
 }
 
@@ -11,23 +14,31 @@ static NSNumber *NoNumber = nil;
 
 @implementation GRXRelativeLayoutParams
 
-// TODO initialize one-time
 + (NSArray *)verticalRules {
-    return @[
-        @(GRXRelativeLayoutRuleAbove),
-        @(GRXRelativeLayoutRuleBelow),
-        @(GRXRelativeLayoutRuleAlignTop),
-        @(GRXRelativeLayoutRuleAlignBottom),
-    ];
+    static NSArray<NSNumber *> *GRXRelativeVerticalRules;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        GRXRelativeVerticalRules = @[@(GRXRelativeLayoutRuleAbove),
+                                     @(GRXRelativeLayoutRuleBelow),
+                                     @(GRXRelativeLayoutRuleAlignTop),
+                                     @(GRXRelativeLayoutRuleAlignBottom),
+                                     ];
+    });
+    return GRXRelativeVerticalRules;
 }
 
 + (NSArray *)horizontalRules {
-    return @[
-        @(GRXRelativeLayoutRuleLeftOf),
-        @(GRXRelativeLayoutRuleRightOf),
-        @(GRXRelativeLayoutRuleAlignLeft),
-        @(GRXRelativeLayoutRuleAlignRight),
-    ];
+    static NSArray<NSNumber *> *GRXRelativeHorizontalRules;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        GRXRelativeHorizontalRules =@[
+                                      @(GRXRelativeLayoutRuleLeftOf),
+                                      @(GRXRelativeLayoutRuleRightOf),
+                                      @(GRXRelativeLayoutRuleAlignLeft),
+                                      @(GRXRelativeLayoutRuleAlignRight),
+                                      ];
+    });
+    return GRXRelativeHorizontalRules;
 }
 
 #pragma mark - initialization methods
@@ -95,7 +106,7 @@ static NSNumber *NoNumber = nil;
 }
 
 - (void)setRule:(GRXRelativeLayoutRule)rule
-        forView:(UIView *)view {
+        forView:(nullable __kindof UIView *)view {
     if (view == nil) {
         _mutableRules[rule] = NoNumber;
     } else {
@@ -139,7 +150,7 @@ static NSNumber *NoNumber = nil;
 
 @implementation UIView (GRXRelativeLayoutParams)
 
-- (GRXRelativeLayoutParams *)grx_relativeLayoutParams {
+- (nullable GRXRelativeLayoutParams *)grx_relativeLayoutParams {
     GRXLayoutParams *params = self.grx_layoutParams;
     if ([params isKindOfClass:GRXRelativeLayoutParams.class]) {
         return (GRXRelativeLayoutParams *)params;
@@ -150,3 +161,5 @@ static NSNumber *NoNumber = nil;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

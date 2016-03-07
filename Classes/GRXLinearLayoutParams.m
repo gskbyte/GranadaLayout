@@ -1,6 +1,8 @@
 #import "GRXLinearLayoutParams.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXLinearLayoutParams
 
 - (instancetype)initWithSize:(CGSize)size {
@@ -45,7 +47,7 @@
 
 @implementation UIView (GRXLinearLayoutParams)
 
-- (GRXLinearLayoutParams *)grx_linearLayoutParams {
+- (nullable GRXLinearLayoutParams *)grx_linearLayoutParams {
     GRXLayoutParams *params = self.grx_layoutParams;
     if ([params isKindOfClass:GRXLinearLayoutParams.class]) {
         return (GRXLinearLayoutParams *)params;
@@ -56,3 +58,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

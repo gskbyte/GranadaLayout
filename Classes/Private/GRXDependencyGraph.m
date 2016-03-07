@@ -1,8 +1,10 @@
 #import "GRXDependencyGraph.h"
 #import "UIView+GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXDependencyGraph () {
-    NSMutableArray *_roots;
+    NSMutableArray<GRXDependencyNode *> *_roots;
 }
 
 @end
@@ -135,3 +137,5 @@ static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

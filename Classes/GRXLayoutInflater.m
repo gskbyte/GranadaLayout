@@ -5,6 +5,8 @@
 #import "GRXLayout+GRXLayoutInflater.h"
 #import "GRXJSONCleaner.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXLayoutInflater () {
     NSBundle *_bundle; // can be nil if data was not loaded from a bundle
 }
@@ -31,7 +33,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 #pragma mark - Initialisers
 
 - (instancetype)initWithData:(NSData *)data
-                    rootView:(UIView *)rootView {
+                    rootView:(nullable __kindof UIView *)rootView {
     self = [super init];
     if (self) {
         NSError *error;
@@ -52,7 +54,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 }
 
 - (instancetype)initWithBundleFile:(NSString *)filename
-                          rootView:(UIView *)rootView {
+                          rootView:(nullable __kindof UIView *)rootView {
     return [self initWithFile:filename
                    fromBundle:[NSBundle mainBundle]
                      rootView:rootView];
@@ -60,7 +62,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle
-                    rootView:(UIView *)rootView {
+                    rootView:(nullable __kindof UIView *)rootView {
     NSString *path = [bundle pathForResource:filename ofType:nil];
     NSData *data = [NSData dataWithContentsOfFile:path];
     _bundle = bundle;
@@ -85,7 +87,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                      rootView:nil];
 }
 
-- (UIView *)viewWithIdentifier:(NSString *)identifier {
+- (nullable __kindof UIView *)viewWithIdentifier:(NSString *)identifier {
     return [self.rootView grx_findViewWithIdentifier:identifier];
 }
 
@@ -110,7 +112,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
 - (UIView *)parseViewNodeRecursively:(NSDictionary *)node
                           parentView:(UIView *)parentView
-                             outView:(UIView *)outView {
+                             outView:(nullable __kindof UIView *)outView {
     NSString *className = node[@"class"];
     id inflationObject = node[@"inflate"];
     if (className != nil) {
@@ -231,3 +233,5 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

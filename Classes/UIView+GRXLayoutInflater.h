@@ -2,6 +2,8 @@
 #import "UIView+GRXLayout.h"
 #import "GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface UIView (GRXLayoutInflater)
 
 // Override this method to parse extended options from the layout file
@@ -15,3 +17,5 @@
 - (void)grx_didLoadFromInflater:(GRXLayoutInflater *)inflater;
 
 @end
+
+NS_ASSUME_NONNULL_END

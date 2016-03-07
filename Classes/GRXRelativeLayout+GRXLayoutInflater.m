@@ -1,8 +1,10 @@
 #import "GRXRelativeLayout+GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation GRXRelativeLayout (GRXLayoutInflater)
 
-static NSDictionary * RelativeRules = nil;
+static NSDictionary *RelativeRules = nil;
 static NSDictionary *ParentRules = nil;
 
 + (void)initializeRuleDictionaries {
@@ -70,3 +72,5 @@ static NSDictionary *ParentRules = nil;
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

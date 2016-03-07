@@ -1,20 +1,22 @@
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXLayoutInflater : NSObject
 
-@property (nonatomic, readonly) NSError *parseError;
-@property (nonatomic, readonly) UIView* rootView;
+@property (nullable, nonatomic, readonly) NSError *parseError;
+@property (nullable, nonatomic, readonly) UIView* rootView;
 
 + (BOOL)areDebugOptionsEnabled;
 + (void)setDebugOptionsEnabled:(BOOL)active;
 
 - (instancetype)initWithData:(NSData *)data
-                    rootView:(UIView *)rootView;
+                    rootView:(nullable __kindof UIView *)rootView;
 - (instancetype)initWithBundleFile:(NSString *)filename
-                          rootView:(UIView *)rootView;
+                          rootView:(nullable __kindof UIView *)rootView;
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle
-                    rootView:(UIView *)rootView;
+                    rootView:(nullable __kindof UIView *)rootView;
 
 // same result as calling previous initializers with rootView=nil
 - (instancetype)initWithData:(NSData *)data;
@@ -22,6 +24,8 @@
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle;
 
-- (UIView *)viewWithIdentifier:(NSString *)identifier;
+- (nullable __kindof UIView *)viewWithIdentifier:(NSString *)identifier;
 
 @end
+
+NS_ASSUME_NONNULL_END

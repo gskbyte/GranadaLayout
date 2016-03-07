@@ -2,6 +2,8 @@
 #import "GRXDependencyGraph.h"
 #import "GRXLayout+Protected.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXRelativeLayout ()
 
 @property (nonatomic, retain) NSArray *sortedSubviewsVertical, *sortedSubviewsHorizontal;
@@ -436,3 +438,5 @@ CG_INLINE void centerVertical(GRXRelativeLayoutParams *viewParams, CGFloat viewH
     viewParams.bottom = top + viewHeight;
 }
 @end
+
+NS_ASSUME_NONNULL_END

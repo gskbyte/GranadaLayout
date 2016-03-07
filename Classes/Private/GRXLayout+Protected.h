@@ -1,5 +1,7 @@
 #import "GRXLayout.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface GRXLayout (Protected)
 
 - (GRXMeasureSpec)subviewSpecWithParentSpec:(GRXMeasureSpec)spec
@@ -21,3 +23,5 @@
                          heightUsed:(CGFloat)heightUsed;
 
 @end
+
+NS_ASSUME_NONNULL_END

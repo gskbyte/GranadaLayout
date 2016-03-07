@@ -1,5 +1,7 @@
 #import "GRXLayoutParams.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM (NSUInteger, GRXRelativeLayoutRule) {
     GRXRelativeLayoutRuleLeftOf = 0,
     GRXRelativeLayoutRuleRightOf,
@@ -30,9 +32,9 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 
 @interface GRXRelativeLayoutParams : GRXLayoutParams
 
-// TODO use C arrays?
-+ (NSArray *)verticalRules;
-+ (NSArray *)horizontalRules;
+// TODO use custom class / structure?
++ (NSArray<NSNumber *> *)verticalRules;
++ (NSArray<NSNumber *>  *)horizontalRules;
 
 @property (nonatomic) CGFloat top, left, bottom, right;
 @property (nonatomic, readonly) CGRect rect;
@@ -40,7 +42,7 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 - (BOOL)hasRule:(GRXRelativeLayoutRule)rule;
 - (UIView *)viewForRule:(GRXRelativeLayoutRule)rule;
 - (void)setRule:(GRXRelativeLayoutRule)rule
-        forView:(UIView *)view;
+        forView:(nullable __kindof UIView *)view;
 
 - (BOOL)hasParentRule:(GRXRelativeLayoutParentRule)parentRule;
 - (void)setParentRule:(GRXRelativeLayoutParentRule)parentRule;
@@ -51,6 +53,8 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 
 @interface UIView (GRXRelativeLayoutParams)
 
-@property (nonatomic, readonly) GRXRelativeLayoutParams *grx_relativeLayoutParams;
+@property (nullable, nonatomic, readonly) GRXRelativeLayoutParams *grx_relativeLayoutParams;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -1,5 +1,7 @@
 #import "UIView+GRXLayoutInflater.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @implementation UIView (GRXLayoutInflater)
 
 - (void)grx_configureFromDictionary:(NSDictionary *)dictionary {
@@ -50,3 +52,5 @@
 }
 
 @end
+
+NS_ASSUME_NONNULL_END

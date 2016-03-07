@@ -1,5 +1,7 @@
 #import "GRXLayoutParams.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM (NSUInteger, GRXLinearLayoutGravity) {
     GRXLinearLayoutGravityBegin = 0,
     GRXLinearLayoutGravityCenter,
@@ -18,6 +20,8 @@ static const CGFloat kGRXLinearLayoutParamsDefaultWeight = 0;
 
 @interface UIView (GRXLinearLayoutParams)
 
-@property (nonatomic, readonly) GRXLinearLayoutParams *grx_linearLayoutParams;
+@property (nullable, nonatomic, readonly) GRXLinearLayoutParams *grx_linearLayoutParams;
 
 @end
+
+NS_ASSUME_NONNULL_END
