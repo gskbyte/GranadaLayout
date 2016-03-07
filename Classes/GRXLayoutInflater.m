@@ -177,7 +177,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
         outView.grx_identifier = identifier;
     }
 
-    NSArray *subviews = node[@"subviews"];
+    NSArray<UIView *> *subviews = node[@"subviews"];
     for (NSDictionary *subviewDict in subviews) {
         UIView *subview = [self parseViewNodeRecursively:subviewDict
                                               parentView:outView

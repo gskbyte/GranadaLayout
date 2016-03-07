@@ -14,7 +14,7 @@ static NSNumber *NoNumber = nil;
 
 @implementation GRXRelativeLayoutParams
 
-+ (NSArray *)verticalRules {
++ (NSArray<NSNumber *> *)verticalRules {
     static NSArray<NSNumber *> *GRXRelativeVerticalRules;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -27,7 +27,7 @@ static NSNumber *NoNumber = nil;
     return GRXRelativeVerticalRules;
 }
 
-+ (NSArray *)horizontalRules {
++ (NSArray<NSNumber *> *)horizontalRules {
     static NSArray<NSNumber *> *GRXRelativeHorizontalRules;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

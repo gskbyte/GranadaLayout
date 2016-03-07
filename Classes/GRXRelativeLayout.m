@@ -6,7 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GRXRelativeLayout ()
 
-@property (nonatomic, retain) NSArray *sortedSubviewsVertical, *sortedSubviewsHorizontal;
+@property (nonatomic, retain) NSArray<UIView *> *sortedSubviewsVertical, *sortedSubviewsHorizontal;
 @property (nonatomic) GRXDependencyGraph *dependencyGraph;
 
 @end

@@ -33,8 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
     _nodes[view.grx_layoutId] = node;
 }
 
-- (NSArray *)sortedViewsWithRules:(NSArray *)rulesArray {
-    NSMutableArray *sortedViews = [NSMutableArray new];
+- (NSArray<__kindof UIView *> *)sortedViewsWithRules:(NSArray<NSNumber *> *)rulesArray {
+    NSMutableArray<__kindof UIView *> *sortedViews = [NSMutableArray new];
 
     [self findRootsWithRulesFilter:rulesArray];
 
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
     return sortedViews;
 }
 
-- (void)findRootsWithRulesFilter:(NSArray *)rulesFilter {
+- (void)findRootsWithRulesFilter:(NSArray<NSNumber *> *)rulesFilter {
     for (GRXDependencyNode *node in _nodes.allValues) {
         [node.dependencies removeAllObjects];
         [node.dependents removeAllObjects];
@@ -96,7 +96,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @implementation GRXDependencyNode
 
-static NSMutableArray *GRXDependencyNodePool;
+static NSMutableArray<GRXDependencyNode *> *GRXDependencyNodePool;
 static const NSUInteger GRXDependencyNodePoolCapacity = 64;
 
 + (GRXDependencyNode *)nodeForView:(UIView *)view {

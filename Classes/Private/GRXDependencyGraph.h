@@ -5,8 +5,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GRXDependencyNode : NSObject
 
 @property (nonatomic) UIView *view;
-@property (nonatomic) NSMutableArray *dependents;
-@property (nonatomic) NSMutableDictionary *dependencies;
+@property (nonatomic) NSMutableArray<GRXDependencyNode *> *dependents;
+@property (nonatomic) NSMutableDictionary<NSNumber *, GRXDependencyNode *> *dependencies;
 #ifdef DEBUG
 @property (nonatomic) NSNumber *viewId;
 @property (nonatomic) NSString *debugIdentifier;
