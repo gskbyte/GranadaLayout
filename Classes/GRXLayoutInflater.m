@@ -8,7 +8,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface GRXLayoutInflater ()
-@property (nullable, nonatomic) NSBundle *bundle;
+@property (nullable, nonatomic, readonly) NSBundle *bundle;
 @end
 
 @implementation GRXLayoutInflater
@@ -210,21 +210,20 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     NSString *filename = inflateDict[@"filename"];
     NSString *bundleName = inflateDict[@"bundleName"];
     NSString *bundleIdentifier = inflateDict[@"bundleId"];
-    if (self.bundle == nil) {
-        if (bundleName != nil) {
-            NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
-                                                                   ofType:@"bundle"];
-            self.bundle = [NSBundle bundleWithPath:bundlePath];
-        } else if (bundleIdentifier != nil) {
-            self.bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
-        }
-
-        if (self.bundle == nil) {
-            self.bundle = [NSBundle mainBundle];
-        }
+    NSBundle *bundle;
+    if (bundleName != nil) {
+        NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
+                                                               ofType:@"bundle"];
+        bundle = [NSBundle bundleWithPath:bundlePath];
+    } else if (bundleIdentifier != nil) {
+        bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
     }
 
-    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename fromBundle:self.bundle rootView:outView];
+    if (bundle == nil) {
+        bundle = self.bundle;
+    }
+
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithFile:filename fromBundle:bundle rootView:outView];
     if (inflater.rootView == nil) {
         NSLog(@"Warning: Error inflating file '%@' from bundle '%@'. Layout will be incomplete.", filename, self.bundle.bundleIdentifier);
     }

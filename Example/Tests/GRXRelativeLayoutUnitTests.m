@@ -12,10 +12,6 @@
 
 @implementation GRXRelativeLayoutUnitTests
 
-- (void)setUp {
-    [super setUp];
-}
-
 #define expectParentRule(ident, rule) \
     expect([self viewForId:ident hasParentRule:rule inInflater:inflater]).to.beTruthy()
 
