@@ -1,12 +1,8 @@
-//
-//  UIColor+GRXHexParseTests.m
-//  Example
-//
-//  Created by Jose Alcalá-Correa on 07/03/16.
-//  Copyright © 2016 gskbyte. All rights reserved.
-//
-
 #import <XCTest/XCTest.h>
+#import <GranadaLayout/UIColor+GRXHexParse.h>
+#define EXP_SHORTHAND
+#import <Expecta/Expecta.h>
+
 
 @interface UIColor_GRXHexParseTests : XCTestCase
 
@@ -14,26 +10,75 @@
 
 @implementation UIColor_GRXHexParseTests
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)textHexIntegers {
+    CGFloat red, green, blue, alpha;
+
+    UIColor *redColor = [UIColor grx_colorFromRGBHex:0xFF0000];
+    [redColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(1);
+    expect(green).to.equal(0);
+    expect(blue).to.equal(0);
+    expect(alpha).to.equal(1);
+
+    UIColor *orangeColor = [UIColor grx_colorFromRGBHex:0xffa500];
+    [orangeColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(1);
+    expect(green).to.equal(165/255);
+    expect(blue).to.equal(0);
+    expect(alpha).to.equal(1);
+
+    UIColor *royalBlue = [UIColor grx_colorFromRGBHex:0x4169e1];
+    [royalBlue getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(65/255.0);
+    expect(green).to.equal(105/255.0);
+    expect(blue).to.equal(225/255.0);
+    expect(alpha).to.equal(1);
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testInvalidStrings {
+    expect(^{
+        [UIColor grx_colorFromRGBHexString:@"#1"];
+    }).to.raise(@"Invalid color value");
+
+    expect(^{
+        [UIColor grx_colorFromRGBHexString:@"#dasdasdasdasd da"];
+    }).to.raise(@"Invalid color value");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testValidRRGGBBStrings {
+    CGFloat red, green, blue, alpha;
+
+    UIColor *orangeColor = [UIColor grx_colorFromRGBHexString:@"#ffa500"];
+    [orangeColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(1);
+    expect(green).to.equal(165/255.0);
+    expect(blue).to.equal(0);
+    expect(alpha).to.equal(1);
+
+    UIColor *royalBlue = [UIColor grx_colorFromRGBHexString:@"#4169e1"];
+    [royalBlue getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(65/255.0);
+    expect(green).to.equal(105/255.0);
+    expect(blue).to.equal(225/255.0);
+    expect(alpha).to.equal(1);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)testValidAARRGGBBStrings {
+    CGFloat red, green, blue, alpha;
+
+    UIColor *orangeColor = [UIColor grx_colorFromRGBHexString:@"#49ffa500"];
+    [orangeColor getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(1);
+    expect(green).to.equal(165/255.0);
+    expect(blue).to.equal(0);
+    expect(alpha).to.equal(73/255.0);
+
+    UIColor *royalBlue = [UIColor grx_colorFromRGBHexString:@"#254169e1"];
+    [royalBlue getRed:&red green:&green blue:&blue alpha:&alpha];
+    expect(red).to.equal(65/255.0);
+    expect(green).to.equal(105/255.0);
+    expect(blue).to.equal(225/255.0);
+    expect(alpha).to.equal(37/255.0);
 }
 
 @end

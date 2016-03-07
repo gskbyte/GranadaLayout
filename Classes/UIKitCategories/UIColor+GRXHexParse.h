@@ -6,7 +6,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UIColor *)grx_colorFromRGBHex:(NSInteger)RGBValue;
 
-// Supports following formats: RGB, ARGB, RRGGBB, AARRGGBB
+// Supports following formats: RRGGBB, AARRGGBB
 + (UIColor *)grx_colorFromRGBHexString:(NSString *)RGBString;
 
 @end
