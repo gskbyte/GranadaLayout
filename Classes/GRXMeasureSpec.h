@@ -54,18 +54,6 @@ GRXFullMeasureSpecsEqual(GRXFullMeasureSpec spec1, GRXFullMeasureSpec spec2) {
 #pragma mark - Measurement
 
 CG_INLINE CGFloat
-GRXMeasureSpecGetDefaultValue(CGFloat sizeValue, GRXMeasureSpec measureSpec) {
-    switch (measureSpec.mode) {
-        default:
-        case GRXMeasureSpecUnspecified:
-            return sizeValue;
-        case GRXMeasureSpecExactly:
-        case GRXMeasureSpecAtMost:
-            return measureSpec.value;
-    }
-}
-
-CG_INLINE CGFloat
 GRXMeasureSpecResolveSizeValue(CGFloat sizeValue, GRXMeasureSpec measureSpec) {
     switch (measureSpec.mode) {
         default:
