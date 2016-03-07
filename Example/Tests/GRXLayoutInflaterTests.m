@@ -62,7 +62,7 @@
 }
 
 - (void)testInitWithFileInMainBundle {
-    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithMainBundleFile:@"cell_test.grx"];
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithMainBundleFileNamed:@"cell_test.grx"];
     expect(inflater.rootView).notTo.beNil();
 }
 

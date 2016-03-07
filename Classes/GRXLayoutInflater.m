@@ -51,8 +51,8 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
     return self;
 }
 
-- (instancetype)initWithMainBundleFile:(NSString *)filename
-                              rootView:(nullable __kindof UIView *)rootView {
+- (instancetype)initWithMainBundleFileNamed:(NSString *)filename
+                                   rootView:(nullable __kindof UIView *)rootView {
     return [self initWithFile:filename
                    fromBundle:[NSBundle mainBundle]
                      rootView:rootView];
@@ -73,9 +73,9 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                      rootView:nil];
 }
 
-- (instancetype)initWithMainBundleFile:(NSString *)filename {
-    return [self initWithMainBundleFile:filename
-                               rootView:nil];
+- (instancetype)initWithMainBundleFileNamed:(NSString *)filename {
+    return [self initWithMainBundleFileNamed:filename
+                                    rootView:nil];
 }
 
 - (instancetype)initWithFile:(NSString *)filename

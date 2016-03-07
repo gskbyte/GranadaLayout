@@ -45,7 +45,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithBundleFile:@"complex_cell.grx"];
+        GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithMainBundleFileNamed:@"complex_cell.grx"];
         self.root = (GRXLinearLayout*) inflater.rootView;
         [self.contentView addSubview:self.root];
         self.headerView = (GRXComplexHeaderView *) [inflater.rootView grx_findViewWithIdentifier:@"header"];
