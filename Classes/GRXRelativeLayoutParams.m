@@ -14,11 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
     static NSArray<NSNumber *> *GRXRelativeVerticalRules;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        GRXRelativeVerticalRules = @[@(GRXRelativeLayoutRuleAbove),
-                                     @(GRXRelativeLayoutRuleBelow),
-                                     @(GRXRelativeLayoutRuleAlignTop),
-                                     @(GRXRelativeLayoutRuleAlignBottom),
-                                     ];
+        GRXRelativeVerticalRules = @[
+            @(GRXRelativeLayoutRuleAbove),
+            @(GRXRelativeLayoutRuleBelow),
+            @(GRXRelativeLayoutRuleAlignTop),
+            @(GRXRelativeLayoutRuleAlignBottom),
+        ];
     });
     return GRXRelativeVerticalRules;
 }
@@ -28,11 +29,11 @@ NS_ASSUME_NONNULL_BEGIN
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         GRXRelativeHorizontalRules =@[
-                                      @(GRXRelativeLayoutRuleLeftOf),
-                                      @(GRXRelativeLayoutRuleRightOf),
-                                      @(GRXRelativeLayoutRuleAlignLeft),
-                                      @(GRXRelativeLayoutRuleAlignRight),
-                                      ];
+            @(GRXRelativeLayoutRuleLeftOf),
+            @(GRXRelativeLayoutRuleRightOf),
+            @(GRXRelativeLayoutRuleAlignLeft),
+            @(GRXRelativeLayoutRuleAlignRight),
+        ];
     });
     return GRXRelativeHorizontalRules;
 }

@@ -10,7 +10,8 @@ static const int EncLen_UTF8[256] = {
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 1, 1};
+    3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 1, 1
+};
 
 static inline void copyUTF8CharacterAndAdvancePointers(UTF8Char **source, UTF8Char **target) {
     UTF8Char character = **source;
@@ -27,7 +28,9 @@ static inline void copyUTF8CharacterAndAdvancePointers(UTF8Char **source, UTF8Ch
     }
 }
 
-static inline void skipUTF8Character(UTF8Char **source) { *source += EncLen_UTF8[**source]; }
+static inline void skipUTF8Character(UTF8Char **source) {
+    *source += EncLen_UTF8[**source];
+}
 
 + (NSData *)cleanJSONDataWithData:(NSData *)data {
     UTF8Char *originalString = (UTF8Char *)[data bytes];

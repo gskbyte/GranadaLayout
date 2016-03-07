@@ -137,7 +137,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
 
     // Create new params if needed, translate old ones to the new required params
     GRXLayoutParams *layoutParams = outView.grx_layoutParams;
-    if(layoutParams == nil) {
+    if (layoutParams == nil) {
         if ([parentView isKindOfClass:GRXLayout.class]) {
             GRXLayout *parentLayout = (GRXLayout *)parentView;
             Class layoutParamsClass = [parentLayout.class layoutParamsClass];
@@ -151,10 +151,10 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
                                         fromDictionary:node];
         }
     } else {
-        if([parentView isKindOfClass:GRXLayout.class]) {
-            GRXLayout * parentLayout = (GRXLayout*)parentView;
+        if ([parentView isKindOfClass:GRXLayout.class]) {
+            GRXLayout * parentLayout = (GRXLayout *)parentView;
             Class parentLayoutParamsClass = [parentLayout.class layoutParamsClass];
-            if(layoutParams.class != parentLayoutParamsClass) {
+            if (layoutParams.class != parentLayoutParamsClass) {
                 layoutParams = [[parentLayoutParamsClass alloc] initWithLayoutParams:layoutParams];
             }
             [parentLayout configureSubviewLayoutParams:layoutParams
@@ -215,7 +215,7 @@ static BOOL GRXLayoutInflaterDebugOptionsEnabled = NO;
             NSString *bundlePath = [[NSBundle mainBundle] pathForResource:bundleName
                                                                    ofType:@"bundle"];
             self.bundle = [NSBundle bundleWithPath:bundlePath];
-        } else if(bundleIdentifier != nil) {
+        } else if (bundleIdentifier != nil) {
             self.bundle = [NSBundle bundleWithIdentifier:bundleIdentifier];
         }
 

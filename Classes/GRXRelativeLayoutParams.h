@@ -34,7 +34,7 @@ typedef NS_ENUM (NSUInteger, GRXRelativeLayoutParentRule) {
 
 // TODO use custom class / structure?
 + (NSArray<NSNumber *> *)verticalRules;
-+ (NSArray<NSNumber *>  *)horizontalRules;
++ (NSArray<NSNumber *> *)horizontalRules;
 
 @property (nonatomic) CGFloat top, left, bottom, right;
 @property (nonatomic, readonly) CGRect rect;
