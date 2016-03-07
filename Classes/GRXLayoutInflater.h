@@ -12,15 +12,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithData:(NSData *)data
                     rootView:(nullable __kindof UIView *)rootView;
-- (instancetype)initWithBundleFile:(NSString *)filename
-                          rootView:(nullable __kindof UIView *)rootView;
+- (instancetype)initWithMainBundleFile:(NSString *)filename
+                              rootView:(nullable __kindof UIView *)rootView;
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle
                     rootView:(nullable __kindof UIView *)rootView;
 
 // same result as calling previous initializers with rootView=nil
 - (instancetype)initWithData:(NSData *)data;
-- (instancetype)initWithBundleFile:(NSString *)filename;
+- (instancetype)initWithMainBundleFile:(NSString *)filename;
 - (instancetype)initWithFile:(NSString *)filename
                   fromBundle:(NSBundle *)bundle;
 

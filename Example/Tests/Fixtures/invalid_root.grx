@@ -1,8 +1,8 @@
 {
   "version" : "0.1",
-  
+
   "layout" : {
-    "class" : "GRXLinearLayout",
+    "class" : "INVALID_CLASS",
     "id" : "root",
 
     "width" : "320",
@@ -30,7 +30,7 @@
 
         "width" : "100",
         "height" : "100",
-        
+
         "gravity" : "center",
 
         "debug_bgColor" : "green",
@@ -47,11 +47,11 @@
 
         "width" : "200",
         "height" : "200",
-        
+
         "gravity" : "end",
 
         "debug_bgColor" : "blue"
       }
     ]
-  }  
+  }
 }

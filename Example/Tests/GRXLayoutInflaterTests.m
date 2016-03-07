@@ -21,6 +21,14 @@
     self.linearInRelative = [GRXTestHelper inflaterForFileWithName:@"linear_in_relative.grx"];
 }
 
+- (void)testDebugMode {
+    [GRXLayoutInflater setDebugOptionsEnabled:NO];
+    expect([GRXLayoutInflater areDebugOptionsEnabled]).to.beFalsy();
+
+    [GRXLayoutInflater setDebugOptionsEnabled:YES];
+    expect([GRXLayoutInflater areDebugOptionsEnabled]).to.beTruthy();
+}
+
 - (void)testBrokenJSON {
     GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"broken.grx"];
     expect(inflater).notTo.beNil();
@@ -34,10 +42,28 @@
     expect(inflater.parseError).to.beNil();
 }
 
+- (void)testInvalidRootView {
+    GRXLayoutInflater *inflater = [GRXTestHelper inflaterForFileWithName:@"invalid_root.grx"];
+    expect(inflater.rootView).to.beNil();
+    expect(inflater.parseError).to.beNil();
+}
+
 - (void)testNoLayoutRoot {
     UIView *rootView = [GRXTestHelper rootViewForLayoutFileWithName:@"no_layout_root.grx"];
     expect(rootView).notTo.beNil();
     expect(rootView).to.beInstanceOf(UIView.class);
+}
+
+- (void)testInitWithData {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"linear_test_1.grx" ofType:nil];
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithData:data];
+    expect(inflater.rootView).notTo.beNil();
+}
+
+- (void)testInitWithFileInMainBundle {
+    GRXLayoutInflater *inflater = [[GRXLayoutInflater alloc] initWithMainBundleFile:@"cell_test.grx"];
+    expect(inflater.rootView).notTo.beNil();
 }
 
 - (void)testSubviewsClassMappingsAndParams {

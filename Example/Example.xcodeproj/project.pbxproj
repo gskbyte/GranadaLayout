@@ -52,6 +52,7 @@
 		C078C4AA19F41EF200B127CC /* relative_test_2.grx in Resources */ = {isa = PBXBuildFile; fileRef = C078C4A919F41EF200B127CC /* relative_test_2.grx */; };
 		C087D17519E5B55200737AF9 /* linear_vertical.grx in Resources */ = {isa = PBXBuildFile; fileRef = C087D17419E5B55200737AF9 /* linear_vertical.grx */; };
 		C087D17719E5B57C00737AF9 /* GRXLinearSnapshotTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */; };
+		C08D27691C8E371F005A83E1 /* invalid_root.grx in Resources */ = {isa = PBXBuildFile; fileRef = C08D27681C8E371F005A83E1 /* invalid_root.grx */; };
 		C09F21F219DC590D0069C0A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F21F119DC590D0069C0A1 /* main.m */; };
 		C09F220C19DC590D0069C0A1 /* GRXLayoutInflaterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F220B19DC590D0069C0A1 /* GRXLayoutInflaterTests.m */; };
 		C09F224D19DC5A390069C0A1 /* GRXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C09F223919DC5A390069C0A1 /* GRXAppDelegate.m */; };
@@ -152,6 +153,7 @@
 		C078C4A919F41EF200B127CC /* relative_test_2.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = relative_test_2.grx; sourceTree = "<group>"; };
 		C087D17419E5B55200737AF9 /* linear_vertical.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = linear_vertical.grx; sourceTree = "<group>"; };
 		C087D17619E5B57C00737AF9 /* GRXLinearSnapshotTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GRXLinearSnapshotTests.m; sourceTree = "<group>"; };
+		C08D27681C8E371F005A83E1 /* invalid_root.grx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = invalid_root.grx; sourceTree = "<group>"; };
 		C09F21EC19DC590D0069C0A1 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09F21F019DC590D0069C0A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C09F21F119DC590D0069C0A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				C078C49319F347A300B127CC /* inflate_contained_1.grx */,
 				C078C49419F347A300B127CC /* inflate_contained_2.grx */,
 				C078C49519F347A300B127CC /* inflate_container.grx */,
+				C08D27681C8E371F005A83E1 /* invalid_root.grx */,
 			);
 			path = Fixtures;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0548DB619E71894008DBD0B /* linear_vertical_weight.grx in Resources */,
+				C08D27691C8E371F005A83E1 /* invalid_root.grx in Resources */,
 				C078C49619F347A300B127CC /* inflate_contained_1.grx in Resources */,
 				C05BFA2D19DEAAA000C8FF34 /* linear_root.grx in Resources */,
 				C048AEEB19E14CA8005B163E /* relative_wrapped_push.grx in Resources */,

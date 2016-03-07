@@ -10,7 +10,7 @@
 
 @implementation UIColor_GRXHexParseTests
 
-- (void)textHexIntegers {
+- (void)testHexIntegers {
     CGFloat red, green, blue, alpha;
 
     UIColor *redColor = [UIColor grx_colorFromRGBHex:0xFF0000];
@@ -23,7 +23,7 @@
     UIColor *orangeColor = [UIColor grx_colorFromRGBHex:0xffa500];
     [orangeColor getRed:&red green:&green blue:&blue alpha:&alpha];
     expect(red).to.equal(1);
-    expect(green).to.equal(165/255);
+    expect(green).to.equal(165/255.0);
     expect(blue).to.equal(0);
     expect(alpha).to.equal(1);
 
