@@ -9,9 +9,9 @@ GranadaLayout
 
 The goal of this project is to be an alternative to Apple's AutoLayout, which I find not very intuitive under some circumstances and has poor performance on older devices. I think this system allows also easier animations and the provided layout inflater allows not to mix interface and logic code.
 
-###master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
+### master [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/master.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/master.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout)
 
-###0.4.1 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.4.1.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
+### 0.4.1 [![Build Status](http://img.shields.io/travis/gskbyte/GranadaLayout/0.4.0.svg?style=flat)](https://travis-ci.org/gskbyte/GranadaLayout) [![Coverage Status](http://img.shields.io/coveralls/gskbyte/GranadaLayout/0.4.1.svg?style=flat)](https://coveralls.io/r/gskbyte/GranadaLayout) [![Pod](http://img.shields.io/cocoapods/v/GranadaLayout.svg?style=flat)](http://cocoapods.org/?q=GranadaLayout)
 
 What it can do
 --------------
@@ -47,11 +47,11 @@ TODO:
 Installation
 ------------
 
-###CocoaPods
+### CocoaPods
 
 GranadaLayout is most easily installed using [CocoaPods](http://www.cocoapods.org). Its pod name is "GranadaLayout".
 
-###Without CocoaPods
+### Without CocoaPods
 
 Just copy the folder ``Classes`` to your project. Rename it if needed
 
@@ -182,7 +182,7 @@ image.grx_visibility = GRXVisibilityGone; // will hide the image and expand the 
 }];
 ```
 
-###Just code
+### Just code
 
 // Please check the test controllers to see how it works, but really, it's much better to use layout files!
 
